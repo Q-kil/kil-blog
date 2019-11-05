@@ -19,10 +19,35 @@ cd 项目目录路径
 
 选择 Scheme主题改样式，themes > next > _config.yml 改为 scheme: Pisces
 
+<!-- more -->
+
 ## 基础设置
 语言：language: zh-Hans
 avatar: 在主题模版的设置文件 _config.yml 找到avatar 字段
 头像下面的签名：在根目录的设置文件 _config.yml 找到description 字段
+阅读全文：
+a. 手动截断 {% label ib_green@推荐 %}
+``<!-- more -->``
+b. 自动形成摘要，在{% label ib_purple@主题配置文件 %}中添加
+```
+auto_excerpt:
+  enable: true
+  length: 150
+```
+文字增加背景色块：
+文件位置  `` ~themes/next/source/css/_custom/custom.styl``
+``` 
+// 添加色系 span.ib_green (ib = inline-block)
+{% label ib_green@推荐1 %}
+{% label ib_yellow@推荐1 %}
+{% label ib_blue@推荐1 %}
+{% label ib_purple@推荐1 %}
+```
+效果 
+{% label ib_green@推荐1 %}
+{% label ib_yellow@推荐1 %}
+{% label ib_blue@推荐1 %}
+{% label ib_purple@推荐1 %}
 
 ### 分类
 #### 生成“分类”页并添加tpye属性
@@ -99,3 +124,8 @@ tags:
 
 细心的朋友可能已经发现，这两个的设置几乎一模一样！是的，没错，思路都是一样的。所以我们可以打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行hexo new 文章名命令生成的文件，页面里就有categories:项了。
 
+## 指令
+### 启动
+``` BASH
+$ hexo s
+```
