@@ -1,6 +1,6 @@
 ---
 layout: hexo
-title: Hexo配置
+title: Hexo
 date: 2019-10-18 17:13:21
 categories:
 - Frame
@@ -128,4 +128,9 @@ tags:
 ### 启动
 ``` BASH
 $ hexo s
+```
+
+### 创建新文件
+``` BASH
+$ hexo new Linux
 ```
