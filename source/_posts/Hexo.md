@@ -134,3 +134,22 @@ $ hexo s
 ``` BASH
 $ hexo new Linux
 ```
+
+## 部署
+### blog根目录 _config.yml 配置
+```
+deploy:
+  type: git
+  repo: 'https://github.com/KilFront/KilFront.github.io.git'
+  branch: master
+```  
+
+### github  kilfront.github.io根目录添加文件 CNAME
+```
+www.kaifa.in
+```
+
+### 解析记录
+CNAME kilfront.github.io
+
+### ！需要注意 缓存问题；新建无痕浏览 可以
