@@ -130,6 +130,13 @@ tags:
 $ hexo s
 ```
 
+### 发布
+```
+hexo clean
+hexo g
+hexo d
+```
+
 ### 创建新文件
 ``` BASH
 $ hexo new Linux
