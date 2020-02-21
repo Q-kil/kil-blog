@@ -49,6 +49,17 @@ auto_excerpt:
 {% label ib_blue@推荐1 %}
 {% label ib_purple@推荐1 %}
 
+文字加粗 **ng-book2-angular8**
+```
+**ng-book2-angular8**
+```
+
+转义标记 `<app-user-list>`
+```
+`<app-user-list>`
+```
+
+
 ### 分类
 #### 生成“分类”页并添加tpye属性
 ``` 
@@ -160,3 +171,12 @@ www.kaifa.in
 CNAME kilfront.github.io
 
 ### ！需要注意 缓存问题；新建无痕浏览 可以
+
+
+## 博客迁移
+再给家里的电脑搭建环境时，主题 和 样式 未能显示。
+原因：子模块不允许提交
+解决：
+在主项目 source 文件 新建 _data 文件
+next.yml 中 粘贴主题文件_config.yml代码
+custom.text 中 存放样式代码
