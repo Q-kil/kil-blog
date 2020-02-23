@@ -6,7 +6,69 @@ categories:
 tags:
 - Linux
 ---
+
+## 第一步
+### update
+``` BASH
+$ sudo apt update
+```
+
+如果比较慢，换国内源
+
+``` BASH
+$ sudo ls /etc/apt/sources.list
+  /etc/apt/sources.list
+
+$ sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
+
+$ sudo vim /etc/apt/sources.list
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+
+$ sudo apt update
+```
+
+### install
+gcc编译c文件，g++编译cpp文件，make自动化编译工具
+``` BASH
+$ sudo apt install gcc g++ make -y
+```
+
 ## 指令
+### 基础
+创建文件
+``` BASH
+$ mkdir usr
+```
+
+移动文件
+``` BASH
+$ mv node-v12.16.1-linux-x64 /usr/app
+```
+
+强制保存
+``` BASH
+$ wq!
+```
+
+
 ### 域名操作
 #### curl
 curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
@@ -39,8 +101,19 @@ dig kaifa.in
 kaifa.in.		16478	IN	A	209.141.38.71
 ```
 
-## ssh 快捷登录
-### 设置
+## SSH
+### key
+查看是否有key
+``` BASH
+$ cd ~/.ssh && ls
+id_rsa  id_rsa.pub  known_hosts
+```
+生成key
+``` BASH
+$ ssh-keygen -t rsa -C "your_email@example.com"
+```
+
+### 快捷登录设置
 客户端配置文件 ～/.ssh/config
 ``` BASH
   Host hk1

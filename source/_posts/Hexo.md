@@ -10,6 +10,36 @@ tags:
 
 [Hexo](https://hexo.io/zh-cn/)在去年和阿通就已经搭建好了，一直没正式用过。今天看到了iissnan博主的博客站，以及最近小莫说写些技术文章，现在觉得可以用起来，写一些高质量的技术文章和记录一下生活的点滴。
 
+## 安装
+``` BASH
+$ npm install hexo-cli -g
+```
+
+查看版本
+``` BASH
+$ hexo -v
+hexo: 3.9.0
+hexo-cli: 3.1.0
+os: Linux 4.4.0-18362-Microsoft linux x64
+node: 12.16.1
+v8: 7.8.279.23-node.31
+uv: 1.34.0
+zlib: 1.2.11
+brotli: 1.0.7
+ares: 1.15.0
+modules: 72
+nghttp2: 1.40.0
+napi: 5
+llhttp: 2.0.4
+http_parser: 2.9.3
+http_parser: 2.9.3
+openssl: 1.1.1d
+cldr: 35.1
+icu: 64.2
+tz: 2019c
+unicode: 12.1
+```
+
 ## 此博客站Hexo的主题
 cd 项目目录路径
 
@@ -48,17 +78,6 @@ auto_excerpt:
 {% label ib_yellow@推荐1 %}
 {% label ib_blue@推荐1 %}
 {% label ib_purple@推荐1 %}
-
-文字加粗 **ng-book2-angular8**
-```
-**ng-book2-angular8**
-```
-
-转义标记 `<app-user-list>`
-```
-`<app-user-list>`
-```
-
 
 ### 分类
 #### 生成“分类”页并添加tpye属性
@@ -135,6 +154,34 @@ tags:
 
 细心的朋友可能已经发现，这两个的设置几乎一模一样！是的，没错，思路都是一样的。所以我们可以打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行hexo new 文章名命令生成的文件，页面里就有categories:项了。
 
+## 语法
+文字加粗 **ng-book2-angular8**
+```
+**ng-book2-angular8**
+```
+
+转义标记 `<app-user-list>`
+```
+`<app-user-list>`
+```
+
+### 复选框
+使用 `- [ ]` 和 `- [x]` 语法可以创建复选框，实现 todo-list 等功能。
+- [x] 已完成事项
+- [ ] 待办事项1
+- [ ] 待办事项2
+
+### 引入图片
+_config.yml
+post_asset_folder: true
+
+标签插件(注：Hexo >3)
+`{% asset_img terminal_theme.png %}`
+
+### 链接
+[链接](http://www.example.com)
+
+
 ## 指令
 ### 启动
 ``` BASH
@@ -160,12 +207,20 @@ deploy:
   type: git
   repo: 'https://github.com/KilFront/KilFront.github.io.git'
   branch: master
-```  
+```
 
-### github  kilfront.github.io根目录添加文件 CNAME
+{% label ib_blue@2020/2/23 修改 %}
+每次hexo d 部署时，总要输入git 用户名&&密码。
+现在修改为SSH连接方式
 ```
+deploy:
+  type: git
+  repo: git@github.com:KilFront/KilFront.github.io.git
+  branch: master
+``` 
+
+### github kilfront.github.io根目录添加文件 CNAME
 www.kaifa.in
-```
 
 ### 解析记录
 CNAME kilfront.github.io
