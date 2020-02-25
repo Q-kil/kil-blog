@@ -175,12 +175,183 @@ case it is AppComponent
 list of users.
 
 
+## TypeScript
+### TypeScript对ES5的五大改进
+- type
+- classes
+- decorators
+- imports
+- language utilities (eg: destructuring)
+
+TypeScript/ES6中还有许多其他特性
+• Interfaces
+• Generics
+• Importing and Exporting Modules
+• Decorators
+• Destructuring
+
+### type
+类型检查好处
+- 有助于编写代码，编译时防止错误
+- 有助于阅读代码，澄清了作者的意图
+
+#### 函数声明
+在声明函数时，可以使用类型作为参数和返回值：
+``` js
+function greetText(name: string): string {
+  return "Hello" + name;
+}
+```
+
+#### 数组声明
+数组是用数组类型声明的。但是，因为数组是一个集合，我们还需要指定数组中对象的类型。
+- `array<type>`
+- type[]
+``` js
+private jobs: Array<string> = ['IBM', 'Google'];
+private jobss: string[] = ['Apple', 'Dell'];
+```
+
+#### 枚举类型
+枚举通过命名数值来工作
+``` ts
+enum Role {Employee, Manager = 3, Admin};
+private role: Role = Role.Employee; // 枚举的默认初始值为0
+private role2: Role = Role.Manager; // 3
+```
+enum Role {Employee = 3, Manager, Admin};
+枚举的值从那里开始递增，这意味着Manager是4，Admin是5
 
 
+#### Any
+如果忽略给定变量的类型，则any是默认类型。变量为any允许它接收任何类型的值
 
 
+#### Void
+使用void意味着不需要类型。这通常在函数中没有返回值：
 
 
+#### Classes
+ES5 使用protype
+ES6 new class
+``` js
+class Vehicle {
+}
+```
+类可以有属性、方法和构造函数。
+##### 属性
+属性定义附加到类实例的数据。
+例如，一个名为人可能有名字、姓氏和年龄等属性。
+类中的每个属性都可以有一个类型。
 
+##### 方法
+方法是在对象上下文中运行的函数。
+要对对象调用方法，我们首先要有一个对象的实例。
+``` ts
+var p: Person  = new Person();
+p.first_name = 'Felipe';
+p.greet();
+```
+
+##### 构造函数 constructor
+构造函数是一种特殊的方法，当类的新实例正在创建。
+通常，构造函数是执行新的对象。
+构造函数方法必须命名为构造函数。
+它们可以有选择地接受参数，但不能返回任何值，因为当类是正在实例化（即正在创建类的实例，没有其他值可以返回）。
+
+实例化一个类:
+``` ts
+new ClassName()
+```
+
+在TypeScript中，每个类只能有一个构造函数。
+这与ES6不同，ES6允许一个类有多个构造函数，只要它们有不同数量的参数。
+
+当我们想要参数化我们的新实例时，构造函数可以接受参数创造。
+``` ts
+class Person {
+  first_name: string;
+  last_name: string;
+  age: number;
+
+  constructor(first_name: string, last_name: string, age: number) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.age = age;
+  }
+}
+
+// 在创建对象时为我们设置人员的姓名和年龄
+var p: Person = new Person('Felipe', 'Coury', 36);
+```
+
+##### 继承 Inheritance
+面向对象编程的另一个重要方面是继承。
+继承表示类从父类接收行为的方法。
+那我们可以重写、修改或扩展新类上的这些行为。
+
+重用Report类向用户显示数据的方式:
+``` ts
+class Report {
+  data: Array<string>;
+
+  constructor(data: Array<string>) {
+    this.data = data;
+  }
+
+  run() {
+    this.data.forEach(function(line) { console.log(line); });
+  } 
+}
+
+class TabbedReport extends Report {
+  headers: Array<string>;
+
+  constructor(headers: string[], values: string[]) {
+    super(values)
+    this.headers = headers;
+  }
+  run() {
+    console.log(this.headers);
+    super.run();
+  } 
+}
+```
+
+##### 公用程序 Utilities
+ES6和扩展TypeScript提供了许多语法特性，使编程真的很有趣。
+两个重要体现：
+- 箭头函数
+- 模板字符串
+
+``` ts
+// ES5
+var data = ['Alice Green', 'Paul Pfifer', 'Louis Blakenship'];
+data.forEach(function(line) { console.log(line); });
+
+// Typescript
+data.forEach( (line) => console.log(line) );
+```
+
+只有一个参数时，括号是可选的。可以使用=>语法作为一种表达：
+``` ts
+var evens = [2,4,6,8];
+var odds = evens.map(v => v + 1);
+```
+
+模板字符串特点：
+1.字符串中的变量（不强制与+连接）
+2.多行字符串
+``` ts
+// 写在反勾号里面
+var greeting = `Hello ${firstName} ${lastName}`;
+
+var template = `
+ <div>  
+   <h1>Hello</h1>
+   <p>This is a great website</p>
+ </div>
+ `
+```
 
 

@@ -25,6 +25,21 @@ VS Code 的全称是 Visual Studio Code，是一款开源的、免费的、跨�
 快捷键列表： VS Code 左下角的齿轮按钮 -> 键盘快捷方式
 
 ## VS Code快捷键
+### 自定义
+cl => console.log();
+设置
+File > Preference > User Snippets
+选择 javascript.json && typescript.json 添加：
+``` JSON
+"Print to console": {
+    "prefix": "cl",
+    "body": [
+        "console.log('$1');",
+    ],
+    "description": "Log output to console"
+}
+```
+
 ### 光标
 | Mac快捷键 | 作用  | 
 | :--- | :--- | 
