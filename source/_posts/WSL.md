@@ -38,3 +38,30 @@ Windows设置主页 搜索：开发者选项
 ### vscode
 安装插件：Remote - WSL
 
+
+## 环境
+### node环境变量配置 （安装的包 无法使用）
+``` zsh
+$ tsc
+zsh: command not found: tsc
+```
+
+``` zsh
+$ sudo vi ~/.zshrc
+// 添加
+export NODE_HOME=/home/kil/.npm-global
+export PATH=$NODE_HOME/bin:$PATH
+$ source ~/.zshrc
+$ tsc -v
+Version 3.8.2
+```
+
+seven:
+那你要把home目录的 node_module 加到path里
+node_module 里应该有个bin目录
+把那个目录加到你path里
+你看看global的模块目录在哪
+You can run npm list -g to see which global libraries are installed and where they're located. 
+那你应该在 .zshrc里export
+[When I use ZSH, how do I set PATH in /etc/profile.d?](https://askubuntu.com/questions/476246/when-i-use-zsh-how-do-i-set-path-in-etc-profile-d)
+

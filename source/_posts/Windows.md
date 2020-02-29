@@ -21,6 +21,16 @@ dir
 ## 快捷键
 <span class="custom_red">win + I</span> windows设置主页
 
+回到桌面
+`win + D`
+
+
+### Chrome
+打开新的标签页，并跳转到该标签页
+`Ctrl + t`
+https://support.google.com/chrome/answer/157179?hl=zh-Hans
+
+
 ## 环境变量配置
 系统属性 > 环境变量(n) > 系统变量 > 点击 `Path 一行` > 新建(N) > 粘贴软件路径 （F:\vscode\Microsoft VS Code)
 
@@ -39,3 +49,11 @@ dir
 ### 引导安装后，激活
 1.淘宝买激活码
 2.用破解工具
+
+
+
+## 设置
+### 默认浏览器
+https://support.microsoft.com/zh-cn/help/4028606/windows-10-change-your-default-browser
+
+

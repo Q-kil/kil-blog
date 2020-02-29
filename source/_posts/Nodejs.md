@@ -12,3 +12,10 @@ npm 查看安装了哪些包
 ``` BASH
 npm list --depth=0
 ```
+
+``` BASH
+$ npm list -g
+/home/kil/.npm-global/lib
+├─┬ node-sass@4.13.1
+│ ├── async-foreach@0.1.3
+```

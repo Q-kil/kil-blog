@@ -55,6 +55,11 @@ $ sudo apt install gcc g++ make -y
 ### 基础
 创建文件
 ``` BASH
+$ touch test.text
+```
+
+创建文件夹
+``` BASH
 $ mkdir usr
 ```
 
@@ -68,6 +73,10 @@ $ mv node-v12.16.1-linux-x64 /usr/app
 $ wq!
 ```
 
+查找历史指令
+``` BASH
+history |grep curl
+```
 
 ### 域名操作
 #### curl
@@ -130,3 +139,35 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTzGvV166P2ST3VEyxC/wsAViF7kg0X5Fsn6ucyeIh
 ~ 表示：当前登录用户的用户目录
 ~ 代表的就是 /home/kil/
 
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ "${PS1-}" ]; then
+  if [ "${BASH-}" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+#export NODE_HOME=/usr/app/node-v12.16.1-linux-x64
+#export PATH=$PATH:$NODE_HOME/bin
+
+export NODE_HOME=/home/kil/.npm-global
+export PATH=$NODE_HOME/bin:$PATH
