@@ -40,6 +40,15 @@ File > Preference > User Snippets
 }
 ```
 
+### 无效快捷键解决
+win 显示所有命令 `Ctrl + shift + P`
+改为
+F1 (键盘快捷方式按键设置)
+[keybindings.json教程](https://code.visualstudio.com/docs/getstarted/keybindings)
+
+
+
+
 ### 光标
 | Mac快捷键 | 作用  | 
 | :--- | :--- | 
@@ -106,7 +115,7 @@ File > Preference > User Snippets
 | Cmd + J | 显示/隐藏控制台 | 
 | Ctrl + ` | 打开自带终端 | 
 | Ctrl + Tab | 在已经打开的文件之间进行跳转 | 
-
+| Ctrl + Home | 快速回到顶部 | 
 
 ## 命令面板
 Mac用户按住快捷键 <span class="custom_red">Cmd+Shift+P<span>
@@ -297,3 +306,16 @@ Code Time插件：记录编程时间，统计代码行数。摸鱼必备。
 多台设备之间，同步 VS Code 配置
 
 [原作者](https://juejin.im/post/5cb87c6e6fb9a068a03af93a#heading-47)
+
+
+## 设置
+### 设置中文
+按Ctrl + Shift + P打开`命令调色板`，然后开始键入“display”以过滤并显示Configure Display Language命令。
+[详细操作](https://blog.csdn.net/qq_31564379/article/details/82736910)
+
+
+### 删除行快捷键，无法使用 ctrl + shift + k
+没找到解决原因
+修改了 快捷键绑定
+文件 > 首选项 > 键盘快捷键方式
+ctrl + shift + backspace (删除)

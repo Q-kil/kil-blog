@@ -21,9 +21,12 @@ dir
 ## 快捷键
 <span class="custom_red">win + I</span> windows设置主页
 
-回到桌面
+### 回到桌面
 `win + D`
 
+### 截图
+Print Screen 屏幕截图键
+PRINT SCREEN SYSRQ
 
 ### Chrome
 打开新的标签页，并跳转到该标签页
