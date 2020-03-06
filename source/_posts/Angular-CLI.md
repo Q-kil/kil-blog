@@ -7,6 +7,11 @@ tags:
 - Angular-CLI
 ---
 
+# 指令
+``` zsh
+ng version
+```
+
 ``` BASH
 $ ng g c app
 CREATE src/app/app/app.component.ts (257 bytes)

@@ -13,9 +13,14 @@ tags:
 d:
 ```
 
-### 查看文件里面的内容
+### 查看文件夹里面的内容
 ``` 
 dir
+```
+
+### 查看文件内容
+```
+type id_rsa.pub
 ```
 
 ## 快捷键
@@ -51,12 +56,16 @@ https://support.google.com/chrome/answer/157179?hl=zh-Hans
 
 ### 引导安装后，激活
 1.淘宝买激活码
-2.用破解工具
+2.用破解工具：http://www.yishimei.cn/network/319.html
 
 
 
 ## 设置
 ### 默认浏览器
 https://support.microsoft.com/zh-cn/help/4028606/windows-10-change-your-default-browser
+
+### 语言设置
+`{% asset_img language.png %}`
+
 
 
