@@ -100,8 +100,8 @@ window.onload = function() {
 }
 ```
 
-## 函数
-### 新增箭头函数
+# 函数
+## 新增箭头函数
 借鉴python lambda
 ``` js
 function 名字() {
@@ -126,21 +126,21 @@ let show = () => {
 }
 ```
 
-#### 圆括号可以省略
+### 圆括号可以省略
 ``` js
 let show = a => {
   return a*2
 }
 ```
 
-#### 花括号可以省略
+### 花括号可以省略
 ``` js
 let show = a=> a*2
 ```
 
-### 函数参数
-#### 参数扩展/展开
-收集剩余的参数
+## 函数参数
+### 参数扩展/数组展开
+1、收集剩余的参数
 ``` js
 function show(a, b, ...args) {
 }
@@ -148,13 +148,219 @@ show(3, 5, 3, 6, 7);
 ```
 + *Rest Parameter必须是最后一个
 
+2、展开数组
+   展开后的效果，跟直接把数组的内容写在这儿一样
+``` js
+let a = [1,2,3];
+let b = [4,5,6];
+let arr = [...a, ...b] // [1,2,3,4,5,6]
+```
 
+## 默认参数
+``` js
+function show(a, b=1, c=3){};
+```
 
+# 解构赋值
+1、左右两边结构必须一样
+2、右边必须是个东西
+3、声明和赋值不能分开（必须在一句话里完成）
+``` js
+let arr = [1, 2, 3];
+let a = arr[0];
+let b = arr[1];
 
+// 解构赋值
+// 数组
+let [a, b, c] = [1, 2, 3]
 
+// 对象
+let {a, b, c} = {a: 2, b: 3, c:4}
+```
 
+# 数组
+## map 映射
+一个对一个
+``` js
+let arr = [3, 4, 6];
 
+let result = arr.map(item => item*2);
+result // [6, 8, 12]
 
+// 成绩
+let score = [23, 34, 99, 22, 44];
+
+let result = score.map(item => item>=60?'及格':'不及格');
+score //[23, 34, 99, 22, 44]
+result //[不及格，不及格，及格，不及格，不及格]
+```
+
+## reduce 汇总
+一堆出来一个
+求和，求平均数
+``` js
+let arr = [12, 68, 190, 390];
+
+let result = arr.reduce(function (tmp, item, index) {
+  if (index!=arr.length-1) {
+    return tmp + item;
+  } else {
+    return (tmp + item)/arr.length;
+  }
+})
+```
+
+## filter 过滤器
+``` js
+let arr = [12, 5, 8, 99, 36];
+
+let result = arr.filter(item => {
+  if (item%3 == 0) {
+    return true;
+  } else {
+    return false;
+  }
+})
+result // 12, 99, 36
+
+// 简写
+let result = arr.filter(item => item%3 == 0);
+```
+
+## forEach 迭代
+``` js
+let arr = [4, 5, 6, 7];
+
+arr.forEach((item, index) => {
+  console.log(index + ':' + item);
+})
+```
+
+# 字符串
+## 多了两个新方法
+`startsWith`
+``` js
+let str = 'htts://www.google.com';
+
+if (str.startsWith('http://')) {
+  alert('普通网址');
+} else if(str.startsWith('htts://')) {
+  alert('加密网址');
+} else {
+  alert('其他');
+}
+```
+
+`endsWith`
+``` js
+let str = '1.txt';
+
+if (str.endsWith('.txt')) {
+  alert('文本文件');
+} else if (str.endsWith('.jpg')) {
+  alert('JPG图片');
+} else {
+  alert('其他');
+}
+```
+
+## 字符串模板
+` 反单引号
+1、直接把变量塞到字符串里面  ${变量}
+2、可以折行
+``` js
+let srt = '<div>\
+  <h1>' + title + '</h1>\
+  </div>';
+
+let str2 = `<div>
+  <h1>${titel}</h1>
+  </div>`;  
+```        
+
+# 面向对象
+## ES4, ES5 写法
+1、类 和 构造函数 不分的...
+2、类 散开了
+``` js
+function User(name, pass) {
+  this.name = name;
+  this.pass = pass;
+}
+
+User.prototype.showName = function() {
+  alert(this.name);
+}
+User.prototype.showPass = function() {
+  alert(this.pass);
+}
+
+var u1 = new User('kil', 123456);
+u1.showName();
+u2.showPass();
+```
+
+## ES6 写法
+``` js
+class User{
+  constructor(name, pass) { // 构造函数 或着 构造器
+    this.name = name;
+    this.pass = pass;
+  }
+
+  showName() {  // 注意：此处写的是class，不是json 。json的话，showName： function(){}
+    alert(this.name);
+  }
+  showPass() {
+    alert(this.pass);
+  }
+}
+```
+
+1、`class`关键字，专门的构造器
+2、class里面直接加方法
+
+## 继承
+归根到底，最有价值的
+面向对象：我可以不断完善我的东西，增加功能
+站在前人的肩膀上，才能走得越来越远。人类社会就是这么发展的。
+继承一个已有的类，来扩展它的功能。
+
+### ES4, ES5写法
+``` js
+function VipUser(name, pass, level) {
+  User.call(this, name, pass);
+
+  this.level = level;
+}
+
+VipUser.prototype = new User();
+VipUser.prototype.constructor = VipUser;
+
+VipUser.prototype.showLevel = function() {
+  alert(this.level);
+}
+
+var v1 = new VipUser('kil', '123456', 3);
+v1.showName();
+v1.showPass();
+V1.showLevel();
+```
+
+### ES6写法
+``` js
+class VipUser{
+  constructor(name, pass, level) {
+    super(name, pass);
+
+    this.level = level;
+  }
+
+  showLevel() {
+    alert(this.level);
+  }
+}
+```
 
 
 
