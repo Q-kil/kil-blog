@@ -88,6 +88,15 @@ whereis oracle
 which oracle
 ```
 
+PS E:\software\genymotion\Genymotion\tools> netstat -aon|findstr “5037”
+  TCP    127.0.0.1:5037         0.0.0.0:0              LISTENING       19856
+  TCP    127.0.0.1:5037         127.0.0.1:56022        ESTABLISHED     19856
+  TCP    127.0.0.1:5037         127.0.0.1:56032        ESTABLISHED     19856
+  TCP    127.0.0.1:56022        127.0.0.1:5037         ESTABLISHED     13504
+  TCP    127.0.0.1:56032        127.0.0.1:5037         ESTABLISHED     20616
+PS E:\software\genymotion\Genymotion\tools> taskkill /pid 19856 /f
+成功: 已终止 PID 为 19856 的进程。
+
 
 ### 域名操作
 #### curl

@@ -9,6 +9,7 @@ description: 潜心修行，任重道远
 keywords:
 author: kil
 language: zh-Hans
+# language: zh-CN
 timezone:
 
 # URL
@@ -74,6 +75,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+# theme: next-reloaded
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

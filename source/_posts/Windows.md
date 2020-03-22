@@ -38,6 +38,8 @@ PRINT SCREEN SYSRQ
 `Ctrl + t`
 https://support.google.com/chrome/answer/157179?hl=zh-Hans
 
+### 打开磁盘
+`win + E`
 
 ## 环境变量配置
 系统属性 > 环境变量(n) > 系统变量 > 点击 `Path 一行` > 新建(N) > 粘贴软件路径 （F:\vscode\Microsoft VS Code)
@@ -67,5 +69,9 @@ https://support.microsoft.com/zh-cn/help/4028606/windows-10-change-your-default-
 ### 语言设置
 `{% asset_img language.png %}`
 
+### 设置开机启动
+禁用
+win 搜索框搜索：msconfig，打开系统配置，切换到启动项，打开任务资源管理器，切换到启动
 
-
+启用
+win + R；输入指令：shell:startup, 复制图标即可

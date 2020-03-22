@@ -55,10 +55,12 @@ F1 (键盘快捷方式按键设置)
 | Ctrl + F | 光标前进一个字符，相当于右键（F = Forward）  | 
 | Ctrl + B | 光标后退一个字符，相当于左键（B = Backward）  | 
 | Ctrl + P | 上移一行，相当于上键（P = Previous）  | 
-| Ctrl + N | 下移一行，相当于下键（N = Next）  | 
+| Ctrl + N | 下移一行，相E当于下键（N = Next）  | 
 | Ctrl + A | 移动到一行的开头（A = Ahead）  | 
 | Ctrl + E | 移动到一行的结尾（E = End）  | 
 | 按住 option | 多光标使用  | 
+| Ctrl + Home | 光标移动到文件内容开头  | 
+| Ctrl + End | 光标移动到文件内容结尾  | 
 
 ### 鼠标操作
 - 在当前行的位置，鼠标三击，可以选中当前行。
@@ -79,6 +81,10 @@ F1 (键盘快捷方式按键设置)
 | Option + P | 将代码向上移动 | 
 | Option + N | 将代码向下移动 | 
 | Cmd + D | 将代码向下复制 | 
+
+| Win快捷键 | 作用  | 
+| :--- | :--- | 
+| Ctrl + C（空选状态下） | 复制行 | 
 
 ### JS语音相关
 | Mac快捷键 | 作用  | 
@@ -118,6 +124,15 @@ F1 (键盘快捷方式按键设置)
 | Ctrl + ` | 打开自带终端 | 
 | Ctrl + Tab | 在已经打开的文件之间进行跳转 | 
 | Ctrl + Home | 快速回到顶部 | 
+
+| Win快捷键 | 作用 |X
+| :--- | :--- | 
+| Ctrl + b | 显示/隐藏侧边栏  | 
+| Ctrl + g | 导航到特定的行  | 
+| Ctrl + backspace | 删除前一个单词  | 
+| Ctrl + Shift + Right arrow | 删除前一个单词  | 
+| Ctrl + Shift + X | 快速打开扩展面板  | 
+| Ctrl + Shift + D | 快速打开调试面板  | 
 
 ## 命令面板
 Mac用户按住快捷键 <span class="custom_red">Cmd+Shift+P<span>
@@ -310,6 +325,13 @@ Code Time插件：记录编程时间，统计代码行数。摸鱼必备。
 [原作者](https://juejin.im/post/5cb87c6e6fb9a068a03af93a#heading-47)
 
 
+### JS-CSS-HTML Formatter
+代码格式化插件
+win格式化快捷键：Alt + Shift + F
+
+### angular support
+Angular ctrl+鼠标左键 点击html中的方法跳到ts的方法上
+
 ## 设置
 ### 设置中文
 按Ctrl + Shift + P打开`命令调色板`，然后开始键入“display”以过滤并显示Configure Display Language命令。
@@ -321,3 +343,9 @@ Code Time插件：记录编程时间，统计代码行数。摸鱼必备。
 修改了 快捷键绑定
 文件 > 首选项 > 键盘快捷键方式
 ctrl + shift + backspace (删除)
+
+### tab缩进
+文件 > 首选项 > 设置
+Tab Size：2
+editor.detectIndentation 这项改成 false 就生效了
+
