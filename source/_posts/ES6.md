@@ -362,6 +362,34 @@ class VipUser{
 }
 ```
 
+## 面向对象-实例
+### 基本的React 实例
+``` js
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script type="text/babel">
+    window.onload = function() {
+      let oDiv = document.getElementById('div1');
+
+      ReactDOM.render(
+        <span>123</span>,
+        oDiv
+      );
+    }
+</script>
+</head>
+<body>
+  <div id="div1"></div>
+</body>
+```
+
+React 基于组件开发的实例（以class存在）
+
+### 继承React
+继承的意义：不用从0开始。
+对于一个有追求的class ， 都得有constructor
+
 
 
 
