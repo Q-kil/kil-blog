@@ -785,3 +785,29 @@ console.log(res2); // {value: undefined, done: true}
 ```
 
 `{% asset_img yield.png %}`
+
+## 异步带逻辑
+generator最大的好处是：当有了逻辑以后，非常方便
+``` js
+runner(function *() {
+  let userData = yield $.ajax({url: 'getUserData', dataType: 'json});
+
+  if (userData.type == 'vip') {
+    let items = yield $.ajax({url: 'getVipItems', dataType: 'json'});
+  } else {
+    let items = yield $.ajax({url: 'getItems', dataType: 'json'})
+  }
+})
+```
+
+Promise: 一次读一堆
+generator：逻辑性（对Promise进行了封装）
+
+注意：
+针对ES6中
+generator yield
+ES7中 推出
+async await
+好处：
+1、不依赖于外部的 runner 了——统一、性能
+2、可以用箭头函数
