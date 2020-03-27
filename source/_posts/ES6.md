@@ -738,3 +738,76 @@ function createPromise(url) {
 
 ### Promise 其他方法
 Promise.race   竞速；允许失败，只要有一个成功的就可以
+
+
+# generator
+generat： 生成
+generator:  生成器
+普通函数，运行的话，一条道走到黑。（飞机）
+generator函数，中间可以暂停。（出租车）
+
+``` js
+// 跟普通函数最大不同，就是有星号
+function *show() { // 注意：不能连着写
+  alert('a');
+
+  yield; //放弃；暂时不往下执行
+
+  alert('b');
+}
+
+let genObj = show();// 创建了一个generator对象出来
+genObj.next();
+genObj.next();
+```
+
+踹一脚，走一步
+
+## yield
+传参
+``` js
+genObj.next(10); // 无效的
+genObj.next(55);
+```
+
+返回
+``` js
+yield 12;
+
+// 就像切菜一样，最后需要return
+return 55; // res2 value: 55
+let res1 = gen.next();
+
+console.log(res1); // {value: 12, done: false}
+
+let res2 = gen.next(); 
+console.log(res2); // {value: undefined, done: true}
+```
+
+`{% asset_img yield.png %}`
+
+## 异步带逻辑
+generator最大的好处是：当有了逻辑以后，非常方便
+``` js
+runner(function *() {
+  let userData = yield $.ajax({url: 'getUserData', dataType: 'json});
+
+  if (userData.type == 'vip') {
+    let items = yield $.ajax({url: 'getVipItems', dataType: 'json'});
+  } else {
+    let items = yield $.ajax({url: 'getItems', dataType: 'json'})
+  }
+})
+```
+
+Promise: 一次读一堆
+generator：逻辑性（对Promise进行了封装）
+
+注意：
+针对ES6中
+generator yield
+ES7中 推出
+async await
+好处：
+1、不依赖于外部的 runner 了——统一、性能
+2、可以用箭头函数
