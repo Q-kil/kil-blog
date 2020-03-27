@@ -18,6 +18,21 @@ white-space: nowrap; // 溢出不换行
 ## 无序列表样式
 https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style
 
+## placeholder 颜色
+``` css
+input {
+  &::-webkit-input-placeholder {
+    color: red;
+  }
+  &::-moz-placeholder {
+    color: red;
+  }
+  &::-ms-input-placeholder {
+    color: red;
+  }
+}
+```
+
 # 适配
 ``` css
 css: {
