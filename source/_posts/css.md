@@ -6,6 +6,16 @@ categories:
 tags:
 - CSS
 ---
+# 浏览器兼容
+``` css
+-webkit-transform:rotate(-3deg); /*为Chrome/Safari*/
+-moz-transform:rotate(-3deg); /*为Firefox*/
+-ms-transform:rotate(-3deg); /*为IE*/
+-o-transform:rotate(-3deg); /*为Opera*/
+transform:rotate(-3deg); 
+```
+
+
 
 # 样式
 ## 超出部分省略号
@@ -30,6 +40,14 @@ input {
   &::-ms-input-placeholder {
     color: red;
   }
+}
+```
+
+## 列表最后一项去除margin-right
+不用给item再加类名，item-right, 再加样式
+``` css
+&:nth-child(4n) {
+  margin-right: 0;
 }
 ```
 
