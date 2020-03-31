@@ -33,6 +33,23 @@ input {
 }
 ```
 
+## 背景色透明
+``` css
+background-color: transparent;
+```
+
+## 移动端input 内阴影
+``` css
+input,
+textarea {
+  border: 0; /* 方法1 */
+  -webkit-appearance: none; /* 方法2 */
+}
+```
+
+## background-size
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size
+
 # 适配
 ``` css
 css: {
