@@ -6,6 +6,16 @@ categories:
 tags:
 - CSS
 ---
+# 浏览器兼容
+``` css
+-webkit-transform:rotate(-3deg); /*为Chrome/Safari*/
+-moz-transform:rotate(-3deg); /*为Firefox*/
+-ms-transform:rotate(-3deg); /*为IE*/
+-o-transform:rotate(-3deg); /*为Opera*/
+transform:rotate(-3deg); 
+```
+
+
 
 # 样式
 ## 超出部分省略号
@@ -33,6 +43,7 @@ input {
 }
 ```
 
+<<<<<<< HEAD
 ## 背景色透明
 ``` css
 background-color: transparent;
@@ -50,6 +61,16 @@ textarea {
 ## background-size
 https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size
 
+=======
+## 列表最后一项去除margin-right
+不用给item再加类名，item-right, 再加样式
+``` css
+&:nth-child(4n) {
+  margin-right: 0;
+}
+```
+
+>>>>>>> 78db2a9cab394dd35b773f3ccb06f3d141bcab03
 # 适配
 ``` css
 css: {
