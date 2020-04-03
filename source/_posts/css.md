@@ -43,7 +43,6 @@ input {
 }
 ```
 
-<<<<<<< HEAD
 ## 背景色透明
 ``` css
 background-color: transparent;
@@ -61,7 +60,6 @@ textarea {
 ## background-size
 https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size
 
-=======
 ## 列表最后一项去除margin-right
 不用给item再加类名，item-right, 再加样式
 ``` css
@@ -70,7 +68,6 @@ https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size
 }
 ```
 
->>>>>>> 78db2a9cab394dd35b773f3ccb06f3d141bcab03
 # 适配
 ``` css
 css: {
