@@ -351,3 +351,8 @@ ctrl + shift + backspace (删除)
 Tab Size：2
 editor.detectIndentation 这项改成 false 就生效了
 
+
+## 赋印象笔记快捷键
+| Mac快捷键 | 作用  | 
+| :--- | :--- | 
+| Ctrl + comd + k | 删除线  | 

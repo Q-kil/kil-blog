@@ -8,7 +8,38 @@ tags:
 ---
 
 # 待掌握
+## 对象拷贝
+### 浅拷贝
 Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+``` js
+let obj = {
+  a: 1,
+  b: {
+    c: 2,
+  },
+}
+let newObj = Object.assign({}, obj);
+console.log(newObj); // { a: 1, b: { c: 2} }
+ 
+obj.a = 10;
+console.log(obj); // { a: 10, b: { c: 2} }
+console.log(newObj); // { a: 1, b: { c: 2} }
+ 
+newObj.a = 20;
+console.log(obj); // { a: 10, b: { c: 2} }
+console.log(newObj); // { a: 20, b: { c: 2} }
+ 
+newObj.b.c = 30;
+console.log(obj); // { a: 10, b: { c: 30} }
+console.log(newObj); // { a: 20, b: { c: 30} }
+ 
+// 注意: newObj.b.c = 30; 为什么呢..
+```
+这就是 `Object.assign()` 的陷阱。`Object.assign` 只是浅拷贝。 `newObj.b` 和 `obj.b` 都引用同一个对象，没有单独拷贝，而是复制了对该对象的引用。任何对对象属性的更改都适用于使用该对象的所有引用。
+
+### 深拷贝
+
+
 
 # work
 ## 顶级域名 一级域名
