@@ -92,3 +92,21 @@ css: {
   }
 }
 ```
+
+## input 问题
+ios 光标变大
+原因：
+- Chrome：该行无文字时，光标高度与line-height一致；该行有文字时，光标高度从input顶部到文字底部(这两种情况都是在有设定line-height的时候)，如果没有line-height，则是与font-size一致。
+- IOS中情况和Chrome 相似。
+
+方法：
+设置字体大小和行高一致，然后通过 padding 撑开大小
+
+ios placeholder 位置偏上
+``` css
+input::-webkit-input-placeholder {
+  font-size: 30px;
+  line-height: 50px;
+}
+```
+
