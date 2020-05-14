@@ -101,7 +101,7 @@ constructor() {
         BrowserModule,
         AppRoutingModule
     ],
-    // 默认情况下是空的
+    // 服务提供者，默认情况下是空的 
     providers: [],
     // 声明模块的主组件是什么
     bootstrap: [AppComponent]
@@ -128,6 +128,8 @@ If your module depends on other modules, you list them here.
 **providers**
 providers is used for dependency injection. So to make a service available to be
 injected throughout our application, we will add it here.
+提供程序用于依赖项注入。所以让一项服务
+在整个应用程序中注入，我们将在此处添加它。
 
 **bootstrap**
 bootstrap tells Angular that when this module is used to bootstrap an app, we need

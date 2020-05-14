@@ -6,20 +6,37 @@ categories:
 tags:
 - Angular
 ---
+# why
+只有Angular能一站式解决 其他的都是库的分集合治平台
+
+我对 React 也很熟，但是当我面对 Redux 那一堆东西的时候，我感觉我疯了
+还有 Saga 那一堆
+
+当然我还是喜欢 React 的，它有自己原创的设计之美
+那是一种不同的美感
+
+高阶函数
+
+Angular 这个框架现在的问题最大
+太重、太封闭了
+社区根本跟不上他们
+
+Vue 和 React 拿来写小程序都很快很方便，但是 Angular 要拿来做小程序几乎是不可能的
+
 # 知识
-## 组件
+## 组件-conponent
 - 一个组件类
 - 一个HTML模版
 - 组件专属的样式
 
-## 模板语法 
+## 模板语法
 ### 结构型指令
 特点：
 + 带有 * 的指令
 + 结构型指令会通过添加、删除和操纵它们的宿主元素等方式塑造或重塑 DOM 的结构
 
 list
-- *ngFor 
+- *ngFor
 - *ngIf
 
 ### 插值语法 
@@ -75,16 +92,6 @@ export class AppComponent implements OnInit {
 ```
 + @Component：这是一个 Decorator（装饰器），其作用类似于 Java 里面的 Annotation（注解）。Decorator 这个特性目前处于 Stage 2（草稿）状态，还不是 ECMA 的正式规范
 
-## [组件]把CSS预编译改成SASS
-方式一
-创建项目时指定 scss
-
-方式二
-+ angular-cli.json 里面的 styleExt 改成 scss
-+ angular-cli.json 里面的 styles.css 后缀改成 .scss
-+ src 下面 style.css 改成 style.scss
-+ app.component.scss
-+ app.component.ts 里面对应修改
 
 ## [组件]模板的使用
 `模板是编写Angular组件最重要的一环`
@@ -147,6 +154,7 @@ var html=templateFn([
     {name:'虫族'}
 ]);
 ```
+
 注意到 Handlebars.compile 这个调用了吧？这个地方的本质是在运行时把模板字符串“编译”成了一个 JS 函数。
 
 鉴于 JS 解释执行的特性，你可能会担忧这里会有性能问题。这种担忧是合理的，但是 Handlebars 是一款非常优秀的模板引擎，它在内部做了各种优化和缓存处理。模板字符串一般只会在第一次被调用的时候编译一次，Handlebars 会把编译好的函数缓存起来，后面再次调用的时候会从缓存里面获取，而不会多次进行“编译”。
@@ -202,6 +210,308 @@ Angular 有 3 个内置的结构型指令：*ngIf、*ngFor、ngSwitch。ngSwitch
 在模板里面使用`属性型指令`
 使用频率比较高的 3 个内置指令是：NgClass、NgStyle、NgModel。
 
+## [组件]组件间通讯
+组件之间有几种典型的关系：父子关系、兄弟关系、没有直接关系。
+通讯方案:
+- 直接的父子关系：父组件直接访问子组件的 public 属性和方法
+- 直接的父子关系：借助于 @Input 和 @Output 进行通讯
+- 没有直接关系：借助于 Service 单例进行通讯
+- 利用 cookie 和 localstorage 进行通讯
+- 利用 session 进行通讯
+
+## [组件]内容投影
+须知：自定义标签里面是无法嵌套标签的
+``` html
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <ng-content></ng-content>
+  </div>
+  <div class="panel-body">
+      内容
+  </div>
+  <div class="panel-footer">
+      底部
+  </div>
+</div>
+```
+
+``` html
+<test-child-two>
+    <h3>这是父层投影进来的内容</h3>
+</test-child-two>
+```
+
+## 指令
+- Component 是 Directive 的子接口，是一种特殊的指令
+- 属性型指令：用来修改 DOM 元素的外观和行为，但是不会改变 DOM 结构，Angular 内置指令里面典型的属性型指令有 ngClass、ngStyle。
+- 结构型指令：可以修改 DOM 结构，内置的常用结构型指令有 *ngFor、*ngIf 和 NgSwitch
 
 
 
+# 注意点
+- node_modules  用命令行删除比较快
+- cli 创建项目的时候，--style=sass
+- dependencies：运行时也会依赖的，打包时会打包合并到发布的模块里面去
+  devDependencies：开发时的依赖，不需要打包出去，发布到线上
+- yarn.lock  会锁定版本号，安装的时候会直接读这个文件，所以比较快
+- ng serve ; 不是 ng server ； serve动词，表示服务
+- e2e end2end，集成测试
+- package.json 里面的依赖版本，不要使用～，锁死版本号；～的话，会解析最新版本，会导致每个人机器上都不一样
+- ng g c UserMng 驼峰法则会自动展开变成中划线
+
+# 坑
+- node-sass
+
+# 教程
+## Angular 核心概念
+- 集成开发环境@angular/cli
+- Angular 三大核心概念：Component，Module, Route
+- Angular 架构特色：依赖注入，数据绑定
+
+## 异步加载，按需加载
+Angular 加载最小模块是 module，不是component
+每个模块 不超过 200k
+
+## 路由
+路由规划
+路由守卫
+
+## Angular 架构特色
+依赖注入
+只需要在 类的 constructor构造函数 里面声明出来，我要一个service
+
+双向绑定
+
+## HttpInterceptor 处理所有请求异常
+
+# 核心概念：component
+内容摘要：
+- 把CSS与编译器改成SCSS
+- 导入Bootstrap和font-awesome
+- 插值语法和表达式
+- 在模版内定义局部变量
+- 值绑定[]，事件绑定()，双向绑定[()]
+- 内置结构型指令用法：*ngIf, *ngFor, ngSwitch
+- 内置属性型指令用法：NgClass, NgStyle, NgModel
+- 小工具：管道，安全导航，非空断言
+
+
+## 导入Bootstrap和font-awesome
+src/style.scss
+``` scss
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+```
+
+``` html
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+
+<i class="fa fa-angle-down"></i>
+<i class="fa fa-area-chart"></i>
+<i class="fa fa-american-sign-language-interpreting fa-2x"></i>
+<i class="fa fa-at"></i>
+```
+
+## 插值语法和表达式
+最基本的内容
+jquery时代：handlebars 前端模版库；现代库也是借鉴了的
+双花括号：{{ value }}
+支持：属性，基本的运算（轻逻辑），方法
+``` html
+{{ title }} {{ 1-1 }} {{getValue()}}
+```
+
+## 在模版内定义局部变量
+使用语法 #
+``` html
+<input #heroInput>
+<p>{{heroInput.value}}</p>
+<button class="btn btn-success" (click)="sayHello(heroInput.value)">局部变量</button>
+```
+
+## 值绑定[]，事件绑定()，双向绑定[()]
+``` html
+<img [src]="imgSrc" />
+<button class="btn btn-success" (click)="changeSrc()">修改图片src</button>
+```
+
+``` html
+<button class="btn btn-success" (click)="btnClick($event)">测试事件</button>
+```
+
+``` html
+<font-resizer [(size)]="fontSizePx"></font-resizer>
+<div [style.font-size.px]="fontSizePx">Resizable Text</div>
+```
+
+## 内置结构型指令用法：*ngIf, *ngFor, ngSwitch
+``` html
+<div *ngFor="let item of items; let i = index"></div>
+```
+
+``` html
+<div [ngSwitch]="2">
+  <p *ngSwitchCase="1">1</p>
+  <p *ngSwitchCase="2">2</p>
+</div>
+```
+
+## 内置属性型指令用法：NgClass, NgStyle, NgModel
+``` html
+<div [ngClass]="currentClass">ngClass</div>
+currentClass = {'save': true, 'color': false};
+
+<div [ngStyle]="currentStyles">
+currentStyles = {'font-style':  this.canSave      ? 'italic' : 'normal'}
+```
+
+## 小工具：管道，安全导航，非空断言
+管道，数据格式化：把左边的当成参数传递给右边
+``` html
+<div>{{ currentTime | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
+```
+
+安全导航
+``` html
+<p>{{ current?.name }}</p>
+```
+
+# component 通信
+## 父子
+父传子：@Input
+子传父：@Output EventEmitter
+父调用子：
+- 模版局部变量#child
+-  @ViewChild('child') child: ChildComponent;
+
+## 兄弟
+- Subject
+- localStorge
+
+
+# 生命周期
+钩子 就是 事件
+`{% asset_img life1.png %}`
+`{% asset_img life2.png %}`
+先去加载内容投影的例子，再去加载自身视图
+`{% asset_img life3.png %}`
+
+组件是带有视图的指令
+Component extends Directive
+
+构造函数里面最好只做一些简单的赋值操作，不要做复杂的逻辑
+获取服务端数据、业务逻辑等不要实现在构造函数里面
+想知道详细的原因请看这篇解释http://misko.hevery.com/code-reviewers-guide/flaw-constructor-does-real-work/
+
+## ngOnChanges
+- @Input属性发生变化的时候被调用
+- 非@Input属性改变不会调用ngOnChanges
+
+
+# 动效 animations
+web-animation方案，超前
+Angular animations 有点怪怪的，建议用CSS3
+开源动效库：
+https://github.com/jiayihu/ng-animate
+
+
+# 动态组件
+
+根据自己的业务，场景，写不同的组件，不是写死的组件
+
+``` ts
+//这里引用模板里面定义的dyncomp容器标签
+  @ViewChild("dyncomp", { read: ViewContainerRef, static: true })
+  dyncomp: ViewContainerRef;
+
+  comp1: ComponentRef<Child11Component>;
+  comp2: ComponentRef<Child11Component>;
+
+  constructor(
+    private resolver: ComponentFactoryResolver) {
+
+  }
+
+  ngAfterContentInit() {
+    console.log("动态创建组件的实例...");
+    const childComp = this.resolver.resolveComponentFactory(Child11Component);
+    this.comp1 = this.dyncomp.createComponent(childComp);
+    this.comp1.instance.title = "111";
+    this.comp1.instance.btnClick.subscribe((param) => {
+      console.log("--->" + param);
+    });
+
+    /**
+     * createComponent方法可以调用很多次，会动态创建出多个组件实例
+     * 方法有第二个参数，表示组件渲染的顺序
+     */
+    this.comp2 = this.dyncomp.createComponent(childComp);
+    this.comp2.instance.title = "第二个子组件";
+  }
+
+  public destoryChild(): void {
+    this.comp1.destroy();
+    this.comp2.destroy();
+  }
+```
+
+# ShadowDOM
+性能高，现在不需要改
+``` ts
+@Component({
+  selector: 'shadow-dom-mode',
+  encapsulation:ViewEncapsulation.Native,
+  templateUrl: './shadow-dom-mode.component.html',
+  styleUrls: ['./shadow-dom-mode.component.scss']
+})
+```
+
+# ViewChild与ContentChild
+
+# 指令
+存在原因：自定义标签 无法使用标签原有属性；创建指令，让他有标签属性
+``` html
+<child-one class="无法使用" my-attr="创建指令，让他拥有属性"></child-one>
+```
+
+官方提供指令：
+https://angular.io/api?type=directive
+
+``` ts
+import { Directive, ElementRef, HostListener, HostBinding, Input } from '@angular/core';
+
+@Directive({
+  selector: '[my-high-light]'
+})
+export class MyHighLightDirective {
+  @Input()
+  highlightColor: string;
+
+  // @HostBinding("style.border")
+  // border:string;
+
+  @HostBinding("class")
+  myClass: string;
+
+  constructor(private el: ElementRef) {
+    console.log(el);
+    el.nativeElement.style.backgroundColor = '#ff3300';
+  }
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight(this.highlightColor);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight(null);
+  }
+
+  private highlight(color: string) {
+    //这里在操作DOM
+    //这种操作代码非常丑陋
+    this.el.nativeElement.style.backgroundColor = color;
+    //this.$("p")
+  }
+}
+```

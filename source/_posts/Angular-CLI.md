@@ -7,6 +7,23 @@ tags:
 - Angular-CLI
 ---
 
+# 把所有零散的Node工具都集成起来
+## cli 背景
+在很早的时候，前端是没有好的工具，开发，测试，打包，部署，压缩
+2009年，出现nodejs，前端Big Bang；以前都是刀耕火种
+
+
+## 集成工具
+- webpack
+- typeScript编译器
+单元测试
+- karma
+- jasmine
+- Protractor 自动测试所有路由
+- material.angular.io ui
+
+最后集成一个angular.json
+
 # 指令
 ``` zsh
 ng version

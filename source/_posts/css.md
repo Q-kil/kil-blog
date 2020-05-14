@@ -53,6 +53,7 @@ linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐�
 <gradient> 是一种<image>CSS数据类型的子类型，用于表现两种或多种颜色的过渡转变。
 ``` css
 background: linear-gradient(#e66465, #9198e5);
+background: linear-gradient(to right, #3494e6, #ec6ead);
 ```
 
 

@@ -136,3 +136,8 @@ You may need an additional loader to handle the result of these loaders.
   use: ['to-string-loader', 'css-loader', 'sass-loader']
 }
 ```      
+
+# 模块热替换(hot module replacement 或 HMR)
+
+
+
