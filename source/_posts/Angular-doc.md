@@ -515,3 +515,238 @@ export class MyHighLightDirective {
   }
 }
 ```
+
+# 模块
+## 基本概念
+- Angular的模块是业务模块，是用来组织业务的
+- 每个应用至少有一个根模块
+- 每个组件必须属于一个模块，而且只能属于一个模块
+- 模块是@angular/cli打包的最小单位【编译出来的，一个一个的js】
+- 模块也是Router异步加载时的最小单位
+
+`{% asset_img module.png %}`
+
+## 编译文件
+wendor.js：angular内核，和周边的工具
+polyfills.js：腻子脚本
+
+## 路由
+- 前端开发为什么要路由
+- 路由基本用法（同步路由与router-outlet）
+- 路由与懒加载模块
+- N层嵌套路由
+- 共享模块
+- 监听路由事件
+- 传递和获取路由参数（单个参数、矩阵式参数）
+- 用代码触发路由导航
+
+路由出口
+``` html
+<router-outlet></router-outlet>
+```
+activeRoute：当前路由的实例
+
+imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
+forRoot：我这个router模块，在启动的时候，把路由配置项{} 传给他
+
+路由事件怎么监听的？
+注射到构造器里面，angular运行时会检查构造器里面声明的属性
+
+### 路由要规划的
+为了：
+SEO：Search Engine Optimization（搜索引擎优化）
+SSR：Server-Side Rendering(服务器端渲染)
+
+### 为什么需要路由
+- 没有router，浏览器的前进后退按钮没法用
+- 没有router，你将无法把URL拷贝并分享给你的朋友
+
+### 路由传参
+path：'home/:page' 待会收到参数时，放到page这个key里面作为他的值
+
+取参
+``` ts
+this.activatedRoute.params.subscribe
+
+this.activatedRoute.queryParams.subscribe
+```
+
+矩阵式传参（合法的，用的人不是很多，html之父说了这个，w3c没有规范）
+``` html
+<a [routerLink]="['test', {id: 111, name: 'damo'}]">段子</a>
+```
+
+``` ts
+this.router.navigate(['test'], {queryParams: {page: 1, name: 222}});
+```
+
+### 路由加载方式
+懒加载
+loadChildren
+
+智能预加载：空闲的时候，悄悄加载
+
+#### 预加载策略
+PreloadingStrategy
+- 全部预加载：PreloadAllModules
+- 部分预加载：MyPreloadingStrategy
+``` ts
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [MyPreloadingStrategy],
+  bootstrap: [AppComponent]
+})
+
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: "test",
+    loadChildren: "./router-test/router-test.module#RouterTestModule"
+  },
+  {
+    path: "preload",
+    data:{preload:true},
+    loadChildren: "./preload/preload.module#PreloadModule"
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+import { Route,PreloadingStrategy } from '@angular/router';
+import { Observable, of } from "rxjs";
+// import "rxjs/add/observable/of";
+// import { of } from 'rxjs/observable/of';
+
+
+export class MyPreloadingStrategy implements PreloadingStrategy {
+    preload(route: Route, fn: () => Observable<any>): Observable<any>{
+        // return route.data&&route.data.preload?fn():Observable
+        // of()
+        if (route.data&&route.data.preload) {
+            return fn()
+        } else {
+            return of(null);
+        }
+    }
+}
+```
+### 高级玩法
+- [加载策略]如何预加载模块？
+- [加载策略]如何自定义预加载策略？
+- [路由守卫]如何控制模块加载？
+- [路由守卫]如何控制非授权访问?
+- [路由守卫]如何保护用户输入的内容不丢失？
+
+
+
+用户在输入表单的时候，由于一些失误（意外的触发导航），导致所有内容全部丢失
+一些网站：国企，政府，银行；这种傻逼的行为
+有情怀的，希望构建友好的用户界面，误操作保存
+
+
+guard
+``` ts
+export const appRoutes:Routes=[
+    {
+        path:'jokes',
+        data:{preload:true},
+        canLoad:[AuthGuard],
+        canActivate:[AuthGuard],
+        loadChildren: () => import('./jokes/jokes.module').then(m => m.JokesModule)
+    },
+];
+
+@NgModule({
+	imports: [RouterModule.forRoot(appRoutes)],
+	exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+
+## 表单
+- 模版驱动型表单
+- 响应式表单
+- 动态表单
+- 数据校验
+
+### 数据校验-内置校验规则
+- required
+- requireTrue
+- minLength
+- maxLength
+- pattern
+- nullValidator
+- compose
+- composeAsync
+
+# implements 
+在TypeScript中，有Class类和interface接口，接口只定义类型的成员或者方法的契约，就是如果你implements了我的契约，那你必须得在类中必须有接口的所有成员（属性），按照契约来实现，如果没有按照接口声明的类型编写，IDE支持TypeScript就会警告报错，编译也会报错，将错误修复在部署之前。
+``` ts
+// angular 定义了一个OnInit的接口，
+// 所有实施`implements`这个接口的Class必须要实现成员ngOnInit
+interface OnInit {
+  ngOnInit(): void
+}
+
+export class HeroesComponent implements OnInit {
+  hero = 'windstorm';
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+
+
+# rxjs
+Reactive Extensions
+
+是promise的火力增强版
+
+`{% asset_img rxjs.png %}`
+
+最常用的23个Operator（操作员，接线员）
+- 创建型：Create/ defer/ from/ interval/ just
+- 变换型：map/ flatMap/ scan
+- 过滤型：filter/ debounce
+- 组合型：join/ merge/ zip
+- 异常处理型：catch/ retry
+- 工具型：delay/ subscribe
+- 条件判断型：all/ contains/ takeWhile
+- 数学运算和聚合函数型：average
+- 连接型：connect
+- 数据结构转换型：to
+
+如何还想偷懒：map，filter
+
+## 搜索延时
+``` ts
+import { Subject } from 'rxjs';
+
+public searchTextStream: Subject<string> = new Subject<string>();
+
+this.searchTextStream.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
+      this.loadData();
+    });
+
+search() {
+  this.commonQuery.keyword = this.keyword;
+  this.searchTextStream.next(this.keyword);
+}    
+```    
+

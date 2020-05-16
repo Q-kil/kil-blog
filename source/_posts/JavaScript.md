@@ -6,6 +6,14 @@ categories:
 tags:
 - JavaScript
 ---
+# 基础知识
+点击事件
+``` js
+window.addEventListener('click', () => console.log('Clicked!'));
+document.getElementById('ele').addEventListener('click', () => console.log('Clicked!'));
+```
+
+
 
 # 待掌握
 ## 对象拷贝
