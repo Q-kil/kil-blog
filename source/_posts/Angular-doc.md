@@ -219,6 +219,14 @@ Angular 有 3 个内置的结构型指令：*ngIf、*ngFor、ngSwitch。ngSwitch
 - 利用 cookie 和 localstorage 进行通讯
 - 利用 session 进行通讯
 
+#### 单例通信
+随着Angular 6的问世，我们获得了这个新的闪亮工具，用于对应用程序中的依赖项进行建模。官方名称为“可摇树的提供者 ”，我们通过使用装饰器的新providedIn属性来使用它@Injectable。
+我们可以将其providedIn视为反向指定的依赖项。现在，不再是模块提供所有服务，而是服务本身声明应该在哪里提供…
+模块可以是providedIn在'root'或在任何可用的模块（例如providedIn: SomeModule）。除此之外'root'，实际上是AppModule（因此是根注入器）的别名，这是一个很好的便利功能，它节省了我们AppModule在代码库中的所有导入。
+
+`{% asset_img inject.png %}`
+
+
 ## [组件]内容投影
 须知：自定义标签里面是无法嵌套标签的
 ``` html

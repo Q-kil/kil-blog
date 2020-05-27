@@ -98,6 +98,22 @@ PS E:\software\genymotion\Genymotion\tools> taskkill /pid 19856 /f
 成功: 已终止 PID 为 19856 的进程。
 
 
+显示磁盘空间统计信息
+``` bash
+df -h
+```
+
+查询可用内存
+``` bash
+free -m
+```
+
+显示终端下所有用户的程序
+``` bash
+ps axu|grep nginx
+```
+
+
 ### 域名操作
 #### curl
 curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
@@ -119,6 +135,10 @@ curl
 < Content-Length: 178
 < Connection: keep-alive
 < Location: http://www.kaifa.in/
+```
+
+``` bash
+curl http://gitlab.kaifa.in:9999 -v
 ```
 
 #### dig

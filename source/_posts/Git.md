@@ -92,4 +92,18 @@ wsl 中的密钥 无法在windows中使用
 更多操作... > 拉取
 
 
+## gitignore
+忽略所有 .a 结尾的文件
+*.a
 
+但 lib.a 除外
+!lib.a
+
+仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+/TODO
+
+忽略 build/ 目录下的所有文件
+build/
+
+会忽略 doc/notes.txt 但不包括 doc/server/notes.txt
+doc/notes.txt

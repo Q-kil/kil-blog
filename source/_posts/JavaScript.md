@@ -48,6 +48,44 @@ console.log(newObj); // { a: 20, b: { c: 30} }
 ### 深拷贝
 
 
+## 汉字排序
+``` js
+function zhSort(arr) {
+  return arr.sort((n, m) => n.localeCompare(m));
+}
+```
+
+按照字母排序
+``` js
+function segSort(arr) {
+  let letters = "*abcdefghjklmnopqrstwxyz".split(''),
+      zh = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨它穵夕丫帀".split('');
+  
+  let segs = [],
+      curr;
+
+  letters.forEach((v, i) => {
+    curr = {letter: v, data:[]};
+    arr.forEach(j => {
+      if((!zh[i-1] || zh[i-1].localeCompare(j) <= 0) && j.localeCompare(zh[i]) == -1) {
+        curr.data.push(j);
+      }
+    })
+    if(curr.data.length) {
+      segs.push(curr);
+      curr.data.sort(function(a,b){
+        return a.localeCompare(b);
+      });
+    }
+  })
+  return segs;
+}
+let segs = segSort(['白鸽', '麻雀','黑','大象', '狗', '猫','妈妈','马', "鸡",'瘦','胖']);
+console.log('segs', segs);
+```
+
+
+
 
 # work
 ## 顶级域名 一级域名
