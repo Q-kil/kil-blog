@@ -34,3 +34,5 @@ tags:
 ## css
 w400 => width: 400px;
 
+## html
+ul>li

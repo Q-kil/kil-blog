@@ -72,3 +72,16 @@ html是一种网页标记语言，叫超文本标记语言，我们平时上网�
 
 ## 侧边栏
 aside
+# interview
+什么是<!DOCTYPE>？
+百科：
+中文名：文档类型标签
+外文名：DOCument TYPE
+外语缩写：DOCTYPE
+定义：标准通用标记语言的文档类型声明
+<!DOCTYPE> 声明位于文档中的最前面的位置，处于 <html> 标签之前。
+<!DOCTYPE> 声明不是一个 HTML 标签；它是用来告知 Web 浏览器页面使用了哪种 HTML 版本。
+HTML 4.01 规定了三种不同的 <!DOCTYPE> 声明，分别是：Strict、Transitional 和 Frameset。 HTML5 中仅规定了一种：<!DOCTYPE html>
+文档解析类型：
+BackCompat：怪异模式，浏览器使用自己的怪异模式解析渲染页面。（如果没有声明DOCTYPE，默认就是这个模式）
+CSS1Compat：标准模式，浏览器使用W3C的标准解析渲染页面。
