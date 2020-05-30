@@ -9,8 +9,8 @@ tags:
 
 编码规范 
 [google](https://developers.google.com/style/html-formatting)
+[google](https://google.github.io/styleguide/htmlcssguide.html)
 
-[翻译](https://www.runoob.com/w3cnote/htmlcssguide.html)
 # HTML
 ## 缩进
 次缩进2个空格，不要使用 tab 或者混合 tab 和空格的缩进。
