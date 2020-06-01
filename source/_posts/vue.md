@@ -7,6 +7,11 @@ tags:
 - Vue
 - Vuex
 ---
+# learn
+渐进式：主张最少
+你可以使用vue核心：声明式渲染，组件系统
+你也可以使用下面这个图的全部
+`{% asset_img core.png %}`
 
 # 双向绑定
 ## v-model 指令
