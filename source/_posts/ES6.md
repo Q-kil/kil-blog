@@ -372,6 +372,27 @@ class VipUser{
 }
 ```
 
+### 静态方法 无法继承
+``` js
+class Animal {
+  name;
+
+  static ask() {
+    console.log('1111');
+  }
+}
+
+class Dog extends Animal {
+  // 如果显式写了 constructor，内部必须要有 super()，否则实例化时报： Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived 
+  // constructor() {
+    
+  // }
+}
+
+let xiaobai = new Dog();
+xiaobai.ask();
+```
+
 ## 面向对象-实例
 ### 基本的React 实例
 ``` html

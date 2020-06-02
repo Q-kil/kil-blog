@@ -413,8 +413,10 @@ Component extends Directive
 想知道详细的原因请看这篇解释http://misko.hevery.com/code-reviewers-guide/flaw-constructor-does-real-work/
 
 ## ngOnChanges
-- @Input属性发生变化的时候被调用
-- 非@Input属性改变不会调用ngOnChanges
+调用：
+- 在 ngOnInit() 之前
+- 所绑定的一个或多个输入属性的值发生变化时都会调用。（@Input属性发生变化的时候被调用）
+  非@Input属性改变不会调用ngOnChanges
 
 
 # 动效 animations

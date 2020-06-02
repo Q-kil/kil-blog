@@ -7,6 +7,16 @@ tags:
 - TypeScript
 ---
 
+# 运行
+``` zsh
+npm install -g typescript
+
+tsc hello.ts
+
+node hello.js
+```
+
+
 # learn
 [教程](https://ts.xcatliu.com/)
 ## 简介
@@ -547,7 +557,8 @@ export class CartComponent implements OnInit {
 }
 ```
 
-
+## namespace 命名空间
+如果你发现自己写的功能(函数/类/接口等...)越来越多, 你想对他们进行分组管理就可以用命名空间
 
 
 

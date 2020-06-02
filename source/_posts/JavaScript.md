@@ -84,7 +84,20 @@ let segs = segSort(['白鸽', '麻雀','黑','大象', '狗', '猫','妈妈','�
 console.log('segs', segs);
 ```
 
+## 循环
+forEach 不能中断循环（使用break或者return）。
 
+return 必须用在方法里面
+
+## reduce
+reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+``` js
+return this.products.reduce((sum, product) => {
+  console.log('product', product);
+  
+  return sum + 1;
+}, 0)
+```
 
 
 # work
