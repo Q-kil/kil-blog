@@ -204,7 +204,7 @@ store.dispatch('increment')
 created:在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。
 mounted:在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
 
-# 三天看vue 
+# 系统的看 vue 官网 
 evan you：我想你会乐在其中
 ## fetch
 Fetch是基于promise设计的，它不是ajax的进一步封装，而是原生js API，没有使用XMLHttpRequest对象
@@ -225,6 +225,20 @@ concat() 方法用于连接两个或多个数组。
 slice() 方法可从已有的数组中返回选定的元素。
 其他
 split() 方法用于把一个字符串分割成字符串数组。
+
+## 指令简写
+v-on: => @
+v-bind: => :
+
+## 组件通信
+父传子
+props: ['todo']
+
+
+
+
+
+
 
 
 # 自己的理解
