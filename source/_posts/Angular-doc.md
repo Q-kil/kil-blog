@@ -478,6 +478,15 @@ https://github.com/jiayihu/ng-animate
 ```
 
 # ViewChild与ContentChild
+## ViewChild
+属性装饰器，用于配置一个视图查询。
+在 ngAfterViewInit 钩子函数中，就能正确获取查询的元素
+``` ts
+@ViewChild('avatarEle') avatarEle: ElementRef;
+
+// dom
+this.avatarEle.nativeElement;
+```
 
 # 指令
 存在原因：自定义标签 无法使用标签原有属性；创建指令，让他有标签属性
@@ -760,3 +769,9 @@ search() {
 }    
 ```    
 
+# using published libraries
+类型定义文件
+``` zsh
+npm install d3 --save
+npm install @types/d3 --save-dev
+```

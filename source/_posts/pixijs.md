@@ -246,4 +246,45 @@ function gameLoop(delta){
 }
 ```
 
+# 平台Avatar
+## autoDetectRenderer
+自动检测渲染器
+- WebGL （首选）
+- canvas
+
+### rendererOptions
+{
+  transparent: true // 画布透明
+  antialias: false // 抗锯齿
+  resolution: window.devicePixelRatio // 分辨率：设备像素比率；三星1，苹果2
+}
+
+
+## 第一步，创建画布
+``` ts
+private paintStage() {
+  const rendererOptions = {
+    transparent: true,
+    resolution: window.devicePixelRatio,
+  };
+  this._renderer = PIXI.autoDetectRenderer(this._width, this._height, rendererOptions);
+
+  this.scale.x = this.scale.y = this._ratio;
+
+  this._renderer.resize(Math.ceil(this._width * this._ratio), Math.ceil(this._height * this._ratio));
+
+  // Clean up container.
+  const domElement = this.avatarEle.nativeElement;
+  while (domElement.hasChildNodes()) {
+    domElement.removeChild(domElement.firstChild);
+  }
+  domElement.appendChild(this._renderer.view);
+}
+```  
+
+
+
+
+
+
 

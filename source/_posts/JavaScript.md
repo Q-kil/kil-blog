@@ -242,3 +242,20 @@ const obj = {
 obj.a()   //没有使用箭头函数打出的是obj
 obj.b.c()  //打出的是window对象！！
 ```
+
+
+# fix
+## 华为 和 oppo 内置浏览器 无法显示导航条
+``` js
+scrollHandle() {
+  if (document.documentElement.scrollTop) {
+  // if (window.scrollY > 0) {
+    this.scrollState = true;
+  } else {
+    this.scrollState = false;
+  }
+}
+```
+
+
+
