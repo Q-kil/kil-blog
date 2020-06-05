@@ -235,8 +235,13 @@ v-bind: => :
 props: ['todo']
 
 
+# router
+两个模式：
+- hash
+- history
 
-
+## history
+利用 history.pushState API 来完成 URL 跳转而无须重新加载页面。
 
 
 

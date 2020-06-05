@@ -29,6 +29,10 @@ tags:
 ### 便捷性
 文件名全部小写，还有利于命令行操作。比如，某些命令可以不使用`-i`参数了
 
+## Angular guide
+[编码规范](https://angular.io/guide/styleguide)
+[Angular代码风格](https://www.jianshu.com/p/90cc5899c40c)
+
 
 # 快捷键
 ## css

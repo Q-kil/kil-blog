@@ -769,9 +769,56 @@ search() {
 }    
 ```    
 
-# using published libraries
-类型定义文件
+# 引用第三方库
+angular 使用 TypeScript
+TypeSearch检索, 检测第三方库有没有声明文件
+[TypeSearch](https://microsoft.github.io/TypeSearch/)
+
+## 如何引用
+声明文件是纽带
+### 有声明文件
+无需额外做什么，只需在需要模块的地方使用 import 来导入即可
+``` ts
+import * as dragonBones from '../../assets/js/dragonBones';
+```
+
+using published libraries
+声明文件
 ``` zsh
 npm install d3 --save
 npm install @types/d3 --save-dev
 ```
+
+### 无声明文件
+在 src/typings.d.ts 文件下
+``` ts
+declare var G2: any;
+declare var TooqingCore;
+```
+使用 any 来表示忽略静态类型检查，意味者无法享受声明文件带来的智能提示快感。
+像 G2 ，我们可以在项目的任意位置直接使用它，但也仅仅只能识别 G2 变量，而实例的方法或属性是不可知的。
+``` ts
+const g2 = new G2();
+g2. // 输入 `.` 后是不会有任何方法或属性
+```
+除此之外 TypeScript 编译过程中也不会对 G2 做任何类型检查，G2 是否真的存在只能由自己把握。
+
+对于 Angular 而言，是需要额外在 .angular-cli.json 的 scripts 节点上明确加载这些模块。
+.angular-cli.json
+``` json
+"scripts": ["../node_modules/@antv/g2/dist/g2.min.js"],
+// game-core
+"scripts": [
+  "node_modules/game-core/release/js/tooqing.js"
+],
+```
+
+## 引用第三方库 dragonBones
+错误引用法：
+在assets 文件下建了js文件，把dragonBones相关文件复制进去
+一直无法用到声明文件的智能提示
+
+猛哥解决办法：
+根目录新建lib文件，把dragonBones相关文件复制进去
+然后，鼠标放在 dragonBones 上面，使用编辑器自动修复引用
+`{% asset_img dragonBones.png %}`

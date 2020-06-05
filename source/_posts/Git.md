@@ -7,7 +7,7 @@ tags:
 - Git
 ---
 
-## 配置
+# 配置
 ### ssh 密钥
 ``` 
 ssh-keygen
@@ -39,12 +39,34 @@ git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 git config --global --unset http.https://github.com.proxy)
 ```
 
-## 指令
+# 指令
 git配置
 git config --list
 
+## 版本回滚
+``` zsh
+git reset --hard ff19b5644e7470728d5a10f57f244f9754fb4d58
+git add .
+git commit -m update
+git push origin dev -f
+```
 
-## 错误
+-f : force 暴力
+
+Pushing to git@github.com:519ebayproject/519ebayproject.git
+To git@github.com:519ebayproject/519ebayproject.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'git@github.com:519ebayproject/519ebayproject.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+我遇到造成这个问题的原因，一般是因为执行了git reset命令，版本回退后没有恢复，造成本地仓库的提交版本号落后于远端仓库的提交版本号。
+可以执行 git push -f命令去强制提交
+
+
+
+# 错误
 ### index.lock
 error:
 Another git process seems to be running in this repository, e.g.       
@@ -76,7 +98,7 @@ wsl 和 windows 的混淆
 wsl 中的密钥 无法在windows中使用
 在windows 生成密钥；命令行提交验证一次，就可以了
 
-## vscoed 中应用
+# vscoed 中应用
 ### push
 #### 暂存所有更改
 更改处 '+' 
@@ -92,7 +114,7 @@ wsl 中的密钥 无法在windows中使用
 更多操作... > 拉取
 
 
-## gitignore
+# gitignore
 忽略所有 .a 结尾的文件
 *.a
 
@@ -107,3 +129,9 @@ build/
 
 会忽略 doc/notes.txt 但不包括 doc/server/notes.txt
 doc/notes.txt
+
+
+# 依赖git上的库
+``` zsh
+yarn add git+ssh://git@code.apowo.com:PixelPai/game-core.git#dev
+```
