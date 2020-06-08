@@ -86,6 +86,9 @@ width = border + padding + 内容的宽度
 ## 动画
 transition: all .3s linear
 
+## 可见性
+visibility: visible
+
 
 # 适配
 ``` css

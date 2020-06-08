@@ -234,6 +234,17 @@ v-bind: => :
 父传子
 props: ['todo']
 
+## 初始值
+``` js
+data: {
+  newTodoText: '',
+  visitCount: 0,
+  hideCompletedTodos: false,
+  todos: [],
+  error: null
+}
+```
+
 
 # router
 两个模式：

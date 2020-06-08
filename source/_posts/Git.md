@@ -64,7 +64,17 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 我遇到造成这个问题的原因，一般是因为执行了git reset命令，版本回退后没有恢复，造成本地仓库的提交版本号落后于远端仓库的提交版本号。
 可以执行 git push -f命令去强制提交
 
+### 回滚之后的操作
+git log  找到想退回的版本
 
+### 未暂存文件
+git reset 3e5236a
+
+### 暂存文件
+git reset --hard 3e5236a
+
+## 历史提交记录
+git log
 
 # 错误
 ### index.lock
