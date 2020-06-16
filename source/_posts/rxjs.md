@@ -87,3 +87,14 @@ console.log(subject.value)
 链接：https://juejin.im/post/5cb89bb551882533017e7eed
 
 应用参考例子：https://www.it-swarm.dev/zh/rxjs/subject%E5%92%8Cbehaviorsubject%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/831140095/
+
+# 取消订阅
+从此用RxJS订阅的时候，时刻都不忘调用unsubscribe()以防内存泄漏。对于结束Observable，释放内存的方式有三种方式：
+
+第一种，Observable完成值的发送，执行Observable.onComplete()
+
+第二种，Observable发生错误，执行Observable.OnError()
+
+第三种，订阅者主动取消订阅，执行subscription.unsubscribe()
+
+对于Observable.onComplete()和Observable.OnError()，RxJS自身会处理这两种情况，所以不需要在代码里再手动取消订阅释放内存。对于第三种方式，Observable还在源源不断的发送值，订阅者想主动取消订阅，那就需要在代码里调用unsubscribe()取消订阅释放内存。
