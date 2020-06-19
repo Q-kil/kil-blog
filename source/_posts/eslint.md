@@ -8,6 +8,7 @@ tags:
 ---
 
 # 基础
+eslint: 代码检测工具
 ## 格式
 ``` js
 rules: {
@@ -31,7 +32,7 @@ rules: {
 "console":"off", //禁用 console
 "quotes": [1, "single"], // 字符串单引号
 "object-curly-spacing": [0, "always"], //大括号内允许不必要的空格
-"eqeqeq": 2, // 必须使用全等
+"eqeqeq": 1, // 使用全等
 ```
 
 更多配置参数[直达](https://www.jianshu.com/p/bfc7e7329cff);
@@ -64,6 +65,9 @@ rules: {
 ### 保存文件后自动删除多余空格
 设置中搜索files.trimTrailingWhitespace，然后将选项勾选即可
 
+# Prettier
+[Prettier](https://prettier.io/docs/en/options.html#end-of-line);
+
 # vue cli 默认值
 ``` json
 "eslintConfig": {
@@ -85,12 +89,17 @@ rules: {
 ```
 
 ### 关闭
+#### vue
+把 build/webpack.base.conf.js 配置文件中的eslint rules注释掉即可。
 ``` js
-devServer: {
-  overlay: {
-      warnings: false,
-      errors: false
-  },
-  lintOnSave: false
-}
+const createLintingRule = () => ({
+  // test: /\.(js|vue)$/,
+  // loader: 'eslint-loader',
+  // enforce: 'pre',
+  // include: [resolve('src'), resolve('test')],
+  // options: {
+  //   formatter: require('eslint-friendly-formatter'),
+  //   emitWarning: !config.dev.showEslintErrorsInOverlay
+  // }
+})
 ```

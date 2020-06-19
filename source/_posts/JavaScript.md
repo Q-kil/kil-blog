@@ -7,13 +7,26 @@ tags:
 - JavaScript
 ---
 # 基础知识
-点击事件
+## 点击事件
 ``` js
 window.addEventListener('click', () => console.log('Clicked!'));
 document.getElementById('ele').addEventListener('click', () => console.log('Clicked!'));
 ```
 
+## 操作css
+``` js
+// 在单个语句中设置多个样式
+elt.style.cssText = "color: blue; border: 1px solid black";
+// 或者
+elt.setAttribute("style", "color:red; border: 1px solid blue;");
 
+// 设置特定样式，同时保持其他内联样式值不变
+elt.style.color = "blue";
+```
+
+## setTimeout & setInterval
+setTimeout()方法设置一个定时器，该定时器在定时器到期后执行一个函数或指定的一段代码。
+setInterval() 方法重复调用一个函数或执行一个代码段，在每次调用之间具有固定的时间延迟。
 
 # 待掌握
 ## 对象拷贝
@@ -28,19 +41,19 @@ let obj = {
 }
 let newObj = Object.assign({}, obj);
 console.log(newObj); // { a: 1, b: { c: 2} }
- 
+
 obj.a = 10;
 console.log(obj); // { a: 10, b: { c: 2} }
 console.log(newObj); // { a: 1, b: { c: 2} }
- 
+
 newObj.a = 20;
 console.log(obj); // { a: 10, b: { c: 2} }
 console.log(newObj); // { a: 20, b: { c: 2} }
- 
+
 newObj.b.c = 30;
 console.log(obj); // { a: 10, b: { c: 30} }
 console.log(newObj); // { a: 20, b: { c: 30} }
- 
+
 // 注意: newObj.b.c = 30; 为什么呢..
 ```
 这就是 `Object.assign()` 的陷阱。`Object.assign` 只是浅拷贝。 `newObj.b` 和 `obj.b` 都引用同一个对象，没有单独拷贝，而是复制了对该对象的引用。任何对对象属性的更改都适用于使用该对象的所有引用。
@@ -60,7 +73,7 @@ function zhSort(arr) {
 function segSort(arr) {
   let letters = "*abcdefghjklmnopqrstwxyz".split(''),
       zh = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨它穵夕丫帀".split('');
-  
+
   let segs = [],
       curr;
 
@@ -94,11 +107,25 @@ reduce() 方法对数组中的每个元素执行一个由您提供的reducer函�
 ``` js
 return this.products.reduce((sum, product) => {
   console.log('product', product);
-  
+
   return sum + 1;
 }, 0)
 ```
 
+## 模块
+### require时代
+a.js
+``` js
+module.exports = {
+  a: 1
+}
+```
+b.js
+``` js
+var m = require('./a')
+
+console.log(m.a);
+```
 
 # work
 ## 顶级域名 一级域名
@@ -213,8 +240,8 @@ const obj = {
         c: () => { console.log(this.g) }
     }
 }
-obj.a() 
-obj.b.c() 
+obj.a()
+obj.b.c()
 
 console.log('ggg', window.g);
 VM99:4 g
@@ -257,5 +284,50 @@ scrollHandle() {
 }
 ```
 
+# 内存泄露
+**内存泄漏（memory leak）**
+不再用到的内存，没有及时释放。
+**垃圾回收机制（garbage collector）**
+JavaScript 的内存基元在变量（对象，字符串等等）创建时分配，然后在他们不再被使用时“自动释放”
 
+工具检测：
+chrome - preformance
+
+## 垃圾回收机制——GC
+JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。
+
+## 原因
+### 全局变量
+全局变量无法通过垃圾收集器收集。
+要保证一旦完成使用就把他们赋值为 null 或重新赋值 。
+
+### 忘记移除的定时器
+处理程序及其依赖项都不会被收集，因为间隔处理需要先备停止（请记住，它仍然是活动的）
+
+### 闭包
+一旦为同一个父作用域内的闭包创建作用域，作用域将被共享。
+两个闭包之间的整个共享范围，这阻止了它们的垃圾收集。
+
+### DOM引用
+数据结构中存储 DOM 节点
+
+原理
+垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。
+
+# 严格模式
+"use strict";
+严格模式对正常的 JavaScript语义做了一些更改。
+- 严格模式通过抛出错误来消除了一些原有静默错误。
+- 严格模式修复了一些导致 JavaScript引擎难以执行优化的缺陷：有时候，相同的代码，严格模式可以比非严格模式下运行得更快。
+- 严格模式禁用了在ECMAScript的未来版本中可能会定义的一些语法。
+
+# 原型链
+如果试图引用constructor1构造的实例instance1的某个属性p1:
+- 首先会在instance1内部属性中找一遍;
+- 接着会在instance1.__proto__(constructor1.prototype)中找一遍,而constructor1.prototype 实际上是instance2, 也就是说在instance2中寻找该属性p1;
+- 如果instance2中还是没有,此时程序不会灰心,它会继续在instance2.__proto__(constructor2.prototype)中寻找...直至Object的原型对象
+
+搜索轨迹: instance1--> instance2 --> constructor2.prototype…-->Object.prototype
+
+这种搜索的轨迹,形似一条长链, 又因prototype在这个游戏规则中充当链接的作用,于是我们把这种实例与原型的链条称作 原型链 .
 
