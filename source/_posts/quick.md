@@ -18,3 +18,26 @@ Evernote速记快捷键Control+Command+N
 ## Vimium
 [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb) 键盘党必备, 使用vim命令管理页面.
 [教程](https://www.jianshu.com/p/849d6b21e02e)
+
+### 最基础的操作-上下左右 -w/s/a/d
+
+### 跳转标签页-J/K
+之前我们用小写j和k进行前进和后退，为了尽量不移动手指(就是这么懒), 我们直接用大写J和大写K来跳转标签页，J向前跳，K向后跳，再也不用一直ctrl+tab了
+
+### 后退/前进-j/k
+我们经常会用到后退和前进每次都要在左上角点击实在太麻烦，所以我把两个操作放到了右手边j和k,按j后退，按k前进,这样两个键就可以进退自如了,
+
+### 终极跳转链接大法-f
+
+### 回到顶部/底部-qq/ee
+
+### 半页滚动-h/l
+
+### 关闭页面/恢复页面 - x/X
+
+### 终极搜索栏 - o/O
+小写o是在当前标签页打开，大写O是在新标签页打开
+
+### 搜索书签 - b
+
+### 刷新页面 - r
