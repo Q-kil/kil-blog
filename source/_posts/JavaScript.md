@@ -331,3 +331,6 @@ JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就�
 
 这种搜索的轨迹,形似一条长链, 又因prototype在这个游戏规则中充当链接的作用,于是我们把这种实例与原型的链条称作 原型链 .
 
+## 轻松理解原型链
+原型链图
+`{% asset_img proto.png %}`
