@@ -331,3 +331,13 @@ JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就�
 
 这种搜索的轨迹,形似一条长链, 又因prototype在这个游戏规则中充当链接的作用,于是我们把这种实例与原型的链条称作 原型链 .
 
+## 轻松理解原型链
+原型链图
+`{% asset_img proto.png %}`
+
+- js分为函数对象和普通对象，每个对象都有__proto__属性，但是只有函数对象才有prototype属性
+- Object、Function都是js内置的函数, 类似的还有我们常用到的Array、RegExp、Date、Boolean、Number、String
+
+- 属性__proto__是一个对象，它有两个属性，constructor和__proto__；
+- 原型对象prototype有一个默认的constructor属性，用于记录实例是由哪个构造函数创建；
+
