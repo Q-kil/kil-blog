@@ -2,7 +2,7 @@
 title: offer
 date: 2020-05-27 11:43:12
 categories:
-- code
+- interview
 tags:
 - offer
 ---
