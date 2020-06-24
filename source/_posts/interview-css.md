@@ -7,6 +7,11 @@ tags:
 - css
 ---
 
+# 重点
+## 重绘和回流
+
+# 其他
+
 1、介绍一下标准的CSS的盒子模型？与低版本IE的盒子模型有什么不同的？
 
 
@@ -62,7 +67,7 @@ div：
 3
 4
 border: 1px solid red;
-margin: 0 auto; 
+margin: 0 auto;
 height: 50px;
 width: 80px;
 浮动元素的上下左右居中：
@@ -82,7 +87,7 @@ width: 200px;
 height: 100px;
 left: 50%;
 top: 50%;
-margin: -50px 0 0 -100px; 
+margin: -50px 0 0 -100px;
 绝对定位的左右居中：
 
 1
@@ -98,7 +103,7 @@ width: 200px;
 height: 100px;
 margin: 0 auto;
 left: 0;
-right: 0; 
+right: 0;
 还有更加优雅的居中方式就是用flexbox，我以后会做整理。
 
 7、display有哪些值？说明他们的作用?
@@ -322,7 +327,7 @@ position的值为absolute或fixed
 </div>
 <!--下面是css代码-->
  .aside {
-            margin-bottom: 100px;  
+            margin-bottom: 100px;
             width: 100px;
             height: 150px;
             background: #f66;
