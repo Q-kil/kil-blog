@@ -31,6 +31,12 @@ setInterval() 方法重复调用一个函数或执行一个代码段，在每次
 ## 对象添加健值对
 object[key] = value
 
+## url 解码
+decodeURIComponent('https%3A%2F%2Fosd-alpha.tooqing.com');
+
+## 当前 url
+window.location.href
+
 # 待掌握
 ## 对象拷贝
 ### 浅拷贝
