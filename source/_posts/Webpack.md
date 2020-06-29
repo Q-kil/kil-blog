@@ -121,11 +121,11 @@ module.exports = {
 ```
 
 ## scss 问题
-<font color="#FF0000"> 
+<font color="#FF0000">
 ERROR in ./src/app/page/home/home.component.scss
 You may need an additional loader to handle the result of these loaders.
 > p {
-|   color: #f00; } 
+|   color: #f00; }
 </font>
 
 解决：添加 css-loader
@@ -135,9 +135,30 @@ You may need an additional loader to handle the result of these loaders.
   exclude: [/\.global\.scss$/],
   use: ['to-string-loader', 'css-loader', 'sass-loader']
 }
-```      
+```
 
 # 模块热替换(hot module replacement 或 HMR)
+``` js
+const webpack = require('webpack');
 
+module.exports = {
+  mode: 'development',
+        from: 'src/favicon.ico'
+      }
+    ]),
+
+    new webpack.HotModuleReplacementPlugin() // 新增
+  ],
+
+  devServer: {
+    host: '0.0.0.0',
+    port: 8080,
+    hot: true, // 新增
+    hotOnly: true, // 新增
+    historyApiFallback: {
+      disableDotRule: true,
+    }
+  }
+```
 
 
