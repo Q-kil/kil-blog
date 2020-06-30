@@ -196,3 +196,19 @@ function add(x, y, f) {
 
 # 函数式编程
 函数式编程就像第三次工业革命，前两次分别为命令式编程（Imperative programming）和面向对象编程（Object Oriented Programming）。
+
+
+# 匿名函数
+第一种方式：
+``` js
+var double = function(x) { return 2* x; }
+```
+右边就是匿名函数
+
+第二种方式：
+``` js
+(function(x, y){
+    alert(x + y);
+})(2, 3);
+```
+

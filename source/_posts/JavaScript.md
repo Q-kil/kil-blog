@@ -350,3 +350,118 @@ JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就�
 - 属性__proto__是一个对象，它有两个属性，constructor和__proto__；
 - 原型对象prototype有一个默认的constructor属性，用于记录实例是由哪个构造函数创建；
 
+
+# apply、call、bind
+## apply、call
+在 javascript 中，call 和 apply 都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部 this 的指向。
+
+JavaScript 的一大特点是，函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。
+例子：
+``` js
+function fruits() {}
+
+fruits.prototype = {
+    color: "red",
+    say: function() {
+        console.log("My color is " + this.color);
+    }
+}
+
+var apple = new fruits;
+apple.say();    //My color is red
+```
+
+但是如果我们有一个对象banana= {color : "yellow"} ,我们不想对它重新定义 say 方法，那么我们可以通过 call 或 apply 用 apple 的 say 方法：
+``` js
+banana = {
+    color: "yellow"
+}
+apple.say.call(banana);     //My color is yellow
+apple.say.apply(banana);    //My color is yellow
+```
+
+## apply、call 的区别
+对于 apply、call 二者而言，作用完全一样，只是接受参数的方式不太一样。例如，有一个函数定义如下：
+``` js
+var func = function(arg1, arg2) {
+
+};
+```
+调用
+``` js
+func.call(this, arg1, arg2);
+func.apply(this, [arg1, arg2])
+```
+其中 this 是你想指定的上下文，他可以是任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。　　
+
+通过 Array.prototype.slice.call 转化为标准数组
+
+接下来的要求是给每一个 log 消息添加一个"(app)"的前辍，比如：
+``` js
+log("hello world");    //(app)hello world
+```
+
+``` js
+function log(){
+  var args = Array.prototype.slice.call(arguments);
+  args.unshift('(app)');
+
+  console.log.apply(console, args);
+};
+```
+
+## bind
+说完了 apply 和 call ，再来说说bind。bind() 方法与 apply 和 call 很相似，也是可以改变函数体内 this 的指向。
+
+MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。
+
+直接来看看具体如何使用，在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 像这样：
+``` js
+var foo = {
+    bar : 1,
+    eventBind: function(){
+        var _this = this;
+        $('.someClass').on('click',function(event) {
+            /* Act on the event */
+            console.log(_this.bar);     //1
+        });
+    }
+}
+```
+
+由于 Javascript 特有的机制，上下文环境在 eventBind:function(){ } 过渡到 $('.someClass').on('click',function(event) { }) 发生了改变，上述使用变量保存 this 这些方式都是有用的，也没有什么问题。当然使用 bind() 可以更加优雅的解决这个问题：
+``` js
+var foo = {
+    bar : 1,
+    eventBind: function(){
+        $('.someClass').on('click',function(event) {
+            /* Act on the event */
+            console.log(this.bar);      //1
+        }.bind(this));
+    }
+}
+```
+
+## apply、call、bind比较
+``` js
+var obj = {
+    x: 81,
+};
+
+var foo = {
+    getX: function() {
+        return this.x;
+    }
+}
+
+console.log(foo.getX.bind(obj)());  //81
+console.log(foo.getX.call(obj));    //81
+console.log(foo.getX.apply(obj));   //81
+```
+当你希望改变上下文环境之后并非立即执行，而是回调执行的时候，使用 bind() 方法。而 apply/call 则会立即执行函数。
+
+总结：
+apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；
+apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；
+apply 、 call 、bind 三者都可以利用后续参数传参；
+bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。
