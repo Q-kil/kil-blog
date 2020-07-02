@@ -6,8 +6,34 @@ categories:
 tags:
 - Webpack
 ---
+# learn
+## 大纲
+### 在线
+1.引入browser
+2.type=“text/babel”
 
-## seven 搭建angular webpack配置
+### node
+npm
+1.安装node
+2.安装babel
+  npm i @babel/core @babel/cli @babel/preset-env
+  npm i @babel/polyfill
+3.添加脚本
+  “build”：“babel src -d dest"
+  -d 往哪输出
+4.添加配置
+  {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+5.执行
+  npm run build
+
+
+
+
+# seven 搭建angular webpack配置
 ``` js
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');

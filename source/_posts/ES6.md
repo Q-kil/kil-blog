@@ -173,12 +173,23 @@ let a = {a: 1};
 let b = {b: 2, ...a}; // {b: 2, a: 1}
 ```
 
+### json展开
+``` js
+let json = {a: 1, b: 2};
+
+let json2 = {
+  ...json,
+  c: 3
+}
+```
+
 ## 默认参数
 ``` js
 function show(a, b=1, c=3){};
 ```
 
 # 解构赋值
+## 注意事项
 1、左右两边结构必须一样
 2、右边必须是个东西
 3、声明和赋值不能分开（必须在一句话里完成）
@@ -193,9 +204,20 @@ let [a, b, c] = [1, 2, 3]
 
 // 对象
 let {a, b, c} = {a: 2, b: 3, c:4}
+
+$.ajax('xxxx') => {
+  code: xx,
+  data: xx,
+  msg,
+  xxx
+}
+// 提取想要的数据
+let { code, data } = $.ajax('xxx');
+
 ```
 
 # 数组
+原生对象扩展
 ## map 映射
 一个对一个
 ``` js
@@ -731,7 +753,7 @@ let arr = new Array();
 
 // Promise 也一样，当需要Promise时，要new一个Promise对象
 // 里面接收一个参数，是函数
-let p = new Promise(function (resolve, reject) { // 函数接收两个参数：解决（成功），拒绝（失败）
+let p = new Promise(function (resolve, reject) { // 函数接收两个参数：resolve解决（成功），reject拒绝（失败）
   // 异步代码
 });
 ```
