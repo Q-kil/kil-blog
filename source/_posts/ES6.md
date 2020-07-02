@@ -340,15 +340,21 @@ OO语言都支持两种继承方式: 接口继承 和 实现继承
 
 由于js中方法没有签名,在ECMAScript中无法实现接口继承.ECMAScript只支持实现继承,而且其 `实现继承` 主要是依靠原型链来实现的.
 
+特征：封装、继承
+
 ## ES4, ES5 写法
+没有统一写法
+以函数形式写对象
+
 1、类 和 构造函数 不分的...
 2、类 散开了
 ``` js
-function User(name, pass) {
+function User(name, pass) { // User 既是类，又是构造函数
   this.name = name;
   this.pass = pass;
 }
 
+// 方法往prototype 上加
 User.prototype.showName = function() {
   alert(this.name);
 }
@@ -362,6 +368,12 @@ u2.showPass();
 ```
 
 ## ES6 写法
+类是类，构造函数是构造函数
+class 类声明
+constructor 构造函数
+extends 继承
+super 父类/超类
+
 ``` js
 class User{
   constructor(name, pass) { // 构造函数 或着 构造器
@@ -390,12 +402,16 @@ class User{
 ### ES4, ES5写法
 ``` js
 function VipUser(name, pass, level) {
+  // 继承使用call
   User.call(this, name, pass);
 
   this.level = level;
 }
 
+// 方法的继承
+// new 一个实例放在身上
 VipUser.prototype = new User();
+// constructor 属性修正过来
 VipUser.prototype.constructor = VipUser;
 
 VipUser.prototype.showLevel = function() {
@@ -412,7 +428,7 @@ V1.showLevel();
 ``` js
 class VipUser{
   constructor(name, pass, level) {
-    super(name, pass);
+    super(name, pass); // 父类，超类
 
     this.level = level;
   }
@@ -424,6 +440,7 @@ class VipUser{
 ```
 
 ### 静态方法 无法继承
+普通方法自动继承
 ``` js
 class Animal {
   name;
@@ -895,6 +912,14 @@ async await
 好处：
 1、不依赖于外部的 runner 了——统一、性能
 2、可以用箭头函数
+
+# 模块化
+js模块系统演化简史
+没有模块 -> CMD(Common Module Definition) -> AMD(Asynchronous Module Definition) -> 语言提供模块支持
+
+import * as mod1 from './mod1'; (*代表引入所有内容, 取名mod1, './mod1.js' js可以省略 )
+./ 可加，可不加； webpack 是用node写的，要遵循node基本约定，加上
+/* 浏览器不认
 
 # Set和Map数据结构
 ## Set

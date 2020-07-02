@@ -21,6 +21,10 @@ npm
 3.添加脚本
   “build”：“babel src -d dest"
   -d 往哪输出
+  src > demo.js
+  ``` js
+  let a = 1;
+  ```
 4.添加配置
   {
     "presets": [
@@ -30,6 +34,13 @@ npm
 5.执行
   npm run build
 
+## 基础知识
+module.exports = {
+
+}
+CMD 写法
+
+## 模块化
 
 
 

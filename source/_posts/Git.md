@@ -9,7 +9,7 @@ tags:
 
 # 配置
 ### ssh 密钥
-``` 
+```
 ssh-keygen
 ```
 
@@ -76,12 +76,20 @@ git reset --hard 3e5236a
 ## 历史提交记录
 git log
 
+## 删除远程已提交的文件
+``` zsh
+git rm -r --cached 文件/文件夹名称
+# 修改本地 .gitignore
+git commit -m ''
+git push origin master
+```
+
 # 错误
 ### index.lock
 error:
-Another git process seems to be running in this repository, e.g.       
-an editor opened by 'git commit'. Please make sure all processes       
-are terminated then try again. If it still fails, a git process        
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
 may have crashed in this repository earlier:
 remove the file manually to continue.
 
@@ -111,7 +119,7 @@ wsl 中的密钥 无法在windows中使用
 # vscoed 中应用
 ### push
 #### 暂存所有更改
-更改处 '+' 
+更改处 '+'
 
 #### 提交已暂存文件
 更多操作... > 提交已暂存文件
