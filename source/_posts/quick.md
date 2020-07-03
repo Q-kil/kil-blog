@@ -41,3 +41,17 @@ Evernote速记快捷键Control+Command+N
 ### 搜索书签 - b
 
 ### 刷新页面 - r
+
+# 有道
+option + z 快速搜索单词
+
+# shadowsocks
+偏好设置 》 常规
+## 切换代理模式
+command + 9
+
+## 开关
+command + 0
+
+# chrome
+command + y 打开历史记录

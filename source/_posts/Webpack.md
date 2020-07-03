@@ -6,8 +6,16 @@ categories:
 tags:
 - Webpack
 ---
+
 # learn
-## 大纲
+webpack 能完成所有常用的功能
+- 压缩
+- 打包
+- 多种文件的编译
+- 脚手架
+- 生成
+
+## 前面
 ### 在线
 1.引入browser
 2.type=“text/babel”
@@ -41,6 +49,71 @@ module.exports = {
 CMD 写法
 
 ## 模块化
+export 输出
+
+webpack.config.js
+``` js
+const path = require('path');
+
+module.exports = {
+  // 编译的模式
+  mode: 'development',
+  // 入口文件，以该文件为起点文件
+  entry: './js/index.js',
+  // 出口文件；json格式
+  output: {
+    // 要放到哪去
+    // './build/ 当前目录的build文件下
+    // 必须使用绝对路径，相对路径容易出问题
+    // resolve (解析) 可以把路径解析为绝对路径
+    path: path.resolve(__dirname, 'build'),
+    // 打包之后的文件叫 bundel
+    filename: 'bundle.js'
+  }
+}
+```
+
+魔术变量
+__dirname: 当前文件所在目录
+__filename: 当前运行文件的文件名
+
+### 导出（export）
+变量
+export let a=12;
+
+多个变量
+let a,b,c = ...;
+export {a,b,c..};
+
+函数
+export function show() {
+  ...
+}
+
+class
+export class Person {
+
+}
+
+#### 默认成员
+export default
+
+引入
+import mod1 from './mod1' = import default as from './mod1'
+
+### 导入（import）
+``` js
+import * as mod1 from 'xxx';    引入所有成员
+import mod1 from 'xxx';         引入default成员
+
+import {a, b as name2} from './mod1';
+
+// 只引入
+import 'xxx';
+
+// 异步引入
+let p = import('./mod1');
+```
 
 
 

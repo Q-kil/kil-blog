@@ -334,6 +334,9 @@ let str2 = `<div>
 ```
 
 # 面向对象
+语言发展简史
+机器语言 -> 汇编语言 -> 低级语言（面向过程） -> 高级语言（面向对象） -> 模块系统 -> 框架 -> 系统接口（API）
+
 Object-Oriented Language  OO语言
 OO语言都支持两种继承方式: 接口继承 和 实现继承
 接口继承只继承方法签名,而实现继承则继承实际的方法
@@ -916,6 +919,8 @@ async await
 # 模块化
 js模块系统演化简史
 没有模块 -> CMD(Common Module Definition) -> AMD(Asynchronous Module Definition) -> 语言提供模块支持
+
+ES6模块系统 需要借助 webpack
 
 import * as mod1 from './mod1'; (*代表引入所有内容, 取名mod1, './mod1.js' js可以省略 )
 ./ 可加，可不加； webpack 是用node写的，要遵循node基本约定，加上

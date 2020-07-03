@@ -141,6 +141,29 @@ F1 (键盘快捷方式按键设置)
 | Ctrl + Shift + X | 快速打开扩展面板  |
 | Ctrl + Shift + D | 快速打开调试面板  |
 
+### 目录区
+| Mac快捷键 | 作用  |
+| :--- | :--- |
+| ctrl + [ | 新建文件 |
+| ctrl + ] | 新建文件夹 |
+
+自定义设置：
+cmd + shift + p 
+key
+Preferences: Open Keyboard Shortcuts (JSON)
+
+keybindings.json
+``` json
+{ 
+"key": "ctrl+n",
+"command": "explorer.newFile"
+},
+{
+"key": "ctrl+m",
+"command": "explorer.newFolder"
+}
+ ```
+
 ## 命令面板
 Mac用户按住快捷键 <span class="custom_red">Cmd+Shift+P<span>
 
