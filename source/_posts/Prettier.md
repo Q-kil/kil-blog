@@ -2,7 +2,7 @@
 title: Prettier
 date: 2020-06-15 15:51:08
 categories:
-- Tool
+- guide
 tags:
 - Prettier
 ---

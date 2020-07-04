@@ -7,6 +7,9 @@ tags:
 - ESLint
 ---
 
+代码质量管理——eslint 
+规范代码风格
+
 # 基础
 eslint: 代码检测工具
 ## 格式
@@ -103,3 +106,14 @@ const createLintingRule = () => ({
   // }
 })
 ```
+
+# eslint-loader
+yarn add eslint eslint-loader
+
+生成.eslintrc.js 文件
+第一种方法
+node node_modules/eslint/bin/eslint.js --init
+
+第二张方法
+package.json
+eslint_init: eslint

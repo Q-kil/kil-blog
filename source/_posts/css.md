@@ -7,11 +7,12 @@ tags:
 - CSS
 ---
 # 浏览器兼容
+## 前缀
 ``` css
 -webkit-transform:rotate(-3deg); /*为Chrome/Safari*/
--moz-transform:rotate(-3deg); /*为Firefox*/
+-moz-transform:rotate(-3deg); /*为Firefox*/  /*已经认标准写法*/
 -ms-transform:rotate(-3deg); /*为IE*/
--o-transform:rotate(-3deg); /*为Opera*/
+-o-transform:rotate(-3deg); /*为Opera*/    /*欧朋已经换webkit内核*/
 transform:rotate(-3deg);
 ```
 

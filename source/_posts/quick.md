@@ -55,3 +55,7 @@ command + 0
 
 # chrome
 command + y 打开历史记录
+
+# 开发时
+## 不切屏
+Blue：两个屏幕，commod + s 另一个屏幕直接看结果

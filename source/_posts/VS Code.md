@@ -362,6 +362,10 @@ win格式化快捷键：Alt + Shift + F
 ### angular support
 Angular ctrl+鼠标左键 点击html中的方法跳到ts的方法上
 
+### Create Files & Folders : On The Go
+快速创建文件和文件夹
+Keyboard Shortcut: ctrl + alt + N to create new file & ctrl + alt + shift + N to create new folders
+
 ## 设置
 ### 设置中文
 按Ctrl + Shift + P打开`命令调色板`，然后开始键入“display”以过滤并显示Configure Display Language命令。
