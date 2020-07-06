@@ -26,6 +26,6 @@ state == what are you doing? [resting/working]
 # 职位
 PM: Product Manager，产品e68a8462616964757a686964616f31333365666262经理，又称品牌经理（Brand Manager）。举凡产品从创意到上市，所有相关的研发、调研、生产、编预算、广告、促销活动等等，都由产品经理掌控。
 
-QA: Quality Assurance，品质保证。QA的主要职责就是质量保证工作。 
+QA: Quality Assurance，品质保证。QA的主要职责就是质量保证工作。
 
 
