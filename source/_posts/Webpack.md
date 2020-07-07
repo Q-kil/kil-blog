@@ -127,11 +127,18 @@ last 5 version
 > 1%
 ```
 2.放到 package.json
+数组里面的参数是或者关系
 ``` json
 "browserslist": [
   "last 5 version",
   "> 1%"
 ]
+
+"browserslist": [
+    "> 0.5%",
+    "last 1 version",
+    "not dead"
+  ],
 ```
 
 ``` js
@@ -154,6 +161,31 @@ rules: [
   ]}
 ]
 ```
+
+校验css文件
+stylelint-webpack-plugin
+
+``` js
+plugins: [ //plugins webpack启动的时候，plugins主动找文件；loader 加载的时候
+  new styleLintPlugin({
+    files: ['**/*.css', '**/*.less', '**/*.html', '**/*.vue', '**/*.scss'] //** 代表任意
+    // 或者
+    files: ['./src/css/**/*.css]
+  })
+]
+```
+
+package.json
+``` json
+{
+  "stylelint": {
+    "extends": "stylelint-config-standard" // 引入外部配置
+  }
+}
+```
+
+
+
 
 #### file
 ``` js
@@ -238,6 +270,73 @@ module.exports = {
   },
 ```
 
+### 代码质量管理eslint
+
+### 代码测试jest
+.babelrc
+``` json
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        }
+      }
+    ]  
+  ]
+}
+```
+
+package.json 
+``` json
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "autoprefixer": "^9.8.4",
+    "axios": "^0.19.2",
+    "css-loader": "^3.6.0",
+    "eslint": "^7.3.1",
+    "eslint-loader": "^4.0.2",
+    "jest": "^26.1.0",
+    "jest-webpack": "^0.5.1",
+    "jquery": "^3.5.1",
+    "koa": "^2.13.0",
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0"
+  }
+}
+```
+
+async.test.js
+``` js
+const mod = require('../src/js/async');
+
+test('test ajax', async () => {
+  expect(await mod.sum(12,5)).toBe(17);
+})
+```
+
+## 完整配置
+### webpack
+yarn add webpack webpack-cli webpack-dev-server
+css-loader style-loader
+postcss-loader autoprefixer
+less-loader less
+file-loader url-loader
+babel-loader @babel/core @babel/preset-env
+html-webpack-plugin
+eslint eslint-loader
+stylelint stylelint-webpack-plugin stylelint-config-standard
+jest jest-webpack
+--dev
+
+
 ## 模块化
 export 输出
 
@@ -321,6 +420,7 @@ html-webpack-plugin
 
 ``` js
 plugins: [
+  // 能自动插入 bundel.js
   new htmlWebpackPlugin({
     // template: './index.html'
     // 因为相对路径比较麻烦，现改为绝对路径

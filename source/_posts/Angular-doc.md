@@ -695,6 +695,27 @@ export const appRoutes:Routes=[
 export class AppRoutingModule { }
 ```
 
+#### 激活路由
+ActivateRoute
+获取路由的参数
+activatedRoute.queryParamMap.subscribe
+
+#### 路由器事件
+Router.events
+获取前路由和当前路由
+RoutesRecognized
+``` ts
+this.router.events
+  .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+  .subscribe((events: RoutesRecognized[]) => {
+    console.log('previous url', events[0].urlAfterRedirects);
+    console.log('current url', events[1].urlAfterRedirects);
+    let previous_url = events[0].urlAfterRedirects;
+    if (previous_url !== '/signin' && previous_url !== '/sms-signin') {
+      localDB.set('previous_url', {url: events[0].urlAfterRedirects});
+    }
+  });
+```
 
 ## 表单
 - 模版驱动型表单
