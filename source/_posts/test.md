@@ -13,5 +13,6 @@ yarn add jest jest-webpack
 # 大公司
 git 提交前，跑一遍jest，出错打回
 
-
+# e2e
+端到端测试，集成测试控件
 

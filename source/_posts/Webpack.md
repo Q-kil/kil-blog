@@ -48,6 +48,25 @@ module.exports = {
 }
 CMD 写法
 
+### 取别名
+``` js
+module.exports = function (env, argv) {
+  env = env||{};
+  return {
+    entry: './src/js/index',
+    module: {
+    },
+    ...conf，
+    resolve: {
+      alias: {
+        'vue': 'vue/dist/vue.esm',
+        '@': path.resolve(__dirname, './src/js/')
+      }
+    }
+  }
+}
+```
+
 ### 配置
 webpack.config.js
 1.node:
@@ -273,6 +292,7 @@ module.exports = {
 ### 代码质量管理eslint
 
 ### 代码测试jest
+jest-webpack的作者不再维护这个库
 .babelrc
 ``` json
 {
@@ -309,6 +329,12 @@ package.json
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0"
+  },
+  // 告诉jest 就去tests 文件找
+  "jest": {
+    "roots": [
+      "./tests/"
+    ]
   }
 }
 ```
@@ -336,6 +362,45 @@ stylelint stylelint-webpack-plugin stylelint-config-standard
 jest jest-webpack
 --dev
 
+### package.json
+``` json
+"scripts": {
+  "start": "webpack-dev-server --env.development",
+  "build": "webpack --env.production",
+  "test": "jest" // 不能jest --env.test ; 因为jest 有自己的环境变量
+},
+```
+
+## Vue2.x template
+yarn add vue vue-loader vue-style-loader vue-html-loader vue-template-compiler --dev
+
+``` js
+import Vue from 'vue';
+import App from './App.vue';
+
+let vm = new Vue({
+  el: '#root',
+  data: {},
+  template: '<App/>',
+  components: { // 局部注册
+    App
+  }
+});
+```
+
+
+``` js
+// style-loader => vue-style-loader
+// 两个样式融在一起
+{test: /\.css$/i, use:['vue-style-loader', 'css-loader', {
+  loader: 'postcss-loader',
+  options: {
+    plugins: [
+      require('autoprefixer')
+    ]
+  }
+}]},
+```
 
 ## 模块化
 export 输出
