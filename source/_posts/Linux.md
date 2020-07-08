@@ -68,7 +68,7 @@ $ mkdir usr
 $ mv node-v12.16.1-linux-x64 /usr/app
 ```
 
-强制保存
+强制保存 （write and quite）
 ``` BASH
 $ wq!
 ```
