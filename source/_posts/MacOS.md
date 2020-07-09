@@ -24,6 +24,17 @@ brew --version
 brew update
 ```
 
+更新某个包时，查看更新信息
+``` zsh
+brew upgrade -d yarn
+```
+
+两种方式安装包
+``` zsh
+brew install yarn 
+curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+```
+
 ## 问题
 ### Updating Homebrew...
 解决办法
