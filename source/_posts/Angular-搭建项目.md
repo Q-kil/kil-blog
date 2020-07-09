@@ -171,6 +171,8 @@ ng new your-project-name --style=scss
 ng config --global defaults.styleExt=scss
 ```
 
-
+# 版本升级
+error @angular-devkit/architect@0.900.0: The engine "yarn" is incompatible with this module. Expected version ">= 1.13.0". Got "1.12.3"
+error Found incompatible module
 
 
