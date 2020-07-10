@@ -190,4 +190,3 @@ node-sass
 
 ## 卸载
 @angular/cdk@8.0.0
-@angular/animations
