@@ -7,6 +7,12 @@ tags:
 - TypeScript
 ---
 
+# 基础
+## 概念
+- 编译型
+- 强类型（直接帮你做类型检测）
+- 真正面向对象：有接口、有范型、有枚举、有访问修饰符 
+
 # 运行
 ``` zsh
 npm install -g typescript
@@ -31,7 +37,7 @@ TypeScript 编译的时候即使报错了，还是会生成编译结果，我们
 
 如果要在报错的时候终止 js 文件的生成，可以在 `tsconfig.json` 中配置 noEmitOnError 即可。关于 `tsconfig.json`，请参阅[官方手册](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
-## 基础
+## 类型
 ### 原始数据类型
 JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。
 原始数据类型包括：布尔值、数值、字符串、`null`、`undefined` 以及 [ES6 中的新类型 Symbol](https://es6.ruanyifeng.com/#docs/symbol)。
@@ -79,7 +85,7 @@ function alertName(): void {
 let unusable: void = undefined;
 ```
 
-### 类型推理
+### 类型推理/类型推测（隐式类型声明）
 如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。
 ``` ts
 let myFavoriteNumber = 'seven'; // 等价于 let myFavoriteNumber: string = 'seven';
@@ -350,8 +356,12 @@ function reverse(x: number | string): number | string {
     }
 }
 ```
+
 上例中，我们重复定义了多次函数 reverse，前几次都是函数定义，最后一次是函数实现。在编辑器的代码提示中，可以正确的看到前两个提示。
 注意，TypeScript 会优先从最前面的函数定义开始匹配，所以多个函数定义如果有包含关系，需要优先把精确的定义写在前面。
+
+#### 函数签名
+success: (a, b) => void
 
 ### 类型断言
 #### 语法
@@ -389,17 +399,54 @@ function getLength(something: string | number): number {
         return something.toString().length;
     }
 }
-``` 
+```
+
 类型断言不是类型转换，断言成一个联合类型中不存在的类型是不允许的.
 
 
+### 外部变量声明
+declare var 名字
 
+## 接口
+interface
 
+### 概念
+约定、限制
 
+### 例子
+``` ts
+interface Point {
+  x: number,
+  y: number,
+  z?: number
+}
 
+let p: Point;
+p = {x:12, y:5}
+```
 
+## 面向对象
+### 访问修饰符
+public     公有          任何人可以访问
+private    私有          只有类内部可以访问
+protected  受保护的-友元   只有子类能用
 
+## 泛型
+别根‘any’搞混了
+泛：宽泛
 
+## 例子
+``` ts
+class Calc<T> {
+  a: T;
+  b: T;
+}
+
+let obj = new Calc<number>();
+obj.a = 12;
+```
+
+# 封装
 ## Class
 购物车功能
 **Model**：购物车内商品item（商品，数量），购物车（商品item集合）
@@ -559,7 +606,6 @@ export class CartComponent implements OnInit {
 
 ## namespace 命名空间
 如果你发现自己写的功能(函数/类/接口等...)越来越多, 你想对他们进行分组管理就可以用命名空间
-
 
 
 

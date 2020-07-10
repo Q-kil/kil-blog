@@ -23,6 +23,11 @@ Angular 这个框架现在的问题最大
 
 Vue 和 React 拿来写小程序都很快很方便，但是 Angular 要拿来做小程序几乎是不可能的
 
+# 基础
+## @angular/core 
+ViewChild
+{ static: true }引入了该选项以支持动态创建嵌入式视图
+
 # 知识
 ## 组件-conponent
 - 一个组件类
