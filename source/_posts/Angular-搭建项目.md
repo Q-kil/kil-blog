@@ -171,6 +171,22 @@ ng new your-project-name --style=scss
 ng config --global defaults.styleExt=scss
 ```
 
+# 版本升级
+error @angular-devkit/architect@0.900.0: The engine "yarn" is incompatible with this module. Expected version ">= 1.13.0". Got "1.12.3"
+error Found incompatible module
 
+brew upgrade yarn
 
+## ng
+ng update @angular/cli@8 @angular/core@8
 
+ng update @angular/core --next --force (更新了angular相关依赖 到8.0)
+
+## 修改
+ViewChild => @ViewChild('foo', {static: false}) foo !: ElementRef;
+
+## 重新安装
+node-sass
+
+## 卸载
+@angular/cdk@8.0.0

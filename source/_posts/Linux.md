@@ -68,7 +68,7 @@ $ mkdir usr
 $ mv node-v12.16.1-linux-x64 /usr/app
 ```
 
-强制保存
+强制保存 （write and quite）
 ``` BASH
 $ wq!
 ```
@@ -113,6 +113,32 @@ free -m
 ps axu|grep nginx
 ```
 
+查看包安装在那
+``` bash
+which nginx
+```
+
+查看文件下所有文件
+``` zsh
+ll -la ~/
+```
+
+查看当前shell 用的那个
+``` zsh
+# niekaifa @ niekaifadeMacBook-Pro in /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core on git:master o [10:20:06]
+$ echo $SHELL
+/bin/zsh
+```
+
+色彩皮肤
+``` zsh
+cat ~/.zshrc
+plugins=(
+  git
+  nali
+)
+.oh-my-zsh
+``` 
 
 ### 域名操作
 #### curl
@@ -211,3 +237,15 @@ fi
 
 export NODE_HOME=/home/kil/.npm-global
 export PATH=$NODE_HOME/bin:$PATH
+
+# 知识
+Shell是Linux/Unix的一个外壳，你理解成衣服也行。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。
+
+Linux/Unix提供了很多种Shell，为毛要这么多Shell？难道用来炒着吃么？那我问你，你同类型的衣服怎么有那么多件？花色，质地还不一样。写程序比买衣服复杂多了，而且程序员往往负责把复杂的事情搞简单，简单的事情搞复杂。牛程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等，想知道你的系统有几种shell，可以通过以下命令查看：
+``` zsh
+cat /etc/shells
+```
+
+zsh: 终极Shell
+
+$HOME是当前用户主目录，它有个别名 “~”
