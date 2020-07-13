@@ -190,3 +190,9 @@ node-sass
 
 ## 卸载
 @angular/cdk@8.0.0
+
+## 升级到10
+yarn remove @angular/cli
+yarn add @angular/cli@10.0.2 --dev
+
+https://update.angular.io/#8.0:10.0

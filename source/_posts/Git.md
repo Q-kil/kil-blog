@@ -7,6 +7,9 @@ tags:
 - Git
 ---
 
+# 基础
+`{% asset_img git1.png %}`
+
 # 配置
 ### ssh 密钥
 ```

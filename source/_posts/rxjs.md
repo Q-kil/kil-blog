@@ -98,3 +98,6 @@ console.log(subject.value)
 第三种，订阅者主动取消订阅，执行subscription.unsubscribe()
 
 对于Observable.onComplete()和Observable.OnError()，RxJS自身会处理这两种情况，所以不需要在代码里再手动取消订阅释放内存。对于第三种方式，Observable还在源源不断的发送值，订阅者想主动取消订阅，那就需要在代码里调用unsubscribe()取消订阅释放内存。
+
+# distinct 
+它能帮我们把相同值的资料滤掉只留一笔，RxJS 里的 distinct 也是相同的作用
