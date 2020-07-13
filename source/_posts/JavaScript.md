@@ -37,6 +37,18 @@ decodeURIComponent('https%3A%2F%2Fosd-alpha.tooqing.com');
 ## 当前 url
 window.location.href
 
+## document
+滚动条位置：
+document.documentElement.scrollTop
+
+距离父级高度：
+document.getElementById('onlinePlayerCount').offsetTop
+
+## window
+窗口高度：
+window.innerHeight
+
+
 # 待掌握
 ## 对象拷贝
 ### 浅拷贝

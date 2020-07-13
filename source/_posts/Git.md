@@ -87,6 +87,9 @@ git commit -m ''
 git push origin master
 ```
 
+## 放弃本地修改
+git checkout .
+
 # 错误
 ### index.lock
 error:
