@@ -4,9 +4,10 @@ date: 2020-04-15 15:14:21
 categories:
 - Frame
 tags:
-- Vue
-- Vuex
+- vue
+- vuex
 ---
+
 # learn
 渐进式：主张最少
 你可以使用vue核心：声明式渲染，组件系统
