@@ -90,6 +90,9 @@ git push origin master
 ## 放弃本地修改
 git checkout .
 
+## 删除已经github上已提交的文件
+$ git rm -r --cached target              # 删除target文件
+
 # 错误
 ### index.lock
 error:
