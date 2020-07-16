@@ -106,14 +106,32 @@ left: 0;
 right: 0;
 还有更加优雅的居中方式就是用flexbox，我以后会做整理。
 
-7、display有哪些值？说明他们的作用?
+# display
+display 属性可以设置元素的内部和外部显示类型 display types。元素的外部显示类型 outer display types 将决定该元素在流式布局中的表现（块级或内联元素）；元素的内部显示类型 inner display types 可以控制其子元素的布局（例如：flow layout，grid 或 flex）。
 
-inline（默认）–内联
-none–隐藏
-block–块显示
-table–表格显示
-list-item–项目列表
-inline-block
+## display常用属性
+- none 此元素不会被显示。
+- block 此元素将显示为块级元素，此元素前后会带有换行符。
+- inline 默认。此元素会被显示为内联元素，元素前后没有换行符。
+- inline-block 行内块元素。（CSS2.1 新增的值）
+
+## display非常规属性
+- flex Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+- grid 栅格布局
+
+byte
+
+# position
+position属性指定一个元素（静态的，相对的，绝对或固定）的定位方法的类型。
+
+## position常用属性
+- relative	生成相对定位的元素，相对于其正常位置进行定位。因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。
+- absolute	生成绝对定位的元素，相对于static定位以外的第一个父元素进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+- fixed	    生成固定定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+- static	默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
+
+byte
+
 
 8、position的值？
 
@@ -147,22 +165,20 @@ font-face属性：定义自己的字体
 该布局模型的目的是提供一种更加高效的方式来对容器中的条目进行布局、对齐和分配空间。在传统的布局方式中，block 布局是把块在垂直方向从上到下依次排列的；而 inline 布局则是在水平方向来排列。弹性盒布局并没有这样内在的方向限制，可以由开发人员自由操作。
 试用场景：弹性布局适合于移动前端开发，在Android和ios上也完美支持。
 
-11、用纯CSS创建一个三角形的原理是什么？
+# 用CSS实现三角形
+思路：创建一个宽高为0的带边框的div，取消其他三边框
+``` css
+div {
+    width: 0;
+    height: 0;
+    border-width: 40px;
+    border-style: solid;
+    border-color: red transparent transparent transparent;
+}
+```
+原理：主要使用了border这个属性
 
-首先，需要把元素的宽度、高度设为0。然后设置边框样式。
 
-1
-2
-3
-4
-5
-6
-width: 0;
-height: 0;
-border-top: 40px solid transparent;
-border-left: 40px solid transparent;
-border-right: 40px solid transparent;
-border-bottom: 40px solid #ff0000;
 12、一个满屏品字布局如何设计?
 
 第一种真正的品字：
@@ -385,25 +401,27 @@ CSS选择器的解析是从右向左解析的。若从左向右的匹配，发�
 
 使用偶数字体。偶数字号相对更容易和 web 设计的其他部分构成比例关系。Windows 自带的点阵宋体（中易宋体）从 Vista 开始只提供 12、14、16 px 这三个大小的点阵，而 13、15、17 px时用的是小一号的点。（即每个字占的空间大了 1 px，但点阵没变），于是略显稀疏。
 
-28、margin和padding分别适合什么场景使用？
+# margin和padding
+margin和padding分别适合什么场景使用？
 
-何时使用margin：
+## margin：（外边距）是指从自身边框到另一个容器边框之间的距离，就是容器外距离。
+``` css
+/* margin 指的是box1 与box2之间的边距 */
+<div class="box1"></div>
+<div class="box2"></div>
+```
 
-需要在border外侧添加空白
+## padding：（内边距）是指自身边框到自身内部另一个容器边框之间的距离，就是容器内距离。
+``` css
+/* padding是指box1到box2的内边距，常用与父子DOM元素之间 */
+<div class="box1">
+    <div class="box2"></div>
+</div>
+```
 
-空白处不需要背景色
+## 注意
+margin值可以为负值/padding值不能为负值
 
-上下相连的两个盒子之间的空白，需要相互抵消时。
-
-何时使用padding：
-
-需要在border内侧添加空白
-
-空白处需要背景颜色
-
-上下相连的两个盒子的空白，希望为两者之和。
-
-兼容性的问题：在IE5 IE6中，为float的盒子指定margin时，左侧的margin可能会变成两倍的宽度。通过改变padding或者指定盒子的display：inline解决。
 
 29、元素竖向的百分比设定是相对于容器的高度吗？
 
@@ -516,4 +534,10 @@ webp格式是谷歌在2010年推出的图片格式，压缩率只有jpg的2/3，
 
 将一个页面涉及到的所有图片都包含到一张大图中去，然后利用CSS的 background-image，background- repeat，background-position 的组合进行背景定位。利用CSS Sprites能很好地减少网页的http请求，从而大大的提高页面的性能；CSS Sprites能减少图片的字节。
 
-
+# 上下左右垂直居中
+推荐flex布局
+``` css
+display: flex;
+justify-content: center;
+align-items: center;
+```

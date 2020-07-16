@@ -46,3 +46,22 @@ $ npm uninstall -g @angular/cli
 $ npm install -g @angular/cli@7.x.x
 $ ng -v
 ```
+
+# 修改默认4200端口
+It seems things have changed in recent versions of the CLI (I'm using 6.0.1). I was able to change the default port used by ng serve by adding a port option to my project's `angular.json`:
+``` json
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "projects": {
+        "my-project": {
+            "architect": {
+                "serve": {
+                    "options": {
+                        "port": 4201
+                    }
+                }
+            }
+        }
+    }
+}
+```
