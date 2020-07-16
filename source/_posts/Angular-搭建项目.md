@@ -7,6 +7,8 @@ tags:
 - Angular
 ---
 
+[不使用angular-cli搭建项目](https://www.jianshu.com/p/8c09f26251a9)
+
 ### 初始化
 ``` bash
 $ mkdir angular_website && cd angular_website
