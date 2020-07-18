@@ -191,6 +191,13 @@ let a = {a: 1};
 let b = {b: 2, ...a}; // {b: 2, a: 1}
 ```
 
+字符串翻转
+``` js
+s.split("").reverse().join("");
+
+[...s].reverse().join("");
+```
+
 ### json展开
 ``` js
 let json = {a: 1, b: 2};

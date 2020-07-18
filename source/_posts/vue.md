@@ -8,20 +8,31 @@ tags:
 - vuex
 ---
 
-# learn
+# 重点
+computed: 计算属性
+computer: 计算机
+
+# 基础
 渐进式：主张最少
 设计理念：自低向上逐层应用
 你可以使用vue核心：声明式渲染，组件系统
 你也可以使用下面这个图的全部
 `{% asset_img core.png %}`
 
+## 声明式渲染
+指令
+指令带有前缀 `v-`
+``` html
+<span v-bind:title="message">
+  鼠标悬停几秒钟查看此处动态绑定的提示信息！
+</span>
+```
 
+`v-on` 指令添加一个事件监听器
 
+`v-model` 双向绑定
 
-
-
-# 双向绑定
-## v-model 指令
+### v-model 指令
 ``` html
 <input v-model="text" />
 ```
@@ -34,6 +45,144 @@ tags:
   @input="e => text = e.target.value"
 />
 ```
+
+## 组件
+小型、独立和通常可复用的组件构建大型应用
+一个组件本质上是一个拥有预定义选项的一个 Vue 实例
+``` js
+// 定义名为 todo-item 的新组件
+Vue.component('todo-item', {
+  template: '<li>这是个待办项</li>'
+})
+```
+
+``` html
+<!-- 创建一个 todo-item 组件的实例 -->
+<todo-item></todo-item>
+```
+
+### 父传子 prop
+``` js
+Vue.component('todo-item', {
+  // todo-item 组件现在接受一个
+  // "prop"，类似于一个自定义特性。
+  // 这个 prop 名为 todo。
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+```
+
+``` html
+<todo-item
+  v-bind:todo="item">
+</todo-item>
+```
+
+## Vue实例
+没有完全遵循 MVVM 模型
+`vm` (ViewModel 的缩写) 这个变量名表示 Vue 实例
+
+Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 `$`，以便与用户定义的属性区分开来。
+``` js
+var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+
+vm.$data === data // => true
+vm.$el === document.getElementById('example') // => true
+
+// $watch 是一个实例方法
+vm.$watch('a', function (newValue, oldValue) {
+  // 这个回调将在 `vm.a` 改变后调用
+})
+```
+
+不要在选项属性或回调上使用箭头函数, 因为箭头函数是和父级上下文绑定在一起的，this 不会是如你所预期的 Vue 实例.
+
+### 生命周期 life cycle
+`{% asset_img lifecycle.png %}`
+
+
+## 模版语法
+基于 HTML 的模板语法
+在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少。
+
+### 插值
+#### 文本
+v-once 指令，执行一次性地插值，当数据改变时，插值处的内容不会更新
+
+#### 原始 HTML
+``` html
+<div v-html="html1"></div>
+
+<div><i>1111</i></div>
+```
+
+#### 特性
+``` html
+<button v-bind:disabled="isButtonDisabled">Button</button>
+```
+如果 isButtonDisabled 的值是 `null`、`undefined` 或 `false`，则 disabled 特性甚至不会被包含在渲染出来的 <button> 元素中。
+
+#### 使用 JavaScript 表达式
+只能包含**单个表达式**
+
+``` html
+<!-- 这是语句，不是表达式 -->
+{{ var a = 1 }}
+
+<!-- 流控制也不会生效，请使用三元表达式 -->
+{{ if (ok) { return message } }}
+```
+
+### 指令
+#### 修饰符
+修饰符 (Modifiers) 是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。
+
+[修饰符大全](https://segmentfault.com/a/1190000016786254).
+
+### 缩写
+#### v-bind 缩写
+``` html
+<!-- 完整语法 -->
+<a v-bind:href="url">...</a>
+
+<!-- 缩写 -->
+<a :href="url">...</a>
+```
+
+#### v-on 缩写
+``` html
+<!-- 完整语法 -->
+<a v-on:click="doSomething">...</a>
+
+<!-- 缩写 -->
+<a @click="doSomething">...</a>
+```
+
+## 计算属性和侦听器
+### 计算属性
+``` js
+computed: {
+  // 计算属性的 getter
+  reversedMessage: function () {
+    // `this` 指向 vm 实例
+    return this.message.split('').reverse().join('')
+  }
+}
+```
+
+#### 计算属性缓存 vs 方法
+
+
+
+
+
+
+
+
 
 ## .sync 修饰符
 ``` html
