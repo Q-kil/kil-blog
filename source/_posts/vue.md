@@ -124,7 +124,7 @@ v-once 指令，执行一次性地插值，当数据改变时，插值处的内�
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
-如果 isButtonDisabled 的值是 `null`、`undefined` 或 `false`，则 disabled 特性甚至不会被包含在渲染出来的 <button> 元素中。
+如果 isButtonDisabled 的值是 `null`、`undefined` 或 `false`，则 disabled 特性甚至不会被包含在渲染出来的 `<button>` 元素中。
 
 #### 使用 JavaScript 表达式
 只能包含**单个表达式**
@@ -175,7 +175,7 @@ computed: {
 ```
 
 #### 计算属性缓存 vs 方法
-
+#### 计算属性 vs 侦听属性
 
 
 
