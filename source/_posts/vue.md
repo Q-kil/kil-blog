@@ -179,9 +179,29 @@ computed: {
 #### 计算属性的 setter
 
 
+## Class与Style绑定
+### 对象语法
+给 v-bind:class 一个对象，以动态地切换 class：
+``` html
+<div v-bind:class="{ active: isActive }"></div>
+```
 
+### 数组语法
+把一个数组传给 v-bind:class，以应用一个 class 列表：
+``` html
+<div v-bind:class="[activeClass, errorClass]"></div>
+```
 
+``` js
+data: {
+  activeClass: 'active',
+  errorClass: 'text-danger'
+}
+```
 
+## 条件渲染
+### 用 key 管理可复用的元素
+切换登录方式时，是否保留用户输入的文本
 
 
 ## .sync 修饰符
