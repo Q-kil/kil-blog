@@ -203,8 +203,64 @@ data: {
 ### 用 key 管理可复用的元素
 切换登录方式时，是否保留用户输入的文本
 
+### v-show
+v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS property display
 
-## .sync 修饰符
+## 列表渲染
+v-for 还支持一个可选的第二个参数，即当前项的索引
+``` html
+  <li v-for="(item, index) in items">
+```
+
+也可以用 of 替代 in 作为分隔符，因为它更接近 JavaScript 迭代器的语法：
+``` html
+<div v-for="item of items"></div>
+```
+
+### 在 v-for 里使用对象
+``` html
+<li v-for="value in object">
+  {{ value }}
+</li>
+
+<div v-for="(value, name) in object">
+  {{ name }}: {{ value }}
+</div>
+```
+
+### 显示过滤/排序后的结果
+在计算属性不适用的情况下 (例如，在嵌套 v-for 循环中) 可以使用一个方法：
+```html
+<ul v-for="set in sets">
+  <li v-for="n in even(set)">{{ n }}</li>
+</ul>
+```
+
+```js
+data: {
+  sets: [[ 1, 2, 3, 4, 5 ], [6, 7, 8, 9, 10]]
+},
+methods: {
+  even: function (numbers) {
+    return numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+```
+
+### 在 v-for 里使用值范围
+```html
+<div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+```
+
+2.2.0+ 的版本里，当在组件上使用 v-for 时，key 现在是必须的。
+
+## 事件处理
+### 事件修饰符
+#### .sync 修饰符
 ``` html
 <my-dialog :visible.sync="dialogVisible" />
 ```
