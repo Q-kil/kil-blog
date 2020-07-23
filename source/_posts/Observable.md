@@ -37,7 +37,7 @@ this.router.events
 
 要执行所创建的可观察对象，并开始从中接收通知，你就要调用它的 subscribe() 方法，并传入一个观察者（observer）。 这是一个 JavaScript 对象，它定义了你收到的这些消息的处理器（handler）。 subscribe() 调用会返回一个 Subscription 对象，该对象具有一个 unsubscribe() 方法。 当调用该方法时，你就会停止接收通知。
 
-## pipe (Operators 操作符)
+## pipe (Operators 操作符) [paip]
 ### what
 简而言之，就是可以与当前的 let 操作符一起使用的函数。无论名称起的是否合适，这就是它的由来。基本上来说，pipeable 操作符可以是任何函数，但是它需要返回签名为 <T, R>(source: Observable<T>) => Observable<R> 的函数。
 

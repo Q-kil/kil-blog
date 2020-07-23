@@ -120,12 +120,17 @@ interface Person {
 }
 
 let tom: Person = {
+
     name: 'Tom',
     age: 25
 };
 ```
 上面的例子中，我们定义了一个接口 `Person`，接着定义了一个变量 `tom`，它的类型是 `Person`。这样，我们就约束了 `tom` 的形状必须和接口 `Person` 一致。
 接口一般首字母大写。[有的编程语言中会建议接口的名称加上 I 前缀](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/8bc1fexb(v=vs.71)?redirectedfrom=MSDN)。
+
+Q：typescript中，类作为类型是怎么回事呢，一般下不是使用接口来定义对象的类型嘛
+A：类作为类型挺常见的，let a:Box意味着a变量只能存储Box（及其子类）的实例，interface反而比class类型出现的更晚一些
+
 
 #### 可选属性
 有时我们希望不要完全匹配一个形状，那么可以用可选属性：
@@ -197,6 +202,48 @@ tom.id = 9527;
 // 上例中，使用 readonly 定义的属性 id 初始化后，又被赋值了，所以报错了。
 // index.ts(14,5): error TS2540: Cannot assign to 'id' because it is a constant or a read-only property.
 ```
+
+
+#### Partial
+``` ts
+export class Game {
+  /**
+   * 游戏ID
+   */
+  _id: string;
+
+  name: string = "空白世界";
+
+  description: string = "什么都没有的世界，需要玩家自己创造";
+
+  owner: Partial<User>;
+```
+
+Partial 作用是将传入的属性变为可选项.
+首先我们需要理解两个关键字 keyof 和 in, keyof 可以用来取得一个对象接口的所有 key 值.
+比如
+``` ts
+interface Foo {
+  name: string;
+  age: number
+}
+type T = keyof Foo // -> "name" | "age"
+```
+
+而 in 则可以遍历枚举类型, 例如
+``` ts
+type Keys = "a" | "b"
+type Obj =  {
+  [p in Keys]: any
+} // -> { a: any, b: any }
+```
+keyof 产生枚举类型, in 使用枚举类型遍历, 所以他们经常一起使用, 看下 Partial 源码
+``` ts
+type Partial<T> = { [P in keyof T]?: T[P] };
+```
+
+上面语句的意思是 keyof T 拿到 T 所有属性名, 然后 in 进行遍历, 将值赋给 P, 最后 T[P] 取得相应属性的值.
+结合中间的 ? 我们就明白了 Partial 的含义了.
 
 ### 数组的类型
 在 TypeScript 中，数组类型有多种定义方式，比较灵活。
@@ -371,6 +418,13 @@ success: (a, b) => void
 值 as 类型
 ```
 
+#### 编辑器例子
+``` ts
+destory() {
+  this._cap = {} as Capsule;
+}
+```
+
 #### 例子：将一个联合类型的变量指定为一个更加具体的类型
 有时候，我们确实需要在还不确定类型的时候就访问其中一个类型的属性或方法，比如
 ``` ts
@@ -412,6 +466,19 @@ interface
 
 ### 概念
 约定、限制
+
+{% label ib_blue@2020/7/21 添加 %}
+如果实现 `implements` 了接口interface，则 在类中必须有接口的所有成员（属性），否则ts报错
+Angular例子：
+``` ts
+export class GameComponent implements OnInit, OnDestroy {
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+  }
+}  
+```
 
 ### 例子
 ``` ts

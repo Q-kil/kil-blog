@@ -80,6 +80,16 @@ list
 ## Schematics 与代码生成器
 @angular/cli 内置的 add 命令
 
+### angular-cli
+``` zsh
+$ ng g m pages/suit/suit-routing --flat            
+CREATE src/app/pages/suit/suit-routing.module.ts (197 bytes)
+
+生成一个module的service。 ng g service test --module=app
+```
+
+
+
 ## [组件]概念
 几乎所有前端框架都在玩`组件化`，而且最近都不约而同地选择了“标签化”这种思路，Angular 也不例外。
 
