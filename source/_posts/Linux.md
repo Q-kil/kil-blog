@@ -140,6 +140,14 @@ plugins=(
 .oh-my-zsh
 ``` 
 
+``` zsh
+$ ls source
+CNAME      _data      _posts     categories img        kil        tags
+
+$ ls -l source | grep kil
+drwxr-xr-x    3 niekaifa  staff    96  3  2 12:57 kil
+```
+
 ### 域名操作
 #### curl
 curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
