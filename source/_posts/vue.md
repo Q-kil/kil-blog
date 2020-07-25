@@ -274,6 +274,39 @@ methods: {
 />
 ```
 
+## 表单输入绑定
+### 多个复选框
+``` html
+<input type="checkbox" id="lily" value="lily" v-model="checknames">
+<label for="lily">lily</label>
+<input type="checkbox" id="seri" value="seri" v-model="checknames">
+<label for="seri">seri</label>
+<div>{{ checknames }}</div>
+```
+
+### 修饰符
+如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符：
+``` html
+<input v-model.trim="msg">
+```
+
+## 组件
+### 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [第三第四种双向绑定](https://juejin.im/post/5aaa9eabf265da237b21d36a)
 
 # vuex
