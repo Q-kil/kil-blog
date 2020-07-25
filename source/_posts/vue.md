@@ -291,7 +291,54 @@ methods: {
 ```
 
 ## 组件
-### 
+### 父子组件传值
+父级组件可以像处理 native DOM 事件一样通过 v-on 监听子组件实例的任意事件：
+``` html
+<blog-post
+  v-on:enlarge-text="postFontSize += 0.1"
+></blog-post>
+```
+子组件可以通过调用内建的 $emit 方法并传入事件名称来触发一个事件：
+``` html
+<button v-on:click="$emit('enlarge-text')">
+  Enlarge text
+</button>
+```
+
+#### 使用事件抛出一个值
+使用 $emit 的第二个参数来提供这个值：
+``` html
+<button v-on:click="$emit('enlarge-text', 0.1)">
+  Enlarge text
+</button>
+```
+父级组件监听这个事件的时候，我们可以通过 $event 访问到被抛出的这个值：
+``` html
+<blog-post
+  v-on:enlarge-text="postFontSize += $event"
+></blog-post>
+```
+这个事件处理函数是一个方法：
+``` html
+<blog-post
+  v-on:enlarge-text="onEnlargeText"
+></blog-post>
+```
+
+### 在组件上使用 v-model
+``` html
+<input v-model="searchText">
+==
+<input
+  v-bind:value="searchText"
+  v-on:input="searchText = $event.target.value"
+>
+```
+
+
+
+
+
 
 
 
