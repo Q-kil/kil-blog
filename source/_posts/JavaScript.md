@@ -489,3 +489,8 @@ bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调�
 # 其他
 ## 模块化
 [CommonJS,AMD,CMD,ES6](https://juejin.im/post/5aaa37c8f265da23945f365c)
+
+## 判断
+``` js
+*ngIf="type.type !== 'handheld' || account.role === 0">
+```
