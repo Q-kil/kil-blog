@@ -240,3 +240,6 @@ CNAME kilfront.github.io
 在主项目 source 文件 新建 _data 文件
 next.yml 中 粘贴主题文件_config.yml代码
 custom.text 中 存放样式代码
+
+## 特殊字符
+`&#39;` '

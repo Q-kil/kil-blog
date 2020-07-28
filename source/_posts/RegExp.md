@@ -19,6 +19,7 @@ Regular Expression
 ## 创建正则
 js风格 new RegExp()
 perl风格 /\d+/
+{% label ib_yellow@注意：不是字符`/\//` %}
 
 search   类似于indexOf，是位置
 match    匹配

@@ -54,3 +54,7 @@ document.getElementById('pixi').appendChild(app.view);
 expression：任何有效的SQServer表达式。
 AS：用于分隔两个参数，在AS之前的是要处理的数据，在AS之后是要转换的数据类型。
 data_type：目标系统所提供的数据类型，包括bigint和sql_variant，不能使用用户定义的数据类型。
+
+# JS
+Uncaught SyntaxError: Invalid or unexpected token
+未捕获的SyntaxError：无效或意外的令牌
