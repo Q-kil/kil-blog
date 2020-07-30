@@ -5,6 +5,7 @@ categories:
 - Front-End
 tags:
 - Front-End
+- JavaScript
 ---
 
 # JS
@@ -85,3 +86,20 @@ BNF 规定是推导规则(产生式)的集合，写为：
 终结符： 最终在代码中出现的字符（ https://zh.wikipedia.org/wiki/ 終結符與非終結符)
 
 不是代码终止的意思
+
+# JS类型
+## String
+`{% asset_img code.png %}`
+ASCII 0-127个字符 ；出来的较早，计算机的基础
+Unicode 世界编码集
+GB 国标里的字符码点跟Unicode码点不一致
+
+UTF8 
+8个比特位，1个字节，默认用一个字节表示一个字符
+
+UTF16
+16个比特位，2个字节表示一个字符
+`{% asset_img utf.png %}`
+
+控制位
+`{% asset_img utf02.png %}`

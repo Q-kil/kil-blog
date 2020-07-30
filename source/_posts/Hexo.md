@@ -75,8 +75,11 @@ auto_excerpt:
 ```
 效果 
 {% label ib_green@推荐1 %}
+注意，警告：
 {% label ib_yellow@推荐1 %}
+后面修改，加日期:
 {% label ib_blue@推荐1 %}
+重点：
 {% label ib_purple@推荐1 %}
 
 ### 分类
