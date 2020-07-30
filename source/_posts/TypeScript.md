@@ -113,6 +113,9 @@ myFavoriteNumber = 7;
 
 在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。
 TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。
+
+纯数据可以用interface，如果是面向对象的数据，比如有自己的成员方法，可以定义为类。
+
 ``` ts
 interface Person {
     name: string;

@@ -26,6 +26,11 @@ text-overflow: ellipsis; // 溢出用省略号显示
 white-space: nowrap; // 溢出不换行
 ```
 
+## 超出部分自动换行
+``` css
+word-wrap: break-word;
+```
+
 ## 无序列表样式
 https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style
 

@@ -494,3 +494,62 @@ bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调�
 ``` js
 *ngIf="type.type !== 'handheld' || account.role === 0">
 ```
+
+## 递归
+``` js
+const data = {
+    name: "A",
+    nodes: [
+        { name: "B", nodes: [{ name: "F" }] },
+        { name: "C" },
+        {
+            name: "D",
+            nodes: [
+                { name: "G" },
+                { name: "H" },
+                { name: "I", nodes: [{ name: "J" }, { name: "K" }] }
+            ]
+        },
+        { name: "E" }
+    ]
+};
+function makeTree(roots) {
+    function makeNode(node) {
+        const $div = $("<div>").text(node.name || "");
+        const $li = $("<li>").append($div);
+        if (node.nodes && node.nodes.length) {
+            $li.append(makeNodeList(node.nodes));
+        }
+        return $li;
+    }
+    function makeNodeList(nodes) {
+        return nodes
+            .map(child => makeNode(child))
+            .reduce(($ul, $li) => {
+            return $ul.append($li);
+        }, $("<ul>"));
+    }
+    return makeNodeList(roots);
+}
+
+makeTree([data]).appendTo($("#tree"));
+
+
+// 注意参数支持传入单根或多根，
+// 如果像 travelWidely 那样只支持多根（单根是特例）也是可以的
+function travelDeeply(roots: INode | INode[]) {
+    function printNode(node: INode) {
+        console.log(`${node.name} ${node.nodes && node.nodes.length || ""}`);
+        if (node.nodes && node.nodes.length) {
+            // 依次对子节点递归调用 printNode
+            node.nodes.forEach(child => printNode(child));
+        }
+    }
+
+    // 这里 printNode 和 node => printNode(node) 等价
+    (Array.isArray(roots) ? roots : [roots]).forEach(printNode);
+}
+
+// 开始遍历
+travelDeeply(data);
+```
