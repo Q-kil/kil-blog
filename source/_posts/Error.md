@@ -58,3 +58,6 @@ data_type：目标系统所提供的数据类型，包括bigint和sql_variant，
 # JS
 Uncaught SyntaxError: Invalid or unexpected token
 未捕获的SyntaxError：无效或意外的令牌
+
+SyntaxError: Unexpected token 'null'
+语法错误:意外的标记“null”

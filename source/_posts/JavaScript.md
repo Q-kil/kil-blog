@@ -371,7 +371,7 @@ JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就�
 - 原型对象prototype有一个默认的constructor属性，用于记录实例是由哪个构造函数创建；
 
 
-# apply、call、bind
+# call&apply&bind
 ## apply、call
 在 javascript 中，call 和 apply 都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部 this 的指向。
 
@@ -462,7 +462,7 @@ var foo = {
 }
 ```
 
-## apply、call、bind比较
+## call&apply&bind比较
 ``` js
 var obj = {
     x: 81,

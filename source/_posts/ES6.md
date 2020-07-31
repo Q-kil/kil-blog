@@ -467,6 +467,26 @@ class VipUser{
 }
 ```
 
+ES5 的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（Parent.apply(this)）。ES6 的继承机制完全不同，实质是先将父类实例对象的属性和方法，加到this上面（所以必须先调用super方法），然后再用子类的构造函数修改this。
+
+如果子类没有定义`constructor方法，这个方法会被默认添加`，代码如下。也就是说，不管有没有显式定义，任何一个子类都有constructor方法。
+``` js
+class ColorPoint extends Point {
+}
+
+// 等同于
+class ColorPoint extends Point {
+  constructor(...args) {
+    super(...args);
+  }
+
+  // 等于
+  // constructor(name, feature) {
+  //   super(name, feature);
+  // }
+}
+```
+
 ### 静态方法 无法继承
 普通方法自动继承
 ``` js
