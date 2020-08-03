@@ -204,6 +204,9 @@ tom.id = 9527;
 
 // 上例中，使用 readonly 定义的属性 id 初始化后，又被赋值了，所以报错了。
 // index.ts(14,5): error TS2540: Cannot assign to 'id' because it is a constant or a read-only property.
+
+// game-editor
+readonly userKey = "currentUser";
 ```
 
 
