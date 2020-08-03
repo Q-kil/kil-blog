@@ -60,6 +60,12 @@ let code = random.substr(-1, 4);
 console.log('code', code); // 5
 
 console.log('12345'.substr(-4, 4)); // 2345
+
+public static generateSmsCode(len = 4): string {
+  const random = Math.random().toString();
+  const code = random.substr(-len, len);
+  return code;
+}
 ```
 
 注：MDA 它并非JavaScript核心语言的一部分，未来将可能会被移除掉。如果可以的话，使用 substring() 替代它.
