@@ -55,4 +55,10 @@ success Set "registry" to "https://registry.npm.taobao.org".
 ✨  Done in 0.03s.
 ```
 
+# link
+改变依赖路径
+yarn link game-capsule
+
+link suc：
+node_modules game-capsule 出现 ↵ 字符
 
