@@ -102,4 +102,25 @@ UTF16
 `{% asset_img utf.png %}`
 
 控制位
-`{% asset_img utf02.png %}`
+`{% asset_img utf02.pngs %}`
+
+# 浏览器工作原理
+## 浏览器总论
+`{% asset_img browser.png %}`
+最后显示在计算机上的是图片的形式 Bitmap，最后传给显卡驱动设备，转换成人眼可识别的光信号。
+
+浏览器目标：
+从URL -> Bitmap （过程是浏览器渲染的基础流程）
+
+## 状态机
+有限状态机处理字符串
+`{% asset_img state.png %}`
+
+
+
+
+
+
+
+
+

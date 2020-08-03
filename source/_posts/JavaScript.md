@@ -79,6 +79,20 @@ substring(start, end?)
 start: 必需。一个非负的整数
 end: 选填。不含尾
 
+### indexOf()、match()、search()区别
+操作索引，返回下标
+indexOf
+search: 检索字符串中子字符串，或检索与正则表达式匹配的子字符串
+``` js
+str.search(/DEF/) // 4
+```
+
+正则表达式操作，返回值
+``` js
+str = '1 abc 2 def 3';
+str.match(/\d+/g) // ["1", "2", "3"]
+```
+
 
 
 
