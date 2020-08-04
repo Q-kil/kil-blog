@@ -104,3 +104,6 @@ sudo vi /etc/hosts
 
 127.0.0.1	www.163.com
 ```
+
+# 清理内存
+sudo purge
