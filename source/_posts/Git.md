@@ -87,8 +87,44 @@ git commit -m ''
 git push origin master
 ```
 
-## 放弃本地修改
+## 放弃修改
+### 文件修改
+单个文件/文件夹
+``` zsh
+$ git checkout -- filename
+```
+
+所有文件/文件夹
+``` zsh
 git checkout .
+```
+
+### 新增文件
+单个文件/文件夹
+``` zsh
+$ rm filename / rm dir -rf
+```
+
+所有文件/文件夹
+``` zsh
+$ git clean -xdf
+```
+
+### 本地修改/新增了一堆文件，已经git add到暂存区，想放弃修改。
+单个文件/文件夹：
+``` zsh
+$ git reset HEAD filename
+```
+
+所有文件/文件夹：
+``` zsh
+$ git reset HEAD .
+```
+
+### 本地通过git add & git commit 之后，想要撤销此次commit
+``` zsh
+$ git reset commit_id
+```
 
 ## 暂存
 我们有时会遇到这样的情况，正在dev分支开发新功能，做到一半时有人过来反馈一个bug，让马上解决，但是新功能做到了一半你又不想提交，这时就可以使用`git stash`命令先把当前进度保存起来，然后切换到另一个分支去修改bug，修改完提交后，再切回dev分支，使用`git stash pop`来恢复之前的进度继续开发新功能。下面来看一下git stash命令的常见用法
@@ -109,30 +145,6 @@ git branch -a
   remotes/origin/alpha_feature_share
   remotes/origin/dev
   remotes/origin/develop
-  remotes/origin/feature_maker_avatar
-  remotes/origin/feature_new_game_cover
-  remotes/origin/feature_ng
-  remotes/origin/feature_phohe
-  remotes/origin/feature_pretty
-  remotes/origin/feature_refresh_token
-  remotes/origin/feature_share
-  remotes/origin/feature_share_new
-  remotes/origin/feature_update_ng
-  remotes/origin/fix_change_use_game-core
-  remotes/origin/fix_framework
-  remotes/origin/fix_hmr
-  remotes/origin/fix_multi_dragonBones
-  remotes/origin/fix_ng
-  remotes/origin/fix_platform
-  remotes/origin/fix_project
-  remotes/origin/fix_refresh_token
-  remotes/origin/fix_router
-  remotes/origin/fix_token
-  remotes/origin/fixbug_commodity
-  remotes/origin/fixbug_home_loding
-  remotes/origin/fixbug_invite
-  remotes/origin/fixbug_item
-  remotes/origin/game-core
   remotes/origin/learn_pixi
   remotes/origin/master
   remotes/origin/temp_avatar
@@ -152,29 +164,6 @@ $ git remote show origin
     feature_ng                                   tracked
     feature_pretty                               tracked
     master                                       tracked
-    refs/remotes/origin/alpha_feature_share      stale (use 'git remote prune' to remove)
-    refs/remotes/origin/develop                  stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_maker_avatar     stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_new_game_cover   stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_phohe            stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_refresh_token    stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_share            stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_share_new        stale (use 'git remote prune' to remove)
-    refs/remotes/origin/feature_update_ng        stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_change_use_game-core stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_framework            stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_hmr                  stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_multi_dragonBones    stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_ng                   stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_platform             stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_project              stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_refresh_token        stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_router               stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fix_token                stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fixbug_commodity         stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fixbug_home_loding       stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fixbug_invite            stale (use 'git remote prune' to remove)
-    refs/remotes/origin/fixbug_item              stale (use 'git remote prune' to remove)
     refs/remotes/origin/game-core                stale (use 'git remote prune' to remove)
     refs/remotes/origin/learn_pixi               stale (use 'git remote prune' to remove)
     refs/remotes/origin/temp_avatar              stale (use 'git remote prune' to remove)
@@ -196,29 +185,10 @@ URL: git@code.apowo.com:PixelPai/platform-client.git
  * [pruned] origin/develop
  * [pruned] origin/feature_maker_avatar
  * [pruned] origin/feature_new_game_cover
- * [pruned] origin/feature_phohe
- * [pruned] origin/feature_refresh_token
- * [pruned] origin/feature_share
- * [pruned] origin/feature_share_new
- * [pruned] origin/feature_update_ng
- * [pruned] origin/fix_change_use_game-core
- * [pruned] origin/fix_framework
- * [pruned] origin/fix_hmr
- * [pruned] origin/fix_multi_dragonBones
- * [pruned] origin/fix_ng
- * [pruned] origin/fix_platform
- * [pruned] origin/fix_project
- * [pruned] origin/fix_refresh_token
- * [pruned] origin/fix_router
- * [pruned] origin/fix_token
- * [pruned] origin/fixbug_commodity
- * [pruned] origin/fixbug_home_loding
- * [pruned] origin/fixbug_invite
- * [pruned] origin/fixbug_item
- * [pruned] origin/game-core
- * [pruned] origin/learn_pixi
  * [pruned] origin/temp_avatar
  ```
+
+ 
 
 
 # 错误
