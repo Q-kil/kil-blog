@@ -116,7 +116,8 @@ UTF16
 有限状态机处理字符串
 `{% asset_img state.png %}`
 
-
+debug 添加监视
+`{% asset_img state02.png %}`
 
 
 
