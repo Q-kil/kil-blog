@@ -119,9 +119,44 @@ UTF16
 debug 添加监视
 `{% asset_img state02.png %}`
 
+## HTTP
+### 网络模型
+`{% asset_img http.jpg %}`
+
+``` js
+new Request({
+  method: "POST",     // TCP 层
+  host: "127.0.0.1",  // IP 层
+  post: "8088"        // TCP 层
+  path: "/"        // method 和 path 都是HTTP协议要求的
+  headers: {
+    ["X-Foo2"]: "customed"  // HTTP协议要求
+  }
+})
+```
 
 
+### TCP与IP的一些基础知识
+- 流
+- 端口
+  每一个软件都会从网卡去拿数据，哪一个数据是分配给哪一个软件的，需要用到端口概念
+- node 对应 require('net')
+
+- 包
+  TCP 传输的就是一个一个数据包的概念
+- IP 地址
+  数据包 从那到那
+- node没有，node 调用C++ 库。libnet/libpcap
+  libnet: 负责构造IP包并且发送
+  libpcap: 负责从网卡抓所有的流经你的网卡的IP包
 
 
+### HTTP
+- request
+- response
 
+必须先由客户端发起一个 request，服务端发送一个 response
 
+HTTP 协议是文本型的协议，所有内容都是字符串
+
+method: GET/POST 
