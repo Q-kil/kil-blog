@@ -858,3 +858,9 @@ g2. // 输入 `.` 后是不会有任何方法或属性
 根目录新建lib文件，把dragonBones相关文件复制进去
 然后，鼠标放在 dragonBones 上面，使用编辑器自动修复引用
 `{% asset_img dragonBones.png %}`
+
+# 依赖注入
+providers  依赖提供者
+https://cloud.tencent.com/developer/article/1542963
+https://angular.cn/guide/dependency-injection-providers
+https://juejin.im/post/6844903592797683719

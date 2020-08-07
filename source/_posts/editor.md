@@ -17,3 +17,19 @@ https://github.com/KilFront/electron-app/tree/angular
 
 # angular
 
+# primeNG
+[praɪm]
+angular UI 框架
+
+## dialog
+对话框
+dynamic  [daɪˈnæmɪk] 动态
+### 打开对话框
+this.dialogService.open(GameVersionListComponent, {
+      header: `${this.game.name}-历史版本`,
+      width: "550px",
+      style: { top: "30%" },
+      data: {
+        game: this.game,
+      },
+    });

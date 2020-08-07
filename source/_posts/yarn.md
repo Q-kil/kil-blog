@@ -62,3 +62,9 @@ yarn link game-capsule
 link suc：
 node_modules game-capsule 出现 ↵ 字符
 
+查看link 文件
+``` zsh
+$ ls -l node_modules | grep ^l
+lrwxr-xr-x    1 niekaifa  staff     42  8  3 16:41 game-capsule -> ../../../../.config/yarn/link/game-capsule
+```
+
