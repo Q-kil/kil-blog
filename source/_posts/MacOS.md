@@ -14,6 +14,11 @@ tags:
 # brew
 [Homebrew](https://github.com/Homebrew/brew)是一款自由及开放源代码的软件包管理系统，用以简化macOS系统上的软件安装过程
 
+brew 是从下载源码解压然后 ./configure && make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。
+这个对程序员来说简直是福音，简单的指令，就能快速安装和升级本地的各种开发环境。
+
+而 brew cask 是 已经编译好了的应用包 （.dmg/.pkg），仅仅是下载解压，放在统一的目录中（/opt/homebrew-cask/Caskroom），省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤，同样，卸载相当容易与干净。这个对一般用户来说会比较方便，包含很多在 AppStore 里没有的常用软件。
+
 版本
 ``` zsh
 brew --version
@@ -33,6 +38,16 @@ brew upgrade -d yarn
 ``` zsh
 brew install yarn 
 curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+```
+
+apps path
+``` zsh
+cd /Applications
+```
+
+安装java
+``` zsh
+brew cask install --verbose --debug java
 ```
 
 ## 问题

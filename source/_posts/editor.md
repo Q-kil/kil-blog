@@ -25,11 +25,22 @@ angular UI 框架
 对话框
 dynamic  [daɪˈnæmɪk] 动态
 ### 打开对话框
+``` ts
+import { DialogService } from "primeng/dynamicdialog";
+providers: [DialogService],
 this.dialogService.open(GameVersionListComponent, {
-      header: `${this.game.name}-历史版本`,
-      width: "550px",
-      style: { top: "30%" },
-      data: {
-        game: this.game,
-      },
-    });
+  header: `${this.game.name}-历史版本`,
+  width: "550px",
+  style: { top: "30%" },
+  data: {
+    game: this.game,
+  },
+});
+```
+
+### 对话框传值
+``` ts
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+private ref: DynamicDialogRef,
+this.ref.close(1);
+```

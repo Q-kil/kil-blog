@@ -257,3 +257,7 @@ cat /etc/shells
 zsh: 终极Shell
 
 $HOME是当前用户主目录，它有个别名 “~”
+
+## 环境配置
+.zshenv  不需要登录
+.zshrc   需要登录
