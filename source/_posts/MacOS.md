@@ -112,6 +112,51 @@ karabiner-elements ✔               hex-fiend                          qownnote
 115browser 
 ```
 
+### instail慢
+#### 替换代理
+``` zsh
+# niekaifa @ niekaifadeMacBook-Pro in ~ [14:40:01] C:130
+$ brew cask install adoptopenjdk8 --debug
+==> Downloading https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u265-b01/OpenJDK8U-jdk_x64_mac_hotspot_8u265b01.pkg
+==> Downloading from https://github-production-release-asset-2e65be.s3.amazonaws.com/140418865/6444de00-d246-11ea-8be7-50169d929f88?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F2
+##################                                                        25.7%^C
+
+# niekaifa @ niekaifadeMacBook-Pro in ~ [14:54:50] C:130
+$ export ALL_PROXY=127.0.0.1:1087 【注意：该设置仅在当前zsh有效】
+
+# niekaifa @ niekaifadeMacBook-Pro in ~ [14:55:55]
+$ brew cask install adoptopenjdk8 --debug
+==> Downloading https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u265-b01/OpenJDK8U-jdk_x64_mac_hotspot_8u265b01.pkg
+==> Downloading from https://github-production-release-asset-2e65be.s3.amazonaws.com/140418865/6444de00-d246-11ea-8be7-50169d929f88?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20200810%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200810T065610Z&X-Amz-Expires=300&X-
+######################################################################## 100.0%
+==> Verifying SHA-256 checksum for Cask 'adoptopenjdk8'.
+==> Installing Cask adoptopenjdk8
+==> Running installer for adoptopenjdk8; your password may be necessary.
+==> Package installers may write to any location; options such as --appdir are ignored.
+Password:
+installer: Package name is AdoptOpenJDK
+installer: Installing at base path /
+installer: The install was successful.
+package-id: net.adoptopenjdk.8.jdk
+version: 1.8.0_265-b01
+volume: /
+location: Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk
+install-time: 1597042784
+🍺  adoptopenjdk8 was successfully installed!
+```
+
+## 安装gradle
+brew install gradle     一直失败
+
+该用二进制文件安装
+``` zsh
+❯ mkdir /opt/gradle
+❯ unzip -d /opt/gradle gradle-6.6-bin.zip
+❯ ls /opt/gradle/gradle-6.6
+LICENSE  NOTICE  bin  README  init.d  lib  media
+```
+
+
 # hosts系统文件
 Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS域名解析服务器进行IP地址的解析。
 ``` zsh
