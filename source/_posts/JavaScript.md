@@ -12,6 +12,12 @@ tags:
 window.addEventListener('click', () => console.log('Clicked!'));
 document.getElementById('ele').addEventListener('click', () => console.log('Clicked!'));
 ```
+第三参数
+可选。布尔值，指定事件是否在捕获或冒泡阶段执行。
+
+可能值:
+true - 事件句柄在捕获阶段执行
+false - 默认。事件句柄在冒泡阶段执行
 
 ## 操作css
 ``` js
