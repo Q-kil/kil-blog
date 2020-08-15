@@ -22,6 +22,16 @@ cordova platform
 cordova run android
 ```
 
+## add plugin
+```
+$ cordova plugin add <path to plugin folder>
+```
+
+## remove plugin
+```
+$ cordova plugin rm cordova-plugin-dispaly-cutout
+```
+
 ## 环境设置
 error
 ``` bash

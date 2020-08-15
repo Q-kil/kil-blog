@@ -1,7 +1,10 @@
 ---
 title: advanced-exercise
 date: 2020-07-30 22:58:37
+categories:
+- Front-End
 tags:
+- Front-End
 ---
 
 # UTF8 编码
@@ -94,3 +97,57 @@ var code = codeList.map(item => '%'+item.toString(16)).join('');
 decodeURI(code); // => 中
 ```
 [参考链接](https://blog.csdn.net/themagickeyjianan/article/details/80725606)
+
+# 浏览器
+## 不准使用正则表达式，纯粹用 JavaScript 的逻辑实现：在一个字符串中，找到字符“ab”
+``` js
+function findAB(str) {
+  for(let i = 0; i < str.length; i++){
+    console.log('i', i, str[i]);
+    if (str[i] === 'a' && str[i + 1] === 'b') {
+      console.log('ab', str[i] + str[i + 1]);
+    }
+  }
+}
+findAB('sdsdab');
+```
+{% label ib_yellow@注意，作业错误，此处应为：str.length - 1 %}
+助教点评：
+最后一个字符就是i = 4
+str[i + 1]取得是什么？
+
+### 优秀作业
+``` js
+function find(str) {
+  let step = 0;
+  for(let c of str) { // of 作用在str上就是把每个字符取出来
+    if (c=== 'a') {
+      step = 1;
+    } else if (step === 1 && c === 'b'){
+      return true;
+    } else {
+      step = 0;
+    }
+  }
+  return false;
+}
+```
+
+## 状态机查找abcabx
+``` js
+let status = false;
+function foundB(c) {
+  if (c === 'c' && !status) {
+      status = true;
+      return foundC;
+  } else if (c === 'x' && status) {
+      return end
+  } else
+      return start(c)
+}
+```
+助教点评：不正确 不符合状态机没有副作用的特性
+状态机不应该用全局变量
+只能用输入参数
+Q：程序不是 最好不要重复写相同的方法嘛
+A：这就是状态机 你可能需要再理解和感受一下
