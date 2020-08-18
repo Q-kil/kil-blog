@@ -120,6 +120,10 @@ debug 添加监视
 `{% asset_img state02.png %}`
 
 ## HTTP
+浏览器的第一步：http状态解析
+- http状态
+- header
+
 ### 网络模型
 `{% asset_img http.jpg %}`
 
