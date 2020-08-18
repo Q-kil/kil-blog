@@ -163,4 +163,29 @@ new Request({
 
 HTTP 协议是文本型的协议，所有内容都是字符串
 
-method: GET/POST 
+method: GET/POST
+
+#### http协议 request
+`{% asset_img request.png %}`
+
+第一步HTTP请求总结
+- 设计一个HTTP请求的类
+- content type是一个必要的字段，要有默认值
+- body是kv格式
+- 不同的content-type影响body的格式
+- content length
+
+第二步send函数编写
+- 在Request的构造器中收集必要的信息
+- 设计一个send函数，把请求真实发送到服务器
+- send函数应该是异步的，所以返回Promise
+
+response 格式
+`{% asset_img response.png %}`
+
+第三步发送请求到服务端（重要）
+- 设计支持已有的connection或者自己新建connection
+- 收到数据传给parser
+- 根据parser的状态resolve Promise
+
+第四步response解析（重要）
