@@ -569,6 +569,18 @@ module.exports = {
 }
 ```
 
+### 文件操作
+copy文件或文件目录
+``` js
+plugins: [
+  new CopyPlugin({
+    patterns: [
+      { from: 'test_copy_plugin.js', to: path.resolve(__dirname, 'dest') }
+    ]
+  })
+]
+```
+
 
 
 
