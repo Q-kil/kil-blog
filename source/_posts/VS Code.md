@@ -396,6 +396,10 @@ ctrl + shift + backspace (删除)
 Tab Size：2
 editor.detectIndentation 这项改成 false 就生效了
 
+#### 自动保存时，两个空格
+插件：JS-CSS-HTML
+修改：indent-size: 2
+
 
 ## 赋印象笔记快捷键
 | Mac快捷键 | 作用  |
