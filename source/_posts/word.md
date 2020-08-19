@@ -124,3 +124,9 @@ DTO:Data Transfer Object（数据传输对象）DTO 是一组需要跨进程或�
 动态语言的优势
 思维不受束缚，可以任意发挥，把更多的精力放在产品本身上；
 集中思考业务逻辑实现，思考过程即实现过程；
+
+# EOF
+End Of FIle   文件结尾
+
+# FSM
+Finite State Machine  有限状态机

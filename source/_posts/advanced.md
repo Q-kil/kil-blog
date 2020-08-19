@@ -116,6 +116,8 @@ UTF16
 有限状态机**处理字符串**
 `{% asset_img state.png %}`
 
+意义：在各个状态加入自己的逻辑，处理业务
+
 debug 添加监视
 `{% asset_img state02.png %}`
 
@@ -189,3 +191,45 @@ response 格式
 - 根据parser的状态resolve Promise
 
 第四步response解析（重要）
+- Response必须分段构造，所以我们要用一个 ResponseParser来 "装配"
+- ResponseParser分配处理ResponseText，我们用状态机来分析文本的结构
+
+最后一步response body解析
+- Resonse的body可能根据Content-Type有不同的结构，因此我们会采用子Parser的结构来解决问题
+- 以TrunkBodyParser为例，我们同样用状态机来处理body的格式
+
+#### HTML解析
+第一步
+- 为了方便文件管理，把parser单独拆到文件中
+- parser接受HTML文本作为参数，返回一颗DOM树
+
+第二步
+- 用FSM来实现HTML的分析
+- 在HTML标准中，已经规定了HTML的状态 [whatwg](https://html.spec.whatwg.org/multipage/parsing.html#tokenization)
+- Toy-Browser只挑选其中一部分状态，完成一个最简版本
+
+第三步解析标签
+三种tag：
+- 开始标签
+- 结束标签
+- 自封闭标签
+
+总结：
+- 主要的标签有：开始标签，结束标签和自封闭标签
+- 在这一步我们暂时忽略属性
+
+第四步总结
+- 在状态机中，除了状态迁移，我们还会要加入业务逻辑
+- 我们在标签结束状态提交标签token
+
+第五步总结
+- 属性值分为单引号、双引号、无引号三种写法，因此需要较多状态处理
+- 处理属性的方式跟标签类似
+- 属性结束时，把属性加到标签Token上
+
+第六步总结
+Tree construction 第一步
+- 从标签构建DOM树的基本技巧是使用栈
+- 遇到开始标签时创建元素并入栈，遇到结束标签时出栈
+- 自封闭节点可视为入栈后立即出栈
+- 任何元素的父元素是它入栈前的栈顶

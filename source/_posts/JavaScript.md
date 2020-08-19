@@ -19,6 +19,15 @@ document.getElementById('ele').addEventListener('click', () => console.log('Clic
 true - 事件句柄在捕获阶段执行
 false - 默认。事件句柄在冒泡阶段执行
 
+### 执行两次问题
+``` js
+document.getElementById("click").addEventListener("click", test, false);
+function test(e) {
+  e.stopPropagation(); // 防止冒泡
+  console.log('click');
+}
+```
+
 ## 操作css
 ``` js
 // 在单个语句中设置多个样式
@@ -606,3 +615,9 @@ function travelDeeply(roots: INode | INode[]) {
 // 开始遍历
 travelDeeply(data);
 ```
+
+## 换行
+\r - Carriage Return
+\n - Line Feed
+
+\r\n is often used in preference to \n as it displays properly on both unix and Windows.
