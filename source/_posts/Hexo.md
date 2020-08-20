@@ -220,12 +220,12 @@ deploy:
 {% label ib_blue@2020/2/23 修改 %}
 每次hexo d 部署时，总要输入git 用户名&&密码。
 现在修改为SSH连接方式
-```
+
 deploy:
   type: git
   repo: git@github.com:KilFront/KilFront.github.io.git
   branch: master
-``` 
+
 
 ### github kilfront.github.io根目录添加文件 CNAME
 www.kaifa.in
@@ -246,3 +246,23 @@ custom.text 中 存放样式代码
 
 ## 特殊字符
 `&#39;` '
+
+## 跳转
+当前文章锚点跳转
+``` zsh
+[跳转到本文锚点](#JS)
+```
+
+站内文章链接
+```
+{% post_link 'JavaScript' %}
+```
+
+栈内文章锚点
+<a href="{% post_path 'advanced' %}#浏览器工作原理">浏览器工作原理</a>
+```
+<a href="{% post_path 'advanced' %}#浏览器工作原理">浏览器工作原理</a>
+```
+
+无效，未知
+[hexo 安装]({% post_path 'advanced' %}#浏览器工作原理)
