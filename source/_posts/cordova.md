@@ -43,6 +43,19 @@ Failed to find 'ANDROID_SDK_ROOT' environment variable. Try setting it manually.
 Failed to find 'android' command in your 'PATH'. Try update your 'PATH' to include path to valid SDK directory.
 ```
 
+# ios
+## 刘海
+``` css
+padding-top: env(safe-area-inset-top);
+padding-bottom: env(safe-area-inset-bottom);
+```
 
+## build
+### 本机测试
+问题：
+ "iPhone Developer" in the build settings editor
 
+解决：
+Xcode > preference > Accounts signing 证书
+project > Build Settings > Signin > Code Signing Identity > debug > iOS Developer
 
