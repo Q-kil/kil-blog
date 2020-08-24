@@ -59,3 +59,15 @@ padding-bottom: env(safe-area-inset-bottom);
 Xcode > preference > Accounts signing 证书
 project > Build Settings > Signin > Code Signing Identity > debug > iOS Developer
 
+### build ipa包
+问题：
+xcode archive 一直是灰色的
+
+解决：
+把配置选择为device才能选build and archive的，模拟器的肯定不能build and archive
+
+## UIWebView 审核失败
+打开终端，cd到项目根目录。
+执行以下命令，就能看到哪些文件内还在有UIWebview的踪迹。
+
+ grep -r UIWebView .
