@@ -43,6 +43,10 @@ Failed to find 'ANDROID_SDK_ROOT' environment variable. Try setting it manually.
 Failed to find 'android' command in your 'PATH'. Try update your 'PATH' to include path to valid SDK directory.
 ```
 
+# android
+## run
+手机插上电脑usb，执行：cordova run android
+
 # ios
 ## 刘海
 ``` css
