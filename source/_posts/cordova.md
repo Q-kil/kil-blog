@@ -71,3 +71,15 @@ xcode archive 一直是灰色的
 执行以下命令，就能看到哪些文件内还在有UIWebview的踪迹。
 
  grep -r UIWebView .
+
+## cordova-plugin-wkwebview-engine 出错
+/Users/niekaifa/ikyu/KilFront/cordova-app/platforms/ios/HelloCordova/Plugins/cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m:104:80: error: property 'userAgent' not found on object of type 'CDVViewController *'
+        wkWebView.customUserAgent = ((CDVViewController*) self.viewController).userAgent;
+                                                                               ^
+/Users/niekaifa/ikyu/KilFront/cordova-app/platforms/ios/HelloCordova/Plugins/cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m:375:6: error: use of undeclared identifier 'CDVUserAgentUtil'
+    [CDVUserAgentUtil releaseLock:vc.userAgentLockToken];
+     ^
+/Users/niekaifa/ikyu/KilFront/cordova-app/platforms/ios/HelloCordova/Plugins/cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m:388:6: error: use of undeclared identifier 'CDVUserAgentUtil'
+    [CDVUserAgentUtil releaseLock:vc.userAgentLockToken];
+
+删除 platforms/    plugins/ 文件
