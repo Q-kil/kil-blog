@@ -87,3 +87,36 @@ xcode archive 一直是灰色的
     [CDVUserAgentUtil releaseLock:vc.userAgentLockToken];
 
 删除 platforms/    plugins/ 文件
+
+## 问题
+build ios 搞了两周。seven 几分钟 跑起来
+搞搞时间很快就没了
+cordova 文档
+``` zsh
+11577* yarn upgrade cordova-ios@6.1.0
+11578* cordova plugin rm cordova-plugin-ionic-webview
+11579* cordova platform add ios
+11580* cordova plugin rm cordova-plugin-statusbar
+11581* cordova plugin add cordova-plugin-ionic-webview
+11582* cordova build ios --verbose
+verbose : 打印出详细内容
+11583* cordova clean ios
+11584* cordova build ios --verbose
+build 分为两步：prepare + compile
+11585* cordova prepare ios --verbose
+11586* cordova compile ios --verbose
+11587* cd tooqing-webapp
+11588* git pull
+11589* cd ..
+11590* git submodule update --remote
+11591* cd tooqing-webapp
+11592* vue-cli-service build --mode cordova
+11593* yarn
+11594* yarn build:cordova
+11595* cd ..
+11596* cordova build ios --verbose
+```
+
+``` html
+<preference name="WKWebViewOnly" value="true" />
+```
