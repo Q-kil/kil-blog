@@ -49,6 +49,7 @@ Failed to find 'android' command in your 'PATH'. Try update your 'PATH' to inclu
 
 # ios
 ## 刘海
+简单操作
 ``` css
 padding-top: env(safe-area-inset-top);
 padding-bottom: env(safe-area-inset-bottom);
