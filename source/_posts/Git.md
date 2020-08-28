@@ -223,6 +223,31 @@ wsl 和 windows 的混淆
 wsl 中的密钥 无法在windows中使用
 在windows 生成密钥；命令行提交验证一次，就可以了
 
+### gitignore文件
+$ git add .
+warning: adding embedded git repository: tooqing-webapp
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint: 
+hint:   git submodule add <url> tooqing-webapp
+hint: 
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint: 
+hint:   git rm --cached tooqing-webapp
+hint: 
+hint: See "git help submodule" for more information.
+
+``` zsh
+git rm --cached tooqing-webapp
+git submodule add git@code.apowo.com:PixelPai/tooqing-webapp.git tooqing-webapp
+git add .
+git commit -m 'cache'
+git pull origin dev
+```
+
 # vscoed 中应用
 ### push
 #### 暂存所有更改
