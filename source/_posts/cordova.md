@@ -54,6 +54,18 @@ padding-top: env(safe-area-inset-top);
 padding-bottom: env(safe-area-inset-bottom);
 ```
 
+## 隐藏状态栏
+Hiding at startup
+During runtime you can use the StatusBar.hide function below, but if you want the StatusBar to be hidden at app startup on iOS, you must modify your app's Info.plist file.
+
+Add/edit these two attributes if not present. Set "Status bar is initially hidden" to "YES" and set "View controller-based status bar appearance" to "NO". If you edit it manually without Xcode, the keys and values are:
+
+<key>UIStatusBarHidden</key>
+<true/>
+<key>UIViewControllerBasedStatusBarAppearance</key>
+<false/>
+
+
 ## build
 ### 本机测试
 问题：
