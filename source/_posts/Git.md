@@ -285,3 +285,11 @@ doc/notes.txt
 ``` zsh
 yarn add git+ssh://git@code.apowo.com:PixelPai/game-core.git#dev
 ```
+
+# 子模块
+## 自模块冲突
+git submodule foreach git checkout master //所有子工程切换到master分支
+git submodule foreach git pull          //所有子工程更新代码
+git add 所有子工程目录
+git commit -m "update submodule"      //这里的提交应该是更新commit id
+//使其保持最新，与master相同
