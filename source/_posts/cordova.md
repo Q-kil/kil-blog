@@ -49,6 +49,7 @@ Failed to find 'android' command in your 'PATH'. Try update your 'PATH' to inclu
 
 # ios
 ## 刘海
+简单操作
 ``` css
 padding-top: env(safe-area-inset-top);
 padding-bottom: env(safe-area-inset-bottom);
@@ -86,7 +87,7 @@ xcode archive 一直是灰色的
 打开终端，cd到项目根目录。
 执行以下命令，就能看到哪些文件内还在有UIWebview的踪迹。
 
- grep -r UIWebView .
+grep -r UIWebView .
 
 ## cordova-plugin-wkwebview-engine 出错
 /Users/niekaifa/ikyu/KilFront/cordova-app/platforms/ios/HelloCordova/Plugins/cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m:104:80: error: property 'userAgent' not found on object of type 'CDVViewController *'
