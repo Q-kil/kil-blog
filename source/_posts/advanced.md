@@ -271,3 +271,6 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 
 第六步 生成computed属性
 - 一旦选择匹配，就应用选择器到元素上，形成computedStyle
+
+# CSS
+学习一门语言，先从语法入手
