@@ -66,6 +66,17 @@ Add/edit these two attributes if not present. Set "Status bar is initially hidde
 <key>UIViewControllerBasedStatusBarAppearance</key>
 <false/>
 
+## 纵屏，不允许翻转
+在config.xml中有这么一条
+
+<preference name="Orientation" value="portrait" />
+
+Orientation有三个值可取，分别是 default、portrait、landscape
+
+default:意思是app可以在四个方向随意旋转。
+portrait：纵向
+landscape：横向
+
 
 ## build
 ### 本机测试
