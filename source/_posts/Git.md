@@ -10,6 +10,15 @@ tags:
 # 基础
 `{% asset_img git1.png %}`
 
+## ubuntu 安装最新版本
+[gitVersion](https://github.com/git/git/releases)
+因为 Ubuntu 自带的源中，Git 版本就是这么低，所以需要加入一个源，带有最新 Git 版本的源
+``` zsh
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+```
+
 # 配置
 ### ssh 密钥
 ```
