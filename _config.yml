@@ -79,9 +79,17 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+
+# github
+# deploy:
+#   type: git
+#   repo: git@github.com:KilFront/KilFront.github.io.git
+#   branch: master
+
+# tx1
 deploy:
   type: git
-  repo: git@github.com:KilFront/KilFront.github.io.git
+  repo: root@122.51.101.113:/home/git/kil-blog.git
   branch: master
 
 #add other

@@ -235,6 +235,38 @@ CNAME kilfront.github.io
 
 ### ！需要注意 缓存问题；新建无痕浏览 可以
 
+### 部署到服务器
+``` zsh
+root@VM-0-4-ubuntu:/home/git# ls
+kil-blog  kil-blog.git
+
+root@VM-0-4-ubuntu:/home/git/kil-blog.git/hooks# cat post-receive
+#!/bin/bash
+git --work-tree=/home/kil-blog --git-dir=/home/git/kil-blog.git checkout -f
+
+# 测试git服务器是否部署成功
+# niekaifa @ niekaifadeMacBook-Pro in ~/ikyu/temp [17:21:21]
+$ git clone root@122.51.101.113:/home/git/kil-blog.git
+
+root@VM-0-4-ubuntu:/etc/nginx/conf.d# cat default.conf
+server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /home/kil-blog;
+    }
+}    
+```
+
+配置权限：chmod -R 755 /home/kil-blog
+
+设置权限
+chmod +x /home/git/kil-blog.git/hooks/post-receive
+
 
 ## 博客迁移
 再给家里的电脑搭建环境时，主题 和 样式 未能显示。
