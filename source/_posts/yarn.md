@@ -68,3 +68,11 @@ $ ls -l node_modules | grep ^l
 lrwxr-xr-x    1 niekaifa  staff     42  8  3 16:41 game-capsule -> ../../../../.config/yarn/link/game-capsule
 ```
 
+# 版本
+版本好自动 + 1
+yarn version --major
+yarn version --minor
+yarn version --patch
+
+https://classic.yarnpkg.com/en/docs/cli/version/
+
