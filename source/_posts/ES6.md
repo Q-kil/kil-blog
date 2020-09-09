@@ -259,6 +259,19 @@ score //[23, 34, 99, 22, 44]
 result //[不及格，不及格，及格，不及格，不及格]
 ```
 
+### 格式化数组中的对象
+``` js
+var kvArray = [{key: 1, value: 10}, 
+               {key: 2, value: 20}, 
+               {key: 3, value: 30}];
+
+var reformattedArray = kvArray.map(function(obj) { 
+   var rObj = {};
+   rObj[obj.key] = obj.value;
+   return rObj;
+});
+```
+
 ## reduce 汇总
 一堆出来一个
 求和，求平均数
