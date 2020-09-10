@@ -288,3 +288,11 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 • @fontface :https://www.w3.org/TR/css-fonts-3/
 • @supports :https://www.w3.org/TR/css3-conditional/
 • @namespace :https://www.w3.org/TR/css-namespaces-3/
+
+# HTML
+源流来自：XML 、 SGML（两种语言是HTML的超集）
+H5以后，变成独立的语言
+
+## XML
+DTD：文档类型定义
+https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd

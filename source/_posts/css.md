@@ -280,4 +280,11 @@ alternate-reverse
 # 知识点
 块格式化上下文（Block Formatting Context，BFC） 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
 
+## 空格
+早期对html不熟练 会使用 &nbsp
+缺点：
+连接两个单词的时候，会把它认为是一个单；在排版的时候会出现分词的问题。
+看起来能显示出来，但实际破坏了语义。
 
+建议使用：css属性，white-space 去控制空格被显示出来
+white-space: pre;
