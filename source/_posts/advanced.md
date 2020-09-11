@@ -296,3 +296,25 @@ H5以后，变成独立的语言
 ## XML
 DTD：文档类型定义
 https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd
+
+## XHTML
+https://www.w3.org/1999/xhtml/
+
+HTML严格写法，每个标签都必须严格闭合，可以写XHTML版本的HTML5
+
+## 特殊字符 special
+``` html
+<div>&#955; &#945; &#946; &#947; &#937;</div>
+λ α β γ Ω
+<div>&lambda; &alpha; &beta; &gamma; &omega;</div>
+λ α β γ ω
+```
+
+必须记住的，如果直接写在html里会报错
+``` html
+<div>&quot; &amp; &lt; &gt; &apos;</div>
+" & < > '
+```
+
+## 语法
+

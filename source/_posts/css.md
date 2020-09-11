@@ -288,3 +288,4 @@ alternate-reverse
 
 建议使用：css属性，white-space 去控制空格被显示出来
 white-space: pre;
+white-space CSS 属性是用来设置如何处理元素中的 空白。
