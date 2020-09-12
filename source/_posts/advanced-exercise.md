@@ -151,3 +151,46 @@ function foundB(c) {
 只能用输入参数
 Q：程序不是 最好不要重复写相同的方法嘛
 A：这就是状态机 你可能需要再理解和感受一下
+
+# HTML
+## 子节点翻转
+``` js
+function reversalChildren(nodeEle) {
+  let children = Array.prototype.slice.call(nodeEle.childNodes);
+  
+  // for(let child of children) {
+  //   nodeEle.removeChild(child);
+  // }
+
+  nodeEle.innerHTML = '';
+
+  console.log('nodeEle', nodeEle);
+  
+  children.reverse();
+
+  for(let child of children) {
+    nodeEle.appendChild(child);
+  }
+}
+
+// 三次重排
+function reversalChildren2(nodeEle) {
+  let l = nodeEle.childNodes.length;
+  while(l-- > 0) {
+    nodeEle.appendChild(nodeEle.childNodes[l]);
+  }
+}
+
+// 两次重排 框架使用次方法
+function reversalChildren3(nodeEle) {
+  let range = new Range();
+  range.selectNodeContents(nodeEle);
+
+  let fragment = range.extractContents();
+  let l = fragment.childNodes.length;
+  while(l-- > 0) {
+    fragment.appendChild(fragment.childNodes[l]);
+  }
+  nodeEle.appendChild(fragment);
+}
+```

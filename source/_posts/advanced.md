@@ -293,16 +293,17 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 源流来自：XML 、 SGML（两种语言是HTML的超集）
 H5以后，变成独立的语言
 
-## XML
+## 定义
+### XML
 DTD：文档类型定义
 https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd
 
-## XHTML
+### XHTML
 https://www.w3.org/1999/xhtml/
 
 HTML严格写法，每个标签都必须严格闭合，可以写XHTML版本的HTML5
 
-## 特殊字符 special
+### 特殊字符 special
 ``` html
 <div>&#955; &#945; &#946; &#947; &#937;</div>
 λ α β γ Ω
@@ -318,3 +319,47 @@ HTML严格写法，每个标签都必须严格闭合，可以写XHTML版本的HT
 
 ## 语法
 
+## DOM API
+DOM 掌握最高标准：灵活运用 range 和 fragment
+### 事件API
+Event：冒泡与捕获
+先捕获后冒泡
+
+addEventListener 默认监听冒泡事件，false
+addEventListener 第三个参数 ture，捕获事件
+
+### Range
+操作半个节点或批量节点
+对DOM树操作，万能的API
+
+range: 范围
+有起始点和终止点，range是不能跳的
+### 创建
+``` js
+let range = new Range();
+```
+
+### API
+由于节点换行、缩进，会产生很多空白节点
+现操作某节点前后
+- range.setStart(node, length)
+- range.setEnd(node, length)
+- range.setStartBefore
+- range.setEndBefore
+- range.setStartAfter
+- range.setEndAfter
+- range.selectNode
+- range.selectNodeContents
+
+取出range里面的内容（删）
+let fragment = range.extractContents()
+fragment node的子类
+
+插入新的节点（增）
+range.insertNode(document.createTextNode('aaa'))
+
+移除半个节点，会自动补上标签
+``` js
+<div id="b">123<span style="background-color: pink;">456789</span>0123456789</div>
+range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
+```
