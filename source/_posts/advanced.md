@@ -363,3 +363,5 @@ range.insertNode(document.createTextNode('aaa'))
 <div id="b">123<span style="background-color: pink;">456789</span>0123456789</div>
 range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 ```
+
+[跳转到本文HTML](#HTML)
