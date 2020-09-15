@@ -577,3 +577,14 @@ data: {
 Vue
 - 渐进式框架，像洋葱一样
 - 数据响应式，dom立即改变
+
+# 其他
+## 去除ESLint
+In the vue.config.js :
+``` js
+module.exports = {
+  ...
+  lintOnSave: false
+  ...
+}
+```

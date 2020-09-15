@@ -184,6 +184,9 @@ ng update @angular/cli@8 @angular/core@8
 
 ng update @angular/core --next --force (更新了angular相关依赖 到8.0)
 
+cms 更新
+ng update @angular/core@^9.1.0 --force
+
 ## 修改
 ViewChild => @ViewChild('foo', {static: false}) foo !: ElementRef;
 
