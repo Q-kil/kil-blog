@@ -44,8 +44,32 @@ Failed to find 'android' command in your 'PATH'. Try update your 'PATH' to inclu
 ```
 
 # android
+``` zsh
+$ cordova run android
+Current working directory is not a Cordova-based project.
+
+mkdir www
+```
+
 ## run
 手机插上电脑usb，执行：cordova run android
+
+## 问题
+```
+Could not resolve all files for configuration ':app:debugRuntimeClasspath'
+> Could not get resource 'https://dl.google.com/dl/android/maven2/com/android/support/support-v4/maven-metadata.xml'.
+    > Could not GET 'https://dl.google.com/dl/android/maven2/com/android/support/support-v4/maven-metadata.xml'.
+        > Connect to 127.0.0.1:1086 [/127.0.0.1] failed: Connection refused (Connection refused)
+```
+思路：
+curl https://dl.google.com/dl/android/maven2/com/android/support/support-v4/maven-metadata.xml
+没有问题
+
+把zsh，git，
+# niekaifa @ niekaifadeMacBook-Pro in ~/.gradle [20:36:42]
+$ vim gradle.properties
+代理 ，关闭。就可以了
+
 
 # ios
 ## 刘海
@@ -144,3 +168,5 @@ build 分为两步：prepare + compile
 ``` html
 <preference name="WKWebViewOnly" value="true" />
 ```
+
+
