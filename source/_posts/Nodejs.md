@@ -44,6 +44,14 @@ $ npm list -g
 │ ├── async-foreach@0.1.3
 ```
 
+# API
+## fs 文件系统
+### fs.existsSync(path)
+path <string> | <Buffer> | <URL>
+返回: <boolean>
+如果路径存在，则返回 true，否则返回 false。
+
+
 # 升级
 ## 使用npm安装全局n模块
 npm install -g n
