@@ -106,6 +106,10 @@ transition: all .3s linear
 ## 可见性
 visibility: visible
 
+## flexd
+display: flex; // 错了
+position: fixed;
+
 
 # 适配
 ``` css

@@ -2,7 +2,7 @@
 title: cordova
 date: 2020-08-08 14:01:46
 categories:
-- Frame
+- Hybrid
 tags:
 - Cordova
 ---
