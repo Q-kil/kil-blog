@@ -364,4 +364,7 @@ range.insertNode(document.createTextNode('aaa'))
 range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 ```
 
+# 算法
+
 [跳转到本文HTML](#HTML)
+[跳转到本文算法](#算法)
