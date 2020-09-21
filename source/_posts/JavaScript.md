@@ -108,7 +108,52 @@ str = '1 abc 2 def 3';
 str.match(/\d+/g) // ["1", "2", "3"]
 ```
 
+## 宽高
+### 网页全文的高度和宽度
+获取的是body中的 内容 的高度，不会受到body本身的高度影响
+如果body给定了固定高度/宽度 ，获取的依然是body里面内容的高度
+``` js
+document.body.scrollHeight    //文档高度 body中内容的高度
+document.body.scrollWidth     //文档宽度 **body中内容的宽度**
+```
 
+受body高度影响
+``` js
+document.body.clientHeight
+document.body.clientWidth
+```
+
+### 屏幕的高度和宽度（屏幕分辨率）
+获取整个屏幕的高\宽度
+这是一个固定值
+``` js
+window.screen.height    //屏幕高度
+window.screen.width     //屏幕宽度
+```
+
+### 获取屏幕可工作区域的高度和宽度（去掉状态栏）
+只去除了上面的状态栏，打开控制台不受影响
+这是一个固定值，不受浏览器窗口大小而改变
+``` js
+window.screen.availHeight    //可视区域去除状态栏高度
+window.screen.availWidth    //可视区域去除状态栏宽度（和上面的值一样）
+```
+
+### 网页可见区域的高度和宽度
+``` js
+window.innerHeight
+window.innerWidth     //没有去除滚动条的宽度
+
+document.documentElement.clientHeight
+document.documentElement.clientWidth    //去除滚动条的宽度
+```
+
+## document
+document.documentElement与document.body
+document代表的是整个文档(对于一个网页来说包括整个网页结构)，document.documentElement是整个文档节点树的根节点，在网页中即html标签；
+document.body是整个文档DOM节点树里的body节点，网页中即为body标签元素。
+
+### Element.clientHeight
 
 
 # 待掌握
