@@ -43,6 +43,12 @@ Failed to find 'ANDROID_SDK_ROOT' environment variable. Try setting it manually.
 Failed to find 'android' command in your 'PATH'. Try update your 'PATH' to include path to valid SDK directory.
 ```
 
+.zshrc
+``` zsh
+export ANDROID_SDK_ROOT="/Applications/Android Studio.app/android-sdk-macosx"
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+``
+
 # android
 ``` zsh
 $ cordova run android

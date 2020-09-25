@@ -167,3 +167,7 @@ sudo vi /etc/hosts
 
 # 清理内存
 sudo purge
+
+# 快捷键
+## 显示隐藏文件
+shift + command + .
