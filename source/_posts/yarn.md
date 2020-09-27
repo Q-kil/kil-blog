@@ -68,6 +68,11 @@ $ ls -l node_modules | grep ^l
 lrwxr-xr-x    1 niekaifa  staff     42  8  3 16:41 game-capsule -> ../../../../.config/yarn/link/game-capsule
 ```
 
+## 取消link
+``` zsh
+yarn unlink game-core
+```
+
 # 版本
 版本好自动 + 1
 yarn version --major
