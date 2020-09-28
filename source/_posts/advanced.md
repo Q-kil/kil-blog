@@ -359,12 +359,37 @@ fragment node的子类
 range.insertNode(document.createTextNode('aaa'))
 
 移除半个节点，会自动补上标签
+
 ``` js
 <div id="b">123<span style="background-color: pink;">456789</span>0123456789</div>
 range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 ```
 
 # 算法
+核心：提升编程能力
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [跳转到本文HTML](#HTML)
 [跳转到本文算法](#算法)
