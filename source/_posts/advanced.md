@@ -365,6 +365,8 @@ range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 ```
 
 # 算法
+## TicTacToe
+井字棋，三字旗
 
 [跳转到本文HTML](#HTML)
 [跳转到本文算法](#算法)

@@ -78,6 +78,11 @@ $ vim gradle.properties
 
 
 # ios
+
+## run
+vue dist : serve
+
+
 ## 刘海
 简单操作
 ``` css
@@ -129,6 +134,9 @@ xcode archive 一直是灰色的
 执行以下命令，就能看到哪些文件内还在有UIWebview的踪迹。
 
 grep -r UIWebView .
+
+### use WKWebView
+
 
 ## cordova-plugin-wkwebview-engine 出错
 /Users/niekaifa/ikyu/KilFront/cordova-app/platforms/ios/HelloCordova/Plugins/cordova-plugin-wkwebview-engine/CDVWKWebViewEngine.m:104:80: error: property 'userAgent' not found on object of type 'CDVViewController *'
