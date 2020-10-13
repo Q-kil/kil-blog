@@ -155,6 +155,23 @@ document.body是整个文档DOM节点树里的body节点，网页中即为body�
 
 ### Element.clientHeight
 
+## 操作类
+Element.classList 是一个只读属性，返回一个元素的类属性的实时 DOMTokenList 集合。
+但是你可以使用 add() 和 remove() 方法修改它。
+``` js
+const div = document.createElement('div');
+div.className = 'foo';
+
+// 初始状态：<div class="foo"></div>
+console.log(div.outerHTML);
+
+// 使用 classList API 移除、添加类值
+div.classList.remove("foo");
+div.classList.add("anotherclass");
+
+// <div class="anotherclass"></div>
+console.log(div.outerHTML);
+```
 
 # 待掌握
 ## 对象拷贝
