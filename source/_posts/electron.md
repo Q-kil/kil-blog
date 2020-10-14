@@ -46,3 +46,18 @@ if (process.platform === "darwin") {
   Menu.setApplicationMenu(null);
 }
 ```
+
+### electron 安装失败
+``` zsh
+> electron@8.2.1 postinstall /usr/local/lib/node_modules/electron
+> node install.js
+
+(node:6406) UnhandledPromiseRejectionWarning: HTTPError: Response code 404 (Not Found) for http://npm.taobao.org/mirrors/electron/9.1.0/electron-v8.2.1-darwin-x64.zip
+```
+
+解决：
+I solved the problem, if you're using taobao mirror, you should config like this in your `~/.npmrc` file:
+```
+electron_mirror=https://npm.taobao.org/mirrors/electron/
+electron_custom_dir=7.0.0
+```
