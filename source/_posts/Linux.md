@@ -183,6 +183,9 @@ curl
 curl http://gitlab.kaifa.in:9999 -v
 ```
 
+#### etc/hosts
+hosts文件是linux系统中负责ip地址与域名快速解析的文件
+
 #### dig
 dig命令是常用的域名查询工具，可以用来测试域名系统工作是否正常。
 ```
