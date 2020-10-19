@@ -380,13 +380,16 @@ range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 
 
 
+# 组件化
+前端架构里面最重要的部分
+## 前端架构热门的两个话题
+### 组件化
+从扩展html标签，引申出来的前端架构体系，主要目标复用
+### 架构模式
+MVC MVVM
+前端跟数据逻辑层之间，如何去交互
 
-
-
-
-
-
-
+## 组件的基本概念和基本组成部分
 
 
 
@@ -394,3 +397,4 @@ range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 
 [跳转到本文HTML](#HTML)
 [跳转到本文算法](#算法)
+[跳转到本文组件化](#组件化)
