@@ -11,7 +11,7 @@ tags:
 # basic
 ## 指令
 在xcode中打开
-open platforms/ios/UpdateDemo.xcworkspace
+open platforms/ios/UpdateDemo.xcodeproj
 
 # 系统更新
 `{% asset_img mac_os.jpeg %}`
