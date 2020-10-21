@@ -201,3 +201,16 @@ yarn remove @angular/cli
 yarn add @angular/cli@10.0.2 --dev
 
 https://update.angular.io/#8.0:10.0
+
+## 2020.10.21 升级方法
+yarn remove @angular/animations @angular/common @angular/compiler @angular/core @angular/forms @angular/platform-browser @angular/platform-browser-dynamic @angular/router
+
+yarn add @angular/animations@9.1 @angular/common@9.1 @angular/compiler@9.1 @angular/core@9.1 @angular/forms@9.1 @angular/platform-browser@9.1 @angular/platform-browser-dynamic@9.1 @angular/router@9.1
+
+yarn remove @angular/compiler-cli @angular/language-service
+
+yarn add  @angular/compiler-cli@9.1 @angular/language-service@9.1 --dev
+
+yarn remove typescript
+
+yarn add typescript@3.8.0 --save
