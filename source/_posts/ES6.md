@@ -978,6 +978,9 @@ async await
 js模块系统演化简史
 没有模块 -> CMD(Common Module Definition) -> AMD(Asynchronous Module Definition) -> 语言提供模块支持
 
+ES6之前：
+模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。
+
 ES6模块系统 需要借助 webpack
 
 import * as mod1 from './mod1'; (*代表引入所有内容, 取名mod1, './mod1.js' js可以省略 )

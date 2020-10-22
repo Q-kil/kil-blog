@@ -28,6 +28,64 @@ Vue 和 React 拿来写小程序都很快很方便，但是 Angular 要拿来做
 ViewChild
 { static: true }引入了该选项以支持动态创建嵌入式视图
 
+# angular.cn
+## 架构概览
+组件定义视图，组件使用服务（依赖注入）
+
+模块、组件和服务都是使用装饰器的类
+
+### 模块
+和 JavaScript（ES2015） 的模块不同而且有一定的互补性。 
+NgModule 可以将其组件和一组相关代码（如服务）关联起来，形成功能单元。
+
+### 服务与依赖注入
+对于与特定视图无关并希望跨组件共享的数据或逻辑，可以创建服务类。 服务类的定义通常紧跟在 “@Injectable()” 装饰器之后。该装饰器提供的元数据可以让你的服务作为依赖被注入到客户组件中。
+
+## 模块
+NgModule 是一个带有 @NgModule() 装饰器的类。@NgModule() 装饰器是一个函数，它接受一个元数据对象，该对象的属性用来描述这个模块。其中最重要的属性如下。
+
+declarations（可声明对象表） —— 那些属于本 NgModule 的组件、指令、管道。
+
+exports（导出表） —— 那些能在其它模块的组件模板中使用的可声明对象的子集。
+
+imports（导入表） —— 那些导出了本模块中的组件模板所需的类的其它模块。
+
+providers —— 本模块向全局服务中贡献的那些服务的创建器。 这些服务能被本应用中的任何部分使用。（你也可以在组件级别指定服务提供者，这通常是首选方式。）
+
+bootstrap —— 应用的主视图，称为根组件。它是应用中所有其它视图的宿主。只有根模块才应该设置这个 bootstrap 属性。
+
+``` ts
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+@NgModule({
+  imports:      [ BrowserModule ],
+  providers:    [ Logger ],
+  declarations: [ AppComponent ],
+  exports:      [ AppComponent ],
+  bootstrap:    [ AppComponent ]
+})
+export class AppModule { }
+```
+
+## 组件
+组件的元数据告诉 Angular 到哪里获取它需要的主要构造块，以创建和展示这个组件及其视图。 具体来说，它把一个模板（无论是直接内联在代码中还是引用的外部文件）和该组件关联起来。 该组件及其模板，共同描述了一个视图。
+下面的例子中就是 HeroListComponent 的基础元数据：
+``` ts
+@Component({
+  selector:    'app-hero-list',
+  templateUrl: './hero-list.component.html',
+  providers:  [ HeroService ]
+})
+export class HeroListComponent implements OnInit {
+/* . . . */
+}
+```
+
+selector：是一个 CSS 选择器
+templateUrl：该组件的 HTML 模板文件相对于这个组件文件的地址
+providers：当前组件所需的服务提供者的一个数组
+
+
 # 知识
 ## 组件-conponent
 - 一个组件类
