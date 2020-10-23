@@ -85,6 +85,12 @@ selector：是一个 CSS 选择器
 templateUrl：该组件的 HTML 模板文件相对于这个组件文件的地址
 providers：当前组件所需的服务提供者的一个数组
 
+## 服务与DI
+组件应该把诸如从服务器获取数据、验证用户输入或直接往控制台中写日志等工作委托给各种服务。通过把各种处理任务定义到可注入的服务类中，你可以让它被任何组件使用。 通过在不同的环境中注入同一种服务的不同提供者，你还可以让你的应用更具适应性。
+
+依赖注入（dependency injection）
+要把一个类定义为服务，就要用 @Injectable() 装饰器来提供元数据，以便让 Angular 可以把它作为依赖注入到组件中
+
 
 # 知识
 ## 组件-conponent
@@ -313,12 +319,35 @@ Angular 有 3 个内置的结构型指令：*ngIf、*ngFor、ngSwitch。ngSwitch
 - 利用 cookie 和 localstorage 进行通讯
 - 利用 session 进行通讯
 
-#### 单例通信
+在 ProductAlertsComponent 类的定义中，定义一个带 @Input() 装饰器的 product 属性。@Input() 装饰器指出其属性值是从该组件的父组件商品列表组件中传入的。
+在组件类中，用 @Output() 装饰器和一个事件发射器 EventEmitter() 实例定义一个名为 notify 的属性。这可以让商品提醒组件在 notify 属性发生变化时发出事件。
+
+### 单例通信
 随着Angular 6的问世，我们获得了这个新的闪亮工具，用于对应用程序中的依赖项进行建模。官方名称为“可摇树的提供者 ”，我们通过使用装饰器的新providedIn属性来使用它@Injectable。
 我们可以将其providedIn视为反向指定的依赖项。现在，不再是模块提供所有服务，而是服务本身声明应该在哪里提供…
 模块可以是providedIn在'root'或在任何可用的模块（例如providedIn: SomeModule）。除此之外'root'，实际上是AppModule（因此是根注入器）的别名，这是一个很好的便利功能，它节省了我们AppModule在代码库中的所有导入。
 
 `{% asset_img inject.png %}`
+
+cart.service.ts
+``` ts
+export class CartService {
+  items = [];
+
+  addToCart(product) {
+    this.items.push(product);
+  }
+
+  getItems() {
+    return this.items;
+  }
+
+  clearCart() {
+    this.items = [];
+    return this.items;
+  }
+}
+```
 
 
 ## [组件]内容投影
@@ -665,6 +694,24 @@ forRoot：我这个router模块，在启动的时候，把路由配置项{} 传�
 路由事件怎么监听的？
 注射到构造器里面，angular运行时会检查构造器里面声明的属性
 
+### 注册路由
+app.module.ts
+``` ts
+@NgModule({
+  declarations: [
+    AppComponent,
+    TestComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot([
+      { path: 'test', component: TestComponent}
+    ])
+  ]
+})
+```
+
 ### 路由要规划的
 为了：
 SEO：Search Engine Optimization（搜索引擎优化）
@@ -826,6 +873,38 @@ this.router.events
 - nullValidator
 - compose
 - composeAsync
+
+### 例子
+``` html
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <button class="button" type="submit">Purchase</button>
+</form>
+```
+引入了  ReactiveFormsModule
+``` ts
+export class TestComponent {
+  price = 1000000;
+  checkoutForm;
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+    this.checkoutForm = this.formBuilder.group({
+      name: '',
+      address: ''
+    });
+  }
+
+  onSubmit(customerData) {
+    console.log('customer', customerData);
+  }
+}
+```
 
 # implements 
 在TypeScript中，有Class类和interface接口，接口只定义类型的成员或者方法的契约，就是如果你implements了我的契约，那你必须得在类中必须有接口的所有成员（属性），按照契约来实现，如果没有按照接口声明的类型编写，IDE支持TypeScript就会警告报错，编译也会报错，将错误修复在部署之前。
