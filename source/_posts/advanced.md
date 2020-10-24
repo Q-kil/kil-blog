@@ -390,7 +390,10 @@ MVC MVVM
 前端跟数据逻辑层之间，如何去交互
 
 ## 组件的基本概念和基本组成部分
-
+### Attribute
+属性
+attribute： 强调描述性
+property:  强调从属关系
 
 
 
