@@ -48,7 +48,7 @@ declarations（可声明对象表） —— 那些属于本 NgModule 的组件�
 
 exports（导出表） —— 那些能在其它模块的组件模板中使用的可声明对象的子集。
 
-imports（导入表） —— 那些导出了本模块中的组件模板所需的类的其它模块。
+imports（导入表） ——  数组中，这里是该应用所需外部模块的列表。
 
 providers —— 本模块向全局服务中贡献的那些服务的创建器。 这些服务能被本应用中的任何部分使用。（你也可以在组件级别指定服务提供者，这通常是首选方式。）
 
@@ -90,6 +90,14 @@ providers：当前组件所需的服务提供者的一个数组
 
 依赖注入（dependency injection）
 要把一个类定义为服务，就要用 @Injectable() 装饰器来提供元数据，以便让 Angular 可以把它作为依赖注入到组件中
+
+### 模拟数据
+``` ts
+import { Observable, of } from 'rxjs';
+getHeroes(): Observable<Hero[]> {
+  return of(this.HEROES);
+}
+```
 
 
 # 知识
@@ -686,6 +694,50 @@ polyfills.js：腻子脚本
 ``` html
 <router-outlet></router-outlet>
 ```
+
+方法一：
+app-routing.module.ts
+``` ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HeroesComponent } from './heroes/heroes.component';
+
+const routes: Routes = [
+  { path: 'heroes', component: HeroesComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+方法二：
+app.module.ts
+``` ts
+@NgModule({
+  declarations: [
+    AppComponent,
+    TestComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot([
+      { path: 'test', component: TestComponent}
+    ]),
+    // FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+这个方法之所以叫 forRoot()，是因为你要在应用的顶层配置这个路由器。 forRoot() 方法会提供路由所需的服务提供者和指令，还会基于浏览器的当前 URL 执行首次导航。
+
 activeRoute：当前路由的实例
 
 imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
@@ -693,6 +745,11 @@ forRoot：我这个router模块，在启动的时候，把路由配置项{} 传�
 
 路由事件怎么监听的？
 注射到构造器里面，angular运行时会检查构造器里面声明的属性
+
+默认导航
+``` ts
+{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+```
 
 ### 注册路由
 app.module.ts
