@@ -41,6 +41,21 @@ NgModule 可以将其组件和一组相关代码（如服务）关联起来，�
 ### 服务与依赖注入
 对于与特定视图无关并希望跨组件共享的数据或逻辑，可以创建服务类。 服务类的定义通常紧跟在 “@Injectable()” 装饰器之后。该装饰器提供的元数据可以让你的服务作为依赖被注入到客户组件中。
 
+HttpClient.get() 默认情况下把响应体当做无类型的 JSON 对象进行返回。 如果指定了可选的模板类型 <Hero[]>，就会给返回你一个类型化的对象。
+
+RxJS Subject
+``` ts
+private searchTerms = new Subject<string>();
+
+// Push a search term into the observable stream.
+search(term: string): void {
+  this.searchTerms.next(term);
+}
+```
+Subject 既是可观察对象的数据源，本身也是 Observable。 你可以像订阅任何 Observable 一样订阅 Subject。
+
+你还可以通过调用它的 next(value) 方法往 Observable 中推送一些值，就像 search() 方法中一样。
+
 ## 模块
 NgModule 是一个带有 @NgModule() 装饰器的类。@NgModule() 装饰器是一个函数，它接受一个元数据对象，该对象的属性用来描述这个模块。其中最重要的属性如下。
 
@@ -110,6 +125,26 @@ getHeroes(): Observable<Hero[]> {
 ### 属性型指令
 属性型指令改变一个元素的外观或行为。
 例如，内置的 NgStyle 指令可以同时修改元素的多个样式。
+
+``` zsh
+ng generate directive highlight
+```
+``` ts
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+    constructor(el: ElementRef) {
+       el.nativeElement.style.backgroundColor = 'yellow';
+    }
+}
+```
+``` html
+<p appHighlight>Highlight me!</p>
+```
+
 
 ### 结构型指令
 特点：
@@ -461,6 +496,16 @@ jquery时代：handlebars 前端模版库；现代库也是借鉴了的
 {{ title }} {{ 1-1 }} {{getValue()}}
 ```
 
+安全导航运算符（ ? ）
+``` html
+<p>The item name is: {{item?.name}}</p>
+```
+
+非空断言运算符（!）
+``` html
+<p>The item's color is: {{item.color!.toUpperCase()}}</p>
+```
+
 ## 在模版内定义局部变量
 使用语法 #
 ``` html
@@ -514,6 +559,13 @@ currentStyles = {'font-style':  this.canSave      ? 'italic' : 'normal'}
 安全导航
 ``` html
 <p>{{ current?.name }}</p>
+```
+
+### async
+AsyncPipe
+*ngFor 会重复渲染这些英雄对象。注意，*ngFor 在一个名叫 heroes$ 的列表上迭代，而不是 heroes。$ 是一个约定，表示 heroes$ 是一个 Observable 而不是数组。
+``` html
+<li *ngFor="let hero of heroes$ | async" >
 ```
 
 # component 通信
