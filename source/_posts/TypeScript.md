@@ -681,7 +681,13 @@ export class CartComponent implements OnInit {
 如果你发现自己写的功能(函数/类/接口等...)越来越多, 你想对他们进行分组管理就可以用命名空间
 
 
-
+## 存取器
+set、get
+``` ts
+public get currentUser(): User {
+  return localStore.get(this.userKey);
+}
+```
 
 
 

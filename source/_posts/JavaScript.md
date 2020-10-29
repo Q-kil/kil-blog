@@ -173,6 +173,20 @@ div.classList.add("anotherclass");
 console.log(div.outerHTML);
 ```
 
+## 网络
+``` js
+window.addEventListener("load", function() {
+  this_.networkStatus = navigator.onLine ? "online" : "offline";
+
+  window.addEventListener("online",  networkStatus);
+  window.addEventListener("offline", networkStatus);
+
+  function networkStatus(event) {
+    this_.networkStatus = navigator.onLine ? "online" : "offline";
+  }
+});
+```
+
 # 待掌握
 ## 对象拷贝
 ### 浅拷贝

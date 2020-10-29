@@ -101,3 +101,16 @@ console.log(subject.value)
 
 # distinct 
 它能帮我们把相同值的资料滤掉只留一笔，RxJS 里的 distinct 也是相同的作用
+
+# 管道
+## finalize
+当 Observable 完成或报错时调用函数
+``` ts
+this.userService
+.signIn(account, password)
+.pipe(
+  finalize(() => {
+    this.isSubmitting = false;
+  })
+)
+```

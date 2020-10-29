@@ -984,6 +984,9 @@ this.router.events
 - composeAsync
 
 ### 例子
+#### 表单构建器
+FormBuilder 服务生成控件
+FormBuilder 服务有三个方法：control()、group() 和 array()。这些方法都是工厂方法，用于在组件类中分别生成 FormControl、FormGroup 和 FormArray。
 ``` html
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
   <div>
@@ -1013,6 +1016,20 @@ export class TestComponent {
     console.log('customer', customerData);
   }
 }
+```
+
+#### 手动创建实例
+``` ts
+profileForm = new FormGroup({
+  firstName: new FormControl(''),
+  lastName: new FormControl(''),
+  address: new FormGroup({
+    street: new FormControl(''),
+    city: new FormControl(''),
+    state: new FormControl(''),
+    zip: new FormControl('')
+  })
+});
 ```
 
 # implements 
