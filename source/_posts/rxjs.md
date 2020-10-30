@@ -50,6 +50,7 @@ subject.next(Math.random());
 ```
 
 # BehaviorSubject
+可观察主题
 BehaviorSubject包含一个值。订阅时，它会立即发出值.
 BehaviourSubject将返回订阅的初始值或当前值
 BehaviorSubject 是 Subject 的变体之一。BehaviorSubject 的特性就是它会存储“当前”的值。这意味着你始终可以直接拿到 BehaviorSubject 最后一次发出的值。
@@ -88,6 +89,13 @@ console.log(subject.value)
 
 应用参考例子：https://www.it-swarm.dev/zh/rxjs/subject%E5%92%8Cbehaviorsubject%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/831140095/
 
+## asObservable
+Creates a new Observable with this Subject as the source. You can do this to create customize Observer-side logic of the Subject and conceal it from code that uses the Observable.
+
+``` ts
+commonMsgObserver = this.commonMsg$.asObservable();
+```
+
 # 取消订阅
 从此用RxJS订阅的时候，时刻都不忘调用unsubscribe()以防内存泄漏。对于结束Observable，释放内存的方式有三种方式：
 
@@ -102,7 +110,15 @@ console.log(subject.value)
 # distinct 
 它能帮我们把相同值的资料滤掉只留一笔，RxJS 里的 distinct 也是相同的作用
 
-# 管道
+# Pipeable 操作符
+重命名的操作符
+
+由于操作符要从 Observable 中独立出来，所以操作符的名称不能和 JavaScript 的关键字冲突。因此一些操作符的 pipeable 版本的名称做出了修改。这些操作符是:
+
+do -> tap
+catch -> catchError
+switch -> switchAll
+finally -> finalize
 ## finalize
 当 Observable 完成或报错时调用函数
 ``` ts
@@ -113,4 +129,19 @@ this.userService
     this.isSubmitting = false;
   })
 )
+```
+
+## delay
+根据给定时间延迟发出值。
+``` ts
+this.tempMsg$.pipe(delay(200), take(null));
+```
+
+## take
+在完成前发出N个值(N由参数决定)。
+``` ts
+// 发出 1,2,3,4,5
+const source = of(1, 2, 3, 4, 5);
+// 取第一个发出的值然后完成
+const example = source.pipe(take(1));
 ```

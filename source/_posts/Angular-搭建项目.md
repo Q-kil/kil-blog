@@ -215,3 +215,86 @@ yarn add  @angular/compiler-cli@9.1 @angular/language-service@9.1 --dev
 yarn remove typescript
 
 yarn add typescript@3.8.0 --save
+
+# 游戏编辑器
+## layout
+### router
+``` ts
+{
+  path: "",
+  redirectTo: "/home",
+  pathMatch: "full"
+},
+{
+  path: "",
+  component: LoginLayoutComponent,
+  children: [
+    {
+      path: "login",
+      loadChildren: "./pages/login/login.module#LoginModule"
+    }
+  ]
+},
+{
+  path: "",
+  component: AppLayoutComponent,
+  children: [
+    {
+      path: "home",
+      canActivate: [AuthGuardService],
+      loadChildren: "./pages/home/home.module#HomeModule"
+    }
+  ]
+}
+```
+### bare
+``` html
+<router-outlet></router-outlet>
+```
+
+### full
+``` html
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+```
+
+## primeNG
+``` zsh
+npm install primeng --save
+npm install primeicons --save
+```
+
+angular.json
+```
+"node_modules/primeng/resources/themes/saga-blue/theme.css",
+"node_modules/primeng/resources/primeng.min.css",
+"node_modules/primeicons/primeicons.css"
+```
+### button
+``` html
+<p-button label="Submit"></p-button>
+```
+
+app.module.ts
+``` ts
+imports: [
+  BrowserModule,
+  AppRoutingModule,
+  ButtonModule
+]
+```
+
+### overlay
+#### overlayPanel
+``` html
+<p-overlayPanel #op>
+  sdsds
+</p-overlayPanel>
+```
+
+### form
+#### listbox
+``` html
+<p-listbox [options]="cities" optionLabel="name"></p-listbox>
+```
