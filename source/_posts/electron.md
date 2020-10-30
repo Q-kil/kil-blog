@@ -53,6 +53,8 @@ if (process.platform === "darwin") {
 > node install.js
 
 (node:6406) UnhandledPromiseRejectionWarning: HTTPError: Response code 404 (Not Found) for http://npm.taobao.org/mirrors/electron/9.1.0/electron-v8.2.1-darwin-x64.zip
+
+HTTPError: Response code 404 (Not Found) for http://npm.taobao.org/mirrors/electron/8.2.1/electron-v9.1.0-darwin-x64.zip
 ```
 
 解决：
