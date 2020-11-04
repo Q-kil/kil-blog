@@ -224,6 +224,7 @@ export class Game {
 
   owner: Partial<User>;
 ```
+{% label ib_yellow@2020.11.4 %}
 
 Partial 作用是将传入的属性变为可选项.
 首先我们需要理解两个关键字 keyof 和 in, keyof 可以用来取得一个对象接口的所有 key 值.
@@ -521,6 +522,19 @@ obj.a = 12;
 
 # 封装
 ## Class
+``` ts
+export class EditGameParameters {
+  id: string; // sn
+  name: string;
+  version: string;
+  username: string;
+
+  constructor(init?: Partial<EditGameParameters>) {
+    Object.assign(this, init);
+  }
+}
+```
+
 购物车功能
 **Model**：购物车内商品item（商品，数量），购物车（商品item集合）
 **View**：购物车模板

@@ -546,6 +546,10 @@ jquery时代：handlebars 前端模版库；现代库也是借鉴了的
 <div [ngClass]="currentClass">ngClass</div>
 currentClass = {'save': true, 'color': false};
 
+[ngClass]="{
+  'aside__menu--active': menu.id === selectedMenuId
+}"
+
 <div [ngStyle]="currentStyles">
 currentStyles = {'font-style':  this.canSave      ? 'italic' : 'normal'}
 ```

@@ -298,3 +298,28 @@ imports: [
 ``` html
 <p-listbox [options]="cities" optionLabel="name"></p-listbox>
 ```
+
+### icon
+``` html
+<i class="pi pi-check" style="font-size: 2rem"></i>
+```
+
+## scss
+``` scss
+#home {
+  height: calc(100% - #{$TQ-app-header-height} - #{$TQ-app-footer-height});
+}
+```
+
+## html
+### ng-container
+ng-container 最后不现实，省了一层div
+``` html
+<main id="main">
+    <ng-container *ngIf="selectedMenuId !== 'Suit'; else elementSuit">
+      <p-tabView styleClass="TQ-tabview">
+```
+
+## router
+### params
+
