@@ -171,6 +171,15 @@ list
 <p>Hooray!</p>
 ```
 
+#### html
+``` ts
+<div *ngIf="isValid;else other_content">
+    content here ...
+</div>
+
+<ng-template #other_content>other content here...</ng-template>
+```
+
 
 ### 插值语法 
 插值  { {} } 会把属性的值作为文本渲染出来
