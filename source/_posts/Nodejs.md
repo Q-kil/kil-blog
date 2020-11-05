@@ -51,6 +51,11 @@ path <string> | <Buffer> | <URL>
 返回: <boolean>
 如果路径存在，则返回 true，否则返回 false。
 
+## path
+### posix
+path.posix 返回POSIX(Mac/Linux)系统的path执行
+返回的对象总会按照POSIX(Mac/Linux)的方式处理路径。
+
 
 # 升级
 ## 使用npm安装全局n模块

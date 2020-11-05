@@ -268,6 +268,49 @@ console.log('segs', segs);
 forEach 不能中断循环（使用break或者return）。
 
 return 必须用在方法里面
+### for or
+#### 跳过本次循环
+``` js
+const array = [1, 2, 3, 4, 5];
+
+for (const item of array) {
+  if(item == 3) continue;
+  console.log('item: ', item);
+}
+item:  1
+item:  2
+item:  4
+item:  5
+```
+
+#### 终止循环
+``` js
+const array = [1, 2, 3, 4, 5];
+
+for (const item of array) {
+  if(item == 3) return; // break
+  console.log('item: ', item);
+}
+```
+
+### forEach
+``` js
+array.forEach(item => {
+  if(item == 3) break;//continue //SyntaxError: Illegal break statement
+  console.log('item: ', item);
+});
+```
+
+``` js
+array.forEach(item => {
+  if(item == 3) return;
+  console.log('item: ', item);
+});
+item:  1
+item:  2
+item:  4
+item:  5
+```
 
 ## reduce
 reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。

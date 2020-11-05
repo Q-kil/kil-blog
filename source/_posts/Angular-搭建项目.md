@@ -323,3 +323,15 @@ ng-container 最后不现实，省了一层div
 ## router
 ### params
 
+
+# CMS
+## dialog
+``` html
+<nz-modal [(nzVisible)]="banIsVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()">
+  <p>Content one</p>
+  <p>Content two</p>
+  <p>Content three</p>
+  <p>Content three</p>
+</nz-modal>
+```
