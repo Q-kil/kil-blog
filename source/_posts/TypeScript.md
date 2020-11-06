@@ -22,6 +22,9 @@ tsc hello.ts
 node hello.js
 ```
 
+## 参数
+-p FILE OR DIRECTORY, --project FILE OR DIRECTORY  Compile the project given the path to its configuration file, or to a folder with a 'tsconfig.json'.
+
 
 # learn
 [教程](https://ts.xcatliu.com/)

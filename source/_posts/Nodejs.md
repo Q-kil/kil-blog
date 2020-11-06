@@ -26,10 +26,39 @@ JavaScript的服务器版本
 
 `{% asset_img middle.png %}`
 
-## npm
+# npm
 npm —— nodejs package manager
 cnpm —— 企业npm
 yarn —— Facebook
+
+## 包
+### rimraf
+The UNIX command rm -rf for node.
+
+### npm-run-all
+A CLI tool to run multiple npm-scripts in parallel or sequential.
+
+Both run-s and run-p are shorthand commands. run-s is for sequential, run-p is for parallel. We can make simple plans with those commands.
+
+### wait-on
+wait-on is a cross-platform command line utility which will wait for files, ports, sockets, and http(s) resources to become available (or not available using reverse mode)
+
+```
+wait-on file1 && NEXT_CMD # wait for file1, then exec NEXT_CMD 
+wait-on f1 f2 && NEXT_CMD # wait for both f1 and f2, the exec NEXT_CMD 
+wait-on http://localhost:8000/foo && NEXT_CMD # wait for http 2XX HEAD 
+wait-on https://myserver/foo && NEXT_CMD # wait for https 2XX HEAD 
+wait-on http-get://localhost:8000/foo && NEXT_CMD # wait for http 2XX GET 
+wait-on https-get://myserver/foo && NEXT_CMD # wait for https 2XX GET 
+wait-on tcp:4000 && NEXT_CMD # wait for service to listen on a TCP port 
+wait-on socket:/path/mysock # wait for service to listen on domain socket 
+wait-on http://unix:/var/SOCKPATH:/a/foo # wait for http HEAD on domain socket 
+wait-on http-get://unix:/var/SOCKPATH:/a/foo # wait for http GET on domain socket
+```
+
+``` json
+"electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
+```
 
 # 指令
 npm 查看安装了哪些包
@@ -52,9 +81,18 @@ path <string> | <Buffer> | <URL>
 如果路径存在，则返回 true，否则返回 false。
 
 ## path
+path.resolve
+方法会把一个路径或路径片段的序列解析为一个绝对路径。
+
+
 ### posix
 path.posix 返回POSIX(Mac/Linux)系统的path执行
 返回的对象总会按照POSIX(Mac/Linux)的方式处理路径。
+
+## os操作系统
+### os.homedir()
+返回当前用户的主目录的字符串路径。
+
 
 
 # 升级
@@ -140,6 +178,38 @@ server.use(async ctx => {
 ```
 
 # npm
+## script
+npm 允许在package.json文件里面，使用scripts字段定义脚本命令。
+
+### 传参
+--
+
+### 执行顺序
+如果是并行执行（即同时的平行执行），可以使用&符号。
+$ npm run script1.js & npm run script2.js
+如果是继发执行（即只有前一个任务成功，才执行下一个任务），可以使用&&符号。
+$ npm run script1.js && npm run script2.js
+
+### 钩子
+npm 脚本有pre和post两个钩子。举例来说，build脚本命令的钩子就是prebuild和postbuild。
+
+"prebuild": "echo I run before the build script",
+"build": "cross-env NODE_ENV=production webpack",
+"postbuild": "echo I run after the build script"
+
+用户执行npm run build的时候，会自动按照下面的顺序执行。
+npm run prebuild && npm run build && npm run postbuild
+
+### 简写形式
+四个常用的 npm 脚本有简写形式。
+
+npm start是npm run start
+npm stop是npm run stop的简写
+npm test是npm run test的简写
+npm restart是npm run stop && npm run restart && npm run start的简写
+
+
+
 ## electron
 ### 安装慢
 ```
