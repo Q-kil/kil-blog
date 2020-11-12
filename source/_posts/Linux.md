@@ -76,6 +76,8 @@ $ wq!
 查找历史指令
 ``` BASH
 history |grep curl
+
+pm2 logs | grep -i "KEYWORD"
 ```
 
 查看文件安装路径
