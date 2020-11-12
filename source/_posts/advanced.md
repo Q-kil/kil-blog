@@ -395,6 +395,14 @@ MVC MVVM
 attribute： 强调描述性
 property:  强调从属关系
 
+## JSX
+react
+
+### 安装
+jsx是babel的插件
+
+## parser
+vue
 
 
 
