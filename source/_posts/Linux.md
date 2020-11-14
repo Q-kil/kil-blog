@@ -132,7 +132,19 @@ $ echo $SHELL
 /bin/zsh
 ```
 
-色彩皮肤
+查看文件大小
+当前目录所有文件大小
+ls -lht
+
+当前文件夹下所有文件（或某个文件）对应大小
+du -sh *
+
+反向列示文件内容
+```
+ubuntu@pixelpai-devel:/var/log/filebeat$ tac web_combined.log | grep 'test00'
+```
+
+### 色彩皮肤
 ``` zsh
 cat ~/.zshrc
 plugins=(
