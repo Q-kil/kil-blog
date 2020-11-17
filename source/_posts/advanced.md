@@ -406,8 +406,61 @@ vue
 
 
 
+# 工具链
+覆盖前端开发的各个环节
+所有工具的开端就是脚手架
+
+generator: 脚手架
+
+## yeoman
+通过命令行去跟用户交互
+
+### 命令行交互
+``` js
+const answers = await this.prompt([
+  {
+    type: "input",
+    name: "name",
+    message: "Your project name",
+    default: this.appname
+  },
+  {
+    type: 'confirm',
+    name: 'cool',
+    message: 'Would you like to enable the Cool Feature?'
+  }
+]);
+this.log('app name', answers.name);
+this.log('cool feature', answers.cool);
+```
+
+### 新建文件
+``` js
+this.fs.copyTpl(
+  this.templatePath('t.html'),
+  this.destinationPath('public/index.html'),
+  { title: 'Templating with Yeoman' }
+)
+```
+
+### initPackage
+``` js
+const pkgJson = {
+  devDependencies: {
+    eslint: '^3.15.0'
+  },
+  dependencies: {
+    react: '^16.2.0'
+  }
+};
+
+this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
+this.npmInstall();
+```
+
 
 
 [跳转到本文HTML](#HTML)
 [跳转到本文算法](#算法)
 [跳转到本文组件化](#组件化)
+[跳转到本文工具链](#工具链)

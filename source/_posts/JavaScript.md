@@ -199,6 +199,14 @@ yyyy-MM-dd HH:mm:ss
 毫秒
 moment().valueOf() 
 
+### 一天的开始和结束
+``` js
+let zero = new Date(new Date(result[0]).toLocaleDateString()).getTime();
+console.log('00:00', zero);
+let end = new Date(new Date(result[1]).toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1;
+console.log('59:59', end);
+```
+
 # 待掌握
 ## 对象拷贝
 ### 浅拷贝
