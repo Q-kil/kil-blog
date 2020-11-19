@@ -313,3 +313,8 @@ git commit -m "update submodule"      //这里的提交应该是更新commit id
 ``` zsh
 $ git submodule add https://github.com/maonx/vimwiki-assets.git
 ```
+
+## 初始化
+``` zsh
+$ git submodule update --init
+```
