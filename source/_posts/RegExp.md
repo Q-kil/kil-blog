@@ -29,10 +29,8 @@ re.test(str) => boolean
 
 ``` js
 let str = 'shfaAdsd';
-
 // let re = new RegExp('a', 'i');
 let re = /a/i;
-
 alert(str.search(re));
 ```
 
