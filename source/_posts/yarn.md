@@ -73,6 +73,11 @@ lrwxr-xr-x    1 niekaifa  staff     42  8  3 16:41 game-capsule -> ../../../../.
 yarn unlink game-core
 ```
 
+## 查看link
+``` zsh
+ls -l node_modules | grep ^l
+```
+
 # 版本
 版本好自动 + 1
 yarn version --major

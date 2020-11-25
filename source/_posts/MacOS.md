@@ -176,3 +176,6 @@ sudo purge
 # 快捷键
 ## 显示隐藏文件
 shift + command + .
+
+# 清理mac
+Finder>前往>资源库（按alt显示）
