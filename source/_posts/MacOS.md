@@ -179,3 +179,24 @@ shift + command + .
 
 # 清理mac
 Finder>前往>资源库（按alt显示）
+
+# Xcode
+## 问题
+## iPhone is not available. Please reconnect the device
+Before you debug with iPhone, follow this mapping table about the version of Xcode and iOS：
+
+Xcode 12.2 → iOS 14.2
+
+Xcode 12.1 → iOS 14.1
+
+Xcode 12 → iOS 14
+
+Xcode 11.7 → iOS 13.7
+
+Xcode 11.6 → iOS 13.6
+
+Xcode 11.5 → iOS 13.5
+
+Xcode 11.4 → iOS 13.4
+
+Download at https://developer.apple.com/download/more/.
