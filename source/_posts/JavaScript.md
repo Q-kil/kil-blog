@@ -195,6 +195,9 @@ yyyy-MM-dd HH:mm:ss
 顺便说下HH为什么大写，是为了区分 12小时制与 24小时制。
 小写的h是12小时制，大写的H是24小时制。
 
+时间戳
+new Date().getTime()
+
 ### moment
 毫秒
 moment().valueOf() 

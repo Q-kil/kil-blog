@@ -237,7 +237,10 @@ VS Code 会在代码的右侧，默认显示缩略图。你可以在设置项里
 
 ### 保存代码后，是否立即格式化
 保存代码后，默认不会立即进行代码的格式化。你可以在设置项里搜索editor.formatOnSave查看该配置项：
-
+setting.json
+``` json
+"editor.formatOnSave": true
+```
 
 ## VS Code 设置-高级进阶
 ### 文件对比
