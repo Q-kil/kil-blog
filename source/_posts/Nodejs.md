@@ -100,14 +100,23 @@ path.posix 返回POSIX(Mac/Linux)系统的path执行
 npm install -g n
 
 ## 使用n模块升级node
-升级到稳定版
+### 升级到稳定版
 sudo n stable
 
 安装成功 node -v
 
+### 最新版
+n latest
+
+
 ## 更新全局安装包
 npm update -g jshint
 
+设置环境变量
+To reset the command location hash either start a new shell, or execute PATH="$PATH"
+PATH="$PATH"
+root@VM-0-4-ubuntu:~# node --version
+v15.3.0
 
 # 模块系统
 ## 定义模块
