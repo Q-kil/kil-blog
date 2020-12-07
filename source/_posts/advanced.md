@@ -458,9 +458,18 @@ this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
 this.npmInstall();
 ```
 
+# 发布系统
+包含：
+线上服务系统（用户使用）
+程序员发布系统
+发布工具（命令行工具）
+
+
+
 
 
 [跳转到本文HTML](#HTML)
 [跳转到本文算法](#算法)
 [跳转到本文组件化](#组件化)
 [跳转到本文工具链](#工具链)
+[跳转到本文发布系统](#发布系统)

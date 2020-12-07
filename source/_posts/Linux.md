@@ -213,7 +213,7 @@ kaifa.in.		16478	IN	A	209.141.38.71
 ```
 
 ## SSH
-### key
+### key 密钥
 查看是否有key
 ``` BASH
 $ cd ~/.ssh && ls
