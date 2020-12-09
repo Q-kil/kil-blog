@@ -22,16 +22,6 @@ cordova platform
 cordova run android
 ```
 
-## add plugin
-```
-$ cordova plugin add <path to plugin folder>
-```
-
-## remove plugin
-```
-$ cordova plugin rm cordova-plugin-dispaly-cutout
-```
-
 ## 环境设置
 error
 ``` bash
@@ -77,6 +67,23 @@ $ vim gradle.properties
 代理 ，关闭。就可以了
 
 
+# plugin
+## add plugin
+```
+$ cordova plugin add <path to plugin folder>
+```
+
+## remove plugin
+```
+$ cordova plugin rm cordova-plugin-dispaly-cutout
+```
+
+## 键盘高度
+
+
+
+
+
 # ios
 
 ## run
@@ -112,6 +119,19 @@ default:意思是app可以在四个方向随意旋转。
 portrait：纵向
 landscape：横向
 
+## 全屏
+``` xml
+<platform name="ios">
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+    <preference name="AutoHideSplashScreen" value="true"/>
+    <edit-config file="*-Info.plist" mode="merge" target="UIStatusBarHidden">
+      <true/>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="UIViewControllerBasedStatusBarAppearance">
+      <false/>
+    </edit-config>
+```
 
 ## build
 ### 本机测试
@@ -151,6 +171,7 @@ grep -r UIWebView .
 删除 platforms/    plugins/ 文件
 
 ## 问题
+### webView
 build ios 搞了两周。seven 几分钟 跑起来
 搞搞时间很快就没了
 cordova 文档
@@ -183,4 +204,15 @@ build 分为两步：prepare + compile
 <preference name="WKWebViewOnly" value="true" />
 ```
 
+### allow-navigation not set
+Internal navigation rejected: <allow-navigation not set> in Cordova on iOS
+解决办法：
+<allow-navigation href="*" /> 
+
+### doc.find
+edit-config for ios usage descriptions: doc.find is not a function
+解决办法：
+cordova platform rm ios
+cordova platform add ios
+cordova prepare
 
