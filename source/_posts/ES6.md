@@ -329,6 +329,9 @@ let array = [1,2,1,4,5,3];
 let newArray = [...new Set(array)]     // [1, 2, 4, 5, 3]
 ```
 
+lodash 方法
+_.uniq(repeatParts);
+
 # 字符串
 ## 多了两个新方法
 `startsWith`
