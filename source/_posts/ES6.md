@@ -198,6 +198,16 @@ s.split("").reverse().join("");
 [...s].reverse().join("");
 ```
 
+#### editor例子
+```js
+    console.log('keyword', keyword);
+    console.log('keyword1', {keyword});
+    console.log('keyword1', {...(keyword && { keyword })});
+keyword undefined
+suit.service.ts:29 keyword1 {keyword: undefined}
+suit.service.ts:30 keyword1 {}
+```
+
 ### json展开
 ``` js
 let json = {a: 1, b: 2};
