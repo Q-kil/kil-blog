@@ -999,6 +999,11 @@ import * as mod1 from './mod1'; (*代表引入所有内容, 取名mod1, './mod1.
 ./ 可加，可不加； webpack 是用node写的，要遵循node基本约定，加上
 /* 浏览器不认
 
+## import和require
+require 是赋值过程，其实require的结果就是对象、数字、字符串、函数等，再把结果赋值给某个变量。它是普通的值拷贝传递。
+import 是解构过程。使用import导入模块的属性或者方法是引用传递。且import是read-only的，值是单向传递的。default是ES6 模块化所独有的关键字，export default {} 输出默认的接口对象，如果没有命名，则在import时可以自定义一个名称用来关联这个对象
+
+
 # Set和Map数据结构
 ## Set
 ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。

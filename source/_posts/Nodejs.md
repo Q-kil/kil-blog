@@ -281,5 +281,13 @@ updated 1 package in 27.249s
   ]
 }
 
+# 最简单的服务器
+``` js
+const http = require('http');
 
+http.createServer(function(req, res) {
+  console.log('req', req);
+  res.end('Hello world');
+}).listen(8082);
+```
 
