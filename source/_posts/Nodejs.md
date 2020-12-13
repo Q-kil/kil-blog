@@ -94,7 +94,6 @@ path.posix 返回POSIX(Mac/Linux)系统的path执行
 返回当前用户的主目录的字符串路径。
 
 
-
 # 升级
 ## 使用npm安装全局n模块
 npm install -g n
@@ -281,5 +280,13 @@ updated 1 package in 27.249s
   ]
 }
 
+# 最简单的服务器
+``` js
+const http = require('http');
 
+http.createServer(function(req, res) {
+  console.log('req', req);
+  res.end('Hello world');
+}).listen(8082);
+```
 

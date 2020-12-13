@@ -162,7 +162,6 @@ let show = a=> a*2
 箭头函数不能换行
 
 总结：
-
 箭头函数的 this 永远指向其上下文的  this ，任何方法都改变不了其指向，如 call() ,  bind() ,  apply()
 普通函数的this指向调用它的那个对象
 
@@ -196,6 +195,16 @@ let b = {b: 2, ...a}; // {b: 2, a: 1}
 s.split("").reverse().join("");
 
 [...s].reverse().join("");
+```
+
+#### editor例子
+```js
+    console.log('keyword', keyword);
+    console.log('keyword1', {keyword});
+    console.log('keyword1', {...(keyword && { keyword })});
+keyword undefined
+suit.service.ts:29 keyword1 {keyword: undefined}
+suit.service.ts:30 keyword1 {}
 ```
 
 ### json展开
@@ -328,6 +337,9 @@ console.log(unique(arr))
 let array = [1,2,1,4,5,3];
 let newArray = [...new Set(array)]     // [1, 2, 4, 5, 3]
 ```
+
+lodash 方法
+_.uniq(repeatParts);
 
 # 字符串
 ## 多了两个新方法
@@ -986,6 +998,11 @@ ES6模块系统 需要借助 webpack
 import * as mod1 from './mod1'; (*代表引入所有内容, 取名mod1, './mod1.js' js可以省略 )
 ./ 可加，可不加； webpack 是用node写的，要遵循node基本约定，加上
 /* 浏览器不认
+
+## import和require
+require 是赋值过程，其实require的结果就是对象、数字、字符串、函数等，再把结果赋值给某个变量。它是普通的值拷贝传递。
+import 是解构过程。使用import导入模块的属性或者方法是引用传递。且import是read-only的，值是单向传递的。default是ES6 模块化所独有的关键字，export default {} 输出默认的接口对象，如果没有命名，则在import时可以自定义一个名称用来关联这个对象
+
 
 # Set和Map数据结构
 ## Set
