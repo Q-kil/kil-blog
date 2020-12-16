@@ -46,6 +46,9 @@ setInterval() 方法重复调用一个函数或执行一个代码段，在每次
 ## 对象添加健值对
 object[key] = value
 
+### 对象长度
+Object.getOwnPropertyNames(op_def.AvatarSlot).length
+
 ## url 解码
 decodeURIComponent('https%3A%2F%2Fosd-alpha.tooqing.com');
 
@@ -154,6 +157,17 @@ document代表的是整个文档(对于一个网页来说包括整个网页结�
 document.body是整个文档DOM节点树里的body节点，网页中即为body标签元素。
 
 ### Element.clientHeight
+
+### execCommand
+当一个HTML文档切换到设计模式时，document暴露 execCommand 方法，该方法允许运行命令来操纵可编辑内容区域的元素。
+bool = document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
+返回值
+一个 Boolean ，如果是 false 则表示操作不被支持或未被启用。
+copy
+拷贝当前选中内容到剪贴板。启用这个功能的条件因浏览器不同而不同，而且不同时期，其启用条件也不尽相同。使用之前请检查浏览器兼容表，以确定是否可用。
+## element
+### 设置属性
+Element.setAttribute()
 
 ## 操作类
 Element.classList 是一个只读属性，返回一个元素的类属性的实时 DOMTokenList 集合。
