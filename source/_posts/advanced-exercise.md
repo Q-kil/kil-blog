@@ -87,6 +87,13 @@ x = parseInt(x, 2); //2进制转10进制
 x = x.toString(16); //10进制转16进制
 ```
 
+## 十进制转2进制
+``` js
+let b = 4;
+b.toString(2);
+"100"
+```
+
 ## 解析回来
 用decodeURI/decodeURIComponent就可以了。
 ``` js
