@@ -1,7 +1,11 @@
 ---
 title: ios
 date: 2020-12-16 14:17:02
+categorice:
+- ios
 tags:
+- ios
+- OC
 ---
 
 # basis
@@ -37,3 +41,13 @@ https://appicon.co/#app-icon
 设置：window > Devices and Simulators
 勾选上：Connect via network
 
+
+# OC
+Objective-Objective-C是C语言的严格超集
+
+## 扩展名
+| 扩展名 | 内容类型  |
+| :--- | :--- |
+| .h | 头文件。头文件包含类，类型，函数和常数的声明。 |
+| .m | 源代码文件。这是典型的源代码文件扩展名，可以包含 Objective-C 和 C 代码。 |
+| .mm | 源代码文件。带有这种扩展名的源代码文件，除了可以包含Objective-C和C代码以外还可以包含C++代码。仅在你的Objective-C代码中确实需要使用C++类或者特性的时候才用这种扩展名。 |

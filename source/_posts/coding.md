@@ -50,3 +50,7 @@ w400 => width: 400px;
 
 ## html
 ul>li
+
+# other
+中国人的探索精神没有
+`{% asset_img explore.png%}`
