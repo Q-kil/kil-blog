@@ -83,7 +83,6 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 
 
 
-
 # ios
 
 ## run
@@ -216,3 +215,8 @@ cordova platform rm ios
 cordova platform add ios
 cordova prepare
 
+### 
+XMLHttpRequest cannot load file://
+Failed to load resource: The requested URL was not found on this server.  zh.json
+解决办法：
+https://github.com/AraHovakimyan/cordova-plugin-wkwebviewxhrfix
