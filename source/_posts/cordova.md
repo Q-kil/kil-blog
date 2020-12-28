@@ -62,6 +62,10 @@ curl https://dl.google.com/dl/android/maven2/com/android/support/support-v4/mave
 没有问题
 
 把zsh，git，
+
+## 清除PhoneGap缓存
+在Xcode，cmd + shift + k中清理项目
+
 # niekaifa @ niekaifadeMacBook-Pro in ~/.gradle [20:36:42]
 $ vim gradle.properties
 代理 ，关闭。就可以了
