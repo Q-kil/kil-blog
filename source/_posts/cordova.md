@@ -85,7 +85,9 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 ## 键盘高度
 
 
-
+## ios隐藏状态栏
+https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
+cordova-plugin-hidden-statusbar-overlay
 
 # ios
 
@@ -219,7 +221,7 @@ cordova platform rm ios
 cordova platform add ios
 cordova prepare
 
-### 
+### file://
 XMLHttpRequest cannot load file://
 Failed to load resource: The requested URL was not found on this server.  zh.json
 解决办法：

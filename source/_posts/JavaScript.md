@@ -126,7 +126,7 @@ document.body.clientHeight
 document.body.clientWidth
 ```
 
-### 屏幕的高度和宽度（屏幕分辨率）
+### 屏幕的高度和宽度（屏幕像素）
 获取整个屏幕的高\宽度
 这是一个固定值
 ``` js
