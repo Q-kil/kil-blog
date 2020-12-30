@@ -60,6 +60,16 @@ wait-on http-get://unix:/var/SOCKPATH:/a/foo # wait for http GET on domain socke
 "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
 ```
 
+## npx
+### 检查版本
+查看本项目依赖版本
+当前项目的路径去找：node_modules
+``` zsh
+$ npx webpack -v
+webpack 5.11.1
+webpack-cli 4.3.0
+```
+
 # 指令
 npm 查看安装了哪些包
 ``` BASH
