@@ -19,6 +19,10 @@ sudo apt-get update
 sudo apt-get install git
 ```
 
+## merge
+cms垒哥没有merge 到 dev
+seven：merge 本地；本地dev 分支需要拉一下
+
 # 配置
 ### ssh 密钥
 ```
