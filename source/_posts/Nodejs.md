@@ -31,6 +31,14 @@ npm —— nodejs package manager
 cnpm —— 企业npm
 yarn —— Facebook
 
+## config
+[config](https://docs.npmjs.com/cli/v6/commands/npm-config)
+list
+npm config list
+
+set
+npm config set key value
+
 ## 包
 ### rimraf
 The UNIX command rm -rf for node.
@@ -289,6 +297,9 @@ updated 1 package in 27.249s
       }
   ]
 }
+
+## 本地和线上依赖版本统一
+package-lock.json
 
 # 最简单的服务器
 ``` js

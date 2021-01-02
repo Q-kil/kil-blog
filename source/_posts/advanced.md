@@ -464,6 +464,12 @@ this.npmInstall();
 程序员发布系统
 发布工具（命令行工具）
 
+## 服务器
+编写代码部署到服务器上
+把一个Express服务器，部署到线上
+
+### 初始化一个项目
+npx generator
 ## 客户端&服务端
 ### 处理数据是流
 Content-Type: HTTP RFC标准

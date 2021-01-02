@@ -63,8 +63,8 @@ F1 (键盘快捷方式按键设置)
 | Command + Down | 跳转至文件结尾  |
 | Ctrl + Home | 光标移动到文件内容开头  |
 | Ctrl + End | 光标移动到文件内容结尾  |
-| Alt + f | 光标移动到一个单词前  |
-| Alt + b | 光标移动到一个单词后  |
+| Alt + f | 光标移动到一个单词前 win同 |
+| Alt + b | 光标移动到一个单词后 win同 |
 | Ctrl + T | 光标移动Terminal  |
 | Command + 1 | 光标移动到Editor  |
 
@@ -177,6 +177,7 @@ keybindings.json
 
 ## 命令面板
 Mac用户按住快捷键 <span class="custom_red">Cmd+Shift+P<span>
+Win用户按住快捷键 <span class="custom_red">F1<span>
 
 ### 字体设置
 在命令面板输入“字体”，可以进行字体的设置
@@ -372,6 +373,8 @@ Code Time插件：记录编程时间，统计代码行数。摸鱼必备。
 ### JS-CSS-HTML Formatter
 代码格式化插件
 win格式化快捷键：Alt + Shift + F
+
+保存自动格式化
 
 ### angular support
 Angular ctrl+鼠标左键 点击html中的方法跳到ts的方法上

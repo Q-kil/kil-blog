@@ -147,6 +147,9 @@ ubuntu@pixelpai-devel:/var/log/filebeat$ tac web_combined.log | grep 'test00'
 删除文件下所有
 rm ./*
 
+打开当前文件
+open .
+
 ### 色彩皮肤
 ``` zsh
 cat ~/.zshrc
