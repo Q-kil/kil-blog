@@ -464,15 +464,44 @@ this.npmInstall();
 程序员发布系统
 发布工具（命令行工具）
 
-## 服务器
+## 线上服务器
 编写代码部署到服务器上
 把一个Express服务器，部署到线上
 
 ### 初始化一个项目
-npx generator
-## 客户端&服务端
-### 处理数据是流
+npx express-generator
+
+## 发布服务
+发布服务器和发布工具构成
+
+### publish-server
+向真实的server，copy自己的文件
+向
+
+#### 搭建
+可以使用express和koa框架
+这里使用http api
+
+request和response都是流式处理
+
+把文件通过HTTP的方式，传给我们的发布的服务器
+publish-tool ——> publish-server
+
+#### 了解Node里面的流
+第一种方式是可读的流：用nodejs代码可以从流里面获取数据
+[node流](https://nodejs.org/docs/latest-v13.x/api/stream.html#stream_class_stream_writable)
+
+秒级的HTTP请求 与 工具型request传输 几分钟
+### publish-tool
 Content-Type: HTTP RFC标准
+
+以package.json为例，学习流式传输
+[node pipe 流](https://nodejs.org/docs/latest-v13.x/api/stream.html#stream_class_stream_readable)
+
+### 多文件压缩包传输
+npm包
+archiver
+unzipper
 
 ## 三个项目
 发布工具

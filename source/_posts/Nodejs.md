@@ -68,6 +68,9 @@ wait-on http-get://unix:/var/SOCKPATH:/a/foo # wait for http GET on domain socke
 "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
 ```
 
+### archiver
+压缩文件
+
 ## npx
 ### 检查版本
 查看本项目依赖版本
