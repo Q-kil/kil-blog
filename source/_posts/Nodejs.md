@@ -70,6 +70,8 @@ wait-on http-get://unix:/var/SOCKPATH:/a/foo # wait for http GET on domain socke
 
 ### class-transformer
 普通对象是 `Object`类的实例对象。当使用 `{}`符号创建时，它们又被叫做 字面量 对象。类对象是具有自己定义的构造函数，属性和方法的类的实例。通常，您通过“类”表示法定义它们。
+### archiver
+压缩文件
 
 ## npx
 ### 检查版本
