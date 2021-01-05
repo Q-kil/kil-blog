@@ -266,6 +266,9 @@ console.log('59:59', end);
 // -13
 ```
 
+### 或运算符
+&
+
 ## Base64
 ``` js
 let encodedData = window.btoa("Hello, world"); // 编码
