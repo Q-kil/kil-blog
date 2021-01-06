@@ -195,6 +195,7 @@ $ git remote show origin
 ```
 
 ### git remote prune origin
+prune 删除
 那些远程仓库已经不存在的分支，根据提示，使用 git remote prune origin 命令：
 ``` zsh
 $ git remote prune origin
