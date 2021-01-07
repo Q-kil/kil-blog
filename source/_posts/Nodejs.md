@@ -26,6 +26,9 @@ JavaScript的服务器版本
 
 `{% asset_img middle.png %}`
 
+# nvm
+node 版本管理器
+
 # npm
 npm —— nodejs package manager
 cnpm —— 企业npm

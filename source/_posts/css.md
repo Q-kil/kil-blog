@@ -62,7 +62,9 @@ background: linear-gradient(#e66465, #9198e5);
 background: linear-gradient(to right, #3494e6, #ec6ead);
 ```
 
-
+## display:flex
+### justify-content: space-between;
+均匀排列每个元素，首个元素放置于起点，末尾元素放置于终点
 
 
 ## 移动端input 内阴影

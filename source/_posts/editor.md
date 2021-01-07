@@ -45,6 +45,26 @@ private ref: DynamicDialogRef,
 this.ref.close(1);
 ```
 
+# idea
+## 画布鼠标
+1、点击物件时，更新选择工具
+this.updateSelectedTool(ToolBtnsEvent.BRUSH);
+
+
+# data
+``` ts
+export default class Metadata {
+  private _id: number = Helpers.genId();
+  private _name: string;
+  private _parent: number = 0;
+  private _sn: string = "";
+  private _version: string = "1";
+  private _is_moss?: boolean;
+  protected _type = 0;
+  protected _cap: Capsule;
+}  
+```
+
 # code
 ## 会员对应特权
 ``` ts
