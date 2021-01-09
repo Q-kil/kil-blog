@@ -309,6 +309,7 @@ case ToolBtnsEvent.SAVEELEMENT:
     const targetDisplayTextureFile = `${nextVersionPath}/${this.component.id}.png`;
     const targetDisplayDataFile = `${nextVersionPath}/${this.component.id}.json`;
 
+    // 版本下所有文件路径
     const files = scanFolderSync(path.join(LOCAL_HOME_PATH, currentVersionPath));
 
     for (const file of files) {
@@ -317,6 +318,7 @@ case ToolBtnsEvent.SAVEELEMENT:
           LOCAL_HOME_PATH,
           nextVersionPath,
           "scripts",
+          // 返回 path 的最后一部分; 文件.html
           path.basename(file)
         );
         fsa.ensureFileSync(outputFilePath);
@@ -333,6 +335,7 @@ case ToolBtnsEvent.SAVEELEMENT:
     this.elementNode.animations.display.texturePath = targetDisplayTextureFile;
     this.elementNode.animations.display.dataPath = targetDisplayDataFile;
 
+    // 序列化
     const elementBuffer = this.elementConfig.serialize();
     const configPath = `${nextVersionPath}/${this.component.id}.pi`;
     tasks.push(saveFile(path.posix.join(LOCAL_HOME_PATH, configPath), elementBuffer));
@@ -366,6 +369,7 @@ case ToolBtnsEvent.SAVEELEMENT:
     );
   }
 
+  // 存疑：递归使用同一变量{files}，有引发死循环的可能
   export function scanFolderSync(targetPath: string, absolute: boolean = true): string[] {
     let files = [];
 

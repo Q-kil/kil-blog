@@ -76,6 +76,15 @@ wait-on http-get://unix:/var/SOCKPATH:/a/foo # wait for http GET on domain socke
 ### archiver
 压缩文件
 
+### fs-extra
+#### ensureFile 创建文件
+确保文件存在。如果被请求的文件的目录不存在,创建这些目录。如果文件已经存在,它不修改。
+异步:
+createFile()
+同步:
+createFileSync(),ensureFileSync()
+
+
 ## npx
 ### 检查版本
 查看本项目依赖版本
