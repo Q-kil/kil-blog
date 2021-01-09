@@ -323,3 +323,11 @@ $ git submodule add https://github.com/maonx/vimwiki-assets.git
 ``` zsh
 $ git submodule update --init
 ```
+
+# 问题
+## 提交代码，但github上的绿格子没有变绿
+检查下在本仓库上的帐号
+
+## 警告
+We found a potential security vulnerability in one of your dependencies
+github上删除 package-lock.json

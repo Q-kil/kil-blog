@@ -106,6 +106,23 @@ path <string> | <Buffer> | <URL>
 返回: <boolean>
 如果路径存在，则返回 true，否则返回 false。
 
+### stat
+1.异步版：fs.stat(path,callback):
+    path是一个表示路径的字符串,callback接收两个参数(err,stats),其中stats就是fs.stats的一个实例；
+  
+2.同步版：fs.statSync(path)
+   只接收一个path变量，fs.statSync(path)其实是一个fs.stats的一个实例；
+
+3.再来看fs.stats有以下方法:
+    stats.isFile()
+    stats.isDirectory()
+    stats.isBlockDevice()
+    stats.isCharacterDevice()
+    stats.isSymbolicLink() (only valid with fs.lstat())
+    stats.isFIFO()
+    stats.isSocket()
+
+
 ## path
 path.resolve
 方法会把一个路径或路径片段的序列解析为一个绝对路径。

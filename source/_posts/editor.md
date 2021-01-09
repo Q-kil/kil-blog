@@ -194,3 +194,222 @@ export class Game implements IGame {
   }
 }  
 ```
+
+## HostListener
+``` ts
+import { HostListener } from "@angular/core"
+
+  @HostListener("mouseover", ["$event"])
+  mouseover(event: KeyboardEvent) {
+    if ((event.srcElement as any).localName === "input") {
+      return;
+    }
+    switch (this.editorService.selectedTool) {
+      case ToolBtnsEvent.MOVE:
+        document.body.style.cursor = "url('assets/icon/cursor-move.png'), auto";
+        break;
+      case ToolBtnsEvent.SELECT:
+        document.body.style.cursor = "url('assets/icon/cursor-select.png'), auto";
+        break;
+      case ToolBtnsEvent.BRUSH:
+        document.body.style.cursor = "url('assets/icon/cursor-draw.png'), auto";
+        break;
+      case ToolBtnsEvent.ERASER:
+        document.body.style.cursor = "url('assets/icon/cursor-eraser.png'), auto";
+        break;
+      case ToolBtnsEvent.GRABID:
+        document.body.style.cursor = "grab";
+        break;
+    }
+  }
+
+  @HostListener("mouseout", ["$event"])
+  mouseout(event: KeyboardEvent) {
+    if ((event.srcElement as any).localName === "input") {
+      return;
+    }
+    document.body.style.cursor = "default";
+  }
+```  
+
+## 修改名字
+``` html
+<div>
+  <ng-container *ngIf="isEditor; else editName">
+    <input
+      class="name-input"
+      type="text"
+      [(ngModel)]="elementEditorService.elementNode.name"
+      (keyup.enter)="onChangeName()"
+    />
+    <i class="pi pi-check" (click)="onChangeName()"></i>
+    <i class="pi pi-times" (click)="isEditor = false"></i>
+  </ng-container>
+  <ng-template #editName>
+    <span>{{ elementEditorService.elementNode.name }}</span>
+    <i class="pi pi-fw pi-pencil" (click)="isEditor = true"></i>
+  </ng-template>
+</div>
+```
+
+## 保存物件
+``` ts
+case ToolBtnsEvent.SAVEELEMENT:
+  // 确定版本号
+  const version = this.elementEditorService.currentVersion
+    ? this.elementEditorService.currentVersion.version
+    : "0";
+
+  const nextversion = (parseInt(version, 10) + 1).toString();
+
+  this.elementEditorService
+    .saveElement()
+    .then(() => {
+      return this.componentService.uploadComponentResource(
+        this.elementEditorService.component,
+        nextversion
+      );
+    })
+    .then(() => {
+      const newComponentResource = scanFolderSync(
+        CommonUtils.genComponentFoler(this.elementEditorService.component, nextversion),
+        false
+      );
+      return this.componentService
+        .updateComponentVersion(this.elementEditorService.component.id, {
+          version: {
+            version: nextversion,
+            resources: newComponentResource,
+          },
+        })
+        .toPromise();
+    })
+    .then(() => {
+      return this.componentService
+        .getComponent(this.elementEditorService.component.id)
+        .toPromise();
+    })
+    .then((res) => {
+      this.elementEditorService.component = (res as any).data;
+      this.componentService.setComponentListUpdate("MINE_ELEMENTNODE");
+      this.globalMessage.add("保存物件成功");
+    });
+  break;
+
+
+  public saveElement() {
+    let tasks: Promise<any>[] = [];
+
+    // 返回：haitun/ElementNode/5ff949810f8edd1155ebe347/1
+    const currentVersionPath = this.getCurrentVersionPath();
+
+    // 必须有新版本，否则七牛会有缓存问题，导致不能使用到最新版的物件
+
+    const nextVersionPath = this.getNextVersionPath();
+    const targetDisplayTextureFile = `${nextVersionPath}/${this.component.id}.png`;
+    const targetDisplayDataFile = `${nextVersionPath}/${this.component.id}.json`;
+
+    const files = scanFolderSync(path.join(LOCAL_HOME_PATH, currentVersionPath));
+
+    for (const file of files) {
+      if (T_LUA_REGEX.test(file)) {
+        const outputFilePath = path.posix.join(
+          LOCAL_HOME_PATH,
+          nextVersionPath,
+          "scripts",
+          path.basename(file)
+        );
+        fsa.ensureFileSync(outputFilePath);
+        tasks.push(copyFile(file, outputFilePath));
+      } else {
+        const outputFilePath = path.join(LOCAL_HOME_PATH, nextVersionPath, path.basename(file));
+        fsa.ensureFileSync(outputFilePath);
+        tasks.push(copyFile(file, outputFilePath));
+      }
+    }
+
+    tasks.push(this.saveThumb());
+
+    this.elementNode.animations.display.texturePath = targetDisplayTextureFile;
+    this.elementNode.animations.display.dataPath = targetDisplayDataFile;
+
+    const elementBuffer = this.elementConfig.serialize();
+    const configPath = `${nextVersionPath}/${this.component.id}.pi`;
+    tasks.push(saveFile(path.posix.join(LOCAL_HOME_PATH, configPath), elementBuffer));
+
+    return Promise.all(tasks);
+  }
+
+  private getCurrentVersionPath() {
+    // 数据库上的version || 默认
+    const currentVersion = this.component.currentVersion ||
+      _.last(this.component.versions) || { version: "1" };
+
+    return path.posix.join(
+      this.component.owner.username,
+      this.component.type,
+      this.component.id,
+      currentVersion.version
+    );
+  }
+
+  private getNextVersionPath() {
+    const currentVersion = this.component.currentVersion ||
+      _.last(this.component.versions) || { version: "0" };
+
+    const nextversion = (parseInt(currentVersion.version, 10) + 1).toString();
+    return path.posix.join(
+      this.component.owner.username,
+      this.component.type,
+      this.component.id,
+      nextversion
+    );
+  }
+
+  export function scanFolderSync(targetPath: string, absolute: boolean = true): string[] {
+    let files = [];
+
+    function _scanFolder(folderPath: string) {
+      // 读取目录的内容
+      // 返回：fileNameArray [ 'dir', 'test.js', 'test.ts' ]
+      let fileNameArray = fs.readdirSync(folderPath);
+      for (let fn of fileNameArray) {
+        let fullPath = path.posix.join(folderPath, fn);
+        let fileStats = fs.statSync(fullPath);
+        if (fileStats.isFile()) {
+          files.push(fullPath);
+        } else {
+          files = files.concat(_scanFolder(fullPath));
+        }
+      }
+      return files;
+    }
+
+    _scanFolder(targetPath);
+
+    if (absolute) {
+      return files;
+    } else {
+      return files.map((file) => file.split(`${LOCAL_HOME_PATH}/`)[1]);
+    }
+  }
+```
+
+## css
+### 继承
+``` scss
+.pixel-after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.pixel-toolbar-save::after {
+  @extend .pixel-after;
+  background: url("~assets/icon/toolbar-save.svg") center center;
+  background-size: 100%;
+}
+```
