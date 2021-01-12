@@ -145,3 +145,7 @@ const source = of(1, 2, 3, 4, 5);
 // 取第一个发出的值然后完成
 const example = source.pipe(take(1));
 ```
+
+## combineLatest
+函数签名: combineLatest(observables: ...Observable, project: function): Observable
+combineLatest 直到每个 observable 都至少发出一个值后才会发出初始值。

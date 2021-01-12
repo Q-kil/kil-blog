@@ -25,8 +25,12 @@ Vue 和 React 拿来写小程序都很快很方便，但是 Angular 要拿来做
 
 # 基础
 ## @angular/core 
-ViewChild
+### ViewChild
 { static: true }引入了该选项以支持动态创建嵌入式视图
+
+### ChangeDetectorRef
+监测页面数据变化
+angular 会在我们的组件发生变化的时候，对我们的组件执行变化检测，如果检测到我们的数据发生了变化，就会执行某些操作，如修改绑定数据的时候更新视图。这样一来，当我们的组件数据比较多的时候，angular就会有很多操作在静悄悄地进行，因此，就需要ChangeDetectorRef来实时检测数据的变化并更新视图数据
 
 # angular.cn
 ## 架构概览
