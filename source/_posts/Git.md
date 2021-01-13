@@ -319,6 +319,9 @@ git commit -m "update submodule"      //这里的提交应该是更新commit id
 $ git submodule add https://github.com/maonx/vimwiki-assets.git
 ```
 
+### 指定分支
+git submodule add -b rpc git@code.apowo.com:PixelPai/game-core.git src/game-core
+
 ## 初始化
 ``` zsh
 $ git submodule update --init

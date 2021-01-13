@@ -50,6 +50,8 @@ this.ref.close(1);
 1、点击物件时，更新选择工具
 this.updateSelectedTool(ToolBtnsEvent.BRUSH);
 
+## 动画
+elementNode -> animations -> animationData[] 
 
 # data
 ``` ts
