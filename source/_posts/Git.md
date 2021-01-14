@@ -52,6 +52,21 @@ ssh -T git@github.com
 Hi KilFront! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
+### 单项目配置
+git为不同的项目设置不同的用户名
+
+每个git项目下都会有一个隐藏的.git文件夹
+
+两种方式
+open config 命令打开，添加如下配置：
+[user]
+    name = XXX(自己的名称英文)
+    email = XXXX(邮箱)
+
+命令：
+git  config  user.name  "xxxxx"
+
+
 ### 代理
 ``` BASH
 #只对github.com

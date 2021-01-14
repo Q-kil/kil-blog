@@ -234,6 +234,26 @@ import { HostListener } from "@angular/core"
   }
 ```  
 
+### 横向滚动
+``` ts
+  @HostListener("window:mousewheel", ["$event"])
+  horizontalScroll(event) {
+    const scrollTarget = document.getElementById("frame-time");
+    scrollTarget.addEventListener("mousewheel", (e) => {
+      const detail = event.wheelDelta || event.detail;
+      const moveForwardStep = 1;
+      const moveBackStep = -1;
+      let step = 0;
+      if (detail < 0) {
+        step = moveForwardStep * 100;
+      } else {
+        step = moveBackStep * 100;
+      }
+      scrollTarget.scrollLeft += step;
+    });
+  }
+  ```
+
 ## 修改名字
 ``` html
 <div>

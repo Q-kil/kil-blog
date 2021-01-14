@@ -579,8 +579,9 @@ Vue
 - 数据响应式，dom立即改变
 
 # 其他
-第一种
+
 ## 去除ESLint
+第一种
 In the vue.config.js :
 ``` js
 module.exports = {
@@ -590,4 +591,17 @@ module.exports = {
 }
 ```
 第二种
-## 卸载webpack.json中所有eslint相关插件
+卸载webpack.json中所有eslint相关插件
+
+第三种
+.eslintrc.js
+{
+  extends: ["plugin:vue/essential"],
+  // extends: [
+  //   'plugin:vue/essential',
+  //   '@vue/standard'
+  // ],
+  parserOptions: {
+    // parser: 'babel-eslint'
+  },
+}
