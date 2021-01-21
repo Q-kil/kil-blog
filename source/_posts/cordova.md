@@ -89,7 +89,15 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
 cordova-plugin-hidden-statusbar-overlay
 
+# android
+## debug
+### chrome not inspect
+platforms > android > app > src > main > AndroidManifest.xml
+<application android:debuggable="true" >
+
 # ios
+## 发版本
+Product > Archive > Distribute App
 
 ## run
 vue dist : serve
