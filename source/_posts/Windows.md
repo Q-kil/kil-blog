@@ -23,6 +23,11 @@ dir
 type id_rsa.pub
 ```
 
+### 打开文件夹
+```
+start .
+```
+
 ## 快捷键
 <span class="custom_red">win + I</span> windows设置主页
 
