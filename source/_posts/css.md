@@ -112,6 +112,15 @@ visibility: visible
 display: flex; // 错了
 position: fixed;
 
+## 高度
+document.body.clientHeight ==> BODY对象高度
+document.documentElement.clientHeight ==> 可见区域高度
+window.innerHeight，内部的高度
+window.screen.height，用户屏幕的高度
+
+### window和document区别
+Window对象表示浏览器中打开的窗口；window对象可以省略。比如alert()、window.alert()。
+Document对象是Window对象的一部分。那么document.body 我们可以写成window.document.body；浏览器的HTML文档成为Document对象。
 
 # 适配
 ``` css

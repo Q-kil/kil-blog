@@ -102,6 +102,8 @@ Product > Archive > Distribute App
 ## run
 vue dist : serve
 
+## 缓存
+`{% asset_img cache.png%}`
 
 ## 刘海
 简单操作

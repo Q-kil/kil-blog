@@ -358,6 +358,81 @@ git rm --cached 子模块名称
 
 完成删除后，提交到仓库即可。
 
+# runner
+## 安装
+sudo curl --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64"
+给权限
+sudo chmod +x /usr/local/bin/gitlab-runner
+
+## 注册
+`{% asset_img register.png%}`
+
+Enter the GitLab instance URL (for example, https://gitlab.com/):
+https://code.apowo.com/
+Enter the registration token:
+zwE8ePU2N8Ngcwanszgq
+Enter a description for the runner:
+[niekaifadeMacBook-Pro.local]: test
+Enter tags for the runner (comma-separated):
+test
+Registering runner... succeeded                     runner=zwE8ePU2
+Enter an executor: virtualbox, docker-ssh+machine, kubernetes, custom, docker-ssh, ssh, docker+machine, docker, parallels, shell:
+shell
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded! 
+
+## 启动
+gitlab-runner install
+gitlab-runner start
+
+## ci
+``` yml
+stages:
+  - build_compiler
+  - build
+  - build_dev
+  - merge_build_test
+  - deploy
+
+
+before_script:
+  - echo "before_scipt"
+
+
+test:
+  stage:
+    build_compiler
+  tags:
+    - test
+  script:
+    - echo "test"
+```
+
+## 本地执行
+``` zsh
+$  gitlab-runner exec shell test
+Runtime platform                                    arch=amd64 os=darwin pid=58199 revision=775dd39d version=13.8.0
+Running with gitlab-runner 13.8.0 (775dd39d)
+Preparing the "shell" executor
+Using Shell executor...
+executor not supported                              job=1 project=0 referee=metrics
+Preparing environment
+Running on niekaifadeMacBook-Pro.local...
+Getting source from Git repository
+Fetching changes...
+Initialized empty Git repository in /Users/niekaifa/workspace/apowo/ci-test/builds/0/project-0/.git/
+Created fresh repository.
+Checking out bd79ba14 as master...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script
+$ echo "before_scipt"
+before_scipt
+$ echo "test"
+test
+Job succeeded
+```
+
+## 线上打tag
+
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
 检查下在本仓库上的帐号

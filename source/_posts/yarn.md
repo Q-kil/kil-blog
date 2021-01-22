@@ -7,6 +7,7 @@ tags:
 - Yarn
 ---
 
+# basic
 一、安装
 brew install yarn
 
@@ -39,6 +40,13 @@ yarn remove [package]
 安装项目依赖
 yarn
 
+cofig
+yarn config list
+
+## 代理
+yarn config set proxy http://XX
+yarn config set https-proxy http://XX
+
 
 # 源
 查看
@@ -66,6 +74,11 @@ node_modules game-capsule 出现 ↵ 字符
 ``` zsh
 $ ls -l node_modules | grep ^l
 lrwxr-xr-x    1 niekaifa  staff     42  8  3 16:41 game-capsule -> ../../../../.config/yarn/link/game-capsule
+```
+
+## module to local
+``` zsh
+link
 ```
 
 ## 取消link
