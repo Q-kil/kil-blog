@@ -829,6 +829,48 @@ travelDeeply(data);
 
 \r\n is often used in preference to \n as it displays properly on both unix and Windows.
 
+# JSON
+js的一个子集
+
+## JSON Schema
+当前后端使用 JSON 通信的时候，双方需要验证 JSON 的数据格式，比如验证 array 的长度、number 的大小、甚至于类似 object 中有某两个属性不能并存等等要求。当然这些规则都可以使用代码进行验证，但是这样写起来太繁琐了，所以为了描述并校验 JSON 的格式，JSON Schema 诞生了。
+
+### 简单例子
+``` json
+{
+    "$schema": "http://json-schema.org/draft-04/schema#", // 版本控制
+    "$id": "http://example.com/root.json", // 定义模式的URI
+    "type": "object",
+    "properties": {
+      "name":  { 
+        "type": "string",
+        "description": "......"
+      },
+      "email": { "type": "string" },
+    	"age": {
+        "type": "integer",
+        "minimum": 0,
+        "exclusiveMinimum": false,
+      },
+    	"telephone": {
+        "type": "string",
+        "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+      },
+      "price": {
+        "description": "The price of the product",
+        "type": "number",
+        "exclusiveMinimum": 0
+      }
+    },
+	"required": ["name", "email"],
+  "additionalProperties": false
+}
+```
+
+## 格式
+
+
+
 # utils
 ## 比较版本号
 ``` js
