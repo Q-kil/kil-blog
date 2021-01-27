@@ -838,30 +838,30 @@ js的一个子集
 ### 简单例子
 ``` json
 {
-    "$schema": "http://json-schema.org/draft-04/schema#", // 版本控制
-    "$id": "http://example.com/root.json", // 定义模式的URI
-    "type": "object",
-    "properties": {
-      "name":  { 
-        "type": "string",
-        "description": "......"
-      },
-      "email": { "type": "string" },
-    	"age": {
-        "type": "integer",
-        "minimum": 0,
-        "exclusiveMinimum": false,
-      },
-    	"telephone": {
-        "type": "string",
-        "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
-      },
-      "price": {
-        "description": "The price of the product",
-        "type": "number",
-        "exclusiveMinimum": 0
-      }
+  "$schema": "http://json-schema.org/draft-04/schema#", // 版本控制
+  "$id": "http://example.com/root.json", // 定义模式的URI
+  "type": "object",
+  "properties": {
+    "name":  { 
+      "type": "string",
+      "description": "......"
     },
+    "email": { "type": "string" },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "exclusiveMinimum": false,
+    },
+    "telephone": {
+      "type": "string",
+      "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+    },
+    "price": {
+      "description": "The price of the product",
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  },
 	"required": ["name", "email"],
   "additionalProperties": false
 }
