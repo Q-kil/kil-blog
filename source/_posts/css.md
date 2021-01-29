@@ -173,6 +173,9 @@ contain
 cover
 视图端口被缩放以填充设备显示。强烈建议使用 safe area inset 变量，以确保重要内容不会出现在显示之外。
 
+## input focus 边框
+style="outline:none;"属性即可去掉边框。
+
 # css3 动画
 ## transition 过渡
 石器时代
