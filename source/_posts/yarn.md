@@ -99,3 +99,9 @@ yarn version --patch
 
 https://classic.yarnpkg.com/en/docs/cli/version/
 
+# error
+## Couldn't find match for in "refs/heads/Talkie,refs/heads/audit
+Couldn't find match for "2811863d46248ffea1013be2ba97884a0da46fd0" in "refs/heads/Talkie,refs/heads/audit,
+
+解决办法:
+yarn cache clean

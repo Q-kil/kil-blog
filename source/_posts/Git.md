@@ -384,7 +384,14 @@ Runner registered successfully. Feel free to start it, but if it's running alrea
 gitlab-runner install
 gitlab-runner start
 
-## ci
+# CI/CD
+CI：Continuous Integration
+CD：Continuous Delivery
+CD：Continuous Deployment 
+
+## Basic CI/CD workflow
+`{% asset_img ci.png%}`
+
 ``` yml
 stages:
   - build_compiler
