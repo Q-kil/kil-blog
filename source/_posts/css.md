@@ -112,6 +112,15 @@ visibility: visible
 display: flex; // 错了
 position: fixed;
 
+## 高度
+document.body.clientHeight ==> BODY对象高度
+document.documentElement.clientHeight ==> 可见区域高度
+window.innerHeight，内部的高度
+window.screen.height，用户屏幕的高度
+
+### window和document区别
+Window对象表示浏览器中打开的窗口；window对象可以省略。比如alert()、window.alert()。
+Document对象是Window对象的一部分。那么document.body 我们可以写成window.document.body；浏览器的HTML文档成为Document对象。
 
 # 适配
 ``` css
@@ -163,6 +172,9 @@ contain
 视图端口按比例缩放，以适合显示内嵌的最大矩形。
 cover
 视图端口被缩放以填充设备显示。强烈建议使用 safe area inset 变量，以确保重要内容不会出现在显示之外。
+
+## input focus 边框
+style="outline:none;"属性即可去掉边框。
 
 # css3 动画
 ## transition 过渡

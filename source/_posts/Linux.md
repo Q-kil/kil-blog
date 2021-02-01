@@ -153,11 +153,65 @@ open .
 显示所有文件（包含隐藏文件）
 ls -all
 
+查看端口
+lsof -i:1080
 
+### 下载
+curl -O https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374/assets/1579402117.png
 
+重命名
+curl -o test.png https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374/assets/1579402117.png
 
+#### 下载走代理
+sudo curl -x 127.0.0.1:1080 --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64"
 
+### iterm2
+iterm2以及mac自带的terminal都是终端模拟器
 
+### 设置代理
+``` zsh
+# 打开配置文件
+vim ~/.bash_profile
+# 如果用了`oh-my-zsh` 那么修改`~/.zshrc`
+# 在后面新增配置
+export http_proxy=http://127.0.0.1:1087
+export https_proxy=$http_proxy
+# 同理，可能执行` source ~/.zshrc`
+source ~/.bash_profile
+```
+
+#### 测试代理
+``` zsh
+# 方式2：通过google测试，有结果，说明Ok
+curl -i https://google.com
+
+失败：
+$ curl -i https://google.com
+curl: (7) Failed to connect to google.com port 443: Operation timed out
+
+成功：
+$ curl -i https://google.com
+HTTP/1.1 200 Connection established
+
+HTTP/2 301
+location: https://www.google.com/
+content-type: text/html; charset=UTF-8
+date: Fri, 22 Jan 2021 07:25:03 GMT
+expires: Sun, 21 Feb 2021 07:25:03 GMT
+cache-control: public, max-age=2592000
+server: gws
+content-length: 220
+x-xss-protection: 0
+x-frame-options: SAMEORIGIN
+alt-svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="https://www.google.com/">here</A>.
+</BODY></HTML>
+```
 
 ### 色彩皮肤
 ``` zsh

@@ -257,7 +257,7 @@ server {
     #access_log  /var/log/nginx/host.access.log  main;
 
     location / {
-        root   /home/kil-blog;
+      root   /home/kil-blog;
     }
 }    
 ```

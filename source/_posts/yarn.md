@@ -7,6 +7,7 @@ tags:
 - Yarn
 ---
 
+# basic
 一、安装
 brew install yarn
 
@@ -39,6 +40,13 @@ yarn remove [package]
 安装项目依赖
 yarn
 
+cofig
+yarn config list
+
+## 代理
+yarn config set proxy http://XX
+yarn config set https-proxy http://XX
+
 
 # 源
 查看
@@ -68,6 +76,11 @@ $ ls -l node_modules | grep ^l
 lrwxr-xr-x    1 niekaifa  staff     42  8  3 16:41 game-capsule -> ../../../../.config/yarn/link/game-capsule
 ```
 
+## module to local
+``` zsh
+link
+```
+
 ## 取消link
 ``` zsh
 yarn unlink game-core
@@ -86,3 +99,9 @@ yarn version --patch
 
 https://classic.yarnpkg.com/en/docs/cli/version/
 
+# error
+## Couldn't find match for in "refs/heads/Talkie,refs/heads/audit
+Couldn't find match for "2811863d46248ffea1013be2ba97884a0da46fd0" in "refs/heads/Talkie,refs/heads/audit,
+
+解决办法:
+yarn cache clean
