@@ -83,6 +83,8 @@ RVL
 EVAL
 而流通在网络上的EVAL版，与“评估版”类似，功能上和零售版没有区别。
 
+TLS Long Term Support 长期支持
+
 ## SSL
 SSL(Secure Sockets Layer 安全套接字协议)
 

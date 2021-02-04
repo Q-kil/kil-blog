@@ -95,6 +95,11 @@ cordova-plugin-hidden-statusbar-overlay
 platforms > android > app > src > main > AndroidManifest.xml
 <application android:debuggable="true" >
 
+## 插件
+### cordova-plugin-statusbar
+状态栏不显示
+<preference name="StatusBarOverlaysWebView" value="true"/>
+
 # ios
 ## 发版本
 Product > Archive > Distribute App
