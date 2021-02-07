@@ -96,10 +96,13 @@ webpack-cli 4.3.0
 ```
 
 # 指令
-npm 查看安装了哪些包
+npm 查看全局安装过的包
 ``` BASH
 npm list --depth=0 --global
 ```
+npm list	显示安装过的包
+-g	指全局安装过的包
+--depth 0	限制输出模块层级
 
 ``` BASH
 $ npm list -g

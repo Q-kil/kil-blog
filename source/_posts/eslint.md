@@ -12,6 +12,8 @@ tags:
 
 # 基础
 eslint: 代码检测工具
+
+airbnb > standard 
 ## 格式
 ``` js
 rules: {
@@ -34,6 +36,7 @@ rules: {
 "semi": [1, "always"], //语句分号结尾
 "console":"off", //禁用 console
 "quotes": [1, "single"], // 字符串单引号
+"Quotes": 0, //使用单引号
 "object-curly-spacing": [0, "always"], //大括号内允许不必要的空格
 "eqeqeq": 1, // 使用全等
 ```

@@ -122,6 +122,29 @@ window.screen.height，用户屏幕的高度
 Window对象表示浏览器中打开的窗口；window对象可以省略。比如alert()、window.alert()。
 Document对象是Window对象的一部分。那么document.body 我们可以写成window.document.body；浏览器的HTML文档成为Document对象。
 
+## 字体
+``` css
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  font-family: 'Roboto', sans-serif;
+}
+```
+Webkit 实现了名为-webkit-font-smoothing的相似属性。这个属性仅在 Mac OS X/macOS 下生效。
+- none - 关闭字体平滑；展示有锯齿边缘的文字。
+- antialiased - 平滑像素级别的字体，而不是子像素。从亚像素渲染切换到黑暗背景上的浅色文本的抗锯齿使其看起来更轻。
+- subpixel-antialiased - 在大多数非视网膜显示器上，这将会提供最清晰的文字。
+
+Firefox 实现了名为 -moz-osx-font-smoothing 的相似属性。这个属性仅在 Mac OS X / macOS 下生效。
+- auto - 允许浏览器选择字体平滑的优化方式，通常为grayscale。
+- grayscale - 用灰度抗锯齿渲染文本，而不是子像素。从亚像素渲染切换到黑暗背景上的浅色文本的抗锯齿使其看起来更轻。
+- inherit
+- unset
+
 # 适配
 ``` css
 css: {

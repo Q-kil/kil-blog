@@ -19,6 +19,17 @@ computer: 计算机
 你也可以使用下面这个图的全部
 `{% asset_img core.png %}`
 
+## config
+### change port
+vue.config.js
+``` js
+module.exports = {
+  devServer: {
+    port: 8090
+  }
+}
+```
+
 ## 声明式渲染
 指令
 指令带有前缀 `v-`
