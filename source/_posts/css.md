@@ -342,3 +342,42 @@ alternate-reverse
 建议使用：css属性，white-space 去控制空格被显示出来
 white-space: pre;
 white-space CSS 属性是用来设置如何处理元素中的 空白。
+
+# 新项目初始化
+## html
+### 页面语言设置
+``` html
+<html lang="zh-cmn-Hans">
+```
+
+## css
+``` css
+body {
+  margin: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+  }
+}
+a {
+
+}
+```
+
+### 待定
+``` css
+box-sizing: border-box;
+```
+
+### 公共样式导入项目
+vue
+main.js 中
