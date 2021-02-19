@@ -372,6 +372,15 @@ $HOME是当前用户主目录，它有个别名 “~”
 .zshenv  不需要登录
 .zshrc   需要登录
 
+### 环境变量设置
+$ vi .bash_profile     //使用vi编辑器编辑 .bash_profile
+
+粘贴这行代码     export ANDROID_HOME=~/Library/Android/sdk
+
+$ source ~/.bash_profile    //使其立即生效
+
+$ echo $ANDROID_HOME检查此变量是否已正确设置。
+
 ## 文件目录
 / ;linux系统的根目录，是系统的最顶层。 
 

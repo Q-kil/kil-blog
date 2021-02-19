@@ -100,6 +100,9 @@ platforms > android > app > src > main > AndroidManifest.xml
 状态栏不显示
 <preference name="StatusBarOverlaysWebView" value="true"/>
 
+## plugin打印log
+java中添加
+webView.loadUrl("javascript:console.log('log');");
 # ios
 ## 发版本
 Product > Archive > Distribute App
