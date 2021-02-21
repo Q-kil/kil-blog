@@ -95,6 +95,13 @@ webpack 5.11.1
 webpack-cli 4.3.0
 ```
 
+## npm link
+把本地的模块link到一个我们的npm的标准的模块里面去
+```
+/usr/local/lib/node_modules/toolchain -> 
+/home/kil/.npm-global/lib/node_modules/generator-toolchain -> /d/code/github/toolchain
+```
+
 # 指令
 npm 查看全局安装过的包
 ``` BASH
