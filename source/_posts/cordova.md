@@ -89,6 +89,144 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
 cordova-plugin-hidden-statusbar-overlay
 
+## 自定义插件开发
+### 全局安装插件工具plugman
+plugman是用于Apache Cordova项目的插件的安装和卸载等命令行工具。
+``` zsh
+$ npm install -g plugman
+```
+
+### 创建插件
+定义一个最简单的Toast插件
+#### 插件创建
+``` 
+plugman create --name [插件名] --plugin_id [插件id] --plugin_version [插件版本]
+```
+
+```zsh
+$ cd plugins
+# niekaifa @ niekaifadeMacBook-Pro in ~/ikyu/code/cordova-plugin/plugins [15:18:17] 
+$ plugman create --name ToastDemo --plugin_id cordova-plugin-toastdemo --plugin_version 1.0.0
+```
+
+#### 插件配置
+进入插件目录，添加插件支持的平台环境
+``` zsh
+$ cd ToastDemo
+$ plugman platform add --platform_name android
+$ plugman platform add --platform_name ios
+```
+添加之后将在ToastDemo目录下产生android和ios两个目录，此处只定义android环境的ToastDemo
+生成的文件内容如图所示
+
+修改plugin.xml
+``` xml
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-toastdemo" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>ToastDemo</name>
+  <!-- js调用模块；src为调用插件的js文件路径 -->
+  <js-module name="ToastDemo" src="www/ToastDemo.js">
+  <!-- target 为插件安装后的调用前缀，如：cordova.plugins.ToastDemo.[插件方法名] -->
+  <!-- <clobbers target="cordova.plugins.ToastDemo" -->
+  <!-- 可以自定义，调用时；ToastDemo.[插件方法名] -->
+    <clobbers target="ToastDemo" /></js-module>
+
+  <!-- android 环境配置项 -->
+  <platform name="android">
+    <!-- 插件配置，target为插件安装时，Cordova项目android环境配置文件的位置 -->
+    <!-- 插件安装时会将config-file 标签中的内容添加到 res/xml/config.xml 文件中 -->
+    <config-file parent="/*" target="res/xml/config.xml">
+    <!-- name 为对应 www/Toast.js 文件中的调用名称 -->
+      <feature name="ToastDemo">
+      <!-- value 为插件安装到项目后 ToastDemo.java 文件路径，即包路径 -->
+      <!-- 此处修改一下，将其改为通用Cordova插件的安装目录 -->
+      <!-- <param name="android-package" value="cordova-plugin-toast.ToastDemo" /> -->
+        <param name="android-package" value="org.apache.cordova.toastdemo.ToastDemo" />
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+    <!-- src 为插件目录中java源文件路径，target-dir 为插件安装项目中后源文件路径 -->
+    <!-- 此处将 target-dir 修改为与包路径一致 -->
+    <!-- <source-file src="src/android/ToastDemo.java" target-dir="src/cordova-plugin-toastdemo/ToastDemo" /> -->
+    <source-file src="src/android/ToastDemo.java" target-dir="src/org/apache/cordova/toastdemo" />
+  </platform>
+</plugin>
+```
+
+修改ToastDemo.js
+``` js
+var exec = require('cordova/exec');
+
+// export.showToast 的 showToast 为插件安装后js调用的方法名，其中传递的参数可以为任意多个（arg0，arg1， arg2.., success, error)
+exports.showToast = function (arg0, success, error) {
+    // success error 为成功 失败回调
+    // ToastDemo 为 plugin.xml 中配置的 feature 的name名
+    // 参数中的'showToast'为给 ToastDemo.java 判断的 action 参数
+    exec(success, error, 'ToastDemo', 'showToast', [arg0]);
+};
+```
+
+修改ToastDemo.java 文件
+``` java
+package org.apache.cordova.toastdemo;
+
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.widget.Toast;
+
+/**
+ * This class echoes a string called from JavaScript.
+ */
+public class ToastDemo extends CordovaPlugin {
+
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("showToast")) {
+            String message = args.getString(0);
+            this.showToast(message, callbackContext);
+            return true;
+        }
+        return false;
+    }
+
+    private void showToast(String message, CallbackContext callbackContext) {
+        if (message != null && message.length() > 0) {
+            Toast.makeText(cordova.getContext(), message, Toast.LENGTH_SHORT).show(); // 调用android原生Toast
+            callbackContext.success(message); // 设置成功回调信息
+        } else {
+            callbackContext.error("Expected one non-empty string argument."); // 设置失败回调信息
+        }
+    }
+}
+```
+
+#### 初始化插件
+进入插件目录
+``` zsh
+# niekaifa @ niekaifadeMacBook-Pro in ~/ikyu/code/cordova-plugin/plugins/ToastDemo [15:19:21] 
+$ npm init
+```
+提示的时候可以直接回车，使用默认值直到结束，将创建一个 package.json 文件
+
+### 插件使用
+安装插件
+``` zsh
+# niekaifa @ niekaifadeMacBook-Pro in ~/ikyu/code/cordova-plugin [15:56:03] 
+$ cordova plugin add /Users/niekaifa/ikyu/code/cordova-plugin/plugins/ToastDemo
+Installing "cordova-plugin-toastdemo" for android
+Adding cordova-plugin-toastdemo to package.json
+```
+
+js调用插件
+``` js
+ToastDemo.showToast(“这是Toast内容”);
+```
+
 # android
 ## debug
 ### chrome not inspect
