@@ -241,6 +241,66 @@ platforms > android > app > src > main > AndroidManifest.xml
 ## plugin打印log
 java中添加
 webView.loadUrl("javascript:console.log('log');");
+
+LogDemo.java
+``` java
+/**
+ * This class echoes a string called from JavaScript.
+ */
+public class LogDemo extends CordovaPlugin {
+
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("printLog")) {
+            String message = args.getString(0);
+            this.printLog(message, callbackContext);
+            return true;
+        }
+        return false;
+    }
+
+    private void printLog(String message, CallbackContext callbackContext) {
+        if (message != null && message.length() > 0) {
+            Log.v("Log","Log-v");
+            String info = Integer.toString(999);
+            float f = Float.parseFloat("25");
+            String s = Float.toString(25.0f);
+            Log.v("Log", info);
+            Log.v("Log","Log-end");
+            Log.v("Log", message);
+            callbackContext.success(message);
+        } else {
+            callbackContext.error("Expected one non-empty string argument.");
+        }
+    }
+}
+```
+
+```
+V/Log: Log-v
+    999
+    Log-end
+```
+
+### index.html中调用
+``` js
+function onDeviceReady() {
+    // Cordova is now initialized. Have fun!
+
+    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
+    document.getElementById('deviceready').classList.add('ready');
+
+    LogDemo.printLog("test");
+}
+```
+
+```
+V/Log: Log-v
+    999
+    Log-end
+    test
+```
+
 # ios
 ## 发版本
 Product > Archive > Distribute App

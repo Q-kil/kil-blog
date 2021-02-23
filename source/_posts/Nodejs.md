@@ -102,6 +102,11 @@ webpack-cli 4.3.0
 /home/kil/.npm-global/lib/node_modules/generator-toolchain -> /d/code/github/toolchain
 ```
 
+## 将插件发布到npm
+npm login
+npm pulish
+
+
 # 指令
 npm 查看全局安装过的包
 ``` BASH
