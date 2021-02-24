@@ -14,6 +14,9 @@ console.log(`$_model_cart:${carts}`);
 ```
 输出：`[object object]`
 
+### [object Object]
+console.log('Update is loaded stringify:' + JSON.stringify(data));
+
 ## const 声明
 const sprite;
 Uncaught SyntaxError: Missing initializer in const declaration
