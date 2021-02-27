@@ -273,21 +273,38 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 - 一旦选择匹配，就应用选择器到元素上，形成computedStyle
 
 # CSS
-学习一门语言，先从语法入手
+第一步：找到一条好的线索，建立一个基础知识的骨架结构
+线索：学习一门语言，先从语法入手
 
 语法
-• https://www.w3.org/TR/CSS21/grammar.html#q25.0
+• [css2.1](https://www.w3.org/TR/CSS21/grammar.html#q25.0)
 • https://www.w3.org/TR/css-syntax-3
 
+## 规则
+普通规则和@规则
+`{% asset_img css.png %}`
 ## At-rules
 • @charset : https://www.w3.org/TR/css-syntax-3/
 • @import :https://www.w3.org/TR/css-cascade-4/
-• @media :https://www.w3.org/TR/css3-conditional/
+• @media :https://www.w3.org/TR/css3-conditional/ 【重要】
 • @page : https://www.w3.org/TR/css-page-3/
-• @counter-style :https://www.w3.org/TR/css-counter-styles-3 • @keyframes :https://www.w3.org/TR/css-animations-1/
-• @fontface :https://www.w3.org/TR/css-fonts-3/
+• @counter-style :https://www.w3.org/TR/css-counter-styles-3 
+• @keyframes :https://www.w3.org/TR/css-animations-1/ 【重要】
+• @fontface :https://www.w3.org/TR/css-fonts-3/ 【重要】
 • @supports :https://www.w3.org/TR/css3-conditional/
 • @namespace :https://www.w3.org/TR/css-namespaces-3/
+
+## css-rule
+`{% asset_img css01.png %}`
+
+- Selector
+  + https://www.w3.org/TR/selectors-3/ 
+  + https://www.w3.org/TR/selectors-4/ 制定中
+- Key
+  + Properties
+  + Variables: https://www.w3.org/TR/css-variables/
+- Value
+  + https://www.w3.org/TR/css-values-4/
 
 # HTML
 源流来自：XML 、 SGML（两种语言是HTML的超集）
