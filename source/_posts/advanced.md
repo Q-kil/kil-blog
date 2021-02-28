@@ -273,6 +273,7 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 - 一旦选择匹配，就应用选择器到元素上，形成computedStyle
 
 # CSS
+## 总论
 第一步：找到一条好的线索，建立一个基础知识的骨架结构
 线索：学习一门语言，先从语法入手
 
@@ -280,10 +281,10 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 • [css2.1](https://www.w3.org/TR/CSS21/grammar.html#q25.0)
 • https://www.w3.org/TR/css-syntax-3
 
-## 规则
+### 规则
 普通规则和@规则
 `{% asset_img css.png %}`
-## At-rules
+### At-rules
 • @charset : https://www.w3.org/TR/css-syntax-3/
 • @import :https://www.w3.org/TR/css-cascade-4/
 • @media :https://www.w3.org/TR/css3-conditional/ 【重要】
@@ -294,7 +295,7 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 • @supports :https://www.w3.org/TR/css3-conditional/
 • @namespace :https://www.w3.org/TR/css-namespaces-3/
 
-## css-rule
+### css-rule
 `{% asset_img css01.png %}`
 
 - Selector
@@ -305,6 +306,95 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
   + Variables: https://www.w3.org/TR/css-variables/
 - Value
   + https://www.w3.org/TR/css-values-4/
+
+### 完整的标准列表
+#### 收集标准
+爬虫抓取w3c网站上的内容
+[w3c所有的标准和草稿](https://www.w3c.org/TR/)
+[w3c css标准](https://www.w3c.org/TR/?tag=css)
+
+#### 标题和url提取出来
+控制台中输入：
+``` js
+Array.prototype.slice.call(document.querySelector('#container').children).filter(e => 
+  e.getAttribute('data-tag').match(/css/)).map(e =>
+  ({name: e.children[1].innerText, url: e.children[1].children[0].href})
+)
+```
+
+JSON.stringify() 一下
+
+### 实验
+爬取w3c css的一些内容，并且做一些过滤
+推荐学习方法：面对大量的信息的时候，用一些自动化的手段（程序员的老本行），帮助我们做一些枯燥的收集工作
+
+## 选择器
+### 语法
+#### 简单选择器
+- * （通用选择器，可以选中任何的元素，相当于没有选择器）
+- div svg|a （div 叫做type selector 类型选择器，选择的是元素的tagName属性）
+- .class （可以用空白做分隔符，指定多个class，只要匹配一个就可以）
+- #id （严格匹配）
+- [attr=value] （属性选择器，等号前面加浪线，就表示像class一样，可以支持拿空格分隔的值的序列，如果前面加单竖线表示这个属性以这个值开头即可，属性选择器强大，如果对优先级没有考虑可以代替class id
+- :hover （伪类选择器，元素的特殊状态，跟HTML属性也没有关系，多半来自于交互；带函数的伪类选择器）
+- ::before (伪元素选择器，选中一些原本不存在的元素，如果不选就不存在一个元素)
+
+注：
+HTML命名空间
+- HTML
+- SVG
+- MathML
+如果想选SVG里面的特定元素或MathML里面特定的元素，必须要用到单竖线（命名空间分隔符）
+HTML命名空间分隔符是冒号
+SVG 标签里面有一个跟HTML重名的a标签
+
+#### 复合选择器
+- <简单选择器><简单选择器><简单选择器>
+- * 或者 div 必须写在最前面
+
+#### 复杂选择器
+- <复合选择器> <sp> <复合选择器>
+- <复合选择器> " > " <复合选择器>
+- <复合选择器> " ~ " <复合选择器>
+- <复合选择器> " + " <复合选择器>
+- <复合选择器> " || " <复合选择器>
+
+### 优先级
+`{% asset_img css02.png %}`
+
+### 伪类
+链接/行为
+- :any-link
+- :link :visited
+- :hover
+- :active
+- :focus
+- :target
+
+树结构
+- :empty
+- :nth-child()
+- :nth-last-child()
+- :first-child :last-child :only-child
+
+逻辑型
+- :not伪类
+- :where :has
+
+选择器写的复杂，意味HTML结构写的不合理
+### 伪元素
+给页面添加修饰性的内容
+- ::before
+- ::after
+- ::first-line
+- ::first-letter
+
+`{% asset_img css03.png %}`
+`{% asset_img css04.png %}`
+
+## CSS排版
+### 盒(box)
+`{% asset_img css05.png %}`
 
 # HTML
 源流来自：XML 、 SGML（两种语言是HTML的超集）
