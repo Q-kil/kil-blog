@@ -442,3 +442,57 @@ XMLHttpRequest cannot load file://
 Failed to load resource: The requested URL was not found on this server.  zh.json
 解决办法：
 https://github.com/AraHovakimyan/cordova-plugin-wkwebviewxhrfix
+
+# 热更新
+``` js
+function checkForUpdate() {
+  chcp.fetchUpdate((error, data) => {
+    if (error) {
+      console.log('--fetchUpdate error--', error.code, error.description);
+      return;
+    };
+
+    console.log('--fetchUpdate data--', data, data.config);
+    console.log('Update is loaded stringify:' + JSON.stringify(data));
+
+    chcp.isUpdateAvailableForInstallation(function(error, data) {
+      console.log('isUpdate error', error);
+      console.log('isUpdate data', data);
+
+      if (error) {
+        console.log('No update was loaded => nothing to install');
+        console.log('error:', error);
+      } else {
+        window.alert(`正在更新至版本: ${data.readyToInstallVersion}`);
+
+        // 对比版本号
+        console.log('Current content version: ' + data.currentVersion);
+        console.log('Ready to be installed:' + data.readyToInstallVersion);
+
+        chcp.installUpdate((error) => {
+          if (error) {
+              // 更新失败
+              console.log('Failed to install the update with error code: ' + error.code);
+              console.log('install', error.description);
+          } else {
+              // 更新成功
+              console.log('Update installed!!!');
+          }
+        });
+      }
+
+    });
+  });
+}
+```
+
+## chcp_updateLoadFailed
+在应用 config.xml 配置中可以定义了 native side 的版本号，例如
+
+<chcp>
+    <native-interface version="5" />
+</chcp>
+例如当前项目 native side 的版本号是5：
+
+如果服务器上配置文件 chcp.json 中的 min_native_interface 值为 5，那么符合要求，热更新后的 web content 能够在正常运行
+如果服务器上配置文件 chcp.json 中的 min_native_interface 值为 10，高于 config.xml 文件中 <native-interface />，那么热更新将无法正常进行。此时，插件会提示错误 chcp_updateLoadFailed，提示应用需要更新升级

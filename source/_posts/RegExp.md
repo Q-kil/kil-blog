@@ -43,6 +43,16 @@ let re = new RegExp('\\d') // \在js中是转义，\\代表\
 alert(str.search(re));
 ```
 
+const REGEXP_S = /\/s\//;
+    if (device == 'Android' || device == 'iOS') {
+      if (href.search(REGEXP_S) != -1) {
+        window.location.href = `https://${document.domain}/s/`;
+      } else {
+        window.location.href = `https://${document.domain}/m/`;
+      }
+      
+    }
+
 ## 选项
 i  Ignore  忽略大小写
 g  Global  全局匹配
@@ -55,6 +65,7 @@ m          多行模式
 ## 转义
 \d digit   数字
 
+\.  点
 ## 懒
 贪婪匹配？
 越多越好——正则默认情况会倾向于匹配尽可能长的东西

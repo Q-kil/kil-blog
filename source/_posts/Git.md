@@ -81,6 +81,10 @@ git配置
 git config --list
 
 ## 版本回滚
+### revert
+git revert HEAD^
+### reset
+注意：回滚前先checkout 一个分支进行保留
 ``` zsh
 git reset --hard ff19b5644e7470728d5a10f57f244f9754fb4d58
 git add .

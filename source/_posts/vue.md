@@ -581,8 +581,97 @@ data: {
 ## history
 利用 history.pushState API 来完成 URL 跳转而无须重新加载页面。
 
+w
+- 去除路由中难看的 /#/
+- 微信公众号微信支付微信分享和自动登录，处理起来比较坑
 
+h
+首先要在项目中使用相对路径，这是开发常识
 
+### vue
+vue.config.js
+```js
+module.exports = {
+  publicPath: './'
+} 
+```
+
+vue router js
+```js
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+const routes = [
+  {
+    path: '',
+    component: require('../components/HelloWorld.vue').default
+  },
+  {
+    path: '/home',
+    component: require('../components/Home.vue').default
+  }
+]
+
+/**
+base 基础路径解释：
+假如我的打开地址是：xxxxxx.com/m/，配置了模块，或者放置在了子文件夹下面，那么就会出问题。其实，这是因为router无法找到路径中的组件，所以也就无法渲染了。只需要修改router中的index.js，加一个基础路径就可以了。
+*/
+
+const router = new VueRouter({
+  mode: 'history',
+  base: '/m/',
+  routes
+});
+
+export default router;
+```
+
+### 刷新404问题
+[官方history文档](https://router.vuejs.org/zh/guide/essentials/history-mode.html#%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90)
+问题描述：
+当你使用 history 模式时，URL 就像正常的 url，例如 http://yoursite.com/user/id，也好看！
+不过这种模式要玩好，还需要后台配置支持。因为我们的应用是个单页客户端应用，如果后台没有正确的配置，当用户在浏览器直接访问 http://oursite.com/user/id 就会返回 404，这就不好看了。
+
+VUE的router[mode: history]模式在开发的时候，一般都不出问题。是因为开发时用的服务器为node，Dev环境中自然已配置好了。
+
+原因：
+那是因为在history模式下，只是动态的通过js操作window.history来改变浏览器地址栏里的路径，并没有发起http请求，但是当我直接在浏览器里输入这个地址的时候，就一定要对服务器发起http请求，但是这个目标在服务器上又不存在，所以会返回404
+
+解决方案：后端nginx配置
+方案一：官方推荐
+default.conf
+```
+server {
+  listen       8074;
+  server_name  localhost;
+
+  #charset koi8-r;
+  #access_log  /var/log/nginx/host.access.log  main;
+
+  location /m/{
+    alias /data/;
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+    add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+    index  index.html index.htm;
+    try_files $uri $uri/ /m/index.html;
+  }
+}
+```
+
+方案二：匹配errpr_page
+```
+location /{
+　　root   /data/nginx/html;
+　　index  index.html index.htm;
+　　error_page 404 /index.html;
+}
+```
+
+### 成功解决
+刷新home页面，正常访问资源
+`{% asset_img history.png %}`
 
 # 自己的理解
 Vue
@@ -616,3 +705,8 @@ module.exports = {
     // parser: 'babel-eslint'
   },
 }
+
+# 问题
+## Uncaught SyntaxError: Unexpected token <
+[stackoverflow](https://stackoverflow.com/questions/51210795/vue-cli-uncaught-syntaxerror-unexpected-token)
+Try by adding <base href="/" /> into the <head> of your index.html. Hope it will work.

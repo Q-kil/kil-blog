@@ -12,15 +12,18 @@ tags:
 HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 
 # 路径
-相对路径：
+## 相对路径
 ..\windows\system32\cmd.exe
-
-绝对路径：
-C:\windows\system32\cmd.exe
 
 ./ 当前目录
 ../ 父级目录
 / 根目录
+
+项目用相对路径是常识
+## 绝对路径
+C:\windows\system32\cmd.exe
+
+
 
 # 历程
 ## what is it?

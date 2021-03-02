@@ -126,6 +126,26 @@ index.nginx-debian.html
 opt，optional，可选择目录
 etc，et cetera，存放配bai置文件
 
+## /m/ 子目录
+```
+server {
+  listen       8075;
+  server_name  localhost;
+
+  #charset koi8-r;
+  #access_log  /var/log/nginx/host.access.log  main;
+
+  location /m/{
+    alias /data/;
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+    add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+    index  index.html index.htm;
+    try_files $uri $uri/ /m/index.html;
+  }
+}
+```
+
 # 部署
 ## 本地文件复制到服务器
 ``` bash
