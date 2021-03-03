@@ -121,6 +121,7 @@ git log
 ``` zsh
 git rm -r --cached 文件/文件夹名称
 # 修改本地 .gitignore
+git add .
 git commit -m ''
 git push origin master
 ```
