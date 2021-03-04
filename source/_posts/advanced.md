@@ -281,7 +281,7 @@ npm install css (css == css parser, 把css的代码变成 AST抽象语法树)
 • [css2.1](https://www.w3.org/TR/CSS21/grammar.html#q25.0)
 • https://www.w3.org/TR/css-syntax-3
 
-### 规则
+## 规则
 普通规则和@规则
 `{% asset_img css.png %}`
 ### At-rules
@@ -395,6 +395,46 @@ SVG 标签里面有一个跟HTML重名的a标签
 ## CSS排版
 ### 盒(box)
 `{% asset_img css05.png %}`
+
+### 正常流
+Normal Flow
+
+正常流排版
+- 收集盒进行
+- 计算盒在行中的排版
+- 计算行的排布
+
+BFC IFC
+`{% asset_img css06.png %}`
+
+#### 行级排布
+基线对齐
+`{% asset_img css07.png %}`
+
+##### 文字在字体里面的定义
+文字有宽和高，加上基线
+`{% asset_img css08.png %}`
+origin 就是基线
+yMin 就是基线到低缘的距离
+bearingX 决定了一个默认的字间距
+advance  整个占的空间
+
+
+##### 行模型
+line-top
+text-top
+base-line    以英文为主，用来对齐的线
+text-bottom   top,bottom 只要字体大小不变，它们就不变；如果使用多种字体混排，top和bottom是由fontSize最大的一个字体决定的; 文字的上缘下缘是两条固定的线
+line-bottom   如果行高是大于文字的高度的时候；如果和盒混排会涉及line-top,bottom偏移的问题；盒的先后顺序和盒的尺寸都会影响line-top,bottom这个位置，盒不影响text-top,bottom
+
+第一个特别注意的问题
+行内盒 inline-block 它的基线是随着自己里面的文字去变化的；不建议给行内盒使用基线对齐的；使用vertical-align
+
+
+#### 块级排布
+##### float与clear
+
+clear：找一块干净的空间，浮动
 
 # HTML
 源流来自：XML 、 SGML（两种语言是HTML的超集）

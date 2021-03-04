@@ -66,6 +66,45 @@ document.getElementById('onlinePlayerCount').offsetTop
 窗口高度：
 window.innerHeight
 
+### addEventListener
+```js
+function setLaunch() {
+  var e = document.getElementById("launch");
+  if (e) {
+    console.log('e', e, e.clientWidth, e.clientHeight);
+    
+      var n = document.documentElement
+        , o = e.clientWidth
+        , r = e.clientHeight
+        , t = n.getBoundingClientRect()
+        , i = t.width
+        , a = t.height;
+      o > i && (e.style.width = i + "px"),
+      r != a && (e.style.height = a + "px")
+
+      console.log('t', t);
+      console.log('&&', o > i && (e.style.width = i + "px"));
+      
+  }
+}
+window.setLaunch = setLaunch,
+window.onload = function(e) {
+  window.setLaunch(),
+  // window.addEventListener("resize", window.setLaunch)
+  window.addEventListener("resize",debounce(function(e){
+    console.log("end of resizing");
+    window.setLaunch();
+  }));
+}
+function debounce(func){
+  var timer;
+  return function(event){
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(func,1000,event);
+  };
+}
+```
+
 ## String
 ### slice()、substr()、substring() 区别
 操作长度：
@@ -274,6 +313,7 @@ console.log('59:59', end);
 let encodedData = window.btoa("Hello, world"); // 编码
 let decodedData = window.atob(encodedData);    // 解码
 ```
+
 
 # 待掌握
 ## 对象拷贝

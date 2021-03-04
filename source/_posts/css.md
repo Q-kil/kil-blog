@@ -145,6 +145,23 @@ Firefox 实现了名为 -moz-osx-font-smoothing 的相似属性。这个属性�
 - inherit
 - unset
 
+## div水平剧中
+网易
+```
+width: 56.25vh;
+height: 100vh;
+position: absolute;
+left: 50%;
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%);
+overflow: hidden;
+background-color: #448aff;
+background-image: url(./resource/neteaselogo.png);
+background-position: center center;
+background-repeat: no-repeat;
+background-size: 35.625vh 11.71875vh;
+```
+
 # 适配
 ``` css
 css: {

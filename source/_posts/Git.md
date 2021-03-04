@@ -80,6 +80,12 @@ git config --global --unset http.https://github.com.proxy)
 git配置
 git config --list
 
+## 提交
+git commit -am "some str"
+git push
+
+git commit -am 'str'命令只能提交已经追踪过且修改了的文件，去过是新增文件就必须使用git add . && git commit -m 命令；
+
 ## 版本回滚
 ### revert
 git revert HEAD^
