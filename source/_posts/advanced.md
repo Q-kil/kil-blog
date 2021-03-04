@@ -406,6 +406,11 @@ Normal Flow
 
 BFC IFC
 `{% asset_img css06.png %}`
+正常流里面有两种 Formatting Context
+- 块格式化上下文（Block Formatting Context，BFC）
+- 行级格式化上下文（Inline Formatting Context，IFC）
+
+文字只能放IFC里
 
 #### 行级排布
 基线对齐
@@ -433,8 +438,102 @@ line-bottom   如果行高是大于文字的高度的时候；如果和盒混排
 
 #### 块级排布
 ##### float与clear
-
 clear：找一块干净的空间，浮动
+
+老一辈用float clear排版
+重排行为
+
+#### margin折叠
+从上往下排，受盒模型影响
+`{% asset_img css09.png %}`
+叠出来的高度跟最大的margin的高度相等，这个现象叫margin collapse, 也叫留白的折叠现象，也叫边距折叠。
+古老的印刷行业也是这种排版体系。
+注意：只会发生在BFC里面
+
+单看float ，单看边距折叠，单看BFC 都不难。如果三个现象叠加到一起，就是古代前端的最大难题。现在面试BFC也是在这里面
+
+#### BFC合并
+正常流最困难的部分
+
+##### Block
+- Block Container: CSS2.1标准里面定义的；里面有BFC的
+  + 能容纳正常流的盒，里面就有BFC
+- Block-level Box：外面有BFC的
+- Block Box = Block Container + Block-level Box: 里外都有BFC的
+  + 这个不能理解，就无法理解BFC合并现象
+
+##### Block Container
+基本上是一些 display 这样的效果
+- block
+- inline-block
+- table-cell (table-row 不是)
+- flex item (display: flex, 子元素如果没有特殊的display)
+- grid cell
+- table-caption (表格的标题)
+
+所有能够容纳里面不是特殊的display的模式的，它里面默认就是正常流
+
+##### Block-level Box
+`{% asset_img css10.png %}`
+
+##### 设立BFC
+什么时候什么样的盒，它会创建BFC呢，Establish BFC
+
+- floats
+- absolutely positioned element
+- block containers(such as inline-blocks, table-cells, and table-captions)
+  that are not block boxes,
+    - flex items
+    - grid cell
+    - ......
+- and block boxes with 'overflow' other than 'visible'
+
+换一个角度记：
+默认这些能容纳正常流的盒，都认为它会创建 BFC，但是只有一种情况例外，就是 Block Box 里外都是 BFC
+并且 overflow 是 visible
+
+##### BFC合并
+- block box && overflow: visible
+  + BFC合并与float
+  + BFC合并与边距折叠
+
+
+### Flex排版
+- 收集盒进行
+- 计算盒在主轴方向的排布
+- 计算盒在交叉轴方向的排布
+
+## 动画与绘制
+### 动画
+CSS控制表现
+- 控制元素的位置和尺寸的信息
+- 控制绘制和最后实际看到的渲染的信息
+- 交互与动画的信息
+
+#### Animation
+动画
+- @keyframes定义
+- animation：使用
+
+animation 六个属性的集合
+- animation-name 时间曲线
+- animation-duration 动画的时长
+- animation-timing-function 动画的时间曲线
+- animation-delay 动画开始前的延迟
+- animation-iteration-count 动画的播放次数
+- animation-direction 动画的方向
+
+@keyframes
+- 百分比
+- from to  （from大致相等于 0%；to 100%）
+
+#### Transition
+属性
+- transition-property 要变换的属性
+- transition-duration 变换的时长
+- transition-timing-function 时间曲线
+- transition-delay 延迟
+
 
 # HTML
 源流来自：XML 、 SGML（两种语言是HTML的超集）
