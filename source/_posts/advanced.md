@@ -534,6 +534,38 @@ animation 六个属性的集合
 - transition-timing-function 时间曲线
 - transition-delay 延迟
 
+##### timing-function
+来自[三次贝塞尔曲线](https://cubic-bezier.com/#.17,.67,.83,.67)
+一次贝塞尔曲线是直线
+
+
+### 颜色
+#### HSV
+
+
+### 绘制
+- 几何图形
+  + border
+  + box-shadow
+  + border-radius
+
+- 文字
+  + font
+  + text-decoration
+
+- 位图
+  + background-image
+
+#### 应用技巧
+- data uri + svg
+- data:image/svg+xml,<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><ellipse cx="300" cy="150" rx="200" ry="80" style="fill:rgb(200,100,50);
+  stroke:rgb(0,0,100);stroke-width:2"/></svg>
+
+svg 专业的矢量图格式
+svg 支持path
+
+最后分类：layout和render下一层
+
 
 # HTML
 源流来自：XML 、 SGML（两种语言是HTML的超集）
@@ -611,13 +643,17 @@ range.insertNode(document.createTextNode('aaa'))
 range.setStart(document.getElementById('a').childNodes[1].childNodes[0], 3);
 ```
 
-# 算法
+# 编程与算法训练
+包含跟语音特性强相关 和 经典算法题；核心提升编程能力
 ## TicTacToe
 井字棋，三字旗
-核心：提升编程能力
 
-
-
+小技巧：问好表达式，多个条件
+``` js
+innerText =
+  pattern[j][i] == 2 ? '❌' : 
+  pattern[j][i] == 1 ？ '⭕️': '';
+```
 
 
 
@@ -758,7 +794,8 @@ unzipper
 
 
 [跳转到本文HTML](#HTML)
-[跳转到本文算法](#算法)
+[跳转到本文CSS](#CSS)
+[跳转到本文编程与算法训练](#编程与算法训练)
 [跳转到本文组件化](#组件化)
 [跳转到本文工具链](#工具链)
 [跳转到本文发布系统](#发布系统)
