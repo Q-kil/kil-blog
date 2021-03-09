@@ -496,3 +496,22 @@ function checkForUpdate() {
 
 如果服务器上配置文件 chcp.json 中的 min_native_interface 值为 5，那么符合要求，热更新后的 web content 能够在正常运行
 如果服务器上配置文件 chcp.json 中的 min_native_interface 值为 10，高于 config.xml 文件中 <native-interface />，那么热更新将无法正常进行。此时，插件会提示错误 chcp_updateLoadFailed，提示应用需要更新升级
+
+## net::ERR_CLEARTEXT_NOT_PERMITTED
+明文禁止
+原因：
+使用http://172.18.218.1:5000/www/chcp.json
+
+解决：
+``` xml
+<widget id="you-app-id" version="1.2.3"
+xmlns="http://www.w3.org/ns/widgets" 
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+<platform name="android">
+  <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+      <application android:usesCleartextTraffic="true" />
+  </edit-config>
+</platform>
+```

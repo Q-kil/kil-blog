@@ -203,3 +203,50 @@ Xcode 11.5 → iOS 13.5
 Xcode 11.4 → iOS 13.4
 
 Download at https://developer.apple.com/download/more/.
+
+# 环境变量
+``` zsh
+# niekaifa @ niekaifadeMacBook-Pro in ~ [16:07:33]
+$ printenv
+TERM_SESSION_ID=w0t0p0:B9D213B1-A345-4B37-B004-59FF4A1C2236
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.HQ60wnWS6K/Listeners
+LC_TERMINAL_VERSION=3.4.4
+COLORFGBG=7;0
+ITERM_PROFILE=Default
+XPC_FLAGS=0x0
+LANG=zh_CN.UTF-8
+PWD=/Users/niekaifa
+SHELL=/bin/zsh
+SECURITYSESSIONID=186a7
+TERM_PROGRAM_VERSION=3.4.4
+TERM_PROGRAM=iTerm.app
+PATH=/usr/local/sbin:/usr/local/bin:/Users/niekaifa/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/niekaifa/.oh-my-zsh/custom/plugins/nali:/Users/niekaifa/Library/Android/sdk/tools:/Users/niekaifa/Library/Android/sdk/platform-tools:/bin:/opt/gradle/gradle-6.6/bin
+LC_TERMINAL=iTerm2
+COLORTERM=truecolor
+COMMAND_MODE=unix2003
+TERM=xterm-256color
+HOME=/Users/niekaifa
+TMPDIR=/var/folders/2y/w_dvhyrj543fn4qjvglt4gxh0000gn/T/
+USER=niekaifa
+XPC_SERVICE_NAME=0
+LOGNAME=niekaifa
+LaunchInstanceID=41F6AEA0-4EDD-45B6-83B1-CC77E675EB94
+__CF_USER_TEXT_ENCODING=0x0:25:52
+ITERM_SESSION_ID=w0t0p0:B9D213B1-A345-4B37-B004-59FF4A1C2236
+SHLVL=1
+OLDPWD=/Users/niekaifa/ikyu/code/cordova-hot-code-push
+ZSH=/Users/niekaifa/.oh-my-zsh
+PAGER=less
+LESS=-R
+LC_CTYPE=zh_CN.UTF-8
+LSCOLORS=Gxfxcxdxbxegedabagacad
+HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+http_proxy=http://127.0.0.1:1080
+https_proxy=http://127.0.0.1:1080
+_=/usr/bin/printenv
+```
+
+查看terminal 使用的那个
+``` 
+echo "zsh loaded"
+```
