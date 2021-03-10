@@ -515,3 +515,44 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
   </edit-config>
 </platform>
 ```
+
+#### plugin cordova-hot-code-push
+class  PluginResultHelper
+createPluginResult  app版本信息
+D/CHCP: CHCP PluginResultHelper.createDataNode add text value: appVersion: "1.0.0"
+D/CHCP: CHCP PluginResultHelper.createDataNode add text value: buildVersion: "10000"
+    CHCP PluginResultHelper.createDataNode add text value: previousWebVersion: ""
+    CHCP PluginResultHelper.createDataNode add text value: readyToInstallWebVersion: ""
+    CHCP PluginResultHelper.createDataNode add text value: currentWebVersion: "2021.03.09-14.31.23"
+
+CHCP PluginResultHelper.getResult resultObject: {"data":{"appVersion":"1.0.0","buildVersion":"10000","previousWebVersion":"","readyToInstallWebVersion":"","currentWebVersion":"2021.03.09-14.31.23"}}
+
+##### chcp.fetchUpdate()
+###### error -1
+文档
+FAILED_TO_DOWNLOAD_APPLICATION_CONFIG - failed to download new application config from the server. Either file doesn't exist or some internet connection problems. Error code value is -1.
+
+源码
+String configURL = chcpXmlConfig.getConfigUrl();
+Log.d("CHCP", "get config url: " + configURL); // 空
+
+###### error -16
+当调用 chcp.installUpdate 时，安装已经在进行
+
+###### error -18
+API requests are ignored until assets are installed. Please, wait.
+
+assets folder in not yet installed assets文件夹还没有安装
+
+###### 待看
+PluginResultHelper.getResult resultObject
+
+chcp_assetsInstalledOnExternalStorage
+
+###### 翻译
+is update available for installation
+是否可以安装更新
+
+##### manifest
+chcp.manifest 文件
+file 内容改变，hash 才会变
