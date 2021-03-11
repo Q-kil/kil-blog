@@ -234,7 +234,39 @@ URL: git@code.apowo.com:PixelPai/platform-client.git
  * [pruned] origin/temp_avatar
  ```
 
- 
+## 再次添加gitlab分支
+``` zsh
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/cordova-plugin-android-keyboard on git:master o [16:56:02] 
+$ git remote -v
+origin  git@github.com:ApowoGames/cordova-plugin-android-keyboard.git (fetch)
+origin  git@github.com:ApowoGames/cordova-plugin-android-keyboard.git (push)
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/cordova-plugin-android-keyboard on git:master o [16:56:07] 
+$ git remote add gitlab git@code.apowo.com:opensource/cordova-plugin-android-keyboard.git
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/cordova-plugin-android-keyboard on git:master o [16:56:33] 
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/cordova-plugin-android-keyboard on git:master o [16:56:36] 
+$ git push gitlab master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 323 bytes | 323.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To code.apowo.com:opensource/cordova-plugin-android-keyboard.git
+   bab51cf..2d1bf8f  master -> master
+```
+
+## gitlab 添加插件
+``` zsh
+$ cordova plugin add git+https://code.apowo.com/opensource/cordova-plugin-android-keyboard 
+Installing "cordova-plugin-android-keyboard" for android
+Adding cordova-plugin-android-keyboard to package.json
+```
 
 
 # 错误
