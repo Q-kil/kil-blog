@@ -444,6 +444,7 @@ Failed to load resource: The requested URL was not found on this server.  zh.jso
 https://github.com/AraHovakimyan/cordova-plugin-wkwebviewxhrfix
 
 # 热更新
+`{% asset_img cordova-hot-code-push.png%}`
 ``` js
 function checkForUpdate() {
   chcp.fetchUpdate((error, data) => {
