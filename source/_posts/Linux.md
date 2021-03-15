@@ -132,6 +132,9 @@ $ echo $SHELL
 /bin/zsh
 ```
 
+.zshrc
+echo "loaded"
+
 查看文件大小
 当前目录所有文件大小
 ls -lht
@@ -237,6 +240,7 @@ gg        ： 跳转到文件头
 Shift+g   ： 跳转到文件末尾
 
 o         :  新建一行
+dd        :  删除一行
 
 
 ### 域名操作

@@ -145,6 +145,18 @@ Firefox 实现了名为 -moz-osx-font-smoothing 的相似属性。这个属性�
 - inherit
 - unset
 
+## 长度
+length
+- 相对长度单位
+  + 字体相对长度
+    * rem
+  + 视口(Viewport)比例长度
+    * vh  视口的初始包含块的高度的1%
+    * vw  视口的初始包含块的宽度的1%
+- 绝对长度单位
+  + px
+
+
 ## div水平剧中
 网易
 ```

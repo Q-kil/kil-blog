@@ -688,6 +688,11 @@ https://github.com/jiayihu/ng-animate
 this.avatarEle.nativeElement;
 ```
 
+删除某dom
+``` ts
+this.draggableElement.nativeElement.remove();
+```
+
 # 指令
 存在原因：自定义标签 无法使用标签原有属性；创建指令，让他有标签属性
 ``` html

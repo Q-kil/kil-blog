@@ -4,6 +4,30 @@ date: 2020-06-22 13:46:28
 tags:
 ---
 
+# platform-client
+## pkt
+http://xyqh5.163.com/
+https://xyh5.163.com/game/?channel=netease&bg=false
+
+width: 56.25vh;
+height: 100vh;
+
+``` js
+function setLaunch() {
+  var e = document.getElementById("launch");
+  if (e) {
+    var n = document.documentElement
+      , o = e.clientWidth
+      , r = e.clientHeight
+      , t = n.getBoundingClientRect()
+      , i = t.width
+      , a = t.height;
+    o > i && (e.style.width = i + "px"),
+    r != a && (e.style.height = a + "px")
+  }
+}
+```
+
 # tooqing-webapp
 
 
@@ -16,6 +40,18 @@ cordova
 
 app
 const isCordova = navigator.userAgent.match(/Cordova/i);
+
+## 异形屏
+### 刘海高度
+小米
+getDisplayCutout success Objectbottom: 0left: 0right: 0top: 28.952381134033203
+Object 28.952381134033203
+
+三星
+getDisplayCutout success Object 36.3636360168457
+
+华为
+getDisplayCutout success {left: 0, top: 24, right: 0, bottom: 0} 24
 
 # 用到的库
 ## vue-infinite-loading

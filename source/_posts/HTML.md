@@ -23,6 +23,10 @@ HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 ## 绝对路径
 C:\windows\system32\cmd.exe
 
+## 引用
+js/a.js  当前路径  ./js/a.js
+
+
 
 
 # 历程
