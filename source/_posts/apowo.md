@@ -28,6 +28,75 @@ function setLaunch() {
 }
 ```
 
+## ci
+``` yaml
+
+stages:
+- deploy
+- deploy_dev
+- deploy_remote_dev
+- merge_build_test
+
+#cache:
+#  key: "$CI_COMMIT_REF_SLUG"
+#  paths:
+#  - node_modules/
+
+
+variables:
+  GIT_STRATEGY: clone
+  GIT_SUBMODULE_STRATEGY: recursive
+
+BuildAndDeployToServer:
+  stage: deploy
+  only:
+  - /^release-.*$/
+  tags:
+  - prod-platform-delivery
+  script:
+  - ansible-playbook $CI_PROJECT_DIR/playbooks/platform_site.yml -b -i $CI_PROJECT_DIR/playbooks/inventory/platform_hosts --extra-vars "project_dist_path=$CI_PROJECT_DIR/../platform_client_dist/" --limit "platform_client"
+
+
+BuildForMergeMasterTest:
+  stage: merge_build_test
+  only:
+  - merge_requests
+  except:
+    variables:
+      - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "master"
+  tags:
+    - prod-platform-delivery
+  script:
+    - yarn install
+    - yarn deploy:prod
+    - mkdir -p ../platform_client_dist && cp -r dist/* ../platform_client_dist/
+
+
+BuildAndDeployToLocalServer:
+  stage: deploy_dev
+  only:
+    - /^beta-.*$/
+  except:
+    - /^release-.*$/
+  tags:
+  - pve-ubuntu-test-runner
+  script:
+  - yarn install
+  - yarn deploy:dev
+  - ansible-playbook $CI_PROJECT_DIR/playbooks/platform_site.yml -b -i $CI_PROJECT_DIR/playbooks/inventory/platform_hosts --extra-vars "project_dist_path=$CI_PROJECT_DIR/dist/" --limit "platform_client_test"
+
+BuildAndDeployToRemoteDevServer:
+  stage: deploy_remote_dev
+  only:
+    - /^remote-dev-.*$/
+  tags:
+    - prod-platform-delivery
+  script:
+    - yarn install
+    - yarn deploy:alpha
+    - ansible-playbook $CI_PROJECT_DIR/playbooks/platform_site.yml -b -i $CI_PROJECT_DIR/playbooks/inventory/platform_hosts --extra-vars "project_dist_path=$CI_PROJECT_DIR/dist/" --limit "platform_client_dev"
+```
+
 # tooqing-webapp
 
 

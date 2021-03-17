@@ -41,6 +41,10 @@ https://appicon.co/#app-icon
 设置：window > Devices and Simulators
 勾选上：Connect via network
 
+# 型号尺寸
+iphone 12 mini   宽：376，高：812
+iphone 12        宽：390，高：844
+
 
 # OC
 Objective-Objective-C是C语言的严格超集
