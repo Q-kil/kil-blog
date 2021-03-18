@@ -28,6 +28,28 @@ function setLaunch() {
 }
 ```
 
+## 跳转
+<script type="text/javascript">
+    let uaInfo = new UAParser();
+    const device = uaInfo.getOS().name;
+    console.log('document.domain', document.domain);
+    console.log('href', window.location.href);
+    const href = window.location.href;
+    const REGEXP_M = /\/m\//;
+    const REGEXP_PKT = /\/pkt/;
+    const REGEXP_MPKT = /\/m\/\/pkt/;
+    if (device == 'Android' || device == 'iOS') {
+      if (href == 'https://a.tooqing.com/pkt') {
+        window.location.href = `https://${document.domain}/m/pkt`;
+      } else if (href.search(REGEXP_M) != -1) {
+        // do not handle
+      } else {
+        window.location.href = `https://${document.domain}/m/`;
+      }
+    }
+    </script>
+
+
 ## ci
 ``` yaml
 
