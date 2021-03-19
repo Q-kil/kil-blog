@@ -7,6 +7,20 @@ tags:
 - JavaScript
 ---
 # 基础知识
+## location
+location.reload()  //刷新页面
+## Math
+取整 四舍五入
+Math.round(67.55);   //68
+
+向下取整
+console.log(Math.floor(45.84334));//45
+
+向上取整
+console.log(Math.ceil(5.4443));//6
+
+随机数0-1
+console.log(Math.random());//0-----1之间
 ## 点击事件
 ``` js
 window.addEventListener('click', () => console.log('Clicked!'));

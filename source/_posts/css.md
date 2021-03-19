@@ -174,6 +174,10 @@ background-repeat: no-repeat;
 background-size: 35.625vh 11.71875vh;
 ```
 
+### 水平垂直剧中
+retryEle.style.cssText = 'display: inline-block; padding: 6px 16px; background: #4d37b3; color: #ffffff; border-radius: 10px; position: absolute; left: 50%; transform: translateX(-50%); top: 50%;';
+
+
 # 适配
 ``` css
 css: {
