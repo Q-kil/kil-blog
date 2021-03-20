@@ -28,7 +28,31 @@ JavaScript的服务器版本
 
 # nvm
 node 版本管理器
+## install
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
+
+nvm   command not found
+.zshrc 添加如下
+```
+source ~/.nvm/nvm.sh
+```
+
+## uninstall
+$ nvm use system
+$ npm uninstall -g a_module
+
+## use
+```zsh
+$ nvm install 14.16.0
+Downloading and installing node v14.16.0...
+Downloading https://nodejs.org/dist/v14.16.0/node-v14.16.0-darwin-x64.tar.xz...
+################################################################################################# 100.0%
+Computing checksum with shasum -a 256
+Checksums matched!
+Now using node v14.16.0 (npm v6.14.11)
+Creating default alias: default -> 14.16.0 (-> v14.16.0)
+```
 # npm
 npm —— nodejs package manager
 cnpm —— 企业npm
