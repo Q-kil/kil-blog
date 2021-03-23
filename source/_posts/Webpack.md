@@ -7,6 +7,15 @@ tags:
 - Webpack
 ---
 
+# base
+## rule
+Rule.type 
+string
+
+可设置值: 'javascript/auto' | 'javascript/dynamic' | 'javascript/esm' | 'json' | 'webassembly/sync' | 'webassembly/async' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'
+
+Rule.type 设置类型用于匹配模块。它防止了 defaultRules 和它们的默认导入行为发生。例如，如果你想 通过自定义 loader 加载一个 .json 文件，你会需要将 type 设置为 javascript/auto 以绕过 webpack 内置的 json 导入。
+
 # learn
 webpack 能完成所有常用的功能
 - 压缩
