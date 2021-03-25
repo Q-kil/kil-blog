@@ -6,6 +6,11 @@ categories:
 tags:
 - CSS
 ---
+
+# base
+## 字间距
+letter-spacing
+
 # 浏览器兼容
 ## 前缀
 ``` css
