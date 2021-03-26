@@ -8,6 +8,8 @@ tags:
 ---
 
 # 基础
+## a
+<a href="pref.html" target="view_window">Preface</a>
 ## label
 HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 

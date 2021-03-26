@@ -10,6 +10,8 @@ tags:
 # base
 ## 字间距
 letter-spacing
+## 旋转
+transform: rotate(90deg);
 
 # 浏览器兼容
 ## 前缀
