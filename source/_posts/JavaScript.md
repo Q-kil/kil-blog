@@ -53,6 +53,12 @@ elt.setAttribute("style", "color:red; border: 1px solid blue;");
 elt.style.color = "blue";
 ```
 
+## 操作html
+``` js
+let vertionEle = `<div style="position:fixed; left: 2px; bottom: 2px; color: #fff;"><span>游戏版本：${appVersion.appVersion}</span><br><span>内核版本：${gamecoreVersion}</span></div>`
+ele.insertAdjacentHTML('beforeend', vertionEle);
+```
+
 ## setTimeout & setInterval
 setTimeout()方法设置一个定时器，该定时器在定时器到期后执行一个函数或指定的一段代码。
 setInterval() 方法重复调用一个函数或执行一个代码段，在每次调用之间具有固定的时间延迟。

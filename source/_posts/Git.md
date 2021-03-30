@@ -371,6 +371,7 @@ git add 所有子工程目录
 git commit -m "update submodule"      //这里的提交应该是更新commit id
 //使其保持最新，与master相同
 
+
 ## 添加
 ``` zsh
 $ git submodule add https://github.com/maonx/vimwiki-assets.git
