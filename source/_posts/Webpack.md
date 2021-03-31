@@ -747,6 +747,11 @@ module.exports = {
   }
 ```
 
+# plugin
+## webpack-bundle-analyzer
+new BundleAnalyzerPlugin()
+
+
 # Error
 ## devtool
 Q：在使用 devtool: 'source-map' 时，我编译后没有看到自己写的文件，是编译后的文件这是怎么回事呢
