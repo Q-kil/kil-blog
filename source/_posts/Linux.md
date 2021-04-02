@@ -159,6 +159,17 @@ ls -all
 查看端口
 lsof -i:1080
 
+### 文件同步
+rsync 是一个常用的 Linux 应用程序，用于文件同步。
+它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间的同步）。它也可以当作文件复制工具，替代cp和mv命令。
+
+### chmod
+Linux chmod（英文全拼：change mode）命令是控制用户对文件的权限的命令
+chmod a+r file	给file的所有用户增加读权限
+chmod a-x file	删除file的所有用户的执行权限
+chmod a+rw file	给file的所有用户增加读写权限
+chmod +rwx file	给file的所有用户增加读写执行权限
+
 ### 下载
 curl -O https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374/assets/1579402117.png
 

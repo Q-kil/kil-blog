@@ -1174,6 +1174,14 @@ https://cloud.tencent.com/developer/article/1542963
 https://angular.cn/guide/dependency-injection-providers
 https://juejin.im/post/6844903592797683719
 
+# 优化
+## bundle 分析器
+webpack-bundle-analyzer
+
+## Tree Shaking
+设置了mode:"production"模式就可以执行 Tree Shaking
+[tree shaking](https://limeii.github.io/2019/08/angular-tree-shaking/)
+
 # 问题
 ## 服务器更新后，页面没有实时显示，必须清缓存才可以显示
 网页 ，每次更新后，要清缓存。。。 
