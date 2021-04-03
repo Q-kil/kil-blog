@@ -270,6 +270,7 @@ yyyy-MM-dd HH:mm:ss
 
 时间戳
 new Date().getTime()
+Date.now()
 
 ### moment
 毫秒

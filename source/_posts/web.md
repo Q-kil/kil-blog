@@ -19,7 +19,12 @@ tags:
 # MEAN架构
 神奇的MEAN架构，MongoDB做数据库，Express做 Web Framework，Angular 做前端的 JavaScript 框架，Node.js 用于编写 Web Server。神奇之处在于这几个东西的语言都是 JavaScript （MongoDB的实现不是，但与外界沟通用的语言是）。因为是比较新的架构，还有待时间的考验，不过被很多人（尤其是靠 JavaScript 吃饭的前端程序猿们）热切关注。
 
-
+# Cache-Control
+## 可缓存性
+no-cache
+在发布缓存副本之前，强制要求缓存把请求提交给原始服务器进行验证(协商缓存验证)。
+no-store
+缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存。
 
 
 

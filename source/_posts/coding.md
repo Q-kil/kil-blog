@@ -54,3 +54,10 @@ ul>li
 # other
 中国人的探索精神没有
 `{% asset_img explore.png%}`
+
+# 指导
+## 页面
+`{% asset_img coding.png%}`
+我写的太乱了，看不明白，不能理解
+在service中处理 数据
+时间的话 util 工具，在视图层处理 
