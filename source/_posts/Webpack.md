@@ -16,6 +16,19 @@ string
 
 Rule.type 设置类型用于匹配模块。它防止了 defaultRules 和它们的默认导入行为发生。例如，如果你想 通过自定义 loader 加载一个 .json 文件，你会需要将 type 设置为 javascript/auto 以绕过 webpack 内置的 json 导入。
 
+## hash
+### hash
+hash是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的hash值都会更改，并且全部文件都共用相同的hash值
+### chunkhash
+chunkhash和hash不一样，它根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的哈希值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成哈希值，那么只要我们不改动公共库的代码，就可以保证其哈希值不会受影响。
+
+作者：wind4gis
+链接：https://juejin.cn/post/6844903542893854734
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+### contentHash
+使用extra-text-webpack-plugin里的contenthash值，保证即使css文件所处的模块里就算其他文件内容改变，只要css文件内容不变，那么不会重复构建。
+
 # learn
 webpack 能完成所有常用的功能
 - 压缩
