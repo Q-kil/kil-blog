@@ -5,6 +5,19 @@ tags:
 ---
 
 # platform-client
+## base
+邀请界面：https://4m.cn/ghFY4
+我的id: 5d1edef00ddbdc57f6438ad3
+## index.html
+``` js
+  <script type="text/javascript" src="polyfills.js"></script>
+  <!-- <script type="text/javascript" src="vendor.js"></script> -->
+  <script>document.write("<script type='text/javascript' src='vendor.js?" + Date.now() + "'><\/script>");</script> 
+  <!-- <script type="text/javascript" src="main.js"></script> -->
+  <script>document.write("<script type='text/javascript' src='main.js?" + Date.now() + "'><\/script>");</script>
+  <script type="text/javascript" src="styles.js"></script>
+```
+
 ## pkt
 http://xyqh5.163.com/
 https://xyh5.163.com/game/?channel=netease&bg=false

@@ -272,16 +272,46 @@ yyyy-MM-dd HH:mm:ss
 new Date().getTime()
 Date.now()
 
+某一天
+new Date('2021-04-01T03:24:00');
+
 ### moment
 毫秒
 moment().valueOf() 
 
 ### 一天的开始和结束
+方法一
 ``` js
 let zero = new Date(new Date(result[0]).toLocaleDateString()).getTime();
 console.log('00:00', zero);
 let end = new Date(new Date(result[1]).toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1;
 console.log('59:59', end);
+```
+
+方法二
+``` js
+var now = new Date();
+now.setHours(00, 00, 00, 0);
+console.log(now.getTime());
+
+let e = new Date('2021-04-01T03:24:00');
+e.setHours(23, 59, 59, 999);
+console.log('e', e.getTime());
+```
+
+方法三
+``` js
+export function DayStart(date) {
+  const weeHours = moment(date).startOf('day').valueOf();
+  console.log('weeHours', weeHours);
+  return weeHours;
+}
+
+export function DayEnd(data) {
+  const end = moment(data).endOf('day').valueOf();
+  console.log('end', end);
+  return end;
+}
 ```
 
 ## 位运算
