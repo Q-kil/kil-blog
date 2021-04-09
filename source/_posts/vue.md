@@ -30,6 +30,16 @@ module.exports = {
 }
 ```
 
+## font
+app.vue
+``` vue
+<style lang="scss">
+@font-face {
+  font-family: "SourceHanSansCN";
+  src: url(./assets/font/SourceHanSansCN-Normal.otf);
+}
+```
+
 ## 声明式渲染
 指令
 指令带有前缀 `v-`

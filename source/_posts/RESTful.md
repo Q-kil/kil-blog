@@ -22,6 +22,11 @@ Elasticsearch 中的索引、类型和文档的概念比较重要，类似于 My
 Elasticsearch 也是 Master-slave 架构，也实现了数据的分片和备份。
 Elasticsearch 一个典型应用就是 ELK 日志分析系统。
 
+## base
+使用 _search，结果放在数组 hits 中。一个搜索默认返回十条结果。
+
+
+
 ## log信息
 时间戳——知道事情发生的时间
 计算机/服务器名称——如果你正在运行一个分布式系统
@@ -30,27 +35,8 @@ Elasticsearch 一个典型应用就是 ELK 日志分析系统。
 堆栈跟踪——用于记录错误的场景
 其他一些额外的变量/信息
 
-## query-filter-context
-``` json
-GET /_search
-{
-  "query": { // 查询参数表示查询上下文。
-    "bool": { 
-      "must": [
-        { "match": { "title":   "Search"        }},
-        { "match": { "content": "Elasticsearch" }}
-      ],
-      "filter": [ 
-        { "term":  { "status": "published" }},
-        { "range": { "publish_date": { "gte": "2015-01-01" }}}
-      ]
-    }
-  }
-}
-```
-
-## basic
-GET /megacorp/employee/_search?q=last_name:Smith
+## 基础语法
+query-filter-context
 
 ### 或
 ``` json
@@ -114,19 +100,8 @@ GET /megacorp/employee/_search
 }
 ```
 
-找出一个属性中的独立单词是没有问题的，但有时候想要精确匹配一系列单词或者_短语_ 。 比如， 我们想执行这样一个查询，仅匹配同时包含 “rock” 和 “climbing” ，并且 二者以短语 “rock climbing” 的形式紧挨着的雇员记录。
-为此对 match 查询稍作调整，使用一个叫做 match_phrase 的查询
-``` json
-GET /megacorp/employee/_search
-{
-    "query" : {
-        "match_phrase" : {
-            "about" : "rock climbing"
-        }
-    }
-}
-```
-
+### 复杂的表达式
+使用过滤器 filter 
 同样搜索姓氏为 Smith 的员工，但这次我们只需要年龄大于 30 的
 ``` json
 GET /megacorp/employee/_search
@@ -148,8 +123,93 @@ GET /megacorp/employee/_search
 }
 ```
 
+### 相关性
+Elasticsearch中的 相关性 概念非常重要，也是完全区别于传统关系型数据库的一个概念，数据库中的一条记录要么匹配要么不匹配。
+搜索下所有喜欢攀岩（rock climbing）的员工：
+``` json
+GET /megacorp/employee/_search
+{
+    "query" : {
+        "match" : {
+            "about" : "rock climbing"
+        }
+    }
+}
+```
+``` json
+{
+   ...
+   "hits": {
+      "total":      2,
+      "max_score":  0.16273327,
+      "hits": [
+         {
+            ...
+            "_score":         0.16273327, 
+            "_source": {
+               "first_name":  "John",
+               "last_name":   "Smith",
+               "age":         25,
+               "about":       "I love to go rock climbing",
+               "interests": [ "sports", "music" ]
+            }
+         },
+         {
+            ...
+            "_score":         0.016878016, 
+            "_source": {
+               "first_name":  "Jane",
+               "last_name":   "Smith",
+               "age":         32,
+               "about":       "I like to collect rock albums",
+               "interests": [ "music" ]
+            }
+         }
+      ]
+   }
+}
+```
+她的 about 属性里提到了 “rock” 。因为只有 “rock” 而没有 “climbing” ，所以她的相关性得分低于 John 的。
+
+### 精准匹配
+找出一个属性中的独立单词是没有问题的，但有时候想要精确匹配一系列单词或者_短语_ 。 比如， 我们想执行这样一个查询，仅匹配同时包含 “rock” 和 “climbing” ，并且 二者以短语 “rock climbing” 的形式紧挨着的雇员记录。
+为此对 match 查询稍作调整，使用一个叫做 match_phrase 的查询
+``` json
+GET /megacorp/employee/_search
+{
+    "query" : {
+        "match_phrase" : {
+            "about" : "rock climbing"
+        }
+    }
+}
+```
+
+``` json
+{
+   ...
+   "hits": {
+      "total":      1,
+      "max_score":  0.23013961,
+      "hits": [
+         {
+            ...
+            "_score":         0.23013961,
+            "_source": {
+               "first_name":  "John",
+               "last_name":   "Smith",
+               "age":         25,
+               "about":       "I love to go rock climbing",
+               "interests": [ "sports", "music" ]
+            }
+         }
+      ]
+   }
+}
+```
+
 ## 分析
-aggregations
+挖掘出员工中最受欢迎的兴趣爱好：
 ``` json
 GET /megacorp/employee/_search
 {
