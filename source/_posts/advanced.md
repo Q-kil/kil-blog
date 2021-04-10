@@ -655,11 +655,80 @@ innerText =
   pattern[j][i] == 1 ？ '⭕️': '';
 ```
 
+### clone 棋盘
+二维数组
+let pattern = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ]
+用：
+function clone(pattern){
+    return JSON.parse(JSON.stringify(pattern));
+  }
 
+一维数组
+let pattern = [
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0
+  ]
+function clone(pattern){
+  return Object.create(pattern);
+}
 
+## 异步编程
+### 红绿灯
+``` js
+let dom = document.getElementById('light');
+let time = Date.parse(new Date())/1000;
+setInterval(() => {
+  let sty = dom.currentStyle || window.getComputedStyle(dom, null);
+  if (sty.backgroundColor == 'rgb(255, 0, 0)' && time + 5 == Date.parse(new Date())/1000) {
+    change('rgb(0, 128, 0)')
+  }
+  if (sty.backgroundColor == 'rgb(255, 255, 0)' && time + 2 == Date.parse(new Date())/1000) {
+    change('rgb(255, 0, 0)')
+  }
+  if (sty.backgroundColor == 'rgb(0, 128, 0)' && time + 10 == Date.parse(new Date())/1000) {
+    change('rgb(255, 255, 0)')
+  }
+}, 1000)
 
+function change(color) {
+  time = Date.parse(new Date())/1000;
+  dom.style.backgroundColor = color;
+}
+```
 
+### base
+js异步机制
+- callback
+- Promise
+- async/await （实际上也是靠Promise管理的）
 
+#### callback
+``` css
+.green.light {
+  background-color: green;
+}
+```
+
+回调地狱
+``` js
+function go() {
+  green()
+  setTimeout(function(){
+    yellow()
+    setTimeout(function(){
+      red()
+      setTimeout(function(){
+        go()
+      }, 5000)
+    }, 2000)
+  }, 10000)
+}
+```
 
 # 组件化
 前端架构里面最重要的部分

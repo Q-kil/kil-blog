@@ -53,6 +53,14 @@ elt.setAttribute("style", "color:red; border: 1px solid blue;");
 elt.style.color = "blue";
 ```
 
+### 获取元素的样式
+``` js
+var div = document.querySelector("div");
+console.log(div.style.width);  //什么也没有
+var sty = div.currentStyle || window.getComputedStyle(div,null);
+console.log(sty.width);   //100px;
+```
+
 ## 操作html
 ``` js
 let vertionEle = `<div style="position:fixed; left: 2px; bottom: 2px; color: #fff;"><span>游戏版本：${appVersion.appVersion}</span><br><span>内核版本：${gamecoreVersion}</span></div>`
