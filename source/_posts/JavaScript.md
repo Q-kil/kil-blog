@@ -279,6 +279,13 @@ new Date('2021-04-01T03:24:00');
 毫秒
 moment().valueOf() 
 
+#### UTC
+moment.utc().format();
+"2021-04-09T12:29:31Z"
+
+moment.utc(1617971728931).format();
+"2021-04-09T12:35:28Z"
+
 ### 一天的开始和结束
 方法一
 ``` js
@@ -313,6 +320,7 @@ export function DayEnd(data) {
   return end;
 }
 ```
+
 
 ## 位运算
 ### 二进制或运算符

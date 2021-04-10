@@ -175,3 +175,9 @@ CG原为Computer Graphics
 
 ## 特殊字符
 ↓↑
+
+# 时间
+## UTC
+协调世界时（英语：Coordinated Universal Time，法语：Temps Universel Coordonné，简称UTC）是最主要的世界时间标准，其以原子时秒长为基础，在时刻上尽量接近于格林威治标准时间。
+yyyy-MM-dd'T'HH:mm:ss.SSSZ
+2021-04-04T01:12:22.448Z

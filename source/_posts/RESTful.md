@@ -23,9 +23,14 @@ Elasticsearch 也是 Master-slave 架构，也实现了数据的分片和备份�
 Elasticsearch 一个典型应用就是 ELK 日志分析系统。
 
 ## base
+### hits
 使用 _search，结果放在数组 hits 中。一个搜索默认返回十条结果。
 
+### took
+took 值告诉我们执行整个搜索请求耗费了多少毫秒。
 
+### shards
+_shards 部分告诉我们在查询中参与分片的总数，以及这些分片成功了多少个失败了多少个。正常情况下我们不希望分片失败，但是分片失败是可能发生的。如果我们遭遇到一种灾难级别的故障，在这个故障中丢失了相同分片的原始数据和副本，那么对这个分片将没有可用副本来对搜索请求作出响应。假若这样，Elasticsearch 将报告这个分片是失败的，但是会继续返回剩余分片的结果。
 
 ## log信息
 时间戳——知道事情发生的时间
@@ -103,6 +108,17 @@ GET /megacorp/employee/_search
 ### 复杂的表达式
 使用过滤器 filter 
 同样搜索姓氏为 Smith 的员工，但这次我们只需要年龄大于 30 的
+
+range 查询找出那些落在指定区间内的数字或者时间：
+gt
+大于
+gte
+大于等于
+lt
+小于
+lte
+小于等于
+
 ``` json
 GET /megacorp/employee/_search
 {
@@ -207,6 +223,165 @@ GET /megacorp/employee/_search
    }
 }
 ```
+
+## 搜索
+### 空搜索
+GET /_search
+搜索API的最基础的形式是没有指定任何查询的空搜索，它简单地返回集群中所有索引下的所有文档：
+``` json
+{
+  "took" : 11542,
+  "timed_out" : false,
+  "num_reduce_phases" : 3,
+  "_shards" : {
+    "total" : 1045,
+    "successful" : 1045,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 10000,
+      "relation" : "gte"
+    },
+    "max_score" : 1.0,
+    "hits" : [
+```
+
+### 多索引，多类型
+多索引，多类型
+你有没有注意到之前的 empty search 的结果，不同类型的文档— user 和 tweet 来自不同的索引— us 和 gb ？
+
+如果不对某一特殊的索引或者类型做限制，就会搜索集群中的所有文档。Elasticsearch 转发搜索请求到每一个主分片或者副本分片，汇集查询出的前10个结果，并且返回给我们。
+
+然而，经常的情况下，你想在一个或多个特殊的索引并且在一个或者多个特殊的类型中进行搜索。我们可以通过在URL中指定特殊的索引和类型达到这种效果，如下所示：
+
+/_search
+在所有的索引中搜索所有的类型
+/gb/_search
+在 gb 索引中搜索所有的类型
+/gb,us/_search
+在 gb 和 us 索引中搜索所有的文档
+/g*,u*/_search
+在任何以 g 或者 u 开头的索引中搜索所有的类型
+/gb/user/_search
+在 gb 索引中搜索 user 类型
+/gb,us/user,tweet/_search
+在 gb 和 us 索引中搜索 user 和 tweet 类型
+/_all/user,tweet/_search
+在所有的索引中搜索 user 和 tweet 类型
+当在单一的索引下进行搜索的时候，Elasticsearch 转发请求到索引的每个分片中，可以是主分片也可以是副本分片，然后从每个分片中收集结果。多索引搜索恰好也是用相同的方式工作的—​只是会涉及到更多的分片。
+
+### 分页
+size
+显示应该返回的结果数量，默认是 10
+from
+显示应该跳过的初始结果数量，默认是 0
+如果每页展示 5 条结果，可以用下面方式请求得到 1 到 3 页的结果：
+```
+GET /_search?size=5
+GET /_search?size=5&from=5
+GET /_search?size=5&from=10
+```
+
+### 映射和分析
+当摆弄索引里面的数据时，我们发现一些奇怪的事情。一些事情看起来被打乱了：在我们的索引中有12条推文，其中只有一条包含日期 2014-09-15 ，但是看一看下面查询命中的 总数 （total）：
+```
+GET /_search?q=2014              # 12 results
+GET /_search?q=2014-09-15        # 12 results !
+GET /_search?q=date:2014-09-15   # 1  result
+GET /_search?q=date:2014         # 0  results !
+```
+
+### term
+term 查询被用于精确值匹配，这些精确值可能是数字、时间、布尔或者那些 not_analyzed 的字符串：
+```
+{ "term": { "age":    26           }}
+{ "term": { "date":   "2014-09-01" }}
+{ "term": { "public": true         }}
+{ "term": { "tag":    "full_text"  }}
+```
+
+### terms 查询
+terms 查询和 term 查询一样，但它允许你指定多值进行匹配。如果这个字段包含了指定值中的任何一个值，那么这个文档满足条件：
+```
+{ "terms": { "tag": [ "search", "full_text", "nosql" ] }}
+```
+
+### 多级排序
+```json
+GET /_search
+{
+    "query" : {
+        "bool" : {
+            "must":   { "match": { "tweet": "manage text search" }},
+            "filter" : { "term" : { "user_id" : 2 }}
+        }
+    },
+    "sort": [
+        { "date":   { "order": "desc" }},
+        { "_score": { "order": "desc" }}
+    ]
+}
+```
+
+### 正则
+``` json
+GET /logstash-alpha-*/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match": {
+          "event": "game_sign"
+        }
+      },
+      "filter": {
+        "regexp":{
+            "phone" : "[1]{1}[3-9]{1}[0-9]{9}"
+        }
+      }
+    }
+  }
+}
+```
+
+### 日期，东八区
+Elasticsearch默认为UTC时间，即零时区，查询时若不指定时区，则默认以0时区查询，和我们所在的东八区差8小时。yyyy-MM-dd'T'HH:mm:ss.SSSZ，这里的Z就代表UTC时区。
+Es在进行日期查询/聚合时可以指定时区：
+```
+//日期范围查询
+POST datatypetest/_search
+{
+  "query": {
+    "range": {
+      "date3": {
+        "gte": "2018-07-05",
+        "lte": "now",
+        "time_zone": "Asia/Shanghai"//这就是东八区（北京时间/中国标准时间）
+      }
+    }
+  }
+}
+```
+
+```
+//日期聚合
+GET my_index/_search?size=0
+{
+  "aggs": {
+    "by_day": {
+      "date_histogram": {
+        "field":     "date",
+        "interval":  "day",
+        "time_zone": "Asia/Shanghai"
+      }
+    }
+  }
+}
+```
+
+
 
 ## 分析
 挖掘出员工中最受欢迎的兴趣爱好：
