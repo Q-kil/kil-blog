@@ -439,6 +439,9 @@ GET /cars/transactions/_search
 }
 ```
 
+## Index Patterns
+This page lists every field in the logstash-alpha-* index and the field's associated core type as recorded by Elasticsearch. To change a field type, use the Elasticsearch Mapping API 
+`{% asset_img index.png %}`
 
 ## 分析
 挖掘出员工中最受欢迎的兴趣爱好：
