@@ -284,6 +284,17 @@ GET /_search?size=5&from=5
 GET /_search?size=5&from=10
 ```
 
+```
+GET /logstash-alpha-2021.04*/_search
+{
+  "query": {
+  },
+  "size" : 0, // 0: 不显示详细信息，10: 显示每条详细信息
+  "aggs" : {
+  }
+}
+```
+
 ### 映射和分析
 当摆弄索引里面的数据时，我们发现一些奇怪的事情。一些事情看起来被打乱了：在我们的索引中有12条推文，其中只有一条包含日期 2014-09-15 ，但是看一看下面查询命中的 总数 （total）：
 ```
@@ -381,6 +392,52 @@ GET my_index/_search?size=0
 }
 ```
 
+### 处理文档数目非零的 buckets
+date_histogram （和 histogram 一样）默认只会返回文档数目非零的 buckets。
+```
+GET /cars/transactions/_search
+{
+   "size" : 0,
+   "aggs": {
+      "sales": {
+         "date_histogram": {
+            "field": "sold",
+            "interval": "month",
+            "format": "yyyy-MM-dd",
+            "min_doc_count" : 0,  // 这个参数强制返回空 buckets。
+            "extended_bounds" : {  // 这个参数强制返回整年。
+                "min" : "2014-01-01",
+                "max" : "2014-12-31"
+            }
+         }
+      }
+   }
+}
+```
+
+### 去重
+```
+{
+  "query": {},
+    "aggs" : {
+    "count": {
+      "date_histogram" : {
+        "field": "timestamp",
+        "interval": "day",
+        "time_zone": "Asia/Shanghai",
+        "format": "yyyy-MM-dd"
+      },
+      "aggs": {
+          "unique_doc_count" : {
+              "cardinality" : {
+                "field" : "user_id"
+              }
+          }
+        }
+    }
+  }
+}
+```
 
 
 ## 分析
