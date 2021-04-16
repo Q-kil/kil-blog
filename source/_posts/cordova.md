@@ -227,6 +227,9 @@ js调用插件
 ToastDemo.showToast(“这是Toast内容”);
 ```
 
+## ios plugin 防止左右滑
+https://github.com/apache/cordova-plugin-wkwebview-engine
+
 # android
 ## debug
 ### chrome not inspect
