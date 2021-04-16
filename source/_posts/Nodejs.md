@@ -53,6 +53,31 @@ Checksums matched!
 Now using node v14.16.0 (npm v6.14.11)
 Creating default alias: default -> 14.16.0 (-> v14.16.0)
 ```
+
+```zsh
+$ nvm use v14.16.0
+Now using node v14.16.0 (npm v6.14.11)
+```
+
+## 查看安装的版本
+``` zsh
+$ nvm ls
+->     v12.22.1
+       v14.16.0
+         system
+default -> 14.16.0 (-> v14.16.0)
+iojs -> N/A (default)
+unstable -> N/A (default)
+node -> stable (-> v14.16.0) (default)
+stable -> 14.16 (-> v14.16.0) (default)
+lts/* -> lts/fermium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.24.1 (-> N/A)
+lts/erbium -> v12.22.1
+lts/fermium -> v14.16.1 (-> N/A)
+```
 # npm
 npm —— nodejs package manager
 cnpm —— 企业npm

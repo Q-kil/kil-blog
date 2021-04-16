@@ -10,7 +10,7 @@ tags:
 
 # JS
 ## 语言通识
-`{% asset_img language.png%}`
+`{% asset_img language.png %}`
 
 `{% asset_img type.png%}`
 

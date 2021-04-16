@@ -401,6 +401,9 @@ git rm --cached 子模块名称
 
 完成删除后，提交到仓库即可。
 
+## 切换分支
+git submodule set-branch --branch feature_apk tooqing-webapp
+
 # runner
 ## 安装
 sudo curl --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64"
