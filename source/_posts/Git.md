@@ -405,6 +405,17 @@ git rm --cached 子模块名称
 git submodule set-branch --branch feature_apk tooqing-webapp
 
 # runner
+## commond
+gitlab-runner list
+ubuntu@gitlab-runner:~$ sudo gitlab-runner list
+Runtime platform                                    arch=amd64 os=linux pid=5248 revision=775dd39d version=13.8.0
+Listing configured runners                          ConfigFile=/etc/gitlab-runner/config.toml
+office-docker-runner                                Executor=docker Token=ab4ebb4e3471ff403c3ea1660db90b URL=https://code.apowo.com/
+office internal gitlab-runner on PVE                Executor=shell Token=xtpd6UJrwhKWGi9MXyNa URL=https://code.apowo.com/
+pve-ubuntu-test-runner                              Executor=shell Token=dBbekMdeG8nDHLaK1KQU URL=https://code.apowo.com
+meshtalk-ci                                         Executor=docker Token=32xMwemzbdqgmENUxePD URL=https://code.apowo.com/
+only for android app build                          Executor=docker Token=uHD7nWC4NB12we3AGb5q URL=https://code.apowo.com/
+
 ## 安装
 sudo curl --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64"
 给权限

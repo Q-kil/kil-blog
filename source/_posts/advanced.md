@@ -707,12 +707,22 @@ js异步机制
 - Promise
 - async/await （实际上也是靠Promise管理的）
 
-#### callback
-``` css
+### winter写法
+``` html
+<style>
+div{}
 .green.light {
   background-color: green;
 }
+</style>
+<body>
+  <div class="green"></div>
+  <div class="yellow"></div>
+  <div class="red"></div>
+</body>
 ```
+
+#### callback
 
 回调地狱
 ``` js
@@ -729,6 +739,72 @@ function go() {
   }, 10000)
 }
 ```
+
+#### Promise
+``` js
+function sleep(t) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, t);
+  })
+}
+
+// 链式的表达式代替 回调
+function go(){
+  green();
+  sleep(1000).then(() => {
+    yellow();
+    return sleep(200);
+  }).then(() => {
+    red();
+    return sleep(500);
+  }).then(go);
+}
+```
+
+#### async/await
+```js
+async function go() {
+  while(true) {
+    green();
+    await sleep(1000);
+    yellow();
+    await sleep(300);
+    red();
+    await sleep(200);
+  }
+}
+```
+
+手动控制(路口道路拥挤，交警需要手动调控)
+``` js
+function happen(element, eventName) {
+  return new Promise((resolve, reject) => {
+    element.addEventListener(eventName, resolve, {once: true});
+  })
+}
+
+async function go() {
+  while(true) {
+    green();
+    await happen(document.getElementById('next'), 'click');
+    yellow();
+    await happen(document.getElementById('next'), 'click');
+    red();
+    await happen(document.getElementById('next'), 'click');
+  }
+}
+```
+
+#### generator模拟async/await
+早起人们的智慧
+
+## 寻路
+- 广度优先搜索算法（深度优先搜索）
+- 有UI部分
+
+### 地图编辑器
+
+
 
 # 组件化
 前端架构里面最重要的部分

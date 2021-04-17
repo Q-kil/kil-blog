@@ -61,6 +61,15 @@ var sty = div.currentStyle || window.getComputedStyle(div,null);
 console.log(sty.width);   //100px;
 ```
 
+### remove class
+```js
+const divs = document.getElementsByTagName('div');
+for (let i = 0; i < divs.length; i++) {
+  divs[i].classList.remove('light');
+}
+document.getElementsByClassName('green')[0].classList.add('light');
+```
+
 ## 操作html
 ``` js
 let vertionEle = `<div style="position:fixed; left: 2px; bottom: 2px; color: #fff;"><span>游戏版本：${appVersion.appVersion}</span><br><span>内核版本：${gamecoreVersion}</span></div>`
@@ -380,6 +389,32 @@ export function DayEnd(data) {
 let encodedData = window.btoa("Hello, world"); // 编码
 let decodedData = window.atob(encodedData);    // 解码
 ```
+
+## while语句
+一个 while 语句只要指定的条件求值为真（true）就会一直执行它的语句块。一个 while 语句看起来像这样：
+```js
+async function go() {
+  while(true) {
+    green();
+    await sleep(1000);
+    yellow();
+    await sleep(300);
+    red();
+    await sleep(200);
+  }
+}
+```
+
+## Array
+Array.prototype.fill()
+fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。
+arr.fill(value[, start[, end]])
+value
+用来填充数组元素的值。
+start 可选
+起始索引，默认值为0。
+end 可选
+终止索引，默认值为 this.length。
 
 
 # 待掌握

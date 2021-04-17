@@ -8,6 +8,11 @@ tags:
 ---
 
 # base
+## 不能加分号
+样式显示不出来，也不会报错
+`{% asset_img semicolon.png %}`
+
+
 ## 字间距
 letter-spacing
 ## 旋转
