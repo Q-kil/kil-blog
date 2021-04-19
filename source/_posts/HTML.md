@@ -8,6 +8,9 @@ tags:
 ---
 
 # 基础
+## lang
+// TODO: Y
+zh-cmn-Hans
 ## a
 <a href="pref.html" target="view_window">Preface</a>
 ## label
