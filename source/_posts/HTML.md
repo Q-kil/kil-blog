@@ -179,3 +179,14 @@ HTML 4.01 规定了三种不同的 <!DOCTYPE> 声明，分别是：Strict、Tran
 文档解析类型：
 BackCompat：怪异模式，浏览器使用自己的怪异模式解析渲染页面。（如果没有声明DOCTYPE，默认就是这个模式）
 CSS1Compat：标准模式，浏览器使用W3C的标准解析渲染页面。
+
+# other
+## use sass
+1.vscode安装两个插件：
+- Live Sass Compiler
+- Live Server
+
+2.写好scss后，点击
+vscode footer Watch Sass
+
+3.直接引入转好的css文件就可以了

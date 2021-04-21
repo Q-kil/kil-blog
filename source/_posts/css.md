@@ -8,6 +8,9 @@ tags:
 ---
 
 # base
+## a标签
+无下划线 
+text-decoration:none;
 ## 不能加分号
 样式显示不出来，也不会报错
 `{% asset_img semicolon.png %}`
@@ -30,6 +33,7 @@ transform:rotate(-3deg);
 
 
 
+
 # 样式
 ## 超出部分省略号
 ``` css
@@ -45,6 +49,10 @@ word-wrap: break-word;
 
 ## 无序列表样式
 https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style
+
+li+li {
+  margin-left: 152px;
+}
 
 ## placeholder 颜色
 ``` css

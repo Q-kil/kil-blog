@@ -103,6 +103,9 @@ document.getElementById('onlinePlayerCount').offsetTop
 窗口高度：
 window.innerHeight
 
+alert( window.innerWidth ); // 整个窗口的宽度
+alert( document.documentElement.clientWidth ); // 减去滚动条宽度后的窗口宽度
+
 ### addEventListener
 ```js
 function setLaunch() {
