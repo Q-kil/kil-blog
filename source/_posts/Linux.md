@@ -161,6 +161,19 @@ lsof -i:1080
 
 tar命令之--exclude参数 排除指定的文件或目录
 
+按文件大小排序
+``` zsh
+$ ll -Sh
+total 2240
+-rw-rw-r--@ 1 niekaifa  staff   564K  4 22 18:18 bg_intro.jpeg
+-rw-rw-r--@ 1 niekaifa  staff   285K  4 22 19:07 img_intro.png
+-rw-rw-r--@ 1 niekaifa  staff   152K  4 22 18:18 img_tales.png
+-rw-rw-r--@ 1 niekaifa  staff    86K  4 21 09:51 bg_character.png
+-rw-rw-r--@ 1 niekaifa  staff    14K  4 19 19:35 ico_guardian.png
+-rw-rw-r--@ 1 niekaifa  staff   7.9K  4 19 19:40 bg_dim2.png
+-rw-rw-r--@ 1 niekaifa  staff   1.4K  4 22 18:19 logo_guardian.png
+```
+
 ### 文件同步
 rsync 是一个常用的 Linux 应用程序，用于文件同步。
 它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间的同步）。它也可以当作文件复制工具，替代cp和mv命令。

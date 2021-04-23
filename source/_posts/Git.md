@@ -441,7 +441,20 @@ Runner registered successfully. Feel free to start it, but if it's running alrea
 gitlab-runner install
 gitlab-runner start
 
-# CI/CD
+## start runner
+``` yml
+test-job1:
+  tags: 
+    - custom01   //一定要指定 tags ，runner注册的时候填的tags
+  script:
+    - echo "This job tests something"
+```
+`{% asset_img runner.png%}`
+
+## yml 语法
+https://segmentfault.com/a/1190000010442764
+
+## CI/CD
 CI：Continuous Integration
 CD：Continuous Delivery
 CD：Continuous Deployment 
@@ -504,3 +517,6 @@ Job succeeded
 ## 警告
 We found a potential security vulnerability in one of your dependencies
 github上删除 package-lock.json
+
+
+# ansible-playbook

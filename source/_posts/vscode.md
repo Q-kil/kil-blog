@@ -416,3 +416,6 @@ editor.detectIndentation 这项改成 false 就生效了
 | Mac快捷键 | 作用  |
 | :--- | :--- |
 | Ctrl + comd + k | 删除线  |
+
+## view-git-commit-log
+`{% asset_img vscode-view-git-commit-log.png%}`
