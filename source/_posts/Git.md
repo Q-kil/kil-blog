@@ -405,6 +405,23 @@ git rm --cached 子模块名称
 git submodule set-branch --branch feature_apk tooqing-webapp
 
 # runner
+## update
+Ubuntu上默认直接安装了gitlab-runner，但其实安装的版本为10.5.0
+
+问题：ci成功，但是没有记录
+This job does not have a trace.
+
+原因：版本太低，需要升级
+``` zsh
+# For Debian/Ubuntu/Mint
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+
+# For RHEL/CentOS/Fedora
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
+```
+再安装最近版本的gitlab-runner:
+apt install gitlab-runner
+
 ## commond
 gitlab-runner list
 ubuntu@gitlab-runner:~$ sudo gitlab-runner list
@@ -422,6 +439,7 @@ sudo curl --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads
 sudo chmod +x /usr/local/bin/gitlab-runner
 
 ## 注册
+gitlab-runner register
 `{% asset_img register.png%}`
 
 Enter the GitLab instance URL (for example, https://gitlab.com/):
@@ -518,5 +536,3 @@ Job succeeded
 We found a potential security vulnerability in one of your dependencies
 github上删除 package-lock.json
 
-
-# ansible-playbook

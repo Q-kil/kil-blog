@@ -7,6 +7,14 @@ tags:
 - Linux
 ---
 
+# base
+## 不应该在 home 目录建文件
+l: 太过分了，啥权限都不应该在home目录下建目录啊
+``` zsh
+ubuntu@gitlab-runner:/home$ ls
+gitlab-runner  temp  ubuntu
+```
+
 ## 第一步
 ### update
 ``` BASH

@@ -10,6 +10,23 @@ tags:
 # base
 Playbooks record and execute Ansible’s configuration, deployment, and orchestration functions. They can describe a policy you want your remote systems to enforce, or a set of steps in a general IT process.
 
+## 创建一个新文件
+```yml
+- file:
+    path: /etc/foo.conf
+    state: touch
+    mode: "u=rw,g=r,o=r"
+```
+
+## 创建新的文件夹
+``` yml
+# create a directory if it doesn't exist
+- file:
+    path: /etc/some_directory
+    state: directory
+    mode: 0755
+```    
+
 # YAML语法
 [配置文件详解](https://segmentfault.com/a/1190000010442764)
 ## stages
@@ -146,3 +163,45 @@ job_name:
 原因：
 merge 请求没有关掉，触发了 merge_requests 条件
 `{% asset_img merge.png %}`
+
+# demo
+## Inventory 目录
+默认的文件是： /etc/ansible/hosts
+
+[webservers]
+foo.example.com
+
+## 测试组
+ansible webserver -m ping -o
+ ansible all -a '/bin/echo hello'
+
+## copy
+### 指令
+ansible webserver -m --become copy -a 'src=/home/ubuntu/temp dest=/home/ubuntu/temp'
+
+### 配置文件
+``` yml
+- hosts: webserver
+  remote_user: ubuntu
+  tasks:
+    - copy:
+      src: /home/ubuntu/temp
+      dest: /home/ubuntu/temp
+```
+
+``` zsh
+root@web:/home/ubuntu/temp# ansible-playbook copy.yml
+/usr/lib/python2.7/dist-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography.exceptions import InvalidSignature
+
+PLAY [webserver] **********************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************
+ok: [172.17.17.10]
+
+TASK [copy] ***************************************************************************************************************************
+changed: [172.17.17.10]
+
+PLAY RECAP ****************************************************************************************************************************
+172.17.17.10               : ok=2    changed=1    unreachable=0    failed=0
+```
