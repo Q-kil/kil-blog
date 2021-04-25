@@ -7,6 +7,10 @@ tags:
 - JavaScript
 ---
 # 基础知识
+## 阻止事件
+### a 标签跳转
+1、e.preventDefault();
+2、href="javascript:void(0);"
 ## location
 location.reload()  //刷新页面
 ## Math
