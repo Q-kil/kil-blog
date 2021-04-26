@@ -390,6 +390,15 @@ Keyboard Shortcut: ctrl + alt + N to create new file & ctrl + alt + shift + N to
 ### 缩进彩虹
 indent-rainbow
 
+### Auto Import
+自动导入引用
+``` ts
+{
+path: 'wechat',
+component: WechatComponent  // 倒入模块的时候 ，输入：wech  无法自动自动导入包
+}
+```
+
 ## 设置
 ### 设置中文
 按Ctrl + Shift + P打开`命令调色板`，然后开始键入“display”以过滤并显示Configure Display Language命令。
@@ -419,3 +428,4 @@ editor.detectIndentation 这项改成 false 就生效了
 
 ## view-git-commit-log
 `{% asset_img vscode-view-git-commit-log.png%}`
+
