@@ -469,6 +469,32 @@ test-job1:
 ```
 `{% asset_img runner.png%}`
 
+## verify
+gitlab-runner verify
+``` zsh
+Verifying runner... is alive                        runner=fee9938e
+Verifying runner... is alive                        runner=0db52b31
+Verifying runner... is alive                        runner=826f687f
+Verifying runner... is alive                        runner=32773c0f
+```
+
+### delete
+``` zsh
+ubuntu@ci-runner:~$ gitlab-runner verify --delete
+Runtime platform                                    arch=amd64 os=linux pid=10756 revision=54944146 version=13.10.0
+WARNING: Running in user-mode.
+WARNING: The user-mode requires you to manually start builds processing:
+WARNING: $ gitlab-runner run
+WARNING: Use sudo for system-mode:
+WARNING: $ sudo gitlab-runner...
+
+ERROR: Verifying runner... is removed               runner=Sf9cFJ7R
+Verifying runner... is alive                        runner=UmV1JciW
+Updated /home/ubuntu/.gitlab-runner/config.toml
+```
+
+
+
 ## yml 语法
 https://segmentfault.com/a/1190000010442764
 
