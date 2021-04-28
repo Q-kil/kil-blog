@@ -10,6 +10,23 @@ tags:
 # base
 Playbooks record and execute Ansible’s configuration, deployment, and orchestration functions. They can describe a policy you want your remote systems to enforce, or a set of steps in a general IT process.
 
+## 参数
+-b
+--become        
+  run operations with become (does not imply password prompting)
+
+-i INVENTORY, --inventory-file=INVENTORY
+  specify inventory host path (default=/etc/ansible/hosts) or comma separated host list.
+  指定要读取的Inventory文件
+
+-e EXTRA_VARS, --extra-vars=EXTRA_VARS
+  set additional variables as key=value or YAML/JSON
+  在Playbook中引入外部参数变量
+
+-l SUBSET, --limit=SUBSET
+  further limit selected hosts to an additional pattern
+  限定执行的主机范围
+
 ## 创建一个新文件
 ```yml
 - file:

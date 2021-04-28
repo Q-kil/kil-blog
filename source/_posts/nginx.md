@@ -169,3 +169,10 @@ root /opt/dist;
 
 浏览器输入地址：http://96.45.180.121/
 `{% asset_img nginx2.png %}`
+
+# 检查
+``` zsh
+ubuntu@web:/etc/nginx/sites-enabled$ sudo nginx -t -c /etc/nginx/nginx.conf
+nginx: [emerg] invalid number of arguments in "root" directive in /etc/nginx/conf.d/tooqing-cms.conf:8
+nginx: configuration file /etc/nginx/nginx.conf test failed
+```

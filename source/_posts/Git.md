@@ -76,6 +76,10 @@ git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 git config --global --unset http.https://github.com.proxy)
 ```
 
+## token
+gitlab import github   授权
+`{% asset_img register.png%}`
+
 # 指令
 git配置
 git config --list
@@ -124,6 +128,21 @@ git reset --hard 3e5236a
 git log
 
 ## 删除远程已提交的文件
+https://www.liaoxuefeng.com/wiki/896043488029600/900002180232448
+首先删除本地 文件
+git status
+deleted:    test.txt
+
+``` zsh
+$ git rm test.txt
+rm 'test.txt'
+
+$ git commit -m "remove test.txt"
+[master d46f35e] remove test.txt
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 test.txt
+```
+
 ``` zsh
 git rm -r --cached 文件/文件夹名称
 # 修改本地 .gitignore
@@ -131,6 +150,8 @@ git add .
 git commit -m ''
 git push origin master
 ```
+
+git rm -r --cached xxx.iml　　//-r 是递归的意思   当最后面是文件夹的时候有用
 
 ## 放弃修改
 ### 文件修改
@@ -469,6 +490,9 @@ test-job1:
 ```
 `{% asset_img runner.png%}`
 
+## unregister
+gitlab-runner unregister --name test-runner
+
 ## verify
 gitlab-runner verify
 ``` zsh
@@ -553,6 +577,11 @@ Job succeeded
 ```
 
 ## 线上打tag
+
+## 问题
+### gitlab: Runner is offline, last contact was about some hours ago
+解决：
+gitlab-runner restart
 
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
