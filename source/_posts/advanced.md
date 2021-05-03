@@ -672,7 +672,7 @@ let pattern = [
     0, 0, 0,
     0, 0, 0,
     0, 0, 0
-  ]
+]
 function clone(pattern){
   return Object.create(pattern);
 }
