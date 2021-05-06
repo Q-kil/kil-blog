@@ -583,6 +583,8 @@ Job succeeded
 解决：
 gitlab-runner restart
 
+### 注册后 
+
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
 检查下在本仓库上的帐号

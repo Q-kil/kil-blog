@@ -491,6 +491,7 @@ function checkForUpdate() {
 ```
 
 ## cordova-hcp build
+cordova-hcp build
 
 ## chcp_updateLoadFailed
 在应用 config.xml 配置中可以定义了 native side 的版本号，例如

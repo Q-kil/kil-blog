@@ -15,6 +15,33 @@ ubuntu@gitlab-runner:/home$ ls
 gitlab-runner  temp  ubuntu
 ```
 
+## ubuntu
+查看所有用户
+cat /etc/shadow
+
+切换用户
+切换用户的命令
+su username
+从普通用户切换到root用户，还可以使用命令
+sudo su
+
+### vim tab缩进 4个空格
+变量名           缩写        含义 
+(no)smartindent si          基于autoindent的一些改进 
+tabstop=X       ts          编辑时一个TAB字符占多少个空格的位置。 
+shiftwidth=X    sw          使用每层缩进的空格数。 
+(no)expandtab   (no)et      是否将输入的TAB自动展开成空格。开启后要输入TAB，需要Ctrl-V<TAB> 
+softtabstop=X   sts         方便在开启了et后使用退格（backspace）键，每次退格将删除X个空格 
+
+set smartindent  
+set tabstop=4  
+set shiftwidth=4  
+set expandtab  
+set softtabstop=4  
+
+放在 ~/.vimrc中仅对自己生效
+放在/etc/vimrc中对所有用户生效
+
 ## 第一步
 ### update
 ``` BASH
@@ -181,6 +208,18 @@ total 2240
 -rw-rw-r--@ 1 niekaifa  staff   7.9K  4 19 19:40 bg_dim2.png
 -rw-rw-r--@ 1 niekaifa  staff   1.4K  4 22 18:19 logo_guardian.png
 ```
+
+生成一个指定大小的文件
+root@VM-0-4-ubuntu:/home/remote# dd if=/dev/zero of=tmp.5M bs=1M count=5
+5+0 records in
+5+0 records out
+5242880 bytes (5.2 MB, 5.0 MiB) copied, 0.00419139 s, 1.3 GB/s
+
+if=FILE      : 指定输入文件，若不指定则从标注输入读取。这里指定为/dev/zero是Linux的一个伪文件，它可以产生连续不断的null流（二进制的0）
+of=FILE      : 指定输出文件，若不指定则输出到标准输出
+bs=BYTES     : 每次读写的字节数，可以使用单位K、M、G等等。另外输入输出可以分别用ibs、obs指定，若使用bs，则表示是ibs和obs都是用该参数
+count=BLOCKS : 读取的block数，block的大小由ibs指定（只针对输入参数）
+
 
 ### 文件同步
 rsync 是一个常用的 Linux 应用程序，用于文件同步。

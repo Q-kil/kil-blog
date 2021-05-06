@@ -395,6 +395,10 @@ OO语言都支持两种继承方式: 接口继承 和 实现继承
 
 特征：封装、继承
 
+## 对象的扩展
+### 链判断运算符
+const firstName = message?.body?.user?.firstName || 'default';
+
 ## ES4, ES5 写法
 没有统一写法
 以函数形式写对象
