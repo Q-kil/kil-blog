@@ -1061,3 +1061,10 @@ js的一个子集
 let version = compareVersion('0.0.3', '0.0.1');
 console.log('version', version);
 ```
+
+# 问题
+## parse
+Unhandled Promise Rejection: SyntaxError: JSON Parse error: Unexpected identifier "object"
+答：
+Most probably your response is already a JavaScript object and it not required to be parsed.
+Remove the line var json = JSON.parse(response); and your code should work.

@@ -220,6 +220,20 @@ of=FILE      : 指定输出文件，若不指定则输出到标准输出
 bs=BYTES     : 每次读写的字节数，可以使用单位K、M、G等等。另外输入输出可以分别用ibs、obs指定，若使用bs，则表示是ibs和obs都是用该参数
 count=BLOCKS : 读取的block数，block的大小由ibs指定（只针对输入参数）
 
+mac os
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
+$ dd if=/dev/zero of=tmp.png bs=1M count=50
+dd: bs: illegal numeric value
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:50] C:1
+$ dd if=/dev/zero of=tmp.png bs=1m count=20
+20+0 records in
+20+0 records out
+20971520 bytes transferred in 0.044836 secs (467737962 bytes/sec)
+
+vim 光标跳转
+1.跳到文本的最后一行：按“G”,即“shift+g”
+2.跳到最后一行的最后一个字符 ： 先重复1的操作即按“G”，之后按“$”键，即“shift+4”。
 
 ### 文件同步
 rsync 是一个常用的 Linux 应用程序，用于文件同步。

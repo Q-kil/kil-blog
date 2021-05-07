@@ -11,6 +11,13 @@ tags:
 # basis
 bilibili学习地址：https://www.bilibili.com/video/BV1Tt411a7Xa?p=6
 
+## log
+NSLog(@"Text %@", object);
+NSLog(@"I want to log: %@", myString);
+ 
+int i = 1234;
+NSLog(@"The number is: %d", i);
+
 ## 快捷键
 ### 编译运行
 Command + R 
@@ -47,7 +54,8 @@ iphone 12        宽：390，高：844
 
 
 # OC
-Objective-Objective-C是C语言的严格超集
+Objective-C是C语言的严格超集
+面向对象的C语言
 
 ## 扩展名
 | 扩展名 | 内容类型  |
@@ -58,6 +66,9 @@ Objective-Objective-C是C语言的严格超集
 
 ## 创建OC文件
 Xcode -> Create a new Xcode project -> OS X -> Command Line Tool
+中国人的探索精神就是这样，没有
+`{% asset_img explore.png %}`
+
 
 ## basis
 1. OC相对于C
@@ -71,3 +82,26 @@ Xcode -> Create a new Xcode project -> OS X -> Command Line Tool
    int类型的返回值  代表程序的结束状态
    main函数的参数：仍然可以接收用户在运行程序的时候传递数据给程序
                  参数也可以不要
+
+# 问题
+## 移动端ios使用new Date(“2021-02-03 00:00:00“)获取时间为NAN
+使用ionic4+angular8框架开发app
+在ios端使用如下代码获取时间毫秒数,控制台打印显示NAN
+
+new Date("2021-02-03 00:00:00").getTime()
+1
+android端显示正常，获取结果为1612281600000
+经网上查阅资料使用new Date()移动端兼容性如下图所示
+`{% asset_img ios_date.png %}`
+
+解决办法
+根据上图采用第四种解决办法，将"-“替换为”/"
+
+let time = "2021-02-03 00:00:00";
+let formatTime = time.replace(/-/g, '/')
+new Date(newTime).getTime()
+
+移动端vConsole控制台成功输出毫秒数1612281600000
+————————————————
+版权声明：本文为CSDN博主「renjiantaotie」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/renjiantaotie/article/details/113630560
