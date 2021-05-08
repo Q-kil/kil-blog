@@ -18,6 +18,34 @@ NSLog(@"I want to log: %@", myString);
 int i = 1234;
 NSLog(@"The number is: %d", i);
 
+## NS前缀
+NextStep ---> Cocoa ---> Foundation框架之中
+
+## @符号
+1. 将C字符串转换为OC字符串
+   "jack"   @"jack"
+2. OC中的绝大部分的关键字都是以@符号开头
+
+## 注释
+单行注释：
+   //
+多行注释：
+   /* */
+
+## 函数定义调用
+``` m
+#import <Foundation/Foundation.h>
+
+void test();
+
+int main() {
+    test();
+}
+
+void test() {
+    NSLog(@"test");
+}
+```
 ## 快捷键
 ### 编译运行
 Command + R 
@@ -82,6 +110,48 @@ Xcode -> Create a new Xcode project -> OS X -> Command Line Tool
    int类型的返回值  代表程序的结束状态
    main函数的参数：仍然可以接收用户在运行程序的时候传递数据给程序
                  参数也可以不要
+
+4. #import指令
+   1）.以#号开头，是1个预处理指令
+   2）.作用： 是#inlcude指令的增强版，讲文件的内容在预编译的时候拷贝写指令的地方
+   3）.增强： 同1个文件无论#import多少次，只会包含1次
+             如果#include指令要实现这个效果  就必须要配合条件编译指令来实现
+             而#import指令只需要直接包含就可以  其他什么都不用做
+
+``` m
+#import <Foundation/Foundation.h>
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool { 
+        // insert code here...
+        NSLog(@"Hello, World!");
+    }
+    return 0;
+}
+```
+
+@autoreleasepool 自动释放池
+NSLog 函数，来自 Foundation.h
+   1). 作用：是printf函数的增强版，向控制台输出信息
+   2). 语法：
+         NSLog(@"格式控制字符串", 变量列表)；
+      最简单的语法：
+         NSLog(@"要输出的信息")；
+
+### NSString
+NSSting 类型的指针变量，专门用来存储OC字符串的地址
+
+OC的字符串常量必须要使用1个前缀@符合
+   "jack" C语言的字符串
+   @"jack" OC字符串常量
+
+NSString *str = @"jack"
+
+NSLog(str);
+如果要使用NSLog函数输出OC字符串的值，那么使用占位符%@
+NSLog(@"大家好，我叫%@", str);
+
+
 
 # 问题
 ## 移动端ios使用new Date(“2021-02-03 00:00:00“)获取时间为NAN

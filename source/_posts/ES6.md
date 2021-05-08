@@ -395,6 +395,9 @@ OO语言都支持两种继承方式: 接口继承 和 实现继承
 
 特征：封装、继承
 
+## 类
+类的作用：描述一群具有相同特征和行为的食物
+
 ## 对象的扩展
 ### 链判断运算符
 const firstName = message?.body?.user?.firstName || 'default';
