@@ -151,6 +151,16 @@ NSLog(str);
 如果要使用NSLog函数输出OC字符串的值，那么使用占位符%@
 NSLog(@"大家好，我叫%@", str);
 
+### NSNumber
+NSArray、NSDictionary、NSSet 等集合对象只能保存对象，如果要保存 char、short、int、float、double、BOOL 或指向结构的指针等基础数据类型，则可以先将这些基本数据类型封装成 NSNumber 对象，再存入集合对象。
+NSNumber 类用来包装基本数据类型。
+NSValue 是 NSNumber 的父类。
+不能直接用 NSNumber 对象做计算，只能提取值。
+
+// 包装基本数据类型
+NSNumber *intNumber = [NSNumber numberWithInteger:100];
+NSNumber *floatNumber =[NSNumber numberWithFloat:24.58];
+NSNumber *boolNumber = [NSNumber numberWithBool:YES];
 
 
 # 问题

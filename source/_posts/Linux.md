@@ -14,7 +14,8 @@ l: 太过分了，啥权限都不应该在home目录下建目录啊
 ubuntu@gitlab-runner:/home$ ls
 gitlab-runner  temp  ubuntu
 ```
-
+如果是只是临时文件  建议使用/tmp/目录 这个目录应该所有用户都有写权限的
+没必要另外创建文件夹
 ## ubuntu
 查看所有用户
 cat /etc/shadow
@@ -149,6 +150,9 @@ free -m
 ``` bash
 ps axu|grep nginx
 ```
+
+当前目录下（包括子目录）的文件名中包含 luoluo 的文件过滤出来
+find | grep luoluo
 
 查看包安装在那
 ``` bash
@@ -533,3 +537,69 @@ $ echo $ANDROID_HOME检查此变量是否已正确设置。
 /usr/include;Linux下开发和编译应用程序需要的头文件，爱好编程的朋友可要仔细研究这里呦。 
 
 /opt ; 非开源的商业程序一般都装到这里面。 可以谷歌到更多的！
+
+## 修改时间
+``` zsh
+root@ci-runner:~# tzselect
+Please identify a location so that time zone rules can be set correctly.
+Please select a continent, ocean, "coord", or "TZ".
+ 1) Africa
+ 2) Americas
+ 3) Antarctica
+ 4) Asia
+ 5) Atlantic Ocean
+ 6) Australia
+ 7) Europe
+ 8) Indian Ocean
+ 9) Pacific Ocean
+10) coord - I want to use geographical coordinates.
+11) TZ - I want to specify the time zone using the Posix TZ format.
+#? 4
+Please select a country whose clocks agree with yours.
+ 1) Afghanistan		  18) Israel		    35) Palestine
+ 2) Armenia		  19) Japan		    36) Philippines
+ 3) Azerbaijan		  20) Jordan		    37) Qatar
+ 4) Bahrain		  21) Kazakhstan	    38) Russia
+ 5) Bangladesh		  22) Korea (North)	    39) Saudi Arabia
+ 6) Bhutan		  23) Korea (South)	    40) Singapore
+ 7) Brunei		  24) Kuwait		    41) Sri Lanka
+ 8) Cambodia		  25) Kyrgyzstan	    42) Syria
+ 9) China		  26) Laos		    43) Taiwan
+10) Cyprus		  27) Lebanon		    44) Tajikistan
+11) East Timor		  28) Macau		    45) Thailand
+12) Georgia		  29) Malaysia		    46) Turkmenistan
+13) Hong Kong		  30) Mongolia		    47) United Arab Emirates
+14) India		  31) Myanmar (Burma)	    48) Uzbekistan
+15) Indonesia		  32) Nepal		    49) Vietnam
+16) Iran		  33) Oman		    50) Yemen
+17) Iraq		  34) Pakistan
+#? 9
+Please select one of the following time zone regions.
+1) Beijing Time
+2) Xinjiang Time
+#? 1
+
+The following information has been given:
+
+	China
+	Beijing Time
+
+Therefore TZ='Asia/Shanghai' will be used.
+Selected time is now:	Sat May  8 18:27:19 CST 2021.
+Universal Time is now:	Sat May  8 10:27:19 UTC 2021.
+Is the above information OK?
+1) Yes
+2) No
+#? 1
+
+You can make this change permanent for yourself by appending the line
+	TZ='Asia/Shanghai'; export TZ
+to the file '.profile' in your home directory; then log out and log in again.
+
+Here is that TZ value again, this time on standard output so that you
+can use the /usr/bin/tzselect command in shell scripts:
+Asia/Shanghai
+root@ci-runner:~# cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+root@ci-runner:~# date -R
+Sat, 08 May 2021 18:27:43 +0800
+```
