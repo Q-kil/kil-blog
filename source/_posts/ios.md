@@ -76,10 +76,25 @@ https://appicon.co/#app-icon
 设置：window > Devices and Simulators
 勾选上：Connect via network
 
+1.通过数据线将真机连接至Xcode
+2.打开Xcode -> 顶部菜单栏 -> Window -> Devices and Simulators -> 选择你的机器 -> 勾选 Connect via network (如下)
+
+## 模拟器
+### 清理
+Simulator > Device > Erase all content and setting
+删除所有内容和设置
+
+## 推送到TestFligth
+皮卡堂 > Any iOS Device(arm64)
+Product > Archive
+
 # 型号尺寸
 iphone 12 mini   宽：376，高：812
 iphone 12        宽：390，高：844
 
+## icon
+iPad Pro	167px × 167px (83.5pt × 83.5pt @2x)
+`{% asset_img icon.png %}`
 
 # OC
 Objective-C是C语言的严格超集

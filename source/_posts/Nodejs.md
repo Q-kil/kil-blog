@@ -78,6 +78,27 @@ lts/dubnium -> v10.24.1 (-> N/A)
 lts/erbium -> v12.22.1
 lts/fermium -> v14.16.1 (-> N/A)
 ```
+
+# npx
+Node 自带 npm 模块，所以可以直接使用 npx 命令。万一不能用，就要手动安装一下。
+$ npm install -g npx
+
+## 调用项目安装的模块
+npx 想要解决的主要问题，就是调用项目内部安装的模块。比如，项目内部安装了测试工具 Mocha。
+
+$ npm install -D mocha
+一般来说，调用 Mocha ，只能在项目脚本和 package.json 的scripts字段里面， 如果想在命令行下调用，必须像下面这样。
+
+项目的根目录下执行
+$ node-modules/.bin/mocha --version
+npx 就是想解决这个问题，让项目内部安装的模块用起来更方便，只要像下面这样调用就行了。
+
+$ npx mocha --version
+
+## cordova项目
+npx cordova-hcp build
+
+
 # npm
 npm —— nodejs package manager
 cnpm —— 企业npm
@@ -90,6 +111,18 @@ npm config list
 
 set
 npm config set key value
+
+## install
+npm install https://github.com/visionmedia/express throws error.
+
+npm install express works.
+---------
+Because https://github.com/visionmedia/express is the URL of a web page and not an npm module. Use this flavor: git+{url}.git
+
+git+https://github.com/visionmedia/express.git
+or this flavor if you need SSH:
+
+git+ssh://git@github.com/visionmedia/express.git
 
 ## 包
 ### rimraf
