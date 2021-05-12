@@ -603,3 +603,12 @@ root@ci-runner:~# cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 root@ci-runner:~# date -R
 Sat, 08 May 2021 18:27:43 +0800
 ```
+
+获取东八区时间
+``` js
+var timezone = 8; //目标时区时间，东八区
+var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+var nowDate = new Date().getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+var targetDate = new Date(nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000);
+console.log("东8区现在是：" + targetDate);
+```

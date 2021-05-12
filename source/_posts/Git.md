@@ -585,6 +585,50 @@ gitlab-runner restart
 
 ### 注册后 
 
+# git-flow
+brew install git-flow-avh
+
+git flow version
+
+初始化：
+git flow init
+
+Initialized empty Git repository in /Users/savokiss/demos/gitflow/.git/
+No branches exist yet. Base branches must be created now.
+Branch name for production releases: [master]
+Branch name for "next release" development: [develop]
+
+How to name your supporting branch prefixes?
+Feature branches? [feature/]
+Bugfix branches? [bugfix/]
+Release branches? [release/]
+Hotfix branches? [hotfix/]
+Support branches? [support/]
+Version tag prefix? [] v
+Hooks and filters directory? [/Users/savokiss/demos/gitflow/.git/hooks]
+
+开始新的功能分支
+git flow feature start auth
+
+完成feature/auth分支
+$ git flow feature finish auth
+Switched to branch 'develop'
+Updating e69b22c..f7f48e2
+Fast-forward
+ # gitflow | 0
+ README.md | 4 ++++
+ 2 files changed, 4 insertions(+)
+ create mode 100644 # gitflow
+ create mode 100644 README.md
+Deleted branch feature/auth (was f7f48e2).
+
+Summary of actions:
+- The feature branch 'feature/auth' was merged into 'develop'
+- Feature branch 'feature/auth' has been locally deleted
+- You are now on branch 'develop'
+
+
+
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
 检查下在本仓库上的帐号
