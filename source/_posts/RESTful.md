@@ -43,6 +43,20 @@ _shards 部分告诉我们在查询中参与分片的总数，以及这些分片
 ## 基础语法
 query-filter-context
 
+### 轻量搜索
+搜索phone为13215693211的数据
+GET /logstash-alpha-202*/_search?q=phone:13215693211
+
+### 查询表达式 搜索
+GET /logstash-alpha-202*/_search
+{
+  "query" : {
+    "match" : {
+      "phone" : "13215693211"
+    }
+  }
+}
+
 ### 或
 ``` json
 GET /my_store/products/_search
@@ -224,6 +238,17 @@ GET /megacorp/employee/_search
 }
 ```
 
+### 聚合
+聚合（aggregations）
+GET /megacorp/employee/_search
+{
+  "aggs": {
+    "all_interests": {
+      "terms": { "field": "interests" }
+    }
+  }
+}
+
 ## 搜索
 ### 空搜索
 GET /_search
@@ -247,6 +272,8 @@ GET /_search
     "max_score" : 1.0,
     "hits" : [
 ```
+
+hits： 采样数
 
 ### 多索引，多类型
 多索引，多类型
@@ -303,6 +330,51 @@ GET /_search?q=2014-09-15        # 12 results !
 GET /_search?q=date:2014-09-15   # 1  result
 GET /_search?q=date:2014         # 0  results !
 ```
+
+### 字段折叠
+GET /logstash-alpha-202*/_search
+{
+  "query":{
+    "bool": {
+      "must": {
+        "match": { "event": "online_time" } 
+      },
+      "filter": {
+        "range": {
+          "timestamp": {
+            "gt": "2021-05-18T16:00:00Z",
+            "lt": "2021-05-19T15:59:59Z"
+          }
+        }
+      }
+    }
+  },
+  "size": 0,
+  "aggs": {
+    "lists": {
+      "terms": {
+        "field": "userId.keyword",
+        "size": 10000
+      },
+      "aggs":{
+	      "details_hits":{
+	        "top_hits":{
+            "_source": {
+              "includes": [
+                "userId",
+                "phone",
+                "nickname",
+                "username"
+              ]
+            },
+	          "size":1
+	        }
+	      }
+	    }
+    }
+  }
+}
+
 
 ### term
 term 查询被用于精确值匹配，这些精确值可能是数字、时间、布尔或者那些 not_analyzed 的字符串：

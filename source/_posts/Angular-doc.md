@@ -32,6 +32,22 @@ Vue 和 React 拿来写小程序都很快很方便，但是 Angular 要拿来做
 监测页面数据变化
 angular 会在我们的组件发生变化的时候，对我们的组件执行变化检测，如果检测到我们的数据发生了变化，就会执行某些操作，如修改绑定数据的时候更新视图。这样一来，当我们的组件数据比较多的时候，angular就会有很多操作在静悄悄地进行，因此，就需要ChangeDetectorRef来实时检测数据的变化并更新视图数据
 
+2021.5.18 补充
+angular用了两年多了
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+constructor(
+    private picatownService: PicatownService,
+    private http: _HttpClient,
+    private cd: ChangeDetectorRef
+) {}
+this.resultDatas = this.resultDataFormat(this.resultDatas, customs);
+this.cd.detectChanges();
+
+大师：
+请求一定是异步的，因为需要和服务端通信，但是写代码的方式可以是同步的，就是用async/await语法写，可以获得和写同步一样的体验
+是因为异步没有触发脏检查机制，需要手动触发一下。
+
+
 ## 引入json
 https://medium.com/@devblog_/angular-7-import-json-14f8bba534af
 

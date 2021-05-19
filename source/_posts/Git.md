@@ -289,6 +289,13 @@ Installing "cordova-plugin-android-keyboard" for android
 Adding cordova-plugin-android-keyboard to package.json
 ```
 
+## 依赖gitlab项目
+yarn add git+https://code.apowo.com/PixelPai/gamecore_pkt.git
+
+yarn add git+ssh://git@code.apowo.com:PixelPai/gamecore_pkt.git
+ci 里面加的是ssh的key 来通过gitlab的验证的 你请求的是https://code.apwo.com  如果是你本地 会在命令行中弹出 输入账号密码的提示 来通过http的验证
+那么问题来了 你要通过http来请求嘛 如果需要 你去研究一下 怎么通过gitlab 的access-token拉取代码 然后改下ci
+如果不需要 就改成通过git请求的；git+ssh
 
 # 错误
 ### index.lock
@@ -628,6 +635,16 @@ Summary of actions:
 - You are now on branch 'develop'
 
 
+type 用于说明提交的类型：
+1. feature： 新功能
+2. fix: 问题修复
+3. docs: 文档
+4. style: 调整格式（不影响代码运行）
+5. refactor: 重构
+6. test: 增加测试
+7. chore: 构建过程或辅助工具的变动
+8. revert: 撤销以前的提交
+9. scope 用于说明提交的影响范围，内容根据具体项目而定。
 
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
