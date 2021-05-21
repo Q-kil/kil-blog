@@ -51,6 +51,19 @@ this.cd.detectChanges();
 ## 引入json
 https://medium.com/@devblog_/angular-7-import-json-14f8bba534af
 
+## 代理
+{
+  "/cdn": {
+    "target": "https://a.tooqing.com/game/resource",
+    "logLevel": "debug",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/cdn/": "/"
+    }
+  }
+}
+
 # angular.cn
 ## 架构概览
 组件定义视图，组件使用服务（依赖注入）

@@ -176,3 +176,21 @@ ubuntu@web:/etc/nginx/sites-enabled$ sudo nginx -t -c /etc/nginx/nginx.conf
 nginx: [emerg] invalid number of arguments in "root" directive in /etc/nginx/conf.d/tooqing-cms.conf:8
 nginx: configuration file /etc/nginx/nginx.conf test failed
 ```
+
+# 转发
+server {
+    listen  8081;
+    server_name   localhost;
+
+    location / {
+        root    /home/kil/dist;
+    }
+
+    location /cdn/ {
+        proxy_pass https://a.tooqing.com/game/resource/;
+    }
+}
+
+# 日志
+/var/log/nginx# cat access.log
+

@@ -184,6 +184,13 @@ width:xxx px;
 
 rem是一个相对单位，1rem等于html元素上字体设置的大小。
 
+根据不同设备的分辨率设置字体。
+
+ @media screen and (max-width:980px) {
+      html {
+        font-size: 50px;
+      }
+    }
 
 ## div水平剧中
 网易
