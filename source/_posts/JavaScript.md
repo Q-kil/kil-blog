@@ -6,6 +6,7 @@ categories:
 tags:
 - JavaScript
 ---
+
 # 基础知识
 ## 阻止事件
 ### a 标签跳转
