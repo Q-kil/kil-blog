@@ -181,3 +181,9 @@ CG原为Computer Graphics
 协调世界时（英语：Coordinated Universal Time，法语：Temps Universel Coordonné，简称UTC）是最主要的世界时间标准，其以原子时秒长为基础，在时刻上尽量接近于格林威治标准时间。
 yyyy-MM-dd'T'HH:mm:ss.SSSZ
 2021-04-04T01:12:22.448Z
+
+# 模式
+## 单例模式
+1、单例类只能有一个实例。
+2、单例类必须自己创建自己的唯一实例。
+3、单例类必须给所有其他对象提供这一实例。

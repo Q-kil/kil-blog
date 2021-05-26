@@ -706,5 +706,52 @@ public get currentUser(): User {
 }
 ```
 
+# TS 开发实战
+深入理解 TypeScript 核心概念；
+熟练进行 TypeScript 工程配置；
+玩转四种典型前端应用的开发；
+重塑“类型思维”，提升编程素养。
+
+## Atwood 定律
+任何能用 JavaScript 实现的应用，最终都会用 JavaScript 实现
+
+无处不在：
+移动终端（手机、笔记本、平板电脑） ——> 后端服务
+IoT（物联网 Internet of things） ——> 神经网络（人工智能的底层模型是"神经网络"（neural network））
+
+语言的应用之广应该具有的特点：
+安全性、健壮性和可维护性有更高的要求。
+
+## 为什么会有 ts
+JavaScript 是门动态类型语言
+一：搞清楚参数类型，你只能硬着头皮去看里面的逻辑
+二：为了保证代码的健壮性，对一个函数的输入参数进行各种假设
+三：优化了一个参数类型，但不知道有多少处引用，在提交代码前
+四：联调就报错了：“TypeError: Cannot read property ‘length’ of undefined“ 给对接人说这是数组
+
+### 解决动态类型语言的其他库
+2014   Fackbook   Flow
+2014   Microsoft  TypeScript
+
+都为JavaScript提供静态类型检查
+
+## what is ts
+拥有类型系统的JavaScript的超集，可以编译纯JavaScript
+
+- 类型检查
+- 语音扩展
+  接口，抽象类
+- 工具属性
+
+束缚js这匹野马的缰绳，即可闲庭信步，亦可策马扬鞭；前端开发之路走得更稳，走得更远
+## 课程介绍
+基础篇
+工程篇（理论和实践之间，存在不小的鸿沟）
+
+
+
+
+
+
 
 

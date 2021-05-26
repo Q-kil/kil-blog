@@ -1203,6 +1203,36 @@ https://cloud.tencent.com/developer/article/1542963
 https://angular.cn/guide/dependency-injection-providers
 https://juejin.im/post/6844903592797683719
 
+## 例子
+先看个例子：我们希望在通知组件(NotificationComponent)中通过消息服务(MessageService)发送一条消息。
+如果不使用依赖注入的话，我们的代码大概长这样：
+``` ts
+class NotificationComponent {
+  msg: MessageService;
+  constructor() {
+     this.msg = new MessageService();
+  }
+  sendMsg(msgType: string, info: string) {
+     this.msg.send(msgType, info);
+  }
+}
+```
+使用依赖注入时：
+``` ts
+class NotificationComponent {
+  constructor(msg: MessageService) {}  // Angular 中注入依赖的方式
+  sendMsg(msgType: string, info: string) {
+    this.msg.send(msgType, info);
+  }
+}
+```
+
+经过对比，可以看到使用依赖注入有两个很显然的优点：
+- 代码的行数变少了
+- NotificationComponent 与 MessageService 间的耦合性降低了
+
+
+
 # 优化
 ## bundle 分析器
 webpack-bundle-analyzer
