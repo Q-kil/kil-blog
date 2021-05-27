@@ -110,6 +110,13 @@ console.log(a) // ReferenceError: a is not defined
 let a
 ```
 
+### 日常错误
+const c = '1';
+c = 1;
+console.log('c', c);
+VM193:2 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:2:3
+
 
 # 函数
 ## 新增箭头函数

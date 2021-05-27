@@ -40,6 +40,7 @@ TypeScript 编译的时候即使报错了，还是会生成编译结果，我们
 
 如果要在报错的时候终止 js 文件的生成，可以在 `tsconfig.json` 中配置 noEmitOnError 即可。关于 `tsconfig.json`，请参阅[官方手册](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
+ts 编译器 tsc
 ## 类型
 ### 原始数据类型
 JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。
@@ -264,6 +265,7 @@ let fibonacci: number[] = [1, 1, 2, 3, 5];
 ```
 
 #### 数组泛型
+Array关键字，Array范型接口
 我们也可以使用数组泛型（Array Generic） `Array<elemType>` 来表示数组：
 ``` ts
 let fibonacci: Array<number> = [1, 1, 2, 3, 5];
@@ -296,6 +298,12 @@ function sum() {
         callee: Function;
     } = arguments;
 }
+```
+
+#### 数组的联合类型
+语法：两种类型之间加一个 竖线
+``` ts
+let arr2: Array<number | string> = [1, 2, 3, '4']
 ```
 
 #### any 在数组中的应用
@@ -747,11 +755,25 @@ JavaScript 是门动态类型语言
 ## 课程介绍
 基础篇
 工程篇（理论和实践之间，存在不小的鸿沟）
+实战篇（四个案例）
+
+目标：类型思维；思维方式决定编程习惯，编程习惯奠定工程质量，工程质量划定了能力边界。不仅讲知识点和应用，更是训练思维。
+
+## 基础篇
+### 强类型与弱类型
+强类型语言：不允许改变变量的数据类型，除非进行强制类型转换
+弱类型语言：变量可以被赋予不同的数据类型
+
+### 动态类型与静态类型
+静态类型语言：在编译阶段确定所有变量的类型
+动态类型语言：在执行阶段确定所有变量的类型
 
 
+### 基本类型
+#### 类型注解
+语法 ：(变量/函数): type
+作用 ：相当于强类型语言中的类型声明
+好处 ：
 
-
-
-
-
-
+静态编译时检查类型。类型操作不合理时，编译器会警告，如： Type 'string' is not assignable to type 'boolean'。
+作为文档。在 VSCode 中将光标移到 bar 上时，会提示 let bar: boolean。

@@ -399,6 +399,10 @@ component: WechatComponent  // 倒入模块的时候 ，输入：wech  无法自
 }
 ```
 
+### TypeScript Auto Compiler
+保存自动编译
+安装上这个插件，然后在项目工程里tsc --init之后，生成了tsconfig.json文件。之后每次保存ts文件就会自动生成对应的js文件。
+
 ## 设置
 ### 设置中文
 按Ctrl + Shift + P打开`命令调色板`，然后开始键入“display”以过滤并显示Configure Display Language命令。

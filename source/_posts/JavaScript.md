@@ -8,6 +8,14 @@ tags:
 ---
 
 # 基础知识
+## 基本数据类型
+primitive
+7种
+string，number，bigint，boolean，null，undefined，symbol
+
+## 应用类型
+Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
+
 ## 阻止事件
 ### a 标签跳转
 1、e.preventDefault();
