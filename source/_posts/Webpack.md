@@ -8,6 +8,97 @@ tags:
 ---
 
 # base
+## 项目构建
+### build 目录
+webpack.base.config.js
+webpack.config.js
+webpack.dev.config.js
+webpack.pro.config.js
+
+### package.json
+``` json
+"scripts": {
+    "start": "webpack serve --mode development --env development --config ./build/webpack.config.js",
+    "build": "webpack --mode production --config ./build/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+},
+"devDependencies": {
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "html-webpack-plugin": "^5.3.1",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+}
+```
+
+### webpack.config.js
+``` js
+const { merge } = require('webpack-merge');
+const baseConfig = require('./webpack.base.config');
+const devConfig = require('./webpack.dev.config');
+const proConfig = require('./webpack.pro.config');
+
+let config = process.NODE_ENV === 'development' ? devConfig : proConfig;
+
+module.exports = merge(baseConfig, config);
+```
+
+### base
+``` js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.ts',
+  output: {
+    filename: 'app.js'
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/i,
+        use: [{
+          loader: 'ts-loader'
+        }],
+        exclude: /node_modules/
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/tpl/index.html'
+    })
+  ]
+}
+```
+
+### dev
+``` js
+module.exports = {
+  options: {
+    devtool: 'cheap-module-eval-source-map'
+  }
+}
+```
+
+### pro
+``` js
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+  plugins: [
+    new CleanWebpackPlugin()
+  ]
+}
+```
+
+
+
 ## rule
 Rule.type 
 string

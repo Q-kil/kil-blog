@@ -26,7 +26,8 @@ no-cache
 no-store
 缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存。
 
-
+# DNS 解析
+https://dash.cloudflare.com/
 
 
 

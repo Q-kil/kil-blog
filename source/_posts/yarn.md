@@ -34,6 +34,8 @@ yarn upgrade [package]
 yarn upgrade [package]@[version]
 yarn upgrade [package]@[tag]
 
+yarn upgrade webpack@^5.37.1 --dev
+
 移除依赖包
 yarn remove [package]
 
