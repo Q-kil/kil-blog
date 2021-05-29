@@ -8,6 +8,10 @@ tags:
 ---
 
 # base
+cascading style sheets
+css提供了一种方法来告诉浏览器页面中的元素如何显示
+
+#000000 十六进制
 ## a标签
 无下划线 
 text-decoration:none;

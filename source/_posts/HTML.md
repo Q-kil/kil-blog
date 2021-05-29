@@ -9,11 +9,16 @@ tags:
 
 # 基础
 heperText Markup Language 超文本标记语言
+WEB的结构
 ## lang
 // TODO: Y
 zh-cmn-Hans
 ## a
+``` html
 <a href="pref.html" target="view_window">Preface</a>
+```
+href属性告诉浏览器链接的目标文件
+
 ## label
 HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 
