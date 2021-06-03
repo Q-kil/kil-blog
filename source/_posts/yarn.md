@@ -53,8 +53,7 @@ yarn config set https-proxy http://XX
 # 源
 查看
 ``` zsh
-$ yarn config get registry
-https://registry.yarnpkg.com
+$ yarn config get registry https://registry.yarnpkg.com
 ```
 
 换源

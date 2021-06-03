@@ -227,7 +227,7 @@ count=BLOCKS : 读取的block数，block的大小由ibs指定（只针对输入�
 mac os
 
 copy 文件
-cp -r vue-project/dist www
+cp -r vue-project/dist/ www
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
 dd: bs: illegal numeric value

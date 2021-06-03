@@ -720,3 +720,8 @@ module.exports = {
 ## Uncaught SyntaxError: Unexpected token <
 [stackoverflow](https://stackoverflow.com/questions/51210795/vue-cli-uncaught-syntaxerror-unexpected-token)
 Try by adding <base href="/" /> into the <head> of your index.html. Hope it will work.
+
+## Error: Cannot find module '@babel/compat-data/corejs3-shipped-proposals'
+https://github.com/JeffreyWay/laravel-mix/issues/2383
+yarn add @babel/compat-data@^7.9.0
+npm update --depth 5 @babel/compat-data

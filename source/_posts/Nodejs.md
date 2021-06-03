@@ -205,6 +205,47 @@ $ npm list -g
 │ ├── async-foreach@0.1.3
 ```
 
+# process
+在node中，有全局变量process表示的是当前的node进程。process.env包含着关于系统环境的信息。但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量，在webpack中它的用途是判断生产环境或开发环境的依据的。
+
+为了查看 process的基本信息，我们可以进入到 node 的repl 环境中，然后执行 process.env 命令，查看相关信息
+
+```
+process.env {
+  NVM_INC: '/Users/niekaifa/.nvm/versions/node/v14.16.0/include/node',
+  npm_package_devDependencies_awesome_typescript_loader: '^5.2.1',
+  npm_package_dependencies__angular_forms: '11.2.7',
+  npm_package_dependencies__angular_router: '11.2.7',
+  npm_package_devDependencies_source_map_loader: '^0.2.4',
+  TERM_PROGRAM: 'vscode',
+  npm_package_devDependencies_file_loader: '^2.0.0',
+  NODE: '/Users/niekaifa/.nvm/versions/node/v14.16.0/bin/node',
+  npm_config_version_git_tag: 'true',
+  npm_package_dependencies_moment: '^2.23.0',
+  npm_package_devDependencies_terser_webpack_plugin: '^1.2.3',
+  npm_package_devDependencies_typescript: '~4.1.5',
+  ANDROID_HOME: '/Users/niekaifa/Library/Android/sdk',
+  NVM_CD_FLAGS: '-q',
+```
+
+## cross-env
+它是运行跨平台设置和使用环境变量的脚本。
+
+它的作用是啥？
+当我们使用 NODE_ENV = production 来设置环境变量的时候，大多数windows命令会提示将会阻塞或者异常，或者，windows不支持NODE_ENV=development的这样的设置方式，会报错。因此 cross-env 出现了。我们就可以使用 cross-env命令，这样我们就不必担心平台设置或使用环境变量了。也就是说 cross-env 能够提供一个设置环境变量的scripts，这样我们就能够以unix方式设置环境变量，然而在windows上也能够兼容的。
+要使用该命令的话，我们首先需要在我们的项目中进行安装该命令，安装方式如下：
+
+npm install --save-dev cross-env
+
+然后在package.json中的scripts命令如下如下：
+``` json
+"scripts": {
+  "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --colors --devtool cheap-module-eval-source-map --hot --inline",
+  "build": "cross-env NODE_ENV=production webpack --progress --colors --devtool cheap-module-source-map",
+  "build:dll": "webpack --config webpack.dll.config.js"
+}
+```
+
 # API
 ## fs 文件系统
 ### fs.existsSync(path)

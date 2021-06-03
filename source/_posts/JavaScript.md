@@ -16,6 +16,13 @@ string，number，bigint，boolean，null，undefined，symbol
 ## 应用类型
 Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 
+## 函数自执行
+```js
+(function(){
+  console.log('1')
+})()
+```
+
 ## 阻止事件
 ### a 标签跳转
 1、e.preventDefault();
@@ -34,6 +41,9 @@ console.log(Math.ceil(5.4443));//6
 
 随机数0-1
 console.log(Math.random());//0-----1之间
+
+## userAgent
+ navigator.userAgent;
 ## 点击事件
 ``` js
 window.addEventListener('click', () => console.log('Clicked!'));

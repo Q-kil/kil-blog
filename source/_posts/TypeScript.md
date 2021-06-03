@@ -270,6 +270,7 @@ Array关键字，Array范型接口
 ``` ts
 let fibonacci: Array<number> = [1, 1, 2, 3, 5];
 ```
+Array 是ts预定义的范型接口 
 
 #### 用接口表示数组
 接口也可以用来描述数组：
@@ -312,6 +313,12 @@ let arr2: Array<number | string> = [1, 2, 3, '4']
 let list: any[] = ['xcatliu', 25, { website: 'http://xcatliu.com' }];
 ```
 
+### 元组类型
+限定数组长度和类型
+``` ts
+let tuple: [number, string] = [1, '2']
+```
+
 ### 函数的类型
 [函数是 JavaScript 中的一等公民](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html)
 
@@ -334,6 +341,7 @@ function sum(x: number, y: number): number {
     return x + y;
 }
 ```
+函数返回类型可以省略，因为ts有类型推断功能
 
 #### 函数表达式
 如果要我们现在写一个对函数表达式（Function Expression）的定义，可能会写成这样：
@@ -747,7 +755,7 @@ JavaScript 是门动态类型语言
 拥有类型系统的JavaScript的超集，可以编译纯JavaScript
 
 - 类型检查
-- 语音扩展
+- 语言扩展
   接口，抽象类
 - 工具属性
 
@@ -777,3 +785,93 @@ JavaScript 是门动态类型语言
 
 静态编译时检查类型。类型操作不合理时，编译器会警告，如： Type 'string' is not assignable to type 'boolean'。
 作为文档。在 VSCode 中将光标移到 bar 上时，会提示 let bar: boolean。
+
+#### 对象
+let obj: object = {x: 1, y: 2}
+正确的定义：
+let obj: {x: number, y: number} = {x: 1, y: 2}
+obj.x = 3
+
+#### undefined
+let un: undefined = undefined (只能赋值他本身)
+
+#### void
+let onReture = () => {}
+
+#### any
+不是特殊情况不建议使用any，要不然就不要使用ts了
+
+#### never
+let error = () => {
+  throw new Error('error')
+}
+
+### 枚举类型
+{% asset_img role.png %}
+{% asset_img phone.png %}
+``` ts
+enum Role {
+  Reporter,
+  Developer
+}
+```
+
+
+
+### 接口
+#### 对象接口类型
+数据请求
+``` ts
+interface List {
+  // 只读属性
+  readonly id: number;
+  name: string;
+  // 判断有没有某个属性
+  age?: number
+}
+
+interface Result {
+  data: List[]
+}
+
+function render(result: Result) {
+  result.data.forEach((value) => {
+    console.log(value.id, value.name)
+    if(value.age) {
+      console.log(value.age)
+    }
+  })
+}
+
+let result = {
+  data: [
+    {id: 1, name: 'A', sex: 'male'},
+    {id: 2, name: 'B'}
+  ]
+}
+render(result)
+```
+
+# 问题
+## path can't resolve
+
+ERROR in ./src/app/pages/home/home.component.ts
+Module not found: Error: Can't resolve '@service/api/user.service' in '/Users/niekaifa/workspace/apowo/platform-client/src/app/pages/home'
+ @ ./src/app/pages/home/home.component.ts 17:23-59
+ @ ./src/app/pages/home/home.module.ts
+ @ ./src/app/app.routes.ts
+ @ ./src/app/app.module.ts
+ @ ./src/main.ts
+
+背景：改了webpack，以前可以使用，现在出错
+原因：
+tsconfig path 代码显示不出错
+webpack 才是真的按路径引入，所以问题出在 webapck
+解决
+    new AngularCompilerPlugin({
+      mainPath: path.resolve("./src/main.ts"),
+      sourceMap: true,
+      nameLazyFiles: true,
+      tsConfigPath: path.resolve("./src/tsconfig.app.json"),
+      skipCodeGeneration: true,
+    }),
