@@ -144,6 +144,7 @@ $ git commit -m "remove test.txt"
 ```
 
 ``` zsh
+# 从上往下，这步可省略
 git rm -r --cached 文件/文件夹名称
 # 修改本地 .gitignore
 git add .
