@@ -99,7 +99,7 @@ $ touch test.text
 $ mkdir usr
 ```
 
-移动文件
+移动文件 ｜ 重命名文件：mv 文件名 修改后的文件名
 ``` BASH
 $ mv node-v12.16.1-linux-x64 /usr/app
 ```

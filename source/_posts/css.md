@@ -25,6 +25,25 @@ letter-spacing
 ## 旋转
 transform: rotate(90deg);
 
+## 伪类
+``` css
+&::before {
+  display: inline-block;
+  content: '';
+  width: px2rem(18px);
+  height: px2rem(10px);
+  background: #006889;
+  border-top-left-radius: px2rem(10px);
+  border-bottom-left-radius: px2rem(10px);
+}
+```
+
+## display:inline-block
+div  display: inline-block;
+会多出margin值
+
+使用display：flex
+
 # 浏览器兼容
 ## 前缀
 ``` css
@@ -195,6 +214,15 @@ rem是一个相对单位，1rem等于html元素上字体设置的大小。
         font-size: 50px;
       }
     }
+
+### px2rem
+``` scss
+// Convert to REM function
+@function px2rem($px) {
+  $rem: 50px;
+  @return ($px / $rem / 2) + rem;
+}
+```
 
 ## div水平剧中
 网易
