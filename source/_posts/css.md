@@ -44,6 +44,9 @@ div  display: inline-block;
 
 使用display：flex
 
+## text-align
+微信文章两端对其，justify
+
 # 浏览器兼容
 ## 前缀
 ``` css
