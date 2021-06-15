@@ -65,6 +65,64 @@ function test(e) {
 }
 ```
 
+### 遮罩弹框
+``` html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .mask{position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0,0,0,0.5);}
+
+    .warn{width: 80%;overflow: hidden;position: absolute;top: 50%;left: 0;right: 0;margin:auto;border-radius: 8px;background-color: #fff;transform: translateY(-50%);-webkit-transform: translateY(-50%);}
+
+    .warn .title{width: 100%;height: 50px;line-height: 57px;text-align: center;font-size: 18px;}
+
+    .warn .content{margin: 0 auto;font-size: 14px;line-height: 20px;text-align: center;padding-left: 21px;padding-right: 21px;padding-bottom: 24px;}
+
+    .warn .i_know{border-top: 1px solid #eee;width: 100%;height:46px;color: #4691ee;text-align: center;font-size: 16px;line-height: 46px;}
+
+    .box {
+      height: 4000px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">sdfjslfslfjslf</div>
+  <div class="mask">
+    <div class="warn">
+        <div class="title">提示</div>
+        <div class="content">即将推出，敬请期待</div>
+        <div class="i_know">我知道了</div>
+    </div>
+  </div>
+
+  <script>
+    const mask = document.getElementsByClassName('mask')[0];
+    mask.addEventListener('click', (e) => {
+      console.log('mask', e);
+      console.log('e.target', e.target, mask);
+      
+      if (e.target === mask) {
+        console.log('ele');
+      }
+    })
+
+    const warn = document.getElementsByClassName('warn')[0];
+    warn.addEventListener('click', (e) => {
+      event.stopPropagation()
+      event.cancelBubble = true
+      console.log('warn');
+    })
+  </script>
+</body>
+</html>
+
+```
+
 ## 操作css
 ``` js
 // 在单个语句中设置多个样式

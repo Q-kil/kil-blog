@@ -95,9 +95,19 @@ void 空元素，没有实际内容的元素: 【元素 = 开始 + 内容 + 结�
 
 <br/> 是XHTML语法，如果html 要兼容 xhtml的话用 <br/>, 否则html都应该用<br>
 
+### Web之旅
+www.test.com
+www: 是域中一个特定服务器的名字
+test.com: 这部分是域名
+.com: 不同域的结尾有不同的用途，.com, .org. gov
 
+#### 网站名和域名
+网站名：www.test.com
+域名：test.com
 
-
+a.test.com
+b.test.com
+域名可以用于多个网站
 
 
 
