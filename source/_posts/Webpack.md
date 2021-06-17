@@ -515,6 +515,8 @@ let vm = new Vue({
 }]},
 ```
 
+### Chunk
+
 ## 模块化
 export 输出
 

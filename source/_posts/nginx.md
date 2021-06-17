@@ -4,6 +4,22 @@ date: 2020-07-08 10:18:01
 tags:
 ---
 
+# base
+ng conf
+``` nginx
+server {
+    listen  8071;
+    server_name   localhost;
+
+    location / {
+        root    /home/remote/pkt-ng/dist;
+        index index.html;
+        try_files $uri $uri/ /m/index.html;
+    }
+
+}
+``` 
+
 # 查看服务器是否安装nginx
 which nginx
 没有安装会返回空
