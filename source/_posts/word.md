@@ -7,6 +7,8 @@ tags:
 - word
 ---
 
+# 项目单词
+thumbnails 缩略图
 # CDN
 CDN是一个key（路由） ，value （内容）形式
 

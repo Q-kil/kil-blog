@@ -139,3 +139,21 @@ JPEG
 png&gif
 单色图像、logo、几何图形
 支持透明度
+
+img 边缘生硬，抗锯齿
+
+### html
+html5: <!doctype html>
+
+<meta charset="utf-8">
+meta: 告诉浏览器关于页面的一些信息
+charset：字符编码属性
+utf-8: unicode编码的一种
+
+doctype&charset是前端的义务，必须履行
+
+### css
+<link type="text/css" rel="stylesheet" href="">
+type类型html5可以省略
+stylesheet样式表
+rel属性：指定了html文件与所链接的文件之间的关系。我们要链接一个样式表
