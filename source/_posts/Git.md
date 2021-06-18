@@ -618,6 +618,24 @@ Hooks and filters directory? [/Users/savokiss/demos/gitflow/.git/hooks]
 开始新的功能分支
 git flow feature start auth
 
+一般都是先提交分支，测试通过后才finish
+
+提交信息规范
+
+提交信息应该描述 “做了什么” 和 “这么做的原因”，主要由 header， body，footer组成。
+header的格式：<type>: <subject>
+
+type 用于说明提交的类型：
+feature： 新功能
+fix: 问题修复
+docs: 文档
+style: 调整格式（不影响代码运行）
+refactor: 重构
+test: 增加测试
+chore: 构建过程或辅助工具的变动
+revert: 撤销以前的提交
+scope 用于说明提交的影响范围，内容根据具体项目而定。
+
 完成feature/auth分支
 $ git flow feature finish auth
 Switched to branch 'develop'

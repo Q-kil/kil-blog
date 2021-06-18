@@ -671,6 +671,16 @@ arr.sort(function(n1, n2) {
 console.log('sort:', arr); // sort: [ 5, 8, 12, 14, 33, 99 ]
 ```
 
+## 删除没元素
+``` js
+this.materials.splice(this.materials.findIndex(item => {
+  if (item.part === part.part) {
+    id = item.id;
+    return true;
+  }
+}), 1);
+```
+
 # 关键字
 ## this
 `this` 是 JavaScript 语言的一个关键字。

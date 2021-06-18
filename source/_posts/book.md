@@ -109,6 +109,33 @@ a.test.com
 b.test.com
 域名可以用于多个网站
 
+#### URL
+浏览器输入的web地址称为URL，或统一资源定位符
+uniform resource locators
+http://www.kaifa.in/index
+http: 获取资源的协议
+www.kaifa.in: 网站名
+index： 绝对路径
 
+#### HTTP
+超文本传输协议：HyperText Transfer Protocol
 
+a标签 锚点
+<a href="#test">a</a>
+target属性值告诉浏览器页面的“目标窗口”
+_blank 新窗口
 
+可以为任何元素增加title属性，工具提示
+
+### 认识媒体
+img
+显示图像之前，必须先获取这个图像。
+
+web常用3种格式图片：jpeg，png，gif
+JPEG
+照片和复杂图像使用
+不支持透明度
+
+png&gif
+单色图像、logo、几何图形
+支持透明度

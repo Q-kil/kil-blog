@@ -613,6 +613,9 @@ Event：冒泡与捕获
 addEventListener 默认监听冒泡事件，false
 addEventListener 第三个参数 ture，捕获事件
 
+#### 阻止冒泡
+window.event ? window.event.cancelBubble = true : e.stopPropagation();
+
 ### Range
 操作半个节点或批量节点
 对DOM树操作，万能的API
