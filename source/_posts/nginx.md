@@ -210,3 +210,48 @@ server {
 # 日志
 /var/log/nginx# cat access.log
 
+# ssl
+``` conf
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+
+    server {
+        listen  80;
+        server_name     localhost;
+
+        location / {
+                root    /home/remote;
+                index   index.html;
+        }
+    }
+
+    server {
+        listen  80;
+        server_name     kaifa.in www.kaifa.in;
+
+        location / {
+                proxy_pass http://127.0.0.1:3000;
+        }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kaifa.in/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kaifa.in/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+    }
+}
+```
