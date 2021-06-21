@@ -500,6 +500,9 @@ start 可选
 end 可选
 终止索引，默认值为 this.length。
 
+## 
+本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
+会话存储 sessionStorage 的数据在浏览器关闭后自动删除;
 
 # 待掌握
 ## 对象拷贝

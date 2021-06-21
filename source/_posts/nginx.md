@@ -255,3 +255,137 @@ http {
     }
 }
 ```
+
+## 配置
+准备：example.com 的A记录指向服务器公网IP
+
+### 第一步 安装Certbot
+``` zsh
+sudo apt install certbot python3-certbot-nginx
+```
+选择 Y 后开始安装，安装完毕我们就可以使用 Certbot 了。
+接下来我们要验证一下 Certbot 是否能为Nginx 自动配置 SSL。
+
+### 第二步 确认 Nginx 的配置
+Certbot 需要能够在 Nginx 配置中找到正确的 block 才能自动配置 SSL。 具体来说，Certbot 是通过对比 server_name 与我们请求证书的域相匹配的来实现的。
+
+``` zsh
+sudo nano /etc/nginx/
+```
+
+找到server_name这一行，大概是如下的样子：
+``` 
+...
+server_name example.com www.example.com;
+...
+```
+
+让我们来验证一下，配置文件是否正确。
+``` zsh
+sudo nginx -t
+sudo nginx -s reload
+```
+
+接下来，让我们更新防火墙配置，让它允许HTTPS对外通信。
+### 第三步 让我们的防火墙允许HTTPS
+如果你的服务器启动了防火墙，那么我们需要告诉防火墙要允许HTTPS通过。首先我们来查看一下当前状态。
+``` zsh
+sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere                  
+Nginx HTTP                 ALLOW       Anywhere                  
+OpenSSH (v6)               ALLOW       Anywhere (v6)             
+Nginx HTTP (v6)            ALLOW       Anywhere (v6)
+```
+
+说明防火墙允许HTTPS通信。但如果你的服务器不允许，那么请执行以下命令。
+``` zsh
+sudo ufw allow 'Nginx Full'
+sudo ufw delete allow 'Nginx HTTP'
+```
+
+### 第4步：获取 SSL 证书
+Certbot 提供了获得 SSL 的方法。Nginx Plugins（插件） 帮助我们在必要的时候重新加载配置文件。让我们来开启这个插件。
+``` zsh
+sudo certbot --nginx -d kaifa.in -d www.kaifa.in
+```
+certbot与--nginx 插件一起运行，-d用于指定我们希望获得证书的域名。
+
+如果我们是第一次运行，那么 Certbot 将提示我们输入邮箱并阅读服务条款。
+```
+Invalid email address: .
+Enter email address (used for urgent renewal and security notices)
+
+If you really want to skip this, you can run the client with
+--register-unsafely-without-email but make sure you then backup your account key
+from /etc/letsencrypt/accounts
+
+ (Enter 'c' to cancel): nginx@kalasearch.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(A)gree/(C)ancel:
+```
+
+如果这是您第一次运行certbot，将提示您输入电子邮件地址并同意服务条款。
+
+完成此操作后，certbot开始与 Let's Encrypt 服务器通信，然后开始验证我们是否是这个域名的真正拥有者。
+
+如果成功，certbot 会继续询问我们如何配置HTTPS。
+
+```
+Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: No redirect - Make no further changes to the webserver configuration.
+2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for
+new sites, or if you're confident your site works on HTTPS. You can undo this
+change by editing your web server's configuration.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 2
+```
+
+根据我们的需求来进行选择，然后回车。配置文件就会更新，Nginx 也会重新加载。Certbot 会显示一条消息，告诉我们整个过程已经完成，证书存储在服务器的什么位置上：
+``` zsh
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/example.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/example.com/privkey.pem
+   Your cert will expire on 2020-11-01. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot again
+   with the "certonly" option. To non-interactively renew *all* of
+   your certificates, run "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+```
+
+### 第5步：验证 Certbot 自动续订
+我们获得的加密证书只有 90 天有效期，但不用担心，Certbot会帮我们解决续订问题，它会每天运行两次systemd监测程序来检查域名证书是否快到期。如果域名证书在近 30 天到期，它会自动续订这些域名的证书。
+
+我们可以输入以下命令来检查systemctl的状态：
+```
+sudo systemctl status certbot.timer
+kalasearch@chuan-server:~$ sudo systemctl status certbot.timer
+
+● certbot.timer - Run certbot twice daily
+     Loaded: loaded (/lib/systemd/system/certbot.timer; enabled; vendor preset: enabled)
+     Active: active (waiting) since Sat 2020-08-01 03:37:47 UTC; 46min ago
+    Trigger: Sat 2020-08-01 12:54:45 UTC; 8h left
+   Triggers: ● certbot.service
+
+Aug 01 03:37:47 chuan-server systemd[1]: Started Run certbot twice daily.
+```
+
+要测试域名证书的续订过程，我们可以输入以下命令：
+``` zsh
+sudo certbot renew --dry-run
+```
