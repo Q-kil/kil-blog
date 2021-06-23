@@ -852,6 +852,267 @@ let result = {
 render(result)
 ```
 
+### 函数类型接口
+混合类型接口
+``` ts
+interface Lib {
+  (): void;
+  version: string;
+  doSomething(): void;
+}
+
+实现
+let lib: Lib = (() => {}) as Lib; // 类型断言，明确知道lib类型是Lib
+lib.version = '1.0';
+lib.doSomething = () => {};
+```
+上例缺点是 向全局暴露了一个变量lib，它是一个单例；如果想创建多个lib，需要用函数封装一下
+
+``` ts
+function getLib() {
+  let lib: Lib = (() => {}) as Lib;
+  lib.version = '1.0';
+  lib.doSomething = () => {};
+  return lib;
+}
+// 创建多个实例
+let lib1 = getLib();
+lib1();
+lib1.doSomething();
+let lib2 = getLib();
+```
+
+### 函数
+- 定义
+- 传参
+- 可选参数
+- 默认参数
+- 剩余参数
+- 函数重载（函数名相同）
+
+函数定义
+``` ts
+// 1.function
+function add1(x: number, y: number) {
+  return x + y; // 函数返回值，ts类型推断省去 
+}
+
+let add2: (x: number, y: number) => number; // 通过变量，定义函数类型
+
+type add3 = (x: number, y: number) => number; // 类型别名，定义函数类型
+
+interface add4 { // 接口定义函数类型
+  (x: number, y: number): number
+}
+// 2-4 都是函数类型的定义，没有实现
+
+// 调用：行参和实参一一对应
+add1(1, 2);
+
+function add6(x: number, y = 0, z: number, q = 1) {
+  return x + y + z + q;
+}
+add6(1, undefined, 3);
+
+function add7(x: number, ...rest: number[]) {
+  return x + rest.reduce((pre, cur) => pre + cur)
+}
+console.log(add7(1, 2, 3, 4, 5));
+```
+
+### 类
+#### 类基本实现
+``` ts
+class Dog {
+  constructor(name: string) {
+    this.name = name
+  }
+  name: string = 'dog'
+  run() {}
+}
+console.log(Dog.prototype)
+let dog = new Dog('wangwang')
+console.log(dog)
+```
+
+#### 类的继承
+``` ts
+class Husky extends Dog {
+  constructor(name: string, color: string) {
+    super(name)
+    this.color = color
+  }
+  color: string
+}
+```
+
+#### 成员修饰符
+public
+private
+protected 受保护的，不能实例调用，子类可以继承
+readonly 只读
+static 静态的，能通过类访问，不能通过实例访问，子类继承可以访问
+
+#### 抽象类
+``` ts
+abstract class Animal {
+  eat() {
+    console.log('eat')
+  }
+}
+```
+
+#### 多态
+``` ts
+let animals: Animal[] = [dog, cat]
+animals.forEach(i => {
+  i.sleep()
+})
+```
+
+#### 特殊的类型，this类型，链式调用
+``` ts
+class WorkFlow {
+  step1() {
+    return this;
+  }
+  step2() {
+    return this;
+  }
+}
+new WorkFlow().step1().step2()
+```
+
+##### this类型 多态
+``` ts
+class Myflow extends WorkFlow {
+  next() {
+    return this;
+  }
+}
+new Myflow().next().step1().next().step2()
+```
+
+### 接口
+
+
+
+# 区别
+## interface和type
+### 相同点
+1.都可以描述一个对象或者函数
+``` ts
+interface User {
+  name: string
+  age: number
+}
+
+interface SetUser {
+  (name: string, age: number): void;
+}
+
+type User = {
+  name: string
+  age: number
+};
+
+type SetUser = (name: string, age: number)=> void;
+```
+
+2.都允许拓展（extends）
+interface 和 type 都可以拓展，并且两者并不是相互独立的，也就是说 interface 可以 extends type, type 也可以 extends interface 。 虽然效果差不多，但是两者语法不同。
+``` ts
+// interface extends interface
+interface Name { 
+  name: string; 
+}
+interface User extends Name { 
+  age: number; 
+}
+
+// type extends type
+type Name = { 
+  name: string; 
+}
+type User = Name & { age: number  };
+
+// interface extends type
+type Name = { 
+  name: string; 
+}
+interface User extends Name { 
+  age: number; 
+}
+
+// type extends interface
+interface Name { 
+  name: string; 
+}
+type User = Name & { 
+  age: number; 
+}
+```
+
+### 不同点
+type 可以而 interface 不行
+1.type 可以声明基本类型别名，联合类型，元组等类型
+``` ts
+// 基本类型别名
+type Name = string
+
+// 联合类型
+interface Dog {
+    wong();
+}
+interface Cat {
+    miao();
+}
+
+type Pet = Dog | Cat
+
+// 具体定义数组每个位置的类型
+type PetList = [Dog, Pet]
+```
+2.type 语句中还可以使用 typeof 获取实例的 类型进行赋值
+``` ts
+// 当你想获取一个变量的类型时，使用 typeof
+let div = document.createElement('div');
+type B = typeof div
+```
+3.其他骚操作
+``` ts
+type StringOrNumber = string | number;  
+type Text = string | { text: string };  
+type NameLookup = Dictionary<string, Person>;  
+type Callback<T> = (data: T) => void;  
+type Pair<T> = [T, T];  
+type Coordinates = Pair<number>;  
+type Tree<T> = T | { left: Tree<T>, right: Tree<T> };
+```
+
+interface 可以而 type 不行
+interface 能够声明合并
+``` ts
+interface User {
+  name: string
+  age: number
+}
+
+interface User {
+  sex: string
+}
+
+/*
+User 接口为 {
+  name: string
+  age: number
+  sex: string 
+}
+*/
+```
+
+总结：一般来说，如果不清楚什么时候用interface/type，能用 interface 实现，就用 interface , 如果不能就用 type 。
+
 # 问题
 ## path can't resolve
 
