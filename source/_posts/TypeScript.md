@@ -994,8 +994,93 @@ new Myflow().next().step1().next().step2()
 ```
 
 ### 接口
+``` ts
+interface {
 
+}
+```
+{% asset_img interface.png %}
 
+### 范型
+好处：
+- 函数和类可以轻松的支持多种类型，增强程序的扩展性
+- 不必写多条函数重载，冗长的联合类型声明，增强代码可读性
+- 灵活控制类型之间的约束
+``` ts
+// any类型，调用者无法获知 约束关系
+function log(value: any) {
+  return value;
+}
+```
+
+定义：不预先确定的数据类型，具体的类型在使用的时候才能确定
+
+范型函数
+``` ts
+function log<T>(value: T):T {
+  return value;
+}
+```
+调用
+``` ts
+log<string[]>(['a', 'b']) //指名类型
+log(['a', 'b'])// 类型推断，推荐使用
+```
+
+类型别名 定义范型函数及实现
+``` ts
+type Log = <T>(value: T) => T
+let myLog: Log = log
+```
+
+接口 定义范型
+``` ts
+interface Log<T> {
+  (value: T): T
+}
+let myLog: Log<number> = log
+myLog(1)
+```
+
+#### 范型类
+``` ts
+class Log<T> {
+  run(value: T) {
+    return value
+  }
+}
+let log1 = new Log<number>()
+log1.run(1)
+let log2 = new Log() // 不指定类型，就可以传入任意类型
+log2.run('1')
+```
+
+#### 范型约束
+``` ts
+function log<T>(value: T): T {
+  console.log(value, value.length) // length 报错：范型T没有这个属性
+  return value
+}
+
+//通过类型检查
+interface Length {
+  length: number
+}
+function log<T extends Length>(value: T): T {
+  console.log(value, value.length)
+  return value
+}
+```
+
+### 类型检查机制
+#### 类型断言
+```ts
+interface Foo {
+  bar: number
+}
+let foo = {} as Foo
+foo.bar = 1
+```
 
 # 区别
 ## interface和type
