@@ -1111,6 +1111,9 @@ js的一个子集
 
 
 # utils
+
+## 随机字符串
+Math.random().toString(36).slice(-10)
 ## 比较版本号
 ``` js
     var compareVersion = function(version1, version2) {
