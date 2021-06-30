@@ -115,6 +115,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 我遇到造成这个问题的原因，一般是因为执行了git reset命令，版本回退后没有恢复，造成本地仓库的提交版本号落后于远端仓库的提交版本号。
 可以执行 git push -f命令去强制提交
 
+
+----
+git fetch --all
+git reset --hard origin/master
+git pull //可以省略
+
 ### 回滚之后的操作
 git log  找到想退回的版本
 
