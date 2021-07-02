@@ -228,6 +228,11 @@ mac os
 
 copy 文件
 cp -r vue-project/dist/ www
+
+制文件夹内所有文件到另一个文件夹
+cp -Rf /home/user1/* /root/temp/
+将 /home/user1目录下的所有东西拷到/root/temp/下而不拷贝user1目录本身。
+
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
 dd: bs: illegal numeric value
