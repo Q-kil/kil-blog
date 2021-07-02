@@ -659,6 +659,9 @@ Summary of actions:
 - Feature branch 'feature/auth' has been locally deleted
 - You are now on branch 'develop'
 
+## 提交信息规范
+提交信息应该描述 “做了什么” 和 “这么做的原因”，主要由 header， body，footer组成。
+header的格式：<type>: <subject>
 
 type 用于说明提交的类型：
 1. feature： 新功能

@@ -1082,6 +1082,80 @@ let foo = {} as Foo
 foo.bar = 1
 ```
 
+### 高级类型
+#### 交叉类型与联合类型
+``` ts
+interface DogInterface {
+  run(): void
+}
+interface CatInterface {
+  jump(): void
+}
+
+// 交叉类型：使用 & and符连接
+let pet: DogInterface & CatInterface = {
+  run() {},
+  jump() {}
+}
+
+// 联合类型：｜
+let a: number | string = 'a'
+
+// 限制变量取值在一定范围内
+let a: 'a' | 'b' | 'c'
+
+// 索引类型
+let obj = {
+  a: 1,
+  b: 2,
+  c: 3
+}
+function getValues<T, K extends keyof T>(obj: T, keys: K[]): T[k][] {
+  return keys.map(key => obj[key])
+}
+
+// 索引类型查询操作符
+// keyof T
+interface Obj {
+  a: number,
+  b: string
+}
+let key: keyof Obj
+// key 的类型就变成，'a', 'b' 字面量的联合类型
+
+// 索引访问操作符 T[k]
+let value: Obj['a']
+// value的类型 就是number类型
+
+// 范型约束
+// T extends U ,范型变量T 可以继承某些属性或变量
+
+// 映射类型
+interface Obj {
+  a: string
+  b: number
+}
+
+type ReadonlyObj = Readonly<Obj>
+
+// 条件类型
+// T extends U ? X : Y
+type TypeName<T> =
+  T extends string ? "string" :
+  T extends number ? "number" :
+  T extends boolean ? "boolean" :
+  T extends undefined ? "undefined" :
+  T extends Function ? "function" :
+  "object"
+
+type T1 = TypeName<string>
+type T2 = TypeName<string[]>
+```
+
+
+
+
+
 # 区别
 ## interface和type
 ### 相同点
