@@ -167,3 +167,5 @@ total: 包含loaded、total、percent三个属性:
 total.loaded: number，已上传大小，单位为字节。
 total.total: number，本次上传的总量控制信息，单位为字节，注意这里的 total 跟文件大小并不一致。
 total.percent: number，当前上传进度，范围：0～100。
+
+game
