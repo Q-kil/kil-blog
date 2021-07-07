@@ -177,6 +177,18 @@ NSNumber *intNumber = [NSNumber numberWithInteger:100];
 NSNumber *floatNumber =[NSNumber numberWithFloat:24.58];
 NSNumber *boolNumber = [NSNumber numberWithBool:YES];
 
+# xcode
+## 支持最新14.6
+Step 1
+Download iOS 14.6 support files
+https://github.com/JinjunHan/iOSDeviceSupport/raw/master/DeviceSupport/14.6.zip
+Step 2
+Extract the zip content
+Step 3
+Paste it at
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport
+Step 4
+Restart xcode.
 
 # 问题
 ## 移动端ios使用new Date(“2021-02-03 00:00:00“)获取时间为NAN
