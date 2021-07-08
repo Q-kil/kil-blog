@@ -183,6 +183,8 @@ shift + command + .
 # 清理mac
 Finder>前往>资源库（按alt显示）
 
+~/Library/Caches
+
 # Xcode
 ## 问题
 ## iPhone is not available. Please reconnect the device
