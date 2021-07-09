@@ -212,3 +212,15 @@ new Date(newTime).getTime()
 ————————————————
 版权声明：本文为CSDN博主「renjiantaotie」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/renjiantaotie/article/details/113630560
+
+# In-App Purchase
+
+## App 内购买项目类型
+4种
+pkt使用: 消耗型项目
+
+### 提供app内购买项目
+首先需要签署《付费应用程序协议》。您签署协议之后即可提交报税表。
+
+### 创建app内购买项目
+https://help.apple.com/app-store-connect/?lang=zh-cn#/devae49fb316
