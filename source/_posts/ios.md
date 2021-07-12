@@ -215,12 +215,27 @@ new Date(newTime).getTime()
 
 # In-App Purchase
 
+## base
+iOS支付框架：[StoreKit](https://developer.apple.com/cn/documentation/storekit/)
+跨平台
+
 ## App 内购买项目类型
 4种
 pkt使用: 消耗型项目
 
 ### 提供app内购买项目
+文档：https://developer.apple.com/cn/documentation/storekit/in-app_purchase/#topics
 首先需要签署《付费应用程序协议》。您签署协议之后即可提交报税表。
 
 ### 创建app内购买项目
 https://help.apple.com/app-store-connect/?lang=zh-cn#/devae49fb316
+
+### 确定用户状态
+
+## 测试
+
+
+
+## issues
+### App Store 服务器通知网址 (URL)
+https://help.apple.com/app-store-connect/?lang=zh-cn#/dev0067a330b
