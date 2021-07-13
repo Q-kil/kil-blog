@@ -100,6 +100,15 @@ poster 属性指定在视频下载时或在用户点击播放按钮之前显示�
 </div>
 ```
 
+controls 和 autoplay属性是“布尔属性” 没有值。例如：如果有controls属性，视频控件就会出现
+controls：播放器会提供一些控件，可以控制视频和音频的播放
+autoplay：一旦页面加载视频就会开始播放
+width height
+
+不同格式：
+<source .mp4>
+<source .webm>
+
 # 路径
 ## 相对路径
 ..\windows\system32\cmd.exe

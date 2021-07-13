@@ -181,3 +181,11 @@ url两边不需要加引号
 border-style
 
 层叠：来自多个样式表的样式都“层叠”在页面上。
+
+### html5
+section标签：可以把相关的内容分组在一起
+article标签：包含独立的内容，如一个新闻报道、一个博客帖子或者一个简短的报告
+大多数情况下，section和article 都会有一个 header
+
+time标签
+<time datetime="2021-07-12">2021-07-12</time>
