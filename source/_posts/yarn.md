@@ -65,6 +65,9 @@ success Set "registry" to "https://registry.npm.taobao.org".
 ```
 
 # link
+# niekaifa @ Mac-mini in ~/workspace/apowo/game-core on git:dev x [11:31:10] 
+$ yarn link
+
 改变依赖路径
 yarn link game-capsule
 
