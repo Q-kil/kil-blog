@@ -862,3 +862,18 @@ new BundleAnalyzerPlugin()
 ## devtool
 Q：在使用 devtool: 'source-map' 时，我编译后没有看到自己写的文件，是编译后的文件这是怎么回事呢
 A：index.js.map和index.js必须在同一个目录上，以及，浏览器的sourcemap开关不能关掉（默认是开的）
+
+
+## babel
+node_modules/@vue/cli-plugin-babel/node_modules/@babel/compat-data/data/corejs3-shipped-proposals
+- "@babel/preset-env@^7.0.0", "@babel/preset-env@^7.8.4":
+-   version "7.8.7"
+-   resolved ...
+- 
+- "@babel/preset-env@^7.9.0":
+-   version "7.10.2"
+-   resolved ...
+Delete local directories rm -rf tmp dist
+Reinstall dependencies yarn install
+Switch to NodeJS last LTS 12.x
+rm -rf ./node_modules && rm yarn.lock && yarn
