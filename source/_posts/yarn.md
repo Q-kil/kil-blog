@@ -95,6 +95,9 @@ yarn unlink game-core
 ls -l node_modules | grep ^l
 ```
 
+## 解除link后
+yarn install --force
+
 # 版本
 版本好自动 + 1
 yarn version --major
