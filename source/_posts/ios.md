@@ -79,6 +79,17 @@ https://appicon.co/#app-icon
 1.通过数据线将真机连接至Xcode
 2.打开Xcode -> 顶部菜单栏 -> Window -> Devices and Simulators -> 选择你的机器 -> 勾选 Connect via network (如下)
 
+### 支持最新14.6
+Step 1
+Download iOS 14.6 support files
+https://github.com/JinjunHan/iOSDeviceSupport/raw/master/DeviceSupport/14.6.zip
+Step 2
+Extract the zip content
+Step 3
+Paste it at
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport
+Step 4
+Restart xcode.
 ## 模拟器
 ### 清理
 Simulator > Device > Erase all content and setting
@@ -177,18 +188,109 @@ NSNumber *intNumber = [NSNumber numberWithInteger:100];
 NSNumber *floatNumber =[NSNumber numberWithFloat:24.58];
 NSNumber *boolNumber = [NSNumber numberWithBool:YES];
 
-# xcode
-## 支持最新14.6
-Step 1
-Download iOS 14.6 support files
-https://github.com/JinjunHan/iOSDeviceSupport/raw/master/DeviceSupport/14.6.zip
-Step 2
-Extract the zip content
-Step 3
-Paste it at
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport
-Step 4
-Restart xcode.
+# iOS 流程
+
+## 最终目的
+打包一个公司iOS app
+
+## 技术栈
+- Cordova
+    打包工具
+
+## 预测会出现的问题
+- 证书安装
+
+## cordova
+npm install -g cordova
+v10.0.0
+
+### open
+``` zsh
+macs-Mac-mini:test-app mac$ open platforms/ios/HelloCordova.xcodeproj/
+```
+error:
+Showing Recent Messages
+Signing for "HelloCordova" requires a development team. Select a development team in the Signing & Capabilities editor.
+
+
+
+## iOS
+### 创建一个标识符
+[Register a new identifier](https://developer.apple.com/account/resources/identifiers/add/bundleId)
+
+#### 删除标识符
+The App ID 'XXXXX' appears to be in use by the App Store, so it can not be removed at this time.
+解决方案：
+在App Strore Connect 找到与此App ID 相关的App，将套装ID修改成别的
+然后再进行删除
+注意：
+如果曾经上传过这个bundle ID 的二进制文件到App Strore Connect，将无法删除
+
+### 套装ID
+假设在开发者网站已经创建了两个App ID ，一个是：
+精确型
+Explicit App ID  为 :  com.companyA.oneApp，
+App ID Description Name  为：oneApp。
+
+另外一个是：
+通配型
+Wildcard App ID  为： com.companyB.* 
+App ID Description Name  为：twoApp。
+
+### Capabilities部分
+
+Capabilities部分是说明你的app需要具有哪些能力，需要哪些你就勾选哪些，具体说明如下（本人非ios开发者，很多只是字面翻译，具体请查询相关文档）：
+
+Access WiFi Information：访问wifi信息 比如你要用到获取WiFi的SSID信息，需要开启该功能
+App Groups：开启数据共享 比如公司多个app之间数据需要共享，可以开启这个功能
+Apple Pay Payment Processing：Apple Pay支付处理，需要苹果支付的需要开启
+Associated Domains：通用链接，通过唯一的网址，就可以链接到App中具体的视图，不需要特殊的schema。如果用户没有安装App则链接到对应的普通网页。
+AutoFill Credential Provider：自动填充凭据提供程序
+ClassKit：ClassKit框架
+Custom Network Protocol(Supported only on:macOS)：自定义网络协议（仅mac系统上支持）
+Data Protection：应用程序加密
+Fonts：字体
+Game Center：游戏中心
+HealthKit：健康框架
+HomeKit：家庭框架
+Hotspot：app内自动连接热点
+iCloud：iCloud 同步数据
+In-App Purchase：应用内支付
+Inter-App Audio：音频流发送
+Low Latency HLS：低延迟
+Mac(Supported only on:macOS)：
+Multipath：扩展连接
+Network Extensions：网络扩展（vpn&wifi）
+NFC Tag Reading：近场通讯
+Personal VPN：个人vpn
+Push Notifications：消息推送
+Sign In with Apple：苹果账号登录
+SiriKit：siri框架
+System Extension(Supported only on:macOS)：系统扩展（仅mac支持）
+User Management(Supported only on:tvOS)：用户管理（仅tvOS支持）
+Wallet：票据凭证
+Wireless Accessory Configuration：无线附件配置
+
+## Xcode
+### 账号登录
+Xcode -> xcode server -> account
+`{% asset_img ios02.png %}`
+### 调试
+Automatically manage signing
+自动配置证书,自动创建和更新证书
+
+`{% asset_img ios00.png %}`
+`{% asset_img ios01.png %}`
+
+创建的证书名称是开发者的名字后面括号加上我电脑的名称。
+https://developer.apple.com/account/resources/certificates/list
+
+### Certificate
+证书是用来给应用程序签名的，只有经过签名的应用程序才能保证他的来源是可信任的，并且代码是完整的，未经修改的。
+
+相信大家入门程序员的时候，大多都是在 VC 或 VS 上打 C/C++ 入门的，那时候一切都很简单，code-build-link-run，并没有什么认证过程，而由于苹果对其生态圈管理严格，任何在 iOS 上跑的程序都需要经过苹果的“同意”。所以，不论是 AppStore，还是 Xcode 本地 build 的项目，苹果都需要验证这个应用的身份。
+
+
 
 # 问题
 ## 移动端ios使用new Date(“2021-02-03 00:00:00“)获取时间为NAN
@@ -239,3 +341,4 @@ https://help.apple.com/app-store-connect/?lang=zh-cn#/devae49fb316
 ## issues
 ### App Store 服务器通知网址 (URL)
 https://help.apple.com/app-store-connect/?lang=zh-cn#/dev0067a330b
+
