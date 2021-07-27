@@ -47,6 +47,8 @@ this.cd.detectChanges();
 请求一定是异步的，因为需要和服务端通信，但是写代码的方式可以是同步的，就是用async/await语法写，可以获得和写同步一样的体验
 是因为异步没有触发脏检查机制，需要手动触发一下。
 
+## theming
+
 
 ## 引入json
 https://medium.com/@devblog_/angular-7-import-json-14f8bba534af

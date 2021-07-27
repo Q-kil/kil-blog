@@ -676,7 +676,16 @@ type 用于说明提交的类型：
 
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
-检查下在本仓库上的帐号
+- 检查下在本仓库上的帐号与github上是否一致
+- master分支
+``` zsh
+# niekaifa @ Mac-mini in ~/ikyu/KilFront/vue-project on git:master o [15:58:05] 
+$ git config user.email                      
+kaifawebb@gmail.com
+
+# niekaifa @ Mac-mini in ~/ikyu/KilFront/vue-project on git:master o [15:58:02] C:130
+$ git config user.email "kaifawebb@gmail.com"
+```
 
 ## 警告
 We found a potential security vulnerability in one of your dependencies

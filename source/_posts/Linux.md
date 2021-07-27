@@ -189,6 +189,14 @@ ubuntu@pixelpai-devel:/var/log/filebeat$ tac web_combined.log | grep 'test00'
 删除文件下所有
 rm ./*
 
+删除除某个文件之外的所有文件
+[root@localhost abc]# ls
+a  b  c
+[root@localhost abc]# ls |grep -v a |xargs rm -f 
+[root@localhost abc]# ls
+a
+
+
 打开当前文件
 open .
 
@@ -199,6 +207,15 @@ ls -all
 lsof -i:1080
 
 tar命令之--exclude参数 排除指定的文件或目录
+
+查看文件大小
+``` zsh
+$ du -h dist
+7.8M    dist/js
+1.5M    dist/img
+8.1M    dist/fonts
+17M     dist
+```
 
 按文件大小排序
 ``` zsh
