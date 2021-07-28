@@ -252,3 +252,6 @@ _=/usr/bin/printenv
 ``` 
 echo "zsh loaded"
 ```
+
+# 制作可引导盘
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/Samsung_T5
