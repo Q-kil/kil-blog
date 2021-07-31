@@ -54,6 +54,9 @@ HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 
 上标：X<sup>2</sup>
 下标：Y<sub>3</sub>
+
+块级引用
+<blockquote>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</blockquote>
 ```
 
 ## form

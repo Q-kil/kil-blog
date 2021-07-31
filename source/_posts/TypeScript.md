@@ -1152,7 +1152,154 @@ type T1 = TypeName<string>
 type T2 = TypeName<string[]>
 ```
 
+## 工程篇
+### 模块系统
+前端应用越来越复杂，多人协作是一种常态，模块化被广泛接受。
+经过时间的沉淀现在用
+- ES6
+- CommonJS
+#### ES6模块系统
+##### es6 模块导出
+通过export实现
+``` ts
+// 单独导出
+export let a = 1
 
+// 批量导出
+let b = 2
+let c = 3
+export { b, c }
+
+// 导出接口
+export interface P {
+  x: number
+}
+
+// 导出函数
+export function f() {}
+
+// 导出时起别名
+function g() {}
+export {g as G}
+
+// 默认导出，无需函数名
+// es6 允许一个顶级导出，多个次级导出
+export default function() {
+  console.log("I'am default")
+}
+// ts编译后, 程序无感知
+// .js
+function default_1() {
+  console.log("I'am default")
+}
+exports["default"] = default_1;
+a_2["default"]();
+
+
+// 引入外部模块，重新导出
+export { str as hello } from './b'
+
+// 顶级导出; 
+// export let a = 1; 使用顶级导出就不能导出其他了
+export = function() {
+
+}
+```
+##### es6 导入
+``` ts
+import { a, b, c } from './a'; // 批量导入
+import { P } from './a';       // 导入接口
+import { f as F } from './a';  // 导入时起别名
+import * as All from './a';    // 导入模块中的所有成员，绑定在 All 上
+import myFunction from './a';  // 不加{}, 导入默认
+```
+
+#### CommonJS模块系统
+nodejs是commonjs的一种实现
+##### commonjs模块导出
+``` ts
+let a = {
+  x: 1
+}
+
+// 整体导出
+// 只允许一个顶级导出，会覆盖次级导出
+module.exports = a
+
+// 导出多个变量
+// 次级导出
+exports.c = 3
+exports.d = 4
+// exports == module.exports;  exports是module.exports的引用
+```
+
+##### commonjs模块导入
+``` ts
+let c1 = require('./a.node')
+let c2 = require('./b.node')
+```
+
+#### 生成环境中两个模块系统会被构建成什么样子
+tsconfig.json
+``` json
+{
+  "target": "es5", //ts默认生成的tsconfig.json 用 es5；tsc指令 用 es3；ES2015是 ES6
+  // 要编译成的目标语言是什么版本
+
+  "module": "commonjs", // tsconfig.json和tsc都是commonjs
+  // 要把我们的代码编译成什么要的模块系统
+
+  "esModuleInterop": true
+  // export =  的，两种导入方式
+  // false的话，只能这样导入：import c4 = require('../es6/d')
+}
+```
+
+#### 注意
+如果使用了ES6的导出，CommonJS的导入就会出现问题
+``` ts
+// commonjs调用es6的默认导出
+let c3 = require('../es6/a');
+c3() // 报错 not function
+c3.default() // 正常
+```
+#### 如何出来两个模块不兼容问题
+方案：
+1、两个模块系统不要混用
+2、如果es6有一个顶级导出，可能会被nodejs模块引用的话，ts提供了一个兼容的语法：export
+``` ts
+// 会被编译为：module.exports; 意味着不能有其他的导出了
+export = function() {
+  console.log("I'am default")
+}
+
+// 两种导入方式
+import c4 = require('../es6/d')
+import c4 from '../es6/d'
+c4()
+```
+
+#### 模块和命名空间不要混用，namespace
+
+### 声明合并
+接口之间函数是可以重复定义的，命名空间不行
+
+### 编写声明文件
+类库分为三类
+- 全局类库
+- 模块类库
+- UMD类库
+
+jquery是UMD类库，既可以全局也可以模块化引用
+在使用非ts编写的类库时，必须为这个类库编写声明文件，对外暴露API
+社区会编写大部分类库的声明文件，安装：yarn add @types/jquery
+[查询声明类库](https://www.typescriptlang.org/dt/search?search=)
+
+### 配置tsconfig.json
+#### 文件
+- files
+- include
+- exclude
 
 
 
@@ -1295,3 +1442,7 @@ webpack 才是真的按路径引入，所以问题出在 webapck
       tsConfigPath: path.resolve("./src/tsconfig.app.json"),
       skipCodeGeneration: true,
     }),
+
+## import * 与 import
+为什么有的系统语言使用import * as React from 'react';有的系统语言使用import React from 'react';
+作者回复: 第一种写法是将所有用export导出的成员绑定在React上，导入后用React.xxx访问；第二种仅是导出默认的（export default）
