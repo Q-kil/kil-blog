@@ -7,6 +7,9 @@ tags:
 - rxjs
 ---
 
+# base
+响应式编程是使用异步数据流进行编程。
+
 # Observable
 单播，对于每个订阅者，都只有一个独立的 Observable execution 与之对应
 ``` js
@@ -111,14 +114,10 @@ commonMsgObserver = this.commonMsg$.asObservable();
 它能帮我们把相同值的资料滤掉只留一笔，RxJS 里的 distinct 也是相同的作用
 
 # Pipeable 操作符
-重命名的操作符
+pipe 是 Observable 的一部分，不需要导入，并且它可以替代现有的 let 操作符。
+现在 Observable 中有一个内置的 pipe 方法 (Observable.prototype.pipe)，它可以用类似于之前的链式调用的方式来组合操作符 (如下所示)。
+你只需在 'rxjs/operators' (注意是复数！) 中便能提取出所需要的任何操作符。还推荐直接导入所需的 Observable 创建操作符，如下面的 range 所示:
 
-由于操作符要从 Observable 中独立出来，所以操作符的名称不能和 JavaScript 的关键字冲突。因此一些操作符的 pipeable 版本的名称做出了修改。这些操作符是:
-
-do -> tap
-catch -> catchError
-switch -> switchAll
-finally -> finalize
 ## finalize
 当 Observable 完成或报错时调用函数
 ``` ts
