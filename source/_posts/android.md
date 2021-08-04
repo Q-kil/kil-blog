@@ -29,3 +29,7 @@ tags:
 - Launch Charles which you installed (default proxy port is 8888)
 - Setup your phone's wifi configuration: set the ip of delegate to your PC or MAC's ip, port of delegate to 8888
 - Lauch your app in your phone. And monitor http requests on Charles.- 
+
+# studio
+## 搜索
+Ctrl+Shift+F

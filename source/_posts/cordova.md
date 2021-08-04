@@ -548,6 +548,16 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
 ```
 
 #### plugin cordova-hot-code-push
+##### UpdateLoaderWorker.java
+Worker, that implements update download logic.
+Worker，它实现更新下载逻辑。
+During the download process events are dispatched to notify the subscribers about the progress.
+在下载过程中，将发送流程事件以通知订阅者进度。
+
+
+
+
+
 class  PluginResultHelper
 createPluginResult  app版本信息
 D/CHCP: CHCP PluginResultHelper.createDataNode add text value: appVersion: "1.0.0"
@@ -566,6 +576,9 @@ FAILED_TO_DOWNLOAD_APPLICATION_CONFIG - failed to download new application confi
 源码
 String configURL = chcpXmlConfig.getConfigUrl();
 Log.d("CHCP", "get config url: " + configURL); // 空
+
+###### error -3
+FAILED_TO_DOWNLOAD_CONTENT_MANIFEST
 
 ###### error -16
 当调用 chcp.installUpdate 时，安装已经在进行

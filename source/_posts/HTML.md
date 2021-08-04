@@ -112,6 +112,10 @@ width height
 <source .mp4>
 <source .webm>
 
+## 文件拖入
+<div (drop)="onDropPart($event)"></div>
+const f0 = e.dataTransfer.files[0];
+
 # 路径
 ## 相对路径
 ..\windows\system32\cmd.exe
