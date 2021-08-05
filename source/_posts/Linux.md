@@ -250,6 +250,23 @@ cp -r vue-project/dist/ www
 cp -Rf /home/user1/* /root/temp/
 将 /home/user1目录下的所有东西拷到/root/temp/下而不拷贝user1目录本身。
 
+cordova-hot-update
+deploy:Alpha:
+  stage: build
+  only:
+    - /^build_batchupdate-.*/
+  tags:
+    - tooqing-cordova-batchupdate
+  script:
+    - pwd
+    - sh update-tooqing-webapp.sh
+    - '[ -d www ] && echo "www/ exists" || mkdir www'
+    - '[ -d release ] && echo "release/ exists" || mkdir release'
+    - yarn
+    - yarn hotbuild
+    - rsync -Pav --chmod=a+rwx -e "ssh -o StrictHostKeyChecking=no" --exclude "win-ia32-unpacked/*" www/* ubuntu@192.168.103.101:/var/www/a.tooqing.com/download/tooqing-cordova/www/
+
+
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
 dd: bs: illegal numeric value
