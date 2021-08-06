@@ -283,6 +283,11 @@ path.posix 返回POSIX(Mac/Linux)系统的path执行
 ### os.homedir()
 返回当前用户的主目录的字符串路径。
 
+## request
+``` js
+var res = request('GET', `https://osd-alpha.tooqing.com/app/batchupdate/v${cordovaHcp.previous_batch_update_version}/chcp.manifest`);
+console.log('previous', JSON.parse(res.getBody()));
+```
 
 # 升级
 ## 使用npm安装全局n模块
