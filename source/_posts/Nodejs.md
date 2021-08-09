@@ -274,7 +274,6 @@ path <string> | <Buffer> | <URL>
 path.resolve
 方法会把一个路径或路径片段的序列解析为一个绝对路径。
 
-
 ### posix
 path.posix 返回POSIX(Mac/Linux)系统的path执行
 返回的对象总会按照POSIX(Mac/Linux)的方式处理路径。
