@@ -56,6 +56,11 @@ document.getElementById('ele').addEventListener('click', () => console.log('Clic
 true - 事件句柄在捕获阶段执行
 false - 默认。事件句柄在冒泡阶段执行
 
+options 可选
+一个指定有关 listener 属性的可选参数对象。可用的选项如下：
+capture:  Boolean，表示 listener 会在该类型的事件捕获阶段传播到该 EventTarget 时触发。
+once:  Boolean，表示 listener 在添加之后最多只调用一次。如果是 true， listener 会在其被调用之后自动移除。
+
 ### 执行两次问题
 ``` js
 document.getElementById("click").addEventListener("click", test, false);
