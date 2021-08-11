@@ -23,6 +23,12 @@ Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 })()
 ```
 
+## 定时器
+setInterval
+interval: 间隔
+setTimeout
+timeout：超时
+
 ## 阻止事件
 ### a 标签跳转
 1、e.preventDefault();
