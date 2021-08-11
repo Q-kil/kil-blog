@@ -304,6 +304,21 @@ V/Log: Log-v
     test
 ```
 
+## 问题
+Could not find tools.jar. Please check that /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home contains a valid JDK installation
+``` zsh
+$ /usr/libexec/java_home -V | grep jdk
+Matching Java Virtual Machines (1):
+1.8.0_272 (x86_64) "AdoptOpenJDK" - "AdoptOpenJDK 8" /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+
+vim ~/.zshrc
+109 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+110 export PATH=$JAVA_HOME/bin:$PATH
+
+source ~/.zshrc
+```
+
 # ios
 ## 发版本
 Product > Archive > Distribute App
@@ -446,6 +461,15 @@ Failed to load resource: The requested URL was not found on this server.  zh.jso
 解决办法：
 https://github.com/AraHovakimyan/cordova-plugin-wkwebviewxhrfix
 
+## ios支付
+### 插件
+https://github.com/j3k0/cordova-plugin-purchase
+
+### 概述
+该插件是基于事件的API。需要注册监听器的变化。
+监听机制的核心是 `when()`
+
+
 # 热更新
 `{% asset_img cordova-hot-code-push.png%}`
 ``` js
@@ -524,6 +548,16 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
 ```
 
 #### plugin cordova-hot-code-push
+##### UpdateLoaderWorker.java
+Worker, that implements update download logic.
+Worker，它实现更新下载逻辑。
+During the download process events are dispatched to notify the subscribers about the progress.
+在下载过程中，将发送流程事件以通知订阅者进度。
+
+
+
+
+
 class  PluginResultHelper
 createPluginResult  app版本信息
 D/CHCP: CHCP PluginResultHelper.createDataNode add text value: appVersion: "1.0.0"
@@ -542,6 +576,9 @@ FAILED_TO_DOWNLOAD_APPLICATION_CONFIG - failed to download new application confi
 源码
 String configURL = chcpXmlConfig.getConfigUrl();
 Log.d("CHCP", "get config url: " + configURL); // 空
+
+###### error -3
+FAILED_TO_DOWNLOAD_CONTENT_MANIFEST
 
 ###### error -16
 当调用 chcp.installUpdate 时，安装已经在进行

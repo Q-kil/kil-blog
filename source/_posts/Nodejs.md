@@ -274,7 +274,6 @@ path <string> | <Buffer> | <URL>
 path.resolve
 方法会把一个路径或路径片段的序列解析为一个绝对路径。
 
-
 ### posix
 path.posix 返回POSIX(Mac/Linux)系统的path执行
 返回的对象总会按照POSIX(Mac/Linux)的方式处理路径。
@@ -283,6 +282,11 @@ path.posix 返回POSIX(Mac/Linux)系统的path执行
 ### os.homedir()
 返回当前用户的主目录的字符串路径。
 
+## request
+``` js
+var res = request('GET', `https://osd-alpha.tooqing.com/app/batchupdate/v${cordovaHcp.previous_batch_update_version}/chcp.manifest`);
+console.log('previous', JSON.parse(res.getBody()));
+```
 
 # 升级
 ## 使用npm安装全局n模块

@@ -189,6 +189,14 @@ ubuntu@pixelpai-devel:/var/log/filebeat$ tac web_combined.log | grep 'test00'
 删除文件下所有
 rm ./*
 
+删除除某个文件之外的所有文件
+[root@localhost abc]# ls
+a  b  c
+[root@localhost abc]# ls |grep -v a |xargs rm -f 
+[root@localhost abc]# ls
+a
+
+
 打开当前文件
 open .
 
@@ -199,6 +207,15 @@ ls -all
 lsof -i:1080
 
 tar命令之--exclude参数 排除指定的文件或目录
+
+查看文件大小
+``` zsh
+$ du -h dist
+7.8M    dist/js
+1.5M    dist/img
+8.1M    dist/fonts
+17M     dist
+```
 
 按文件大小排序
 ``` zsh
@@ -228,6 +245,28 @@ mac os
 
 copy 文件
 cp -r vue-project/dist/ www
+
+制文件夹内所有文件到另一个文件夹
+cp -Rf /home/user1/* /root/temp/
+将 /home/user1目录下的所有东西拷到/root/temp/下而不拷贝user1目录本身。
+
+cordova-hot-update
+deploy:Alpha:
+  stage: build
+  only:
+    - /^build_batchupdate-.*/
+  tags:
+    - tooqing-cordova-batchupdate
+  script:
+    - pwd
+    - sh update-tooqing-webapp.sh
+    - '[ -d www ] && echo "www/ exists" || mkdir www'
+    - '[ -d release ] && echo "release/ exists" || mkdir release'
+    - yarn
+    - yarn hotbuild
+    - rsync -Pav --chmod=a+rwx -e "ssh -o StrictHostKeyChecking=no" --exclude "win-ia32-unpacked/*" www/* ubuntu@192.168.103.101:/var/www/a.tooqing.com/download/tooqing-cordova/www/
+
+
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
 dd: bs: illegal numeric value

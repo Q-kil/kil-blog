@@ -16,12 +16,105 @@ zh-cmn-Hans
 ## a
 ``` html
 <a href="pref.html" target="view_window">Preface</a>
+<a href="https://www.baidu.com" target="_blank">1</a>
+<a href="https://www.baidu.com" target="_self">1</a>
 ```
 href属性告诉浏览器链接的目标文件
+view_window、view_frame、_blank、_self、_parent、_top
+
+``` html
+<a href="mailto:{email}?subject={subject}&body={content}">
+    Send us an email
+</a>
+
+<a href="tel:{phone}">
+    Call us
+</a>
+
+<a href="sms:{phone}?body={content}">
+    Send us a message
+</a>   
+```
+
+## favico缓存破坏
+<link rel="icon" href="/favicon.ico?v=2" />    
 
 ## label
 HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 
+## 文字
+```
+<b>字体加粗</b>
+<i>斜体字体</i>
+<u>下划线</u>
+要为文本加下划线，您应该应用包含CSS text-decoration属性设置为 underline 的样式。
+
+<s>删除线（不在相关）</s>
+<del>已删除</del>
+
+上标：X<sup>2</sup>
+下标：Y<sub>3</sub>
+
+块级引用
+<blockquote>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</blockquote>
+```
+
+## form
+### 多选
+```
+<input type="checkbox" name="love" value="" checked="checked" \>唱歌
+<input type="checkbox" name="love" value=""  \>跳舞
+```
+
+## frame
+frameset 弃用
+frame  弃用
+
+现在使用  iframe
+HTML内联框架元素 (<iframe>) 表示嵌套的browsing context。它能够将另一个HTML页面嵌入到当前页面
+
+## 手风琴
+``` html
+<div class="wrapper">
+    <details>
+        <summary>
+            Click me to see more details
+        </summary>
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut eum perferendis eius. Adipisci velit et similique earum quas illo odio rerum optio, quis, expedita assumenda enim dicta aliquam porro maxime minima sed a ullam, aspernatur corporis.
+        </p>
+    </details>
+</div>
+```
+
+## mark高亮
+``` html
+<p>&lt;mark&gt; 元素用于 <mark>高亮</mark> 文本</p>
+```
+
+## video
+poster 属性指定在视频下载时或在用户点击播放按钮之前显示的图像。
+``` html
+<div>
+  <video controls poster="https://img-blog.csdnimg.cn/20190301125102646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTAxMDE5OA==,size_16,color_FFFFFF,t_70">
+    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+    type="video/mp4"></video>
+</div>
+```
+
+controls 和 autoplay属性是“布尔属性” 没有值。例如：如果有controls属性，视频控件就会出现
+controls：播放器会提供一些控件，可以控制视频和音频的播放
+autoplay：一旦页面加载视频就会开始播放
+width height
+
+不同格式：
+<source .mp4>
+<source .webm>
+
+## 文件拖入
+<div (drop)="onDropPart($event)"></div>
+const f0 = e.dataTransfer.files[0];
 
 # 路径
 ## 相对路径
@@ -118,9 +211,48 @@ figure
   img
   figcaption
 
+loading=lazy 属性 来推迟图像的加载，直到用户滚动到它们为止。(现在支持的浏览器还不全面)
+
 ## 列表
 ol 有序列表
 ul 无序列表
+
+分为：
+   有序列表:<ol></ol> 
+   & 
+   无序列表:<ul></ul>
+
+1）有序列表： 用于显示具有统一特征的有序数据
+
+<ol type="i" start="3">
+  <li>新闻1</li>
+  <li>新闻2</li>
+  <li>新闻3</li>
+  <li>新闻4</li>
+</ol>
+
+属性   值              描述
+type   1 数字(默认)    排序
+       a 字母
+       A 大写字母A
+       i 小写罗马
+       I 大写罗马
+start  数字           起始数字
+
+
+2）无序列表：用于显示同一特征的无限数据
+
+<ul type="circle">
+  <li>...</li>
+  <li>...</li>
+  <li>...</li>
+</ul>
+
+属性   值                  
+type   disc 实心圆(默认)     
+       circle  空心圆
+       square 实心矩形
+       none  无
 
 ## 术语
 dfn

@@ -115,6 +115,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 我遇到造成这个问题的原因，一般是因为执行了git reset命令，版本回退后没有恢复，造成本地仓库的提交版本号落后于远端仓库的提交版本号。
 可以执行 git push -f命令去强制提交
 
+
+----
+git fetch --all
+git reset --hard origin/master
+git pull //可以省略
+
 ### 回滚之后的操作
 git log  找到想退回的版本
 
@@ -194,7 +200,7 @@ $ git reset commit_id
 ```
 
 ## 暂存
-我们有时会遇到这样的情况，正在dev分支开发新功能，做到一半时有人过来反馈一个bug，让马上解决，但是新功能做到了一半你又不想提交，这时就可以使用`git stash`命令先把当前进度保存起来，然后切换到另一个分支去修改bug，修改完提交后，再切回dev分支，使用`git stash pop`来恢复之前的进度继续开发新功能。下面来看一下git stash命令的常见用法
+我们有时会遇到这样的情况，正在dev分支开发新功能，做到一半时有人过来反馈一个bug，让马上解决，但是新功能做到了一半你又不想提交，这时就可以使用`git stash`命令先把当前进度保存起来，然后切换到另一个分支去修改bug，修改完提交后，再切回dev分支，使用`git stash pop`来恢复之前的进度继续开发新功能。
 
 ## 清除已删除的分支
 ### git branch -a 
@@ -653,6 +659,9 @@ Summary of actions:
 - Feature branch 'feature/auth' has been locally deleted
 - You are now on branch 'develop'
 
+## 提交信息规范
+提交信息应该描述 “做了什么” 和 “这么做的原因”，主要由 header， body，footer组成。
+header的格式：<type>: <subject>
 
 type 用于说明提交的类型：
 1. feature： 新功能
@@ -667,7 +676,16 @@ type 用于说明提交的类型：
 
 # 问题
 ## 提交代码，但github上的绿格子没有变绿
-检查下在本仓库上的帐号
+- 检查下在本仓库上的帐号与github上是否一致
+- master分支
+``` zsh
+# niekaifa @ Mac-mini in ~/ikyu/KilFront/vue-project on git:master o [15:58:05] 
+$ git config user.email                      
+kaifawebb@gmail.com
+
+# niekaifa @ Mac-mini in ~/ikyu/KilFront/vue-project on git:master o [15:58:02] C:130
+$ git config user.email "kaifawebb@gmail.com"
+```
 
 ## 警告
 We found a potential security vulnerability in one of your dependencies

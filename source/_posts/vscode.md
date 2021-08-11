@@ -179,6 +179,10 @@ keybindings.json
 }
  ```
 
+ 方法的跳入和跳出
+ 跳入：Command + 点击方法名
+ 跳出：option + Command + 左箭头
+
 ## 命令面板
 Mac用户按住快捷键 <span class="custom_red">Cmd+Shift+P<span>
 Win用户按住快捷键 <span class="custom_red">F1<span>

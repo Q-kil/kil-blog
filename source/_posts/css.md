@@ -19,6 +19,20 @@ text-decoration:none;
 样式显示不出来，也不会报错
 `{% asset_img semicolon.png %}`
 
+## 文字修饰
+text-decoration-line
+文本修饰的位置, 如下划线underline，删除线line-through
+text-decoration-color
+文本修饰的颜色
+text-decoration-style
+文本修饰的样式, 如波浪线wavy实线solid虚线dashed
+text-decoration-thickness
+文本修饰线的粗细
+
+## font-family
+font-family: tahoma, arial, 宋体, sans-serif;
+sans-serif: 如果其他字体都找不到，就使用浏览器默认字体
+
 
 ## 字间距
 letter-spacing
@@ -46,6 +60,18 @@ div  display: inline-block;
 
 ## text-align
 微信文章两端对其，justify
+
+## font-weight
+normal
+正常粗细。与400等值。
+bold
+ 加粗。 与700等值。
+lighter
+比从父元素继承来的值更细(处在字体可行的粗细值范围内)。
+bolder
+比从父元素继承来的值更粗 (处在字体可行的粗细值范围内)。
+<number>
+一个介于 1 和 1000 (包含) 之间的 <number> 类型值。更大的数值代表字体重量粗于更小的数值 (或一样粗)。一些常用的数值对应于通用的字体重量名称，如章节常见粗细值名称和数值对应所描述。
 
 # 浏览器兼容
 ## 前缀

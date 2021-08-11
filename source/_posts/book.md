@@ -157,3 +157,47 @@ doctype&charset是前端的义务，必须履行
 type类型html5可以省略
 stylesheet样式表
 rel属性：指定了html文件与所链接的文件之间的关系。我们要链接一个样式表
+
+woff字体：web open font format
+trueType字体 .ttf
+openType字体 .otf
+``` css
+@font-face {
+  font-family: 'test';
+  src: url("http.woff");
+  src: url("http.ttf");
+}
+```
+
+css 内置规则
+- @font-face
+- @import 导入其他css
+- @media 媒体查询
+
+背景图像
+background-image: url(http://)
+url两边不需要加引号
+
+border-style
+
+层叠：来自多个样式表的样式都“层叠”在页面上。
+
+### html5
+section标签：可以把相关的内容分组在一起
+article标签：包含独立的内容，如一个新闻报道、一个博客帖子或者一个简短的报告
+大多数情况下，section和article 都会有一个 header
+
+time标签
+<time datetime="2021-07-12">2021-07-12</time>
+
+### 表格
+table
+  caption 增加一个标题
+tr 
+  th
+tr
+tr
+  td
+tr
+table
+tr: 元素构成表格中的一行

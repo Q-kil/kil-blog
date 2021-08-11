@@ -852,6 +852,573 @@ let result = {
 render(result)
 ```
 
+### 函数类型接口
+混合类型接口
+``` ts
+interface Lib {
+  (): void;
+  version: string;
+  doSomething(): void;
+}
+
+实现
+let lib: Lib = (() => {}) as Lib; // 类型断言，明确知道lib类型是Lib
+lib.version = '1.0';
+lib.doSomething = () => {};
+```
+上例缺点是 向全局暴露了一个变量lib，它是一个单例；如果想创建多个lib，需要用函数封装一下
+
+``` ts
+function getLib() {
+  let lib: Lib = (() => {}) as Lib;
+  lib.version = '1.0';
+  lib.doSomething = () => {};
+  return lib;
+}
+// 创建多个实例
+let lib1 = getLib();
+lib1();
+lib1.doSomething();
+let lib2 = getLib();
+```
+
+### 函数
+- 定义
+- 传参
+- 可选参数
+- 默认参数
+- 剩余参数
+- 函数重载（函数名相同）
+
+函数定义
+``` ts
+// 1.function
+function add1(x: number, y: number) {
+  return x + y; // 函数返回值，ts类型推断省去 
+}
+
+let add2: (x: number, y: number) => number; // 通过变量，定义函数类型
+
+type add3 = (x: number, y: number) => number; // 类型别名，定义函数类型
+
+interface add4 { // 接口定义函数类型
+  (x: number, y: number): number
+}
+// 2-4 都是函数类型的定义，没有实现
+
+// 调用：行参和实参一一对应
+add1(1, 2);
+
+function add6(x: number, y = 0, z: number, q = 1) {
+  return x + y + z + q;
+}
+add6(1, undefined, 3);
+
+function add7(x: number, ...rest: number[]) {
+  return x + rest.reduce((pre, cur) => pre + cur)
+}
+console.log(add7(1, 2, 3, 4, 5));
+```
+
+### 类
+#### 类基本实现
+``` ts
+class Dog {
+  constructor(name: string) {
+    this.name = name
+  }
+  name: string = 'dog'
+  run() {}
+}
+console.log(Dog.prototype)
+let dog = new Dog('wangwang')
+console.log(dog)
+```
+
+#### 类的继承
+``` ts
+class Husky extends Dog {
+  constructor(name: string, color: string) {
+    super(name)
+    this.color = color
+  }
+  color: string
+}
+```
+
+#### 成员修饰符
+public
+private
+protected 受保护的，不能实例调用，子类可以继承
+readonly 只读
+static 静态的，能通过类访问，不能通过实例访问，子类继承可以访问
+
+#### 抽象类
+``` ts
+abstract class Animal {
+  eat() {
+    console.log('eat')
+  }
+}
+```
+
+#### 多态
+``` ts
+let animals: Animal[] = [dog, cat]
+animals.forEach(i => {
+  i.sleep()
+})
+```
+
+#### 特殊的类型，this类型，链式调用
+``` ts
+class WorkFlow {
+  step1() {
+    return this;
+  }
+  step2() {
+    return this;
+  }
+}
+new WorkFlow().step1().step2()
+```
+
+##### this类型 多态
+``` ts
+class Myflow extends WorkFlow {
+  next() {
+    return this;
+  }
+}
+new Myflow().next().step1().next().step2()
+```
+
+### 接口
+``` ts
+interface {
+
+}
+```
+{% asset_img interface.png %}
+
+### 范型
+好处：
+- 函数和类可以轻松的支持多种类型，增强程序的扩展性
+- 不必写多条函数重载，冗长的联合类型声明，增强代码可读性
+- 灵活控制类型之间的约束
+``` ts
+// any类型，调用者无法获知 约束关系
+function log(value: any) {
+  return value;
+}
+```
+
+定义：不预先确定的数据类型，具体的类型在使用的时候才能确定
+
+范型函数
+``` ts
+function log<T>(value: T):T {
+  return value;
+}
+```
+调用
+``` ts
+log<string[]>(['a', 'b']) //指名类型
+log(['a', 'b'])// 类型推断，推荐使用
+```
+
+类型别名 定义范型函数及实现
+``` ts
+type Log = <T>(value: T) => T
+let myLog: Log = log
+```
+
+接口 定义范型
+``` ts
+interface Log<T> {
+  (value: T): T
+}
+let myLog: Log<number> = log
+myLog(1)
+```
+
+#### 范型类
+``` ts
+class Log<T> {
+  run(value: T) {
+    return value
+  }
+}
+let log1 = new Log<number>()
+log1.run(1)
+let log2 = new Log() // 不指定类型，就可以传入任意类型
+log2.run('1')
+```
+
+#### 范型约束
+``` ts
+function log<T>(value: T): T {
+  console.log(value, value.length) // length 报错：范型T没有这个属性
+  return value
+}
+
+//通过类型检查
+interface Length {
+  length: number
+}
+function log<T extends Length>(value: T): T {
+  console.log(value, value.length)
+  return value
+}
+```
+
+### 类型检查机制
+#### 类型断言
+```ts
+interface Foo {
+  bar: number
+}
+let foo = {} as Foo
+foo.bar = 1
+```
+
+### 高级类型
+#### 交叉类型与联合类型
+``` ts
+interface DogInterface {
+  run(): void
+}
+interface CatInterface {
+  jump(): void
+}
+
+// 交叉类型：使用 & and符连接
+let pet: DogInterface & CatInterface = {
+  run() {},
+  jump() {}
+}
+
+// 联合类型：｜
+let a: number | string = 'a'
+
+// 限制变量取值在一定范围内
+let a: 'a' | 'b' | 'c'
+
+// 索引类型
+let obj = {
+  a: 1,
+  b: 2,
+  c: 3
+}
+function getValues<T, K extends keyof T>(obj: T, keys: K[]): T[k][] {
+  return keys.map(key => obj[key])
+}
+
+// 索引类型查询操作符
+// keyof T
+interface Obj {
+  a: number,
+  b: string
+}
+let key: keyof Obj
+// key 的类型就变成，'a', 'b' 字面量的联合类型
+
+// 索引访问操作符 T[k]
+let value: Obj['a']
+// value的类型 就是number类型
+
+// 范型约束
+// T extends U ,范型变量T 可以继承某些属性或变量
+
+// 映射类型
+interface Obj {
+  a: string
+  b: number
+}
+
+type ReadonlyObj = Readonly<Obj>
+
+// 条件类型
+// T extends U ? X : Y
+type TypeName<T> =
+  T extends string ? "string" :
+  T extends number ? "number" :
+  T extends boolean ? "boolean" :
+  T extends undefined ? "undefined" :
+  T extends Function ? "function" :
+  "object"
+
+type T1 = TypeName<string>
+type T2 = TypeName<string[]>
+```
+
+## 工程篇
+### 模块系统
+前端应用越来越复杂，多人协作是一种常态，模块化被广泛接受。
+经过时间的沉淀现在用
+- ES6
+- CommonJS
+#### ES6模块系统
+##### es6 模块导出
+通过export实现
+``` ts
+// 单独导出
+export let a = 1
+
+// 批量导出
+let b = 2
+let c = 3
+export { b, c }
+
+// 导出接口
+export interface P {
+  x: number
+}
+
+// 导出函数
+export function f() {}
+
+// 导出时起别名
+function g() {}
+export {g as G}
+
+// 默认导出，无需函数名
+// es6 允许一个顶级导出，多个次级导出
+export default function() {
+  console.log("I'am default")
+}
+// ts编译后, 程序无感知
+// .js
+function default_1() {
+  console.log("I'am default")
+}
+exports["default"] = default_1;
+a_2["default"]();
+
+
+// 引入外部模块，重新导出
+export { str as hello } from './b'
+
+// 顶级导出; 
+// export let a = 1; 使用顶级导出就不能导出其他了
+export = function() {
+
+}
+```
+##### es6 导入
+``` ts
+import { a, b, c } from './a'; // 批量导入
+import { P } from './a';       // 导入接口
+import { f as F } from './a';  // 导入时起别名
+import * as All from './a';    // 导入模块中的所有成员，绑定在 All 上
+import myFunction from './a';  // 不加{}, 导入默认
+```
+
+#### CommonJS模块系统
+nodejs是commonjs的一种实现
+##### commonjs模块导出
+``` ts
+let a = {
+  x: 1
+}
+
+// 整体导出
+// 只允许一个顶级导出，会覆盖次级导出
+module.exports = a
+
+// 导出多个变量
+// 次级导出
+exports.c = 3
+exports.d = 4
+// exports == module.exports;  exports是module.exports的引用
+```
+
+##### commonjs模块导入
+``` ts
+let c1 = require('./a.node')
+let c2 = require('./b.node')
+```
+
+#### 生成环境中两个模块系统会被构建成什么样子
+tsconfig.json
+``` json
+{
+  "target": "es5", //ts默认生成的tsconfig.json 用 es5；tsc指令 用 es3；ES2015是 ES6
+  // 要编译成的目标语言是什么版本
+
+  "module": "commonjs", // tsconfig.json和tsc都是commonjs
+  // 要把我们的代码编译成什么要的模块系统
+
+  "esModuleInterop": true
+  // export =  的，两种导入方式
+  // false的话，只能这样导入：import c4 = require('../es6/d')
+}
+```
+
+#### 注意
+如果使用了ES6的导出，CommonJS的导入就会出现问题
+``` ts
+// commonjs调用es6的默认导出
+let c3 = require('../es6/a');
+c3() // 报错 not function
+c3.default() // 正常
+```
+#### 如何出来两个模块不兼容问题
+方案：
+1、两个模块系统不要混用
+2、如果es6有一个顶级导出，可能会被nodejs模块引用的话，ts提供了一个兼容的语法：export
+``` ts
+// 会被编译为：module.exports; 意味着不能有其他的导出了
+export = function() {
+  console.log("I'am default")
+}
+
+// 两种导入方式
+import c4 = require('../es6/d')
+import c4 from '../es6/d'
+c4()
+```
+
+#### 模块和命名空间不要混用，namespace
+
+### 声明合并
+接口之间函数是可以重复定义的，命名空间不行
+
+### 编写声明文件
+类库分为三类
+- 全局类库
+- 模块类库
+- UMD类库
+
+jquery是UMD类库，既可以全局也可以模块化引用
+在使用非ts编写的类库时，必须为这个类库编写声明文件，对外暴露API
+社区会编写大部分类库的声明文件，安装：yarn add @types/jquery
+[查询声明类库](https://www.typescriptlang.org/dt/search?search=)
+
+### 配置tsconfig.json
+#### 文件
+- files
+- include
+- exclude
+
+
+
+# 区别
+## interface和type
+### 相同点
+1.都可以描述一个对象或者函数
+``` ts
+interface User {
+  name: string
+  age: number
+}
+
+interface SetUser {
+  (name: string, age: number): void;
+}
+
+type User = {
+  name: string
+  age: number
+};
+
+type SetUser = (name: string, age: number)=> void;
+```
+
+2.都允许拓展（extends）
+interface 和 type 都可以拓展，并且两者并不是相互独立的，也就是说 interface 可以 extends type, type 也可以 extends interface 。 虽然效果差不多，但是两者语法不同。
+``` ts
+// interface extends interface
+interface Name { 
+  name: string; 
+}
+interface User extends Name { 
+  age: number; 
+}
+
+// type extends type
+type Name = { 
+  name: string; 
+}
+type User = Name & { age: number  };
+
+// interface extends type
+type Name = { 
+  name: string; 
+}
+interface User extends Name { 
+  age: number; 
+}
+
+// type extends interface
+interface Name { 
+  name: string; 
+}
+type User = Name & { 
+  age: number; 
+}
+```
+
+### 不同点
+type 可以而 interface 不行
+1.type 可以声明基本类型别名，联合类型，元组等类型
+``` ts
+// 基本类型别名
+type Name = string
+
+// 联合类型
+interface Dog {
+    wong();
+}
+interface Cat {
+    miao();
+}
+
+type Pet = Dog | Cat
+
+// 具体定义数组每个位置的类型
+type PetList = [Dog, Pet]
+```
+2.type 语句中还可以使用 typeof 获取实例的 类型进行赋值
+``` ts
+// 当你想获取一个变量的类型时，使用 typeof
+let div = document.createElement('div');
+type B = typeof div
+```
+3.其他骚操作
+``` ts
+type StringOrNumber = string | number;  
+type Text = string | { text: string };  
+type NameLookup = Dictionary<string, Person>;  
+type Callback<T> = (data: T) => void;  
+type Pair<T> = [T, T];  
+type Coordinates = Pair<number>;  
+type Tree<T> = T | { left: Tree<T>, right: Tree<T> };
+```
+
+interface 可以而 type 不行
+interface 能够声明合并
+``` ts
+interface User {
+  name: string
+  age: number
+}
+
+interface User {
+  sex: string
+}
+
+/*
+User 接口为 {
+  name: string
+  age: number
+  sex: string 
+}
+*/
+```
+
+总结：一般来说，如果不清楚什么时候用interface/type，能用 interface 实现，就用 interface , 如果不能就用 type 。
+
 # 问题
 ## path can't resolve
 
@@ -875,3 +1442,7 @@ webpack 才是真的按路径引入，所以问题出在 webapck
       tsConfigPath: path.resolve("./src/tsconfig.app.json"),
       skipCodeGeneration: true,
     }),
+
+## import * 与 import
+为什么有的系统语言使用import * as React from 'react';有的系统语言使用import React from 'react';
+作者回复: 第一种写法是将所有用export导出的成员绑定在React上，导入后用React.xxx访问；第二种仅是导出默认的（export default）

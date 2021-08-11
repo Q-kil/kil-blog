@@ -65,6 +65,9 @@ success Set "registry" to "https://registry.npm.taobao.org".
 ```
 
 # link
+# niekaifa @ Mac-mini in ~/workspace/apowo/game-core on git:dev x [11:31:10] 
+$ yarn link
+
 改变依赖路径
 yarn link game-capsule
 
@@ -92,6 +95,9 @@ yarn unlink game-core
 ls -l node_modules | grep ^l
 ```
 
+## 解除link后
+yarn install --force
+
 # 版本
 版本好自动 + 1
 yarn version --major
@@ -99,6 +105,10 @@ yarn version --minor
 yarn version --patch
 
 https://classic.yarnpkg.com/en/docs/cli/version/
+
+# 缓存
+$ yarn cache dir
+/Users/niekaifa/Library/Caches/Yarn/v6
 
 # error
 ## Couldn't find match for in "refs/heads/Talkie,refs/heads/audit

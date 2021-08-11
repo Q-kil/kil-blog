@@ -62,6 +62,11 @@ document.getElementById('ele').addEventListener('click', () => console.log('Clic
 true - 事件句柄在捕获阶段执行
 false - 默认。事件句柄在冒泡阶段执行
 
+options 可选
+一个指定有关 listener 属性的可选参数对象。可用的选项如下：
+capture:  Boolean，表示 listener 会在该类型的事件捕获阶段传播到该 EventTarget 时触发。
+once:  Boolean，表示 listener 在添加之后最多只调用一次。如果是 true， listener 会在其被调用之后自动移除。
+
 ### 执行两次问题
 ``` js
 document.getElementById("click").addEventListener("click", test, false);
@@ -506,6 +511,9 @@ start 可选
 end 可选
 终止索引，默认值为 this.length。
 
+## 
+本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
+会话存储 sessionStorage 的数据在浏览器关闭后自动删除;
 
 # 待掌握
 ## 对象拷贝
@@ -1114,6 +1122,9 @@ js的一个子集
 
 
 # utils
+
+## 随机字符串
+Math.random().toString(36).slice(-10)
 ## 比较版本号
 ``` js
     var compareVersion = function(version1, version2) {
@@ -1154,6 +1165,58 @@ js的一个子集
 let version = compareVersion('0.0.3', '0.0.1');
 console.log('version', version);
 ```
+
+# AJAX
+## 概述
+AJAX即“Asynchronous JavaScript and XML”（异步的JavaScript与XML技术），指的是一套综合了多项技术的浏览器端网页开发技术。
+意思就是用JavaScript执行异步网络请求。
+AJAX请求是异步执行的，也就是说，要通过回调函数获得响应。
+
+## 应用
+运用XHTML+CSS来表达信息；
+运用JavaScript操作DOM（Document Object Model）来运行动态效果；
+运用XML和XSLT操作资料
+运用XMLHttpRequest或新的Fetch API与网页服务器进行异步资料交换；
+注意：AJAX与Flash、Silverlight和Java Applet等RIA技术是有区分的。
+
+## 例子
+``` js
+function success(text) {
+    var textarea = document.getElementById('test-response-text');
+    textarea.value = text;
+}
+
+function fail(code) {
+    var textarea = document.getElementById('test-response-text');
+    textarea.value = 'Error code: ' + code;
+}
+
+var xhr = new XMLHttpRequest(); // 新建XMLHttpRequest对象
+
+xhr.onreadystatechange = function () { // 状态发生变化时，函数被回调
+    // this  指代 xhr
+    // readyState: https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/readyState
+    if (xhr.readyState === 4) { //下载操作已完成。
+        // 判断响应结果:
+        if (xhr.status === 200) {
+            // 成功，通过responseText拿到响应的文本:
+            return success(xhr.responseText);
+        } else {
+            // 失败，根据响应码判断失败原因:
+            return fail(xhr.status);
+        }
+    } else {
+        // HTTP请求还在继续...
+    }
+}
+
+// 发送请求:
+xhr.open('GET', '/api/categories');
+xhr.send();
+
+alert('请求已发送，请等待响应...');
+```
+
 
 # 问题
 ## parse

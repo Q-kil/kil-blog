@@ -183,6 +183,8 @@ shift + command + .
 # 清理mac
 Finder>前往>资源库（按alt显示）
 
+~/Library/Caches
+
 # Xcode
 ## 问题
 ## iPhone is not available. Please reconnect the device
@@ -250,3 +252,6 @@ _=/usr/bin/printenv
 ``` 
 echo "zsh loaded"
 ```
+
+# 制作可引导盘
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/Samsung_T5

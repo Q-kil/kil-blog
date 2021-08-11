@@ -453,6 +453,8 @@ ng-container 最后不现实，省了一层div
       <p-tabView styleClass="TQ-tabview">
 ```
 
+< ng-container >是一个逻辑容器,可用于组节点但不呈现DOM树中的一个节点。
+
 ## router
 ### params
 
