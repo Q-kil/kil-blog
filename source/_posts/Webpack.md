@@ -853,6 +853,10 @@ module.exports = {
   }
 ```
 
+# other
+## 读package version
+const gameCorePkg = fsa.readJsonSync('./node_modules/@PixelPai/game-core/package.json');
+
 # plugin
 ## webpack-bundle-analyzer
 new BundleAnalyzerPlugin()
