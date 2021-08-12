@@ -222,3 +222,18 @@ changed: [172.17.17.10]
 PLAY RECAP ****************************************************************************************************************************
 172.17.17.10               : ok=2    changed=1    unreachable=0    failed=0
 ```
+
+
+
+# apowo
+## platform
+BuildAndDeployToRemoteDevServer:
+  stage: deploy_remote_dev
+  only:
+    - /^alpha-.*$/
+  tags:
+    - platform-client-deploy-alpha
+  script:
+    - yarn install
+    - yarn deploy:alpha
+    - ansible-playbook $CI_PROJECT_DIR/playbooks/platform_site.yml -b -u ubuntu -i $CI_PROJECT_DIR/playbooks/inventory/platform_hosts --extra-vars "project_dist_path=$CI_PROJECT_DIR/dist/" --limit "platform_client_dev"
