@@ -301,6 +301,8 @@ chmod a+rw file	给file的所有用户增加读写权限
 chmod +rwx file	给file的所有用户增加读写执行权限
 
 ### 下载
+wget https://devtools.qiniu.com/qshell-v2.6.2-linux-amd64.tar.gz
+
 curl -O https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374/assets/1579402117.png
 
 重命名
@@ -308,6 +310,12 @@ curl -o test.png https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374
 
 #### 下载走代理
 sudo curl -x 127.0.0.1:1080 --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64"
+
+### 解压
+#### gz
+gzip -d test.gz
+#### tar.gz
+tar -zxvf qshell-v2.6.2-linux-amd64.tar.gz
 
 ### iterm2
 iterm2以及mac自带的terminal都是终端模拟器
