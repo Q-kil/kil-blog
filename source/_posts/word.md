@@ -199,3 +199,6 @@ yyyy-MM-dd'T'HH:mm:ss.SSSZ
 amd64 电脑，arm64 手机
 
 arm：太早
+
+# SDK
+软件开发工具包 (Software development kit)
