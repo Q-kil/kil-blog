@@ -266,6 +266,15 @@ deploy:Alpha:
     - yarn hotbuild
     - rsync -Pav --chmod=a+rwx -e "ssh -o StrictHostKeyChecking=no" --exclude "win-ia32-unpacked/*" www/* ubuntu@192.168.103.101:/var/www/a.tooqing.com/download/tooqing-cordova/www/
 
+上传到服务器
+scp -r dist/* root@122.51.101.113:/home/remote/test/
+
+// TODO:dig
+dig test.kaifaweb.com
+curl http://test.kaifaweb.com/index.html -v
+netstat -tlp
+curl http://test.kaifaweb.com/index.html -H "Host:127.0.0.1" -v
+
 
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
