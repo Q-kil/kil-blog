@@ -139,7 +139,10 @@ PS E:\software\genymotion\Genymotion\tools> taskkill /pid 19856 /f
 显示磁盘空间统计信息
 ``` bash
 df -h
+
+sudo du -h --max-depth=1 /var/
 ```
+
 
 查询可用内存
 ``` bash

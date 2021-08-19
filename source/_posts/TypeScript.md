@@ -1247,7 +1247,7 @@ tsconfig.json
   // 要编译成的目标语言是什么版本
 
   "module": "commonjs", // tsconfig.json和tsc都是commonjs
-  // 要把我们的代码编译成什么要的模块系统
+  // 要把我们的代码编译成什么样的模块系统
 
   "esModuleInterop": true
   // export =  的，两种导入方式

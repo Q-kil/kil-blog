@@ -202,3 +202,6 @@ arm：太早
 
 # SDK
 软件开发工具包 (Software development kit)
+
+# slim
+jquery.slim.min.js  精简版本
