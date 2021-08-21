@@ -23,6 +23,14 @@ Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 })()
 ```
 
+## 函数参数
+``` js
+console.log(arguments.length);
+for (var i = 0; i < arguments.length; i++) {
+  console.log('arg', arguments[i]);
+}
+```
+
 ## 阻止事件
 ### a 标签跳转
 1、e.preventDefault();
