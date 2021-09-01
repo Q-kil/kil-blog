@@ -145,6 +145,9 @@ elt.setAttribute("style", "color:red; border: 1px solid blue;");
 
 // 设置特定样式，同时保持其他内联样式值不变
 elt.style.color = "blue";
+
+// IE 不支持 ele.style = ``; 只能使用
+elt.style.color = "blue";
 ```
 
 ### 获取元素的样式
