@@ -272,6 +272,9 @@ deploy:Alpha:
 上传到服务器
 scp -r dist/* root@122.51.101.113:/home/remote/test/
 
+过滤某文件夹
+rsync -avp --exclude=playbooks/ apowo-gdk root@122.51.101.113:/home/remote/pkt/dist/
+
 // TODO:dig
 dig test.kaifaweb.com
 curl http://test.kaifaweb.com/index.html -v
