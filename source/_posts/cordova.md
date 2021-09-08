@@ -84,6 +84,8 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 
 ## 键盘高度
 
+## 支付
+https://github.com/j3k0/cordova-plugin-purchase/blob/master/doc/api.md
 
 ## ios隐藏状态栏
 https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
