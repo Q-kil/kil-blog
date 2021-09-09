@@ -602,3 +602,18 @@ is update available for installation
 ##### manifest
 chcp.manifest 文件
 file 内容改变，hash 才会变
+
+# issues
+## ios 支付
+大师：
+搜一下：cordova inapppurchase ios -> product CHAR005 is NOT valid
+
+@MovingHead Check out this solution. In my case, as I remember, I was missing some App Store agreements (e.g. paid apps agreement is required even for free apps with in-app purchases)
+
+https://stackoverflow.com/questions/43315512/ios-in-app-purchase-invalid-product-identifier/62494100#62494100
+
+I had the same exact problem, but the solutions above did not work for me.
+This is what did:
+It turns out I hadn't filled out the proper payments and W9 form on AppStoreConnect.
+Go to AppStoreConnect > Agreements, Tax, and Banking...
+Fill out the "Paid Apps" contract if it hadn't already been filled out
