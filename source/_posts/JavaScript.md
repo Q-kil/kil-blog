@@ -31,6 +31,44 @@ for (var i = 0; i < arguments.length; i++) {
 }
 ```
 
+## 函数回调
+``` js
+$('.facebook').click(function(){
+  facebookHandle(fbLogin);
+})
+
+function fbLogin(token) {
+  console.log('fb token', token);
+  var fbLoginApi = 'account/third_signin';
+  var parame = '{"third_token": "' + token + '","third_type":"facebook"}';
+
+  xhrCommon('post', fbLoginApi, false, parame, function success(data){
+    store.set('user', data);
+    alertHandle('success', 'Login Success');
+    authtokenCallback();
+  }, function error(err){
+    alertHandle('error', 'Login Error:'+ err.msg);
+  })
+}
+```
+
+## iframe
+### 调用父级dom方法
+window.parent.parentFn();
+
+### 向子级发数据
+frameEle.contentWindow.postMessage(message, '*');
+
+### 向父级发数据
+window.parent.postMessage(message, '*');
+
+### 监听发来的事件
+window.addEventListener('message', function(e) {
+  const data = JSON.parse(e.data);
+  // Where does the message come from
+  const channel = data.channel;
+});
+
 ## 阻止事件
 ### a 标签跳转
 1、e.preventDefault();

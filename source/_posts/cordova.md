@@ -612,6 +612,9 @@ file 内容改变，hash 才会变
 
 https://stackoverflow.com/questions/43315512/ios-in-app-purchase-invalid-product-identifier/62494100#62494100
 
+协议 ： 
+https://appstoreconnect.apple.com/agreements/#/
+
 I had the same exact problem, but the solutions above did not work for me.
 This is what did:
 It turns out I hadn't filled out the proper payments and W9 form on AppStoreConnect.

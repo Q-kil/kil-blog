@@ -210,7 +210,7 @@ $ git reset commit_id
 git branch -a
   alpha
 * dev
-  feature_ng
+feature_ng
   feature_pretty
   master
   test_top
