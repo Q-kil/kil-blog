@@ -131,6 +131,9 @@ C:\windows\system32\cmd.exe
 ## 引用
 js/a.js  当前路径  ./js/a.js
 
+## 前端
+js文件的相对路径是以引用该js文件的页面为基准
+css文件的相对路径是以自身的位置为基准
 
 
 
