@@ -50,6 +50,14 @@ console.log(Math.random());//0-----1之间
 
 ## userAgent
  navigator.userAgent;
+
+## 作用域
+作用域（Scope）	-
+window/global Scope	全局作用域
+function Scope	函数作用域
+Block Scope	块作用域（ES6）
+eval Scope	eval作用域
+
 ## 点击事件
 ``` js
 window.addEventListener('click', () => console.log('Clicked!'));

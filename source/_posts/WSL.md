@@ -38,6 +38,15 @@ Windows设置主页 搜索：开发者选项
 ### vscode
 安装插件：Remote - WSL
 
+#### vscode error
+vscode server for wsl closed unexpectedly
+wsl --shutdown
+wsl
+
+sh: 1: /c/Users/Administrator/.vscode/extensions/ms-vscode-remote.remote-wsl-0.58.2/scripts/wslServer.sh: Permission denied
+
+cd /c/Users/Administrator/.vscode/extensions/ms-vscode-remote.remote-wsl-0.58.2/scripts
+chmod +x *
 
 ## 环境
 ### node环境变量配置 （安装的包 无法使用）
