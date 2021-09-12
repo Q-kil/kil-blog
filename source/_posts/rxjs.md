@@ -10,6 +10,43 @@ tags:
 # base
 响应式编程是使用异步数据流进行编程。
 
+## pipe
+Observable 中有一个内置的 pipe 方法 (Observable.prototype.pipe)
+组合操作符
+``` js
+import { range } from 'rxjs/observable/range';
+import { map, filter, scan } from 'rxjs/operators';
+
+const source$ = range(0, 10);
+
+source$.pipe(
+  filter(x => x % 2 === 0),
+  map(x => x + x),
+  scan((acc, x) => acc + x, 0)
+)
+.subscribe(x => console.log(x))
+```
+
+### 为什么会有pipe
+``` js
+import { first, last, map, reduce, find, skipWhile } from 'rxjs/operators';
+observable.pipe(
+    map(x => {return x}),
+    first()
+    ).subscribe(x => {
+
+})
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/first';
+
+observable.map(x => {return x}).first().subscribe(x => {
+
+})
+```
+增加可读性、可维护性
+
+
 # Observable
 单播，对于每个订阅者，都只有一个独立的 Observable execution 与之对应
 ``` js

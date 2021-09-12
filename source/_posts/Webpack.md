@@ -8,6 +8,7 @@ tags:
 ---
 
 # base
+grunt到gulp再到webpack 是个发展过程
 ## 项目构建
 ### build 目录
 webpack.base.config.js
@@ -852,6 +853,10 @@ module.exports = {
     }
   }
 ```
+
+# other
+## 读package version
+const gameCorePkg = fsa.readJsonSync('./node_modules/@PixelPai/game-core/package.json');
 
 # plugin
 ## webpack-bundle-analyzer

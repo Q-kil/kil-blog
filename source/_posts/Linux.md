@@ -139,7 +139,10 @@ PS E:\software\genymotion\Genymotion\tools> taskkill /pid 19856 /f
 显示磁盘空间统计信息
 ``` bash
 df -h
+
+sudo du -h --max-depth=1 /var/
 ```
+
 
 查询可用内存
 ``` bash
@@ -266,6 +269,21 @@ deploy:Alpha:
     - yarn hotbuild
     - rsync -Pav --chmod=a+rwx -e "ssh -o StrictHostKeyChecking=no" --exclude "win-ia32-unpacked/*" www/* ubuntu@192.168.103.101:/var/www/a.tooqing.com/download/tooqing-cordova/www/
 
+上传到服务器
+scp -r dist/* root@122.51.101.113:/home/remote/test/
+
+过滤某文件夹
+rsync -avp --exclude=playbooks/ apowo-gdk root@122.51.101.113:/home/remote/pkt/dist/
+
+// TODO:dig
+dig test.kaifaweb.com
+curl http://test.kaifaweb.com/index.html -v
+netstat -tlp
+curl http://test.kaifaweb.com/index.html -H "Host:127.0.0.1" -v
+
+删除当前目录下的文件
+rm -f *
+
 
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
@@ -301,6 +319,8 @@ chmod a+rw file	给file的所有用户增加读写权限
 chmod +rwx file	给file的所有用户增加读写执行权限
 
 ### 下载
+wget https://devtools.qiniu.com/qshell-v2.6.2-linux-amd64.tar.gz
+
 curl -O https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374/assets/1579402117.png
 
 重命名
@@ -308,6 +328,12 @@ curl -o test.png https://osd.tooqing.com/sickytree/game/5e217ab725d9451113986374
 
 #### 下载走代理
 sudo curl -x 127.0.0.1:1080 --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64"
+
+### 解压
+#### gz
+gzip -d test.gz
+#### tar.gz
+tar -zxvf qshell-v2.6.2-linux-amd64.tar.gz
 
 ### iterm2
 iterm2以及mac自带的terminal都是终端模拟器

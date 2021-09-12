@@ -170,6 +170,10 @@ toy-
 
 # 序列化
 我们把变量从内存中变成可存储或传输的过程称之为序列化
+在Python中叫pickling，在其他语言中也被称之为serialization，marshalling，flattening等等，都是一个意思。
+序列化之后，就可以把序列化后的内容写入磁盘，或者通过网络传输到别的机器上。
+# 反序列化
+反过来，把变量内容从序列化的对象重新读到内存里称之为反序列化，即unpickling。
 
 # GC
 CG原为Computer Graphics
@@ -189,3 +193,15 @@ yyyy-MM-dd'T'HH:mm:ss.SSSZ
 1、单例类只能有一个实例。
 2、单例类必须自己创建自己的唯一实例。
 3、单例类必须给所有其他对象提供这一实例。
+
+# amd64 & arm64
+芯片架构
+amd64 电脑，arm64 手机
+
+arm：太早
+
+# SDK
+软件开发工具包 (Software development kit)
+
+# slim
+jquery.slim.min.js  精简版本

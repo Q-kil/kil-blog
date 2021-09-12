@@ -84,6 +84,11 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 
 ## 键盘高度
 
+## 支付
+https://github.com/j3k0/cordova-plugin-purchase/blob/master/doc/api.md
+
+## facebook
+https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect
 
 ## ios隐藏状态栏
 https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
@@ -600,3 +605,21 @@ is update available for installation
 ##### manifest
 chcp.manifest 文件
 file 内容改变，hash 才会变
+
+# issues
+## ios 支付
+大师：
+搜一下：cordova inapppurchase ios -> product CHAR005 is NOT valid
+
+@MovingHead Check out this solution. In my case, as I remember, I was missing some App Store agreements (e.g. paid apps agreement is required even for free apps with in-app purchases)
+
+https://stackoverflow.com/questions/43315512/ios-in-app-purchase-invalid-product-identifier/62494100#62494100
+
+协议 ： 
+https://appstoreconnect.apple.com/agreements/#/
+
+I had the same exact problem, but the solutions above did not work for me.
+This is what did:
+It turns out I hadn't filled out the proper payments and W9 form on AppStoreConnect.
+Go to AppStoreConnect > Agreements, Tax, and Banking...
+Fill out the "Paid Apps" contract if it hadn't already been filled out

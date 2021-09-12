@@ -23,11 +23,59 @@ Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 })()
 ```
 
+<<<<<<< HEAD
 ## 定时器
 setInterval
 interval: 间隔
 setTimeout
 timeout：超时
+=======
+## 函数参数
+``` js
+console.log(arguments.length);
+for (var i = 0; i < arguments.length; i++) {
+  console.log('arg', arguments[i]);
+}
+```
+
+## 函数回调
+``` js
+$('.facebook').click(function(){
+  facebookHandle(fbLogin);
+})
+
+function fbLogin(token) {
+  console.log('fb token', token);
+  var fbLoginApi = 'account/third_signin';
+  var parame = '{"third_token": "' + token + '","third_type":"facebook"}';
+
+  xhrCommon('post', fbLoginApi, false, parame, function success(data){
+    store.set('user', data);
+    alertHandle('success', 'Login Success');
+    authtokenCallback();
+  }, function error(err){
+    alertHandle('error', 'Login Error:'+ err.msg);
+  })
+}
+```
+
+## iframe
+### 调用父级dom方法
+window.parent.parentFn();
+
+### 向子级发数据
+frameEle.contentWindow.postMessage(message, '*');
+
+### 向父级发数据
+window.parent.postMessage(message, '*');
+
+### 监听发来的事件
+window.addEventListener('message', function(e) {
+  const data = JSON.parse(e.data);
+  // Where does the message come from
+  const channel = data.channel;
+});
+>>>>>>> 04f31c0835319b57b17feba4b1e97eb5a62471b9
 
 ## 阻止事件
 ### a 标签跳转
@@ -150,6 +198,9 @@ elt.style.cssText = "color: blue; border: 1px solid black";
 elt.setAttribute("style", "color:red; border: 1px solid blue;");
 
 // 设置特定样式，同时保持其他内联样式值不变
+elt.style.color = "blue";
+
+// IE 不支持 ele.style = ``; 只能使用
 elt.style.color = "blue";
 ```
 
