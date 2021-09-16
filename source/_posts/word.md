@@ -205,3 +205,6 @@ arm：太早
 
 # slim
 jquery.slim.min.js  精简版本
+
+# Splash screen
+启动页
