@@ -30,6 +30,8 @@ ng version
 ```
 
 ``` BASH
+$ ng g m app --routing
+
 $ ng g c app
 CREATE src/app/app/app.component.ts (257 bytes)
 已有app文件，使用此指令依然创建app文件
