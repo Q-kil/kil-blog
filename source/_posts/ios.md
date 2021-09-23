@@ -291,6 +291,13 @@ https://developer.apple.com/account/resources/certificates/list
 相信大家入门程序员的时候，大多都是在 VC 或 VS 上打 C/C++ 入门的，那时候一切都很简单，code-build-link-run，并没有什么认证过程，而由于苹果对其生态圈管理严格，任何在 iOS 上跑的程序都需要经过苹果的“同意”。所以，不论是 AppStore，还是 Xcode 本地 build 的项目，苹果都需要验证这个应用的身份。
 
 
+# 学习appleapi文档
+https://developer.apple.com/documentation/webkit/wkwebviewconfiguration
+干净清晰
+https://developer.apple.com/documentation/technologies
+一上来先列个目录
+把api分类一下，每个大类下面有一句话描述用户可能要用这个类别api做的事情
+
 
 # 问题
 ## 移动端ios使用new Date(“2021-02-03 00:00:00“)获取时间为NAN
