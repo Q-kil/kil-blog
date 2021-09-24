@@ -23,13 +23,11 @@ Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 })()
 ```
 
-<<<<<<< HEAD
 ## 定时器
 setInterval
 interval: 间隔
 setTimeout
 timeout：超时
-=======
 ## 函数参数
 ``` js
 console.log(arguments.length);
@@ -75,7 +73,6 @@ window.addEventListener('message', function(e) {
   // Where does the message come from
   const channel = data.channel;
 });
->>>>>>> 04f31c0835319b57b17feba4b1e97eb5a62471b9
 
 ## 阻止事件
 ### a 标签跳转
