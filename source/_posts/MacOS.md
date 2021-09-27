@@ -10,6 +10,9 @@ tags:
 
 # basic
 ## 指令
+## 打开某软件
+open *QQ*
+
 ### 在xcode中打开
 open platforms/ios/UpdateDemo.xcodeproj
 

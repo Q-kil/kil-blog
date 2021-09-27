@@ -90,6 +90,9 @@ https://github.com/j3k0/cordova-plugin-purchase/blob/master/doc/api.md
 ## facebook
 https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect
 
+需要安装
+sudo gem install cocoapods
+
 ## ios隐藏状态栏
 https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
 cordova-plugin-hidden-statusbar-overlay
