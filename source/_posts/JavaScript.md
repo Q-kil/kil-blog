@@ -324,6 +324,11 @@ substring(start, end?)
 start: 必需。一个非负的整数
 end: 选填。不含尾
 
+```js
+alert("abc".substr(1,2)); // returns "bc"
+alert("abc".substring(1,2)); // returns "b"
+```
+
 ### indexOf()、match()、search()区别
 操作索引，返回下标
 indexOf
