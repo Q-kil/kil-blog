@@ -284,6 +284,11 @@ curl http://test.kaifaweb.com/index.html -H "Host:127.0.0.1" -v
 删除当前目录下的文件
 rm -f *
 
+下载文件
+curl https://osd.picatown.world/app/batchupdate/v0.0.29/index.html -o index.html
+
+MD5文件
+md5 index.html
 
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
