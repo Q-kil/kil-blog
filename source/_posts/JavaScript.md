@@ -101,7 +101,7 @@ console.log(Math.random());//0-----1之间
 window/global Scope	全局作用域
 function Scope	函数作用域
 Block Scope	块作用域（ES6）
-eval Scope	eval作用域
+eval Scope	eval作用域 【eval() 函数会将传入的字符串当做 JavaScript 代码进行执行】
 
 ## 点击事件
 ``` js
@@ -397,6 +397,21 @@ bool = document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
 一个 Boolean ，如果是 false 则表示操作不被支持或未被启用。
 copy
 拷贝当前选中内容到剪贴板。启用这个功能的条件因浏览器不同而不同，而且不同时期，其启用条件也不尽相同。使用之前请检查浏览器兼容表，以确定是否可用。
+
+## Number
+格式化数字，使整数部分每三位加一个逗号
+```js
+const num = 23333,
+num.toLocaleString(); // 23,333
+
+const num = 2333333;
+num.toLocaleString('zh', { style: 'currency', currency: 'CNY' });  
+'¥2,333,333.00'
+
+const num = 2333333;
+num.toLocaleString('zh', { style: 'currency', currency: 'USD' });  
+'US$2,333,333.00'
+```
 ## element
 ### 设置属性
 Element.setAttribute()
