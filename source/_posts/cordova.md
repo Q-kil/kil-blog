@@ -87,6 +87,55 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 ## 支付
 https://github.com/j3k0/cordova-plugin-purchase/blob/master/doc/api.md
 
+### Philosophy
+以事件为基础，关注注册的产品
+监听机制的核心：`when()` 方法
+
+### 注册产品
+Use store.register() before your first call to store.refresh().
+在第一次呼叫B之前使用A。
+
+### 购买
+使用：store.order()
+三个事件
+- with an `approved` event. The product enters the APPROVED state. 【产品进入批准状态】
+- with a `cancelled` event. The product gets back to the VALID state.
+- with an `error` event. The product gets back to the VALID state.
+
+#### 简单的例子
+you don't want to implement receipt validation ;
+不实现收据认证
+store.when("product").approved(function(p) {
+    p.finish();
+});
+
+### 收到验证 Receipt validation
+```js
+store.validator = function(product, callback) {
+  console.log('store.validator', product);
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', process.env.VUE_APP_API_URL + `order/check_purchase?token=${token}`);
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send();
+  xhr.onreadystatechange = function() {
+    if (this.readyState === 2) {
+      console.log('--------> order/check_purchase');
+    }
+    if (this.readyState === 4) {
+      console.log('order/check_purchase <---------');
+      var responseData = xhr.response;
+      if (this.status >= 200 && this.status < 300) {
+        console.log('response success: ', responseData);
+      } else {
+        console.log('response error: ', responseData);
+      }
+    }
+  };
+};
+```
+
 ## facebook
 https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect
 
@@ -313,7 +362,7 @@ V/Log: Log-v
 ```
 
 ## 问题
-Could not find tools.jar. Please check that /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home contains a valid JDK installation
+### Could not find tools.jar. Please check that /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home contains a valid JDK installation
 ``` zsh
 $ /usr/libexec/java_home -V | grep jdk
 Matching Java Virtual Machines (1):
@@ -326,6 +375,17 @@ vim ~/.zshrc
 
 source ~/.zshrc
 ```
+
+### v4
+<preference name="AndroidXEnabled" value="true"/>
+android.support.v4.content.FileProvider not found 解决办法
+import android.support.v4.content.FileProvider;
+替换为：
+import androidx.core.content.FileProvider;
+
+android.support.v4.content.FileProvider
+替换为：
+androidx.core.content.FileProvider
 
 # ios
 ## 发版本

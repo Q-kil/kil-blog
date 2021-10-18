@@ -553,4 +553,50 @@ GET /my_index/my_type/_search
 }
 ```
 
+次日留存
+``` js
+async morrowLoginRate() {
+    // const querySignupParam = {name: 'game_sign_day_before', regexp: true};
+    // let querySignupData = this.generateQueryForLog(querySignupParam);
+    // const signupBeforeDayData = await this.http.post(environment.ELK_URL + "202*/_search",
+    //   querySignupData
+    // ).toPromise();
+    // console.log('signupBeforeDayData', signupBeforeDayData);
+
+    console.log('this.signupDatas', this.resultDatas);
+
+    // const queryMorrowRate = {name: 'online_time', regexp: false, createdOffsetDay: 1, aggs: {unique_online_count: {cardinality: {field: 'userId.keyword'}}}};
+    const queryMorrowRate = {name: 'morrow_data', createdOffsetDay: 1, aggs: {unique_online_count: {cardinality: {field: 'userId.keyword'}}}};
+    let queryMorrowData = this.generateQueryForLog(queryMorrowRate);
+    const morrowData = await this.http.post(environment.ELK_URL + "202*/_search",
+    queryMorrowData
+    ).toPromise();
+    console.log('morrowData', morrowData);
+
+    const morrows = morrowData.aggregations.count.buckets;
+    // const befores = signupBeforeDayData.aggregations.count.buckets;
+
+    for (let i = 0; i < this.resultDatas.length; i++) {
+      const r = this.resultDatas[i];
+      const tomorrow = moment(r.time).add(+1, 'days');
+      const tomorrowMoment = OneDay(tomorrow);
+      for (let j = 0; j < morrows.length; j++) {
+        const morrow = morrows[j];
+        if (morrow.key_as_string === tomorrowMoment) {
+          const rate = (morrow.unique_online_count.value / r.signup) * 100;
+          console.log('rate', rate, isNaN(rate));
+          if (!rate) {
+            r.morrow_login_rate = '-';
+          } else {
+            r.morrow_login_rate = Math.round(rate) + '%';
+          }
+        }
+      }
+    }
+
+    console.log('morrows +++++', this.resultDatas);
+
+    this.loadTotalUser();
+  }
+```
 
