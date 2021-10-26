@@ -66,6 +66,41 @@ https://medium.com/@devblog_/angular-7-import-json-14f8bba534af
   }
 }
 
+## form
+响应式表单
+``` html
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <div class="input-common">
+      <label for="account">账号：</label>
+      <input type="text" formControlName="account">
+    </div>
+    <div class="input-common">
+      <label for="password">密码：</label>
+      <input type="text" formControlName="password">
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid">登录</button>
+  </form>
+```
+
+``` ts
+export class AppComponent {
+  title = 'angular-project';
+
+  loginForm = this.fb.group({
+    account: ['', Validators.required],
+    password: ['', Validators.required]
+  })
+
+  constructor(
+    private fb: FormBuilder
+  ){}
+
+  submitForm(){
+    console.log('submit', this.loginForm.value);
+  }
+}
+```
+
 # angular.cn
 ## 架构概览
 组件定义视图，组件使用服务（依赖注入）

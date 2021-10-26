@@ -49,3 +49,6 @@ angular应用的入口模块
 
 #### @angular/compiler
 用于在运行时运行angular编译器以创建ComponentFactorys 的低级服务，以后可用于创建和呈现Component实例。
+
+# ngxs
+https://files.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L9CoGJCq3UCfKJ7RCUg%2F-Lqo8CEiTGbFfHN-MPem%2F-Lqo8EeI9WI8AjKSCgMo%2Fdiagram.png?generation=1570685387625762&alt=media

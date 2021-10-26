@@ -30,8 +30,14 @@ no-store
 https://dash.cloudflare.com/
 
 
+# 3.0
+1、统一身份认证系统
+2、数据确权与授权
+3、隐私保护与抗审查
+4、去中心化运行
 
-
+## IPFS
+Inter Planetary File System 星际文件系统
 
 
 
