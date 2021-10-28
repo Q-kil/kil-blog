@@ -378,7 +378,7 @@ vim ~/.zshrc
 source ~/.zshrc
 ```
 
-### v4
+### v4|This project uses AndroidX dependencies, but the 'android.useAndroidX' property is not enabled. Set this property to true in the gradle.properties file and retry.
 <preference name="AndroidXEnabled" value="true"/>
 android.support.v4.content.FileProvider not found 解决办法
 import android.support.v4.content.FileProvider;
