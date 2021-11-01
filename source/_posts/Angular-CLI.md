@@ -30,7 +30,9 @@ ng version
 ```
 
 ``` BASH
-$ ng g m app --routing
+$ ng g m pages/home --routing
+CREATE src/app/pages/home/home-routing.module.ts (247 bytes)
+CREATE src/app/pages/home/home.module.ts (272 bytes)
 
 $ ng g c app
 CREATE src/app/app/app.component.ts (257 bytes)
