@@ -45,3 +45,5 @@ Android App Bundle是Google在2018年推出的Apk动态组件化打包技术，�
 注：Google Play同时要求应用适配Android11，即 targetSdkVersion要求大于等于30。从2021年8月开始发布新应用必须设置targetSdkVersion大于等于30；从2021年11月开始更新已经上架的应用必须设置targetSdkVersion大于等于30。
 HBuilderX3.1.0+版本已适配支持Android11，参考https://ask.dcloud.net.cn/article/193设置targetSdkVersion
 
+## build
+cordova build android --release -- --packageType=bundle
