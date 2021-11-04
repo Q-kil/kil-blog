@@ -47,3 +47,10 @@ HBuilderX3.1.0+版本已适配支持Android11，参考https://ask.dcloud.net.cn/
 
 ## build
 cordova build android --release -- --packageType=bundle
+
+## google play console
+上传 aab包 失败：
+The Android App Bundle was not signed.
+
+解决：
+要使用 --release

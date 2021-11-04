@@ -138,6 +138,9 @@ store.validator = function(product, callback) {
 };
 ```
 
+### android
+cordova plugin add cordova-plugin-purchase --variable BILLING_KEY="MIIBI
+
 ## facebook
 https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect
 
