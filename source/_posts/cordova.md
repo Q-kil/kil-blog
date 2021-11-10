@@ -691,3 +691,26 @@ This is what did:
 It turns out I hadn't filled out the proper payments and W9 form on AppStoreConnect.
 Go to AppStoreConnect > Agreements, Tax, and Banking...
 Fill out the "Paid Apps" contract if it hadn't already been filled out
+
+
+## google pay
+s：
+生命周期
+REGISTERED +--> INVALID 【我的问题出现在这里】
+           |
+           +--> VALID +--> REQUESTED +--> INITIATED +-+
+                                                      |
+                ^      +------------------------------+
+                |      |
+                |      |             +--> DOWNLOADING +--> DOWNLOADED +
+                |      |             |                                |
+                |      +--> APPROVED +--------------------------------+--> FINISHED +--> OWNED
+                |                                                             |
+                +-------------------------------------------------------------+
+
+ store.register({
+      id: "cc.fovea.purchase.consumable1",
+      alias: "100 coins",
+      type: store.CONSUMABLE
+    });
+    的时候，我填了一个数组
