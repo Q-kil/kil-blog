@@ -30,6 +30,10 @@ tags:
 - Setup your phone's wifi configuration: set the ip of delegate to your PC or MAC's ip, port of delegate to 8888
 - Lauch your app in your phone. And monitor http requests on Charles.- 
 
+## 使用设备文件浏览器查看设备上的文件
+https://developer.android.com/studio/debug/device-file-explorer
+View > Tool Windows > Device File Explorer 
+
 # studio
 ## 搜索
 Ctrl+Shift+F

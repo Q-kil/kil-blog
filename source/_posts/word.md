@@ -208,3 +208,7 @@ jquery.slim.min.js  精简版本
 
 # Splash screen
 启动页
+
+# CLI
+Command-Line Interface
+命令行界面

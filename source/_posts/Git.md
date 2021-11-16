@@ -10,6 +10,9 @@ tags:
 # 基础
 `{% asset_img git1.png %}`
 
+How to change the URI (URL) for a remote Git repository?
+git remote set-url origin new.git.url/here
+
 ## ubuntu 安装最新版本
 [gitVersion](https://github.com/git/git/releases)
 因为 Ubuntu 自带的源中，Git 版本就是这么低，所以需要加入一个源，带有最新 Git 版本的源
@@ -132,6 +135,9 @@ git reset --hard 3e5236a
 
 ## 历史提交记录
 git log
+
+## 重置origin
+git remote set-url origin git@github.com:ApowoGames/cordova-plugin-keyboard.git
 
 ## 删除远程已提交的文件
 https://www.liaoxuefeng.com/wiki/896043488029600/900002180232448

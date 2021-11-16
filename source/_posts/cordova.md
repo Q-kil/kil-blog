@@ -84,6 +84,12 @@ $ cordova plugin add <path to plugin folder>
 $ cordova plugin rm cordova-plugin-dispaly-cutout
 ```
 
+## 重启
+https://github.com/dpa99c/cordova-diagnostic-plugin#readme
+
+## 退出
+https://github.com/huangang/cordova-plugin-app-exit#readme
+
 ## 键盘高度
 
 ## 支付
@@ -544,6 +550,20 @@ https://github.com/j3k0/cordova-plugin-purchase
 
 
 # 热更新
+cordova-hot-code-push-plugin
+## 工作原理
+第一次用 App/www 下文件
+下一次用 Extra/www 
+当用户启动应用程序——它第一次复制所有web文件到外部存储器。从这一刻起,所有的页面都从外部加载文件夹,而不是打包文件。在每次启动插件连接到您的服务器,并检查其是否可以下载新版本的web项目。如果是这样,它加载设备和安装在下一个发射。
+
+## CLI
+- generate configuration files
+- 本地服务侦听web项目
+
+## workflow
+`{% asset_img workflow.png%}`
+
+
 `{% asset_img cordova-hot-code-push.png%}`
 ``` js
 function checkForUpdate() {
