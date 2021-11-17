@@ -13,6 +13,10 @@ tags:
 How to change the URI (URL) for a remote Git repository?
 git remote set-url origin new.git.url/here
 
+yarn add https://github.com/fancyapps/fancybox [remote url]
+yarn add ssh://github.com/fancyapps/fancybox#3.0  [branch]
+yarn add https://github.com/fancyapps/fancybox#5cda5b529ce3fb6c167a55d42ee5a316e921d95f [commit]
+
 ## ubuntu 安装最新版本
 [gitVersion](https://github.com/git/git/releases)
 因为 Ubuntu 自带的源中，Git 版本就是这么低，所以需要加入一个源，带有最新 Git 版本的源

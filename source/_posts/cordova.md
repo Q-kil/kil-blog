@@ -77,6 +77,9 @@ $ vim gradle.properties
 ## add plugin
 ```
 $ cordova plugin add <path to plugin folder>
+
+添加本地插件
+cordova plugin add /Users/niekaifa/workspace/apowo/cordova-hot-code-push
 ```
 
 ## remove plugin
