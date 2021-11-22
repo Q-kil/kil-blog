@@ -24,6 +24,8 @@ cordova run android
 
 cordova build 
 
+cordova clean android
+
 ## 环境设置
 error
 ``` bash
