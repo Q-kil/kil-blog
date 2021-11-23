@@ -162,6 +162,9 @@ sudo gem install cocoapods
 https://github.com/katzer/cordova-plugin-hidden-statusbar-overlay/tree/aef5a90d2161dd9d363242523883757a51d0fad0#phonegap-build
 cordova-plugin-hidden-statusbar-overlay
 
+## The number of method references in a .dex file cannot exceed 64K.
+cordova plugin add cordova-plugin-enable-multidex
+
 ## 自定义插件开发
 ### 全局安装插件工具plugman
 plugman是用于Apache Cordova项目的插件的安装和卸载等命令行工具。
