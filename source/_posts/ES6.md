@@ -548,6 +548,34 @@ let xiaobai = new Dog();
 xiaobai.ask();
 ```
 
+### super
+1、constructor 内的 super(): 执行父类的构造函数。必须至少执行一次。
+
+2、一般方法内的 super.method(): 执行父类的 (未必同名的) 方法。不是必需。
+
+super.method(...) 等价于 父类的构造函数.prototype.method.call(this, ...)。
+可以把TS编译到没有class的ES5，看看super被变成了什么
+``` ts
+class A {
+  public sayHello(){
+    console.log("A-123456");
+  }
+}
+
+class B extends A {
+  constructor(){
+    super();
+  }
+  public sayHello(){
+    super.sayHello();
+    console.log("B-123456");
+  }
+}
+
+const b = new B();
+b.sayHello();
+```
+
 ## 面向对象-实例
 ### 基本的React 实例
 ``` html

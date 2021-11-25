@@ -317,6 +317,11 @@ platforms > android > app > src > main > AndroidManifest.xml
 状态栏不显示
 <preference name="StatusBarOverlaysWebView" value="true"/>
 
+### apk下载
+    "cordova-plugin-file-opener2": "^3.0.5",
+    "cordova-plugin-file-transfer": "git+https://code.apowo.com/opensource/cordova-plugin-file-transfer",
+    cordova-plugin-file
+
 ## plugin打印log
 java中添加
 webView.loadUrl("javascript:console.log('log');");
@@ -405,6 +410,12 @@ import androidx.core.content.FileProvider;
 android.support.v4.content.FileProvider
 替换为：
 androidx.core.content.FileProvider
+
+解决办法
+cordova plugin add cordova-plugin-androidx-adapter
+
+cordova-plugin-androidx-adapter: EXCEPTION: Failed to load dependencies: Error: Cannot find module 'recursive-readdir'
+yarn add recursive-readdir -D
 
 # ios
 ## 发版本
