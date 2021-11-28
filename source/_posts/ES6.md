@@ -405,6 +405,12 @@ OO语言都支持两种继承方式: 接口继承 和 实现继承
 ## 类
 类的作用：描述一群具有相同特征和行为的食物
 
+### constructor
+constructor来表示构造函数，构造函数使用在class中，用来做初始化操作。
+当包含constructor的类被实例化时，构造函数将被调用。
+
+在constructor中不适合进行任何与组件通信类似的复杂操作，一般在constructor中值进行一些简单的初始化工作：依赖注入，变量初始化等。
+
 ## 对象的扩展
 ### 链判断运算符
 const firstName = message?.body?.user?.firstName || 'default';

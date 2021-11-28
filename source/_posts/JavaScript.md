@@ -894,6 +894,10 @@ obj.a()   //没有使用箭头函数打出的是obj
 obj.b.c()  //打出的是window对象！！
 ```
 
+# 时间
+PST
+Pacific Standard Time 太平洋标准时间 
+
 
 # fix
 ## 华为 和 oppo 内置浏览器 无法显示导航条
