@@ -294,6 +294,9 @@ md5 index.html
 方式二：通过查询系统环境有没有使用代理（成功）
 env|grep -I proxy
 
+全局配置
+printenv
+
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
 dd: bs: illegal numeric value
