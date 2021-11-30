@@ -1293,6 +1293,29 @@ xhr.send();
 alert('请求已发送，请等待响应...');
 ```
 
+# Document
+## querySelector()
+指定选择器或选择器组匹配的第一个 HTMLElement对象。找不到匹配项，返回null
+
+# Element
+## appendChild(aChild)
+aChild: 必须是节点
+
+## append(Node or String)
+
+## innerHTML
+获取元素的内容 或 替换元素的内容
+
+## insertAdjacentHTML
+element.insertAdjacentHTML(position, text);
+position
+- 'beforebegin'：元素自身的前面。
+- 'afterbegin'：插入元素内部的第一个子节点之前。
+- 'beforeend'：插入元素内部的最后一个子节点之后。
+- 'afterend'：元素自身的后面。
+
+text
+是要被解析为HTML或XML元素，并插入到DOM树中的 DOMString。
 
 # 问题
 ## parse

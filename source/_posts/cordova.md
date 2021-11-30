@@ -307,6 +307,11 @@ ToastDemo.showToast(“这是Toast内容”);
 https://github.com/apache/cordova-plugin-wkwebview-engine
 
 # android
+
+## sdk version
+`{% asset_img android_v.png%}`
+`{% asset_img android_v1.png%}`
+
 ## debug
 ### chrome not inspect
 platforms > android > app > src > main > AndroidManifest.xml
