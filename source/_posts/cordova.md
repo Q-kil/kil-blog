@@ -93,7 +93,7 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 https://github.com/dpa99c/cordova-diagnostic-plugin#readme
 
 ## 退出
-https://github.com/huangang/cordova-plugin-app-exit#readme
+cordova-plugin-exit
 
 ## 键盘高度
 
