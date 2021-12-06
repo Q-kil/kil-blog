@@ -487,6 +487,9 @@ function getLength(something: string | number): number {
 ### 外部变量声明
 declare var 名字
 
+声明文件
+global.d.ts
+
 ## 接口
 interface
 

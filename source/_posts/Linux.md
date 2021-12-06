@@ -297,6 +297,9 @@ env|grep -I proxy
 全局配置
 printenv
 
+dig kaifaweb.com
+curl -v https://api.kaifaweb.com
+
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
 dd: bs: illegal numeric value
@@ -459,6 +462,15 @@ dig kaifa.in
 返回
 ;; ANSWER SECTION:
 kaifa.in.		16478	IN	A	209.141.38.71
+```
+
+## 删除所有文件，保留指定文件
+``` 
+# rm dist/img/ useless img
+cd dist/img
+ls |grep -v update.png |grep -v game-bg.png |xargs rm -f
+cd ..
+cd ..
 ```
 
 ## SSH
