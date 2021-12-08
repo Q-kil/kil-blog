@@ -819,8 +819,6 @@ enum Role {
 }
 ```
 
-
-
 ### 接口
 #### 对象接口类型
 数据请求
@@ -897,7 +895,7 @@ let lib2 = getLib();
 ``` ts
 // 1.function
 function add1(x: number, y: number) {
-  return x + y; // 函数返回值，ts类型推断省去 
+  return x + y; // 函数返回值，ts类型推断省去
 }
 
 let add2: (x: number, y: number) => number; // 通过变量，定义函数类型

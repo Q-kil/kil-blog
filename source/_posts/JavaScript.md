@@ -587,6 +587,9 @@ start 可选
 end 可选
 终止索引，默认值为 this.length。
 
+### map
+Array map()
+
 ## 
 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
 会话存储 sessionStorage 的数据在浏览器关闭后自动删除;
@@ -1317,6 +1320,10 @@ position
 text
 是要被解析为HTML或XML元素，并插入到DOM树中的 DOMString。
 
+# 技巧
+## 数组下标每次加1
+currentAdIndex = -1;
+this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
 # 问题
 ## parse
 Unhandled Promise Rejection: SyntaxError: JSON Parse error: Unexpected identifier "object"
