@@ -449,6 +449,45 @@ git rm --cached 子模块名称
 ## 切换分支
 git submodule set-branch --branch feature_apk tooqing-webapp
 
+## 子模块中的子模块
+```
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp on git:feature_ipad x [16:48:11] 
+$ cd public/gdk 
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:48:19] 
+$ git remote -v
+origin  https://code.apowo.com/PixelPai/apowo-jssdk (fetch)
+origin  https://code.apowo.com/PixelPai/apowo-jssdk (push)
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:48:22] 
+$ git remote set url git@code.apowo.com:PixelPai/apowo-jssdk.git
+error: Unknown subcommand: set
+usage: git remote [-v | --verbose]
+   or: git remote add [-t <branch>] [-m <master>] [-f] [--tags | --no-tags] [--mirror=<fetch|push>] <name> <url>
+   or: git remote rename <old> <new>
+   or: git remote remove <name>
+   or: git remote set-head <name> (-a | --auto | -d | --delete | <branch>)
+   or: git remote [-v | --verbose] show [-n] <name>
+   or: git remote prune [-n | --dry-run] <name>
+   or: git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)...]
+   or: git remote set-branches [--add] <name> <branch>...
+   or: git remote get-url [--push] [--all] <name>
+   or: git remote set-url [--push] <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
+
+    -v, --verbose         be verbose; must be placed before a subcommand
+
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:50:02] C:129
+$ git remote set-url origin git@code.apowo.com:PixelPai/apowo-jssdk.git
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:50:23] 
+$ git remote -v
+origin  git@code.apowo.com:PixelPai/apowo-jssdk.git (fetch)
+origin  git@code.apowo.com:PixelPai/apowo-jssdk.git (push)
+```
+
 # runner
 ## update
 Ubuntu上默认直接安装了gitlab-runner，但其实安装的版本为10.5.0
