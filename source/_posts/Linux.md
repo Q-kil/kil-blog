@@ -272,6 +272,7 @@ deploy:Alpha:
 上传到服务器
 scp -r dist/* root@122.51.101.113:/home/remote/test/
 scp -r www/* root@122.51.101.113:/home/remote/pkt/dist/www/
+scp -r public/* root@122.51.101.113:/home/kil-blog/dist/
 
 过滤某文件夹
 rsync -avp --exclude=playbooks/ apowo-gdk root@122.51.101.113:/home/remote/pkt/dist/

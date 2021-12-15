@@ -1320,6 +1320,20 @@ position
 text
 是要被解析为HTML或XML元素，并插入到DOM树中的 DOMString。
 
+# API
+## history
+DOM window 对象通过 history 对象提供了对浏览器的会话历史的访问。允许你在用户浏览历史中向前和向后跳转。
+可以改变浏览器的当前地址和历史，却又不会触发服务端页面请求的技术。
+
+## 后退
+window.history.back();
+window.history.go(-1);
+
+## 前进
+window.history.forward();
+window.history.go(1);
+
+
 # 技巧
 ## 数组下标每次加1
 currentAdIndex = -1;

@@ -29,6 +29,8 @@ yarn add [package]@[tag]
 
 yarn add [package] --dev
 
+yarn add ssh://git@code.apowo.com:opensource/cordova-hot-code-push-cli.git
+
 升级依赖包
 yarn upgrade [package]
 yarn upgrade [package]@[version]

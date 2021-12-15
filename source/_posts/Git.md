@@ -83,6 +83,22 @@ git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 git config --global --unset http.https://github.com.proxy)
 ```
 
+#### 仅为 GitHub 设置代理
+git 代理
+设置 git config --global http.https://github.com.proxy socks5://127.0.0.1:1086
+设置完成后, ~/.gitconfig 文件中会增加以下条目:
+
+[http "https://github.com"]
+    proxy = socks5://127.0.0.1:1086
+
+
+ssh 代理
+修改 ~/.ssh/config 文件
+
+Host github.com
+    User git
+    ProxyCommand nc -v -x 127.0.0.1:1086 %h %p
+
 ## token
 gitlab import github   授权
 `{% asset_img register.png%}`
