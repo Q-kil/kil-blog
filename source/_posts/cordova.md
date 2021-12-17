@@ -291,6 +291,9 @@ $ npm init
 
 ### 插件使用
 安装插件
+
+cordova plugin add git+ssh://git@your.git.server.com/path/to/plugin/repo.git
+
 ``` zsh
 # niekaifa @ niekaifadeMacBook-Pro in ~/ikyu/code/cordova-plugin [15:56:03] 
 $ cordova plugin add /Users/niekaifa/ikyu/code/cordova-plugin/plugins/ToastDemo

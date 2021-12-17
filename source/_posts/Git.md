@@ -447,6 +447,29 @@ $ git submodule update --init
 ```
 
 ## 删除
+1、Delete the relevant section from the .gitmodules file.
+2、Stage the .gitmodules changes:
+   git add .gitmodules
+3、Delete the relevant section from .git/config.
+4、Remove the submodule files from the working tree and index:
+   git rm --cached path_to_submodule (no trailing slash).
+5、Remove the submodule's .git directory:
+   rm -rf .git/modules/path_to_submodule
+6、Commit the changes:
+   git commit -m "Removed submodule <name>"
+7、Delete the now untracked submodule files:
+   rm -rf path_to_submodule
+
+
+
+逆初始化模块，其中{MOD_NAME}为模块目录，执行后可发现模块目录被清空
+git submodule deinit {MOD_NAME} 
+删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）
+git rm --cached {MOD_NAME} 
+提交更改到代码库，可观察到'.gitmodules'内容发生变更
+git commit -am "Remove a submodule." 
+
+
 删除子模块
 有时子模块的项目维护地址发生了变化，或者需要替换子模块，就需要删除原有的子模块。
 
