@@ -217,3 +217,13 @@ Command-Line Interface
 # UI/UX
 UI：user interface 用户界面
 UX：user Experience 用户体验
+
+# DNS
+Domain Name System 域名系统
+
+# CDN
+Content Delivery Network 内容分发网络。“网络加速器”
+
+# FLAC 
+Free Lossless Audio Codec
+无损音频压缩编码。mp3是有损压缩
