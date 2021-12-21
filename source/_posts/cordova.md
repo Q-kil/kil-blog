@@ -54,6 +54,11 @@ mkdir www
 ## run
 手机插上电脑usb，执行：cordova run android
 
+## 钩子
+<hook src="hooks/before_prepare.js" type="before_prepare"/>
+<platform name="android">
+  <hook src="hooks/android/after_compile.js" type="after_compile"/>
+
 ## 问题
 ```
 Could not resolve all files for configuration ':app:debugRuntimeClasspath'
