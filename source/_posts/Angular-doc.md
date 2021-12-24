@@ -130,6 +130,7 @@ Subject 既是可观察对象的数据源，本身也是 Observable。 你可以
 你还可以通过调用它的 next(value) 方法往 Observable 中推送一些值，就像 search() 方法中一样。
 
 ## 模块
+
 NgModule 是一个带有 @NgModule() 装饰器的类。@NgModule() 装饰器是一个函数，它接受一个元数据对象，该对象的属性用来描述这个模块。其中最重要的属性如下。
 
 declarations（可声明对象表） —— 那些属于本 NgModule 的组件、指令、管道。
@@ -810,6 +811,7 @@ export class MyHighLightDirective {
 ```
 
 # 模块
+组织业务代码的利器
 ## 基本概念
 - Angular的模块是业务模块，是用来组织业务的
 - 每个应用至少有一个根模块
