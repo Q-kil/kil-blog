@@ -8,7 +8,59 @@ tags:
 ---
 
 # base
+RxJS是一套可以透过观察序列变化掌握非同步事件处理的js函数库。
 响应式编程是使用异步数据流进行编程。
+
+The ReactiveX library for JS
+
+Reactive Extensions(Rx)
+
+## 主要目的
+有效管理非同步环境下的事件资料
+
+
+## 什么是RxJS
+一组可用来处理 非同步 或 事件 的JS函数库
+非同步：
+- AJAX / XHR(XMLHttpRequest) / fetch API
+- Service Worker / Node Stream
+- setTimeout，setInterval
+- Promise
+事件
+- 各式DOM事件（click, dblclick, keyup, mousemove, ···）
+- CSS动画事件 (CSS3 transitionEnd event)
+- HTML5 Geolocation / WebSockets / Server Send Event
+
+## 核心概念
+- Observable  可观察的物件
+  代表一组未来即将产生的事物资料（被观察的物件）
+
+- Operators   运算符
+  处理事件资料集合，常见运算符：map，filter，concat, take
+
+- Subscription  订阅物件
+  代表正在执行 Observable / Observer 的执行个体（可用来取消订阅）
+
+- Observer   观察者物件
+  代表一个用来接收[观察结果]的物件（收到的就是事物资料）
+  包含三个含有回呼的属性（next，error，complete）
+  console.log
+
+- Subject  主体物件
+  广播给多位Observer(观察者)
+
+
+## 引入
+ES Module 写法
+import { interval } from 'rxjs'
+import { take } from 'rxjs/operators'
+
+所有的东西只来自两个地方
+
+## 快速示范RxJS的运作方式
+- 建立可观察的Observable物件 【clicks$, 写rxjs常见的命名习惯】
+  const clicks$
+
 
 ## pipe
 Observable 中有一个内置的 pipe 方法 (Observable.prototype.pipe)
