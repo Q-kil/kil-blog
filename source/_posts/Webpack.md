@@ -594,6 +594,18 @@ const mod = require('../src/js/index');
 $ webpack --env.producation
 ```
 
+一定要在webpack serve前面
+NODE_ENV=dev webpack serve
+process.env.NODE_ENV
+
+webpack serve --mode development
+module.exports = (env, argv) => {
+  console.log('argv.mode', argv.mode);
+  
+  let config = argv.mode === 'development' ? devConfig : proConfig;
+  return merge(baseConfig, config);
+}
+
 ### 操作HTML
 plugin
 

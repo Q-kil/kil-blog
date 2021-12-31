@@ -13,6 +13,23 @@ tags:
 - 强类型（直接帮你做类型检测）
 - 真正面向对象：有接口、有范型、有枚举、有访问修饰符 
 
+## CLI
+### 初始化
+生成tsconfig.json 文件
+tsc --init
+### 工程引用构建模式
+可以单独的构建一个工程，相关的依赖也会自动构建
+```
+tsc -build src/server --verbose
+
+--verbose 打印出详细的信息
+```
+
+### 清空构建的文件
+```
+tsc -b test --clean
+```
+
 # 运行
 ``` zsh
 npm install -g typescript
@@ -1244,15 +1261,27 @@ let c2 = require('./b.node')
 tsconfig.json
 ``` json
 {
-  "target": "es5", //ts默认生成的tsconfig.json 用 es5；tsc指令 用 es3；ES2015是 ES6
-  // 要编译成的目标语言是什么版本
+  "compilerOptions": {
+    "target": "es5", //ts默认生成的tsconfig.json 用 es5；tsc指令 用 es3；ES2015是 ES6
+    // 要编译成的目标语言是什么版本
 
-  "module": "commonjs", // tsconfig.json和tsc都是commonjs
-  // 要把我们的代码编译成什么样的模块系统
+    "module": "commonjs", // tsconfig.json和tsc都是commonjs
+    // 要把我们的代码编译成什么样的模块系统
 
-  "esModuleInterop": true
-  // export =  的，两种导入方式
-  // false的话，只能这样导入：import c4 = require('../es6/d')
+    "esModuleInterop": true,
+    // export =  的，两种导入方式
+    // false的话，只能这样导入：import c4 = require('../es6/d')
+
+    "outDir": "./dist",
+
+    "composite": true, // 工程可以被引用, 并且可以增量编译
+
+    "declaration": true, // 声明文件
+  },
+  "include": ["src"], // 输出的目录不包含 src
+  "references": [ // 依赖的工程
+    { "path": "../common" }
+  ]
 }
 ```
 
@@ -1302,6 +1331,15 @@ jquery是UMD类库，既可以全局也可以模块化引用
 - include
 - exclude
 
+
+#### 工程引用
+在全栈项目中，单独构建客户端的应用 或者 server端的应用。这些问题无法通过单个 配置文件 实现。
+
+参考 [ts项目](https://github.com/microsoft/TypeScript/tree/main/src)
+##### 优点
+- 解决了输出目录结构的问题
+- 解决了单个工程构建的问题
+- 通过增量编译，提升了构建速度
 
 
 # 区别
