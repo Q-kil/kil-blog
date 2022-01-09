@@ -183,6 +183,10 @@ sudo purge
 ## 显示隐藏文件
 shift + command + .
 
+## 截图
+截全屏并保存到剪贴板：Shift + Cmmand  + 3  ++ Control
+截取选择区域并保存到剪贴板：Shift + Cmmand  + 4  ++ Control
+
 # 清理mac
 Finder>前往>资源库（按alt显示）
 
