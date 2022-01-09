@@ -272,6 +272,7 @@ deploy:Alpha:
 上传到服务器
 scp -r dist/* root@122.51.101.113:/home/remote/test/
 scp -r www/* root@122.51.101.113:/home/remote/pkt/dist/www/
+scp -r public/* root@122.51.101.113:/home/kil-blog/dist/
 
 过滤某文件夹
 rsync -avp --exclude=playbooks/ apowo-gdk root@122.51.101.113:/home/remote/pkt/dist/
@@ -293,6 +294,12 @@ md5 index.html
 
 方式二：通过查询系统环境有没有使用代理（成功）
 env|grep -I proxy
+
+全局配置
+printenv
+
+dig kaifaweb.com
+curl -v https://api.kaifaweb.com
 
 # niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/src/assets/imgs on git:c91647c o [14:40:47] 
 $ dd if=/dev/zero of=tmp.png bs=1M count=50
@@ -456,6 +463,15 @@ dig kaifa.in
 返回
 ;; ANSWER SECTION:
 kaifa.in.		16478	IN	A	209.141.38.71
+```
+
+## 删除所有文件，保留指定文件
+``` 
+# rm dist/img/ useless img
+cd dist/img
+ls |grep -v update.png |grep -v game-bg.png |xargs rm -f
+cd ..
+cd ..
 ```
 
 ## SSH

@@ -16,7 +16,11 @@ zh-cmn-Hans
 ## a
 ``` html
 <a href="pref.html" target="view_window">Preface</a>
+
+新窗口打开
 <a href="https://www.baidu.com" target="_blank">1</a>
+
+当前页面加载
 <a href="https://www.baidu.com" target="_self">1</a>
 ```
 href属性告诉浏览器链接的目标文件
@@ -117,6 +121,9 @@ width height
 const f0 = e.dataTransfer.files[0];
 
 # 路径
+## <base>：文档根 URL 元素
+HTML `<base>` 元素 指定用于一个文档中包含的所有相对 URL 的根 URL。一份中只能有一个 `<base>` 元素。
+
 ## 相对路径
 ..\windows\system32\cmd.exe
 

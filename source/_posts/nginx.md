@@ -389,3 +389,26 @@ Aug 01 03:37:47 chuan-server systemd[1]: Started Run certbot twice daily.
 ``` zsh
 sudo certbot renew --dry-run
 ```
+
+## api.kaifaweb.com
+api.conf
+server {
+    listen       443 ssl;
+    server_name  api.kaifaweb.com;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+    }
+
+    ssl_certificate  /etc/ssl/private/api.kaifaweb.com_bundle.crt;
+    ssl_certificate_key  /etc/ssl/private/api.kaifaweb.com.key;
+    ssl_session_timeout 5m;
+     #请按照以下协议配置
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    #请按照以下套件配置，配置加密套件，写法遵循 openssl 标准。
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+    ssl_prefer_server_ciphers on;
+}

@@ -7,6 +7,7 @@ tags:
 - Angular-CLI
 ---
 
+
 # 把所有零散的Node工具都集成起来
 ## cli 背景
 在很早的时候，前端是没有好的工具，开发，测试，打包，部署，压缩
@@ -38,11 +39,16 @@ $ ng g c app
 CREATE src/app/app/app.component.ts (257 bytes)
 已有app文件，使用此指令依然创建app文件
 
-正确方法：
+$ ng g c ad-banner -t -s
+html使用模版, 
+
 ng g c app --flat
 CREATE src/app/app.component.ts (257 bytes)
 默认不创建文件夹，在已有app文件下
 ```
+
+创建指令
+ng g d ad
 
 ### 本地版本升级 6 -> 7
 ``` BASH

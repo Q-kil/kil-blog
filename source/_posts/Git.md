@@ -83,6 +83,22 @@ git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 git config --global --unset http.https://github.com.proxy)
 ```
 
+#### 仅为 GitHub 设置代理
+git 代理
+设置 git config --global http.https://github.com.proxy socks5://127.0.0.1:1086
+设置完成后, ~/.gitconfig 文件中会增加以下条目:
+
+[http "https://github.com"]
+    proxy = socks5://127.0.0.1:1086
+
+
+ssh 代理
+修改 ~/.ssh/config 文件
+
+Host github.com
+    User git
+    ProxyCommand nc -v -x 127.0.0.1:1086 %h %p
+
 ## token
 gitlab import github   授权
 `{% asset_img register.png%}`
@@ -431,6 +447,29 @@ $ git submodule update --init
 ```
 
 ## 删除
+1、Delete the relevant section from the .gitmodules file.
+2、Stage the .gitmodules changes:
+   git add .gitmodules
+3、Delete the relevant section from .git/config.
+4、Remove the submodule files from the working tree and index:
+   git rm --cached path_to_submodule (no trailing slash).
+5、Remove the submodule's .git directory:
+   rm -rf .git/modules/path_to_submodule
+6、Commit the changes:
+   git commit -m "Removed submodule <name>"
+7、Delete the now untracked submodule files:
+   rm -rf path_to_submodule
+
+
+
+逆初始化模块，其中{MOD_NAME}为模块目录，执行后可发现模块目录被清空
+git submodule deinit {MOD_NAME} 
+删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）
+git rm --cached {MOD_NAME} 
+提交更改到代码库，可观察到'.gitmodules'内容发生变更
+git commit -am "Remove a submodule." 
+
+
 删除子模块
 有时子模块的项目维护地址发生了变化，或者需要替换子模块，就需要删除原有的子模块。
 
@@ -448,6 +487,45 @@ git rm --cached 子模块名称
 
 ## 切换分支
 git submodule set-branch --branch feature_apk tooqing-webapp
+
+## 子模块中的子模块
+```
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp on git:feature_ipad x [16:48:11] 
+$ cd public/gdk 
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:48:19] 
+$ git remote -v
+origin  https://code.apowo.com/PixelPai/apowo-jssdk (fetch)
+origin  https://code.apowo.com/PixelPai/apowo-jssdk (push)
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:48:22] 
+$ git remote set url git@code.apowo.com:PixelPai/apowo-jssdk.git
+error: Unknown subcommand: set
+usage: git remote [-v | --verbose]
+   or: git remote add [-t <branch>] [-m <master>] [-f] [--tags | --no-tags] [--mirror=<fetch|push>] <name> <url>
+   or: git remote rename <old> <new>
+   or: git remote remove <name>
+   or: git remote set-head <name> (-a | --auto | -d | --delete | <branch>)
+   or: git remote [-v | --verbose] show [-n] <name>
+   or: git remote prune [-n | --dry-run] <name>
+   or: git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)...]
+   or: git remote set-branches [--add] <name> <branch>...
+   or: git remote get-url [--push] [--all] <name>
+   or: git remote set-url [--push] <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
+
+    -v, --verbose         be verbose; must be placed before a subcommand
+
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:50:02] C:129
+$ git remote set-url origin git@code.apowo.com:PixelPai/apowo-jssdk.git
+
+# niekaifa @ niekaifadeMacBook-Pro in ~/workspace/apowo/tooqing-cordova/tooqing-webapp/public/gdk on git:571cb30 o [16:50:23] 
+$ git remote -v
+origin  git@code.apowo.com:PixelPai/apowo-jssdk.git (fetch)
+origin  git@code.apowo.com:PixelPai/apowo-jssdk.git (push)
+```
 
 # runner
 ## update

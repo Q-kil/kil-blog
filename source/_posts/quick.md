@@ -59,3 +59,14 @@ command + y 打开历史记录
 # 开发时
 ## 不切屏
 Blue：两个屏幕，commod + s 另一个屏幕直接看结果
+
+# chrome 鼠标
+crxMouse Chrome™ 手势
+
+# 知乎
+寻找点赞top答案
+跟话题
+https://www.zhihu.com/topic/19554298/top-answers
+
+优秀回答者
+https://www.zhihu.com/topic/19554298/top-writer

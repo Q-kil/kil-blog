@@ -224,6 +224,17 @@ let vertionEle = `<div style="position:fixed; left: 2px; bottom: 2px; color: #ff
 ele.insertAdjacentHTML('beforeend', vertionEle);
 ```
 
+```
+位置名称的可视化
+<!-- beforebegin -->
+<p>
+  <!-- afterbegin -->
+  foo
+  <!-- beforeend -->
+</p>
+<!-- afterend -->
+```
+
 ## setTimeout & setInterval
 setTimeout()方法设置一个定时器，该定时器在定时器到期后执行一个函数或指定的一段代码。
 setInterval() 方法重复调用一个函数或执行一个代码段，在每次调用之间具有固定的时间延迟。
@@ -586,6 +597,9 @@ start 可选
 起始索引，默认值为0。
 end 可选
 终止索引，默认值为 this.length。
+
+### map
+Array map()
 
 ## 
 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
@@ -1297,7 +1311,48 @@ xhr.send();
 alert('请求已发送，请等待响应...');
 ```
 
+# Document
+## querySelector()
+指定选择器或选择器组匹配的第一个 HTMLElement对象。找不到匹配项，返回null
 
+# Element
+## appendChild(aChild)
+aChild: 必须是节点
+
+## append(Node or String)
+
+## innerHTML
+获取元素的内容 或 替换元素的内容
+
+## insertAdjacentHTML
+element.insertAdjacentHTML(position, text);
+position
+- 'beforebegin'：元素自身的前面。
+- 'afterbegin'：插入元素内部的第一个子节点之前。
+- 'beforeend'：插入元素内部的最后一个子节点之后。
+- 'afterend'：元素自身的后面。
+
+text
+是要被解析为HTML或XML元素，并插入到DOM树中的 DOMString。
+
+# API
+## history
+DOM window 对象通过 history 对象提供了对浏览器的会话历史的访问。允许你在用户浏览历史中向前和向后跳转。
+可以改变浏览器的当前地址和历史，却又不会触发服务端页面请求的技术。
+
+## 后退
+window.history.back();
+window.history.go(-1);
+
+## 前进
+window.history.forward();
+window.history.go(1);
+
+
+# 技巧
+## 数组下标每次加1
+currentAdIndex = -1;
+this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
 # 问题
 ## parse
 Unhandled Promise Rejection: SyntaxError: JSON Parse error: Unexpected identifier "object"

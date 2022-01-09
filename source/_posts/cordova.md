@@ -54,6 +54,11 @@ mkdir www
 ## run
 手机插上电脑usb，执行：cordova run android
 
+## 钩子
+<hook src="hooks/before_prepare.js" type="before_prepare"/>
+<platform name="android">
+  <hook src="hooks/android/after_compile.js" type="after_compile"/>
+
 ## 问题
 ```
 Could not resolve all files for configuration ':app:debugRuntimeClasspath'
@@ -93,7 +98,7 @@ $ cordova plugin rm cordova-plugin-dispaly-cutout
 https://github.com/dpa99c/cordova-diagnostic-plugin#readme
 
 ## 退出
-https://github.com/huangang/cordova-plugin-app-exit#readme
+cordova-plugin-exit
 
 ## 键盘高度
 
@@ -291,6 +296,9 @@ $ npm init
 
 ### 插件使用
 安装插件
+
+cordova plugin add git+ssh://git@your.git.server.com/path/to/plugin/repo.git
+
 ``` zsh
 # niekaifa @ niekaifadeMacBook-Pro in ~/ikyu/code/cordova-plugin [15:56:03] 
 $ cordova plugin add /Users/niekaifa/ikyu/code/cordova-plugin/plugins/ToastDemo
@@ -307,6 +315,11 @@ ToastDemo.showToast(“这是Toast内容”);
 https://github.com/apache/cordova-plugin-wkwebview-engine
 
 # android
+
+## sdk version
+`{% asset_img android_v.png%}`
+`{% asset_img android_v1.png%}`
+
 ## debug
 ### chrome not inspect
 platforms > android > app > src > main > AndroidManifest.xml

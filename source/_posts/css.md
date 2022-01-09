@@ -481,13 +481,7 @@ white-space CSS 属性是用来设置如何处理元素中的 空白。
 
 ## css
 ``` css
-body {
-  margin: 0;
-}
-h1,h2,h3,h4,h5,h6 {
-  margin: 0;
-}
-p {
+body,h1,h2,h3,h4,h5,h6,p {
   margin: 0;
 }
 ul {
