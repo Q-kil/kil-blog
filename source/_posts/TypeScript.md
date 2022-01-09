@@ -1011,6 +1011,20 @@ class Myflow extends WorkFlow {
 new Myflow().next().step1().next().step2()
 ```
 
+#### 类的静态方法
+使用static修饰符修饰的是静态方法
+静态方法不需要实例化，直接就可以通过类调用
+```ts
+class Person{
+  static eat(){
+    console.log('eat...')
+  }
+}
+Person.eat();
+```
+
+
+
 ### 接口
 ``` ts
 interface {
