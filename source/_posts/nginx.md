@@ -412,3 +412,25 @@ server {
     ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
     ssl_prefer_server_ciphers on;
 }
+
+## resume.kaifaweb.com
+server {
+    listen       80;
+    listen       443 ssl;
+    server_name  resume.kaifaweb.com;
+
+    location / {
+        root /home/remote/resume-template;
+        index Q-kil.html;
+        try_files $uri $uri/ /Q-kil.html;
+    }
+
+    ssl_certificate  /etc/ssl/private/resume.kaifaweb.com_bundle.crt;
+    ssl_certificate_key  /etc/ssl/private/resume.kaifaweb.com.key;
+    ssl_session_timeout 5m;
+     #请按照以下协议配置
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    #请按照以下套件配置，配置加密套件，写法遵循 openssl 标准。
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+    ssl_prefer_server_ciphers on;
+}

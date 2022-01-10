@@ -111,7 +111,7 @@ git config --list
 git commit -am "some str"
 git push
 
-git commit -am 'str'命令只能提交已经追踪过且修改了的文件，去过是新增文件就必须使用git add . && git commit -m 命令；
+git commit -am 'str'命令只能提交已经追踪过且修改了的文件，新增文件就必须使用git add . && git commit -m 命令；
 
 ## 版本回滚
 ### revert
