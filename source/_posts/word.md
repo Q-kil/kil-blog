@@ -227,3 +227,7 @@ Content Delivery Network 内容分发网络。“网络加速器”
 # FLAC 
 Free Lossless Audio Codec
 无损音频压缩编码。mp3是有损压缩
+
+# ERP
+Enterprise resource planning
+企业资源计划
