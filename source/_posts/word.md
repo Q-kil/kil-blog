@@ -231,3 +231,15 @@ Free Lossless Audio Codec
 # ERP
 Enterprise resource planning
 企业资源计划
+
+# SaaS
+Software-as-a-service 
+软件即服务
+
+# diff
+diff是Unix系统的一个很重要的工具程序。
+它用来比较两个文本文件的差异，是代码版本管理的基石之一
+
+# other
+computed: 计算属性
+computer: 计算机

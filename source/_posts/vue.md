@@ -8,16 +8,22 @@ tags:
 - vuex
 ---
 
-# 重点
-computed: 计算属性
-computer: 计算机
 
-# 基础
+# base
 渐进式：主张最少
 设计理念：自低向上逐层应用
 你可以使用vue核心：声明式渲染，组件系统
 你也可以使用下面这个图的全部
 `{% asset_img core.png %}`
+
+## 与jQuery对比
+jQuery时代的开发逻辑，就是我们先要找到目标元素，然后再进行对应的修改。
+学习 Vue.js，首先要进行思想的升级，不要再思考页面的元素怎么操作，而是要思考数据是怎么变化的。
+
+## vue3
+### 优秀的设计
+Composition 组合 API、基于 Proxy 的响应式系统、自定义渲染器
+
 
 ## config
 ### change port

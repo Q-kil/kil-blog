@@ -17,6 +17,7 @@ string，number，bigint，boolean，null，undefined，symbol
 Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 
 ## 函数自执行
+IIFE（立即调用函数表达式）
 ```js
 (function(){
   console.log('1')
@@ -732,7 +733,11 @@ return this.products.reduce((sum, product) => {
 }, 0)
 ```
 
-## 模块
+## 模块规范
+背景：开发 UI 层通用组件，这样项目组就不需要重复造轮子。其中有一个高频使用的组件就是 dialog.js
+`<script src="dialog.js"></script>`
+会产生两个问题：命名冲突和文件依赖
+
 ### require时代
 a.js
 ``` js
