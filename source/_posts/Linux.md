@@ -522,6 +522,24 @@ SSH对主机的public_key的检查等级是根据StrictHostKeyChecking变量来�
 2.StrictHostKeyChecking=ask  #默认的级别，就是出现刚才的提示了。如果连接和key不匹配，给出提示，并拒绝登录。
 3.StrictHostKeyChecking=yes  #最安全的级别，如果连接与key不匹配，就拒绝连接，不会提示详细信息。
 
+### connect to host github.com port 22: Connection refused
+我最近也遇到了，可能是梯子的服务器做了什么修改禁止了 22 端口。根据 https://docs.github.com/cn/authentication/troubleshooting-ssh/using-ssh-over-the-https-port 的配置改成 443 端口就可以了。
+我的配置：
+Host github.com
+hostName ssh.github.com
+User git
+Port 443
+ProxyCommand nc -v -x 127.0.0.1:7890 %h %p
+
+```
+$ ssh -T -p 443 git@ssh.github.com
+> Hi username! You've successfully authenticated, but GitHub does not
+> provide shell access.
+```
+
+### ssh-agent
+私钥管理者ssh-agent
+ssh认证的过程其实是客户端(ssh命令端)读取自己的私钥并推导出指纹发送给服务端(sshd端)，服务端也使用自己保存的公钥推导出指纹进行对比，如果指纹相同说明服务端的公钥和客户端的私钥是配对的。
 
 ## 注
 ~ 表示：当前登录用户的用户目录

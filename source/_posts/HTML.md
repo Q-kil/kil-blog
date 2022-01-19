@@ -63,6 +63,10 @@ HTML <label> 元素（标签）表示用户界面中某个元素的说明。
 <blockquote>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</blockquote>
 ```
 
+## DOM 中 Property 和 Attribute 的区别 
+property是DOM中的属性，是JavaScript里的对象；
+attribute是HTML标签上的特性，它的值只能够是字符串；
+
 ## form
 ### 多选
 ```

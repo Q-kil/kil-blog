@@ -16,6 +16,9 @@ string，number，bigint，boolean，null，undefined，symbol
 ## 应用类型
 Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 
+## 冻结对象
+Object.freeze(obj);
+
 ## 函数自执行
 IIFE（立即调用函数表达式）
 ```js
@@ -734,23 +737,76 @@ return this.products.reduce((sum, product) => {
 ```
 
 ## 模块规范
+https://juejin.cn/post/6844903744518389768
 背景：开发 UI 层通用组件，这样项目组就不需要重复造轮子。其中有一个高频使用的组件就是 dialog.js
 `<script src="dialog.js"></script>`
 会产生两个问题：命名冲突和文件依赖
 
-### require时代
-a.js
+### AMD
+第二行math.add(2, 3)，在第一行require('math')之后运行，因此必须等math.js加载完成。也就是说，如果加载时间很长，整个应用就会停在那里等。
+这对服务器端不是一个问题，因为所有的模块都存放在本地硬盘，可以同步加载完成，等待时间就是硬盘的读取时间。但是，对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于"假死"状态。
+因此，浏览器端的模块，不能采用"同步加载"（synchronous），只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。
+
+Asynchronous Module Definition
+异步模块定义
+
+AMD模块定义的方法非常清晰，不会污染全局环境，能够清楚地显示依赖关系
+
+require([module], callback);
+
+
 ``` js
-module.exports = {
-  a: 1
+// a.js
+define(function (){
+  return {
+    a:'hello world'
+  }
+});
+// b.js
+require(['./a.js'], function (moduleA){
+    console.log(moduleA.a); // 打印出：hello world
+});
+```
+
+
+### commonJS
+2009年，美国程序员Ryan Dahl创造了node.js项目，将javascript语言用于服务器端编程。
+这标志"Javascript模块化编程"正式诞生
+
+服务器环境
+``` js
+// a.js
+// 相当于这里还有一行：var exports = module.exports;代码
+exports.a = 'Hello world';  // 相当于：module.exports.a = 'Hello world';
+
+// b.js
+var moduleA = require('./a.js');
+console.log(moduleA.a);     // 打印出hello world
+```
+
+### ES6
+ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。
+``` js
+/** 定义模块 math.js **/
+var basicNum = 0;
+var add = function (a, b) {
+    return a + b;
+};
+export { basicNum, add };
+/** 引用模块 **/
+import { basicNum, add } from './math';
+function test(ele) {
+    ele.textContent = add(99 + basicNum);
 }
 ```
-b.js
-``` js
-var m = require('./a')
 
-console.log(m.a);
-```
+### UMD
+umd是AMD和CommonJS的糅合
+AMD 浏览器第一的原则发展 异步加载模块。
+CommonJS 模块以服务器第一原则发展，选择同步加载，它的模块无需包装(unwrapped modules)。
+这迫使人们又想出另一个更通用的模式UMD （Universal Module Definition）。希望解决跨平台的解决方案。
+UMD先判断是否支持Node.js的模块（exports）是否存在，存在则使用Node.js模块模式。
+在判断是否支持AMD（define是否存在），存在则使用AMD方式加载模块。
 
 ## 防抖&节流
 [字节跳动] 鼠标滚动的时候，会触发很多次事件，如何解决的？

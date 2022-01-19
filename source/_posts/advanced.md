@@ -826,6 +826,13 @@ async function go() {
 MVC MVVM
 前端跟数据逻辑层之间，如何去交互
 
+#### MVVM
+MVVM（Model–view–viewmodel）是一种软件架构模式。
+View <-> ViewModel <-> Model
+视图模型：中介
+模型：数据中心
+视图：外观（UI）
+
 ## 组件的基本概念和基本组成部分
 ### Attribute
 属性

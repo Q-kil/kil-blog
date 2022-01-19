@@ -20,6 +20,10 @@ tags:
 jQuery时代的开发逻辑，就是我们先要找到目标元素，然后再进行对应的修改。
 学习 Vue.js，首先要进行思想的升级，不要再思考页面的元素怎么操作，而是要思考数据是怎么变化的。
 
+## 与angular对比
+Angular 双向绑定
+Vue 在不同组件间强制使用单向数据流。这使应用中的数据流更加清晰易懂。
+
 ## vue3
 ### 优秀的设计
 Composition 组合 API、基于 Proxy 的响应式系统、自定义渲染器
@@ -135,6 +139,8 @@ vm.$watch('a', function (newValue, oldValue) {
 ## 模版语法
 基于 HTML 的模板语法
 在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少。
+
+如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，直接写渲染 (render) 函数，使用可选的 JSX 语法。
 
 ### 插值
 #### 文本
@@ -540,8 +546,34 @@ store.dispatch('increment')
         └── products.js   # 产品模块
 ```        
 
+# Vue实例
+## 数据
+只有当实例被创建时就已经存在于 data 中的 property 才是响应式的。
 
-# 生命周期
+Vue 实例还暴露了一些有用的实例 property 与方法，它们都有前缀 $，以便与用户定义的 property 区分开来。
+```js
+var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+
+vm.$data === data // => true
+vm.$el === document.getElementById('example') // => true
+
+// $watch 是一个实例方法
+vm.$watch('a', function (newValue, oldValue) {
+  // 这个回调将在 `vm.a` 改变后调用
+})
+```
+
+## 生命周期
+每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做生命周期钩子的函数，这给了用户在不同阶段添加自己的代码的机会。
+
+不要在选项 property 或回调上使用箭头函数，比如 
+created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())。
+因为箭头函数并没有 this，this 会作为变量一直向上级词法作用域查找，直至找到为止
+
 
 `{% asset_img life_cycle.png %}`
 created:在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。
@@ -569,13 +601,6 @@ slice() 方法可从已有的数组中返回选定的元素。
 其他
 split() 方法用于把一个字符串分割成字符串数组。
 
-## 指令简写
-v-on: => @
-v-bind: => :
-
-## 组件通信
-父传子
-props: ['todo']
 
 ## 初始值
 ``` js
