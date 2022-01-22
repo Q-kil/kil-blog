@@ -70,3 +70,20 @@ https://www.zhihu.com/topic/19554298/top-answers
 
 优秀回答者
 https://www.zhihu.com/topic/19554298/top-writer
+
+# vue
+## date()
+vdate => 
+data() {
+  return {
+    
+  }
+},
+
+## methods
+vmet =>
+methods: {
+  onFoo(){
+    on 是vue指令前缀  代表事件
+  }
+}

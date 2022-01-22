@@ -93,6 +93,8 @@ Vue.component('todo-item', {
 ```
 
 ### 父传子 prop
+props(或properties)是我们将数据从父组件向下传递到其子组件的方式。
+
 ``` js
 Vue.component('todo-item', {
   // todo-item 组件现在接受一个
@@ -398,7 +400,87 @@ Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用�
 
 Vuex 可以帮助我们管理共享状态，并附带了更多的概念和框架。这需要对短期和长期效益进行权衡。
 如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。一个简单的 store （仓库）模式就足够您所需了。但是，如果您需要构建一个中大型单页应用，您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。
-## 第一步
+
+## 介绍
+### 什么是"状态管理模式"
+一个简单的vue计数应用
+``` js
+new Vue({
+  // state
+  data(){
+    return{
+      count: 0
+    }
+  },
+  //view
+  template:`
+    <div>{{count}}</div>
+  `,
+  methods: {
+    increment(){
+      this.count++
+    }
+  }
+})
+```
+这个状态自管理应用包含以下几个部分：
+- state，驱动应用的数据源；
+- view，以声明方式将 state 映射到视图；
+- actions，响应在 view 上的用户输入导致的状态变化。
+
+"单向数据流"理念图
+`{% asset_img flow.png %}`
+
+多个组件共享状态时，单向数据流容易破坏
+- 多个视图依赖同一状态（兄弟组件间的状态传递无能为力）
+- 来自不同视图的行为需要变更同一状态（父子props $emit传值模式不利于维护）
+
+vuex 设计理念：把组件的共享状态抽取出来，以一个全局单例模式管理。
+`{% asset_img vuex.png %}`
+
+### 什么情况下我应该使用 Vuex？
+大型单页应用
+
+如果项目简单就用：store模式
+``` js
+var store = {
+  debug: true,
+  state: {
+    message: 'Hello!'
+  },
+  setMessageAction (newValue) {
+    if (this.debug) console.log('setMessageAction triggered with', newValue)
+    this.state.message = newValue
+  },
+  clearMessageAction () {
+    if (this.debug) console.log('clearMessageAction triggered')
+    this.state.message = ''
+  }
+}
+
+var vmA = new Vue({
+  data: {
+    privateState: {},
+    sharedState: store.state
+  }
+})
+
+var vmB = new Vue({
+  data: {
+    privateState: {},
+    sharedState: store.state
+  }
+})
+```
+
+### 开始
+每一个 Vuex 应用的核心就是 store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的状态 (state)。Vuex 和单纯的全局对象有以下两点不同：
+
+- Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。
+
+- 你不能直接改变 store 中的状态。改变 store 中的状态的唯一途径就是显式地提交 (commit) mutation。这样使得我们可以方便地跟踪每一个状态的变化，从而让我们能够实现一些工具帮助我们更好地了解我们的应用。
+
+#### 最简单的Store
 在`main.js`中加入
 ``` js
 import vuex from 'vuex'
@@ -408,7 +490,7 @@ var store = new vuex.Store({//store对象
         show:false
     }
 })
-
+// 为了在 Vue 组件中访问 this.$store property，你需要为 Vue 实例提供创建好的 store。Vuex 提供了一个从根组件向所有子组件，以 store 选项的方式“注入”该 store 的机制
 new Vue({
   el: '#app',
   router,
@@ -422,7 +504,20 @@ new Vue({
 <h1>{{ $store.state.show }}</h1>
 ```
 
-## modules
+从任意组件的方法提交一个变更：
+``` js
+methods: {
+  increment() {
+    this.$store.commit('increment')
+    console.log(this.$store.state.count)
+  }
+}
+```
+我们通过提交 mutation 的方式，而非直接改变 store.state.count，是因为我们想要更明确地追踪到状态的变化。这个简单的约定能够让你的意图更加明显，这样你在阅读代码的时候能更容易地解读应用内部的状态改变。此外，这样也让我们有机会去实现一些能记录每次状态改变，保存状态快照的调试工具。有了它，我们甚至可以实现如时间穿梭般的调试体验。
+
+由于 store 中的状态是响应式的，在组件中调用 store 中的状态简单到仅需要在计算属性中返回即可。触发变化也仅仅是在组件的 methods 中提交 mutation。
+
+### modules
 前面为了方便 , 我们把 store 对象写在了 main.js 里面 , 但实际上为了便于日后的维护 , 我们分开写更好 , 我们在 src 目录下 , 新建一个 store 文件夹 , 然后在里面新建一个 index.js :
 ``` js
 import Vue from 'vue'
@@ -474,13 +569,134 @@ export default {
 ```
 做出这样的修改之后 , 我们将之前我们使用的 $store.state.show 统统改为 `$store.state.dialog.show` 即可。
 
+## 核心概念
+### State
+单一状态树。
+Vuex的状态存储是响应式的。
 
-## mutations
-前面我们提到的对话框例子 , 我们对vuex 的依赖仅仅只有一个 $store.state.dialog.show 一个状态 , 但是如果我们要进行一个操作 , 需要依赖很多很多个状态 , 那管理起来又麻烦了 !
+#### 在vue组件中获取vuex状态
+从store实例中读取状态最简单的方法：在 计算属性 中返回某个状态
+``` js
+// 创建一个 Counter 组件
+const Counter = {
+  template: `<div>{{ count }}</div>`,
+  computed: {
+    count () {
+      return this.$store.state.count
+    }
+  }
+}
+```
 
-`mutations` 登场 , 问题迎刃而解 :
+#### mapState辅助函数
+当一个组件需要获取多个状态的时候，将这些状态都声明为计算属性会有些重复和冗余
+``` js
+// 在单独构建的版本中辅助函数为 Vuex.mapState
+import { mapState } from 'vuex'
 
-### 使用常量替代 Mutation 事件类型
+export default {
+  // ...
+  computed: mapState({
+    // 箭头函数可使代码更简练
+    count: state => state.count,
+
+    // 传字符串参数 'count' 等同于 `state => state.count`
+    countAlias: 'count',
+
+    // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
+  })
+}
+```
+当映射的计算属性的名称与 state 的子节点名称相同时，可以给 mapState 传一个字符串数组。
+``` js
+computed: mapState([
+  // 映射 this.count 为 store.state.count
+  'count'
+])
+```
+
+#### 对象展开运算符
+``` js
+computed: {
+  localComputed () { /* ... */ },
+  // 使用对象展开运算符将此对象混入到外部对象中
+  ...mapState({
+    // ...
+  })
+}
+```
+
+babel不识别对象展开运算符时报错
+yarn add babel-plugin-transform-object-rest-spread -D
+babel配置文件
+"plugins":["transform-object-rest-spread"]
+
+### Getters
+Vuex 允许我们在 store 中定义“getter”（可以认为是 store 的计算属性）。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
+``` js
+const store = new Vuex.Store({
+  state: {
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '...', done: false }
+    ]
+  },
+  getters: {
+    doneTodos: state => {
+      return state.todos.filter(todo => todo.done)
+    }
+  }
+})
+```
+
+#### 通过属性访问
+```js
+store.getters.doneTodos // -> [{ id: 1, text: '...', done: true }]
+
+computed: {
+  ...mapGetters([
+    'doneTodosCount'
+  ])
+}
+```
+
+
+### Mutations
+更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
+mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数：
+```js
+const store = new Vuex.Store({
+  state: {
+    count: 1
+  },
+  mutations: {
+    increment (state) {
+      // 变更状态
+      state.count++
+    }
+  }
+})
+```
+你不能直接调用一个 mutation handler。这个选项更像是事件注册：“当触发一个类型为 increment 的 mutation 时，调用此函数。”要唤醒一个 mutation handler，你需要以相应的 type 调用 store.commit 方法：
+```js
+store.commit('increment')
+```
+
+#### 提交载荷（Payload）
+向 store.commit 传入额外的参数，即 mutation 的 载荷（payload）：
+```js
+mutations: {
+  increment (state, n) {
+    state.count += n
+  }
+}
+store.commit('increment', 10)
+```
+
+#### 使用常量替代 Mutation 事件类型
 在需要多人协作的大型项目中，这会很有帮助。
 ``` js
 // mutation-types.js
@@ -503,7 +719,44 @@ const store = new Vuex.Store({
 })
 ```
 
-## Action
+#### Mutation 必须是同步函数
+``` js
+mutations: {
+  someMutation (state) {
+    api.callAsyncMethod(() => {
+      state.count++
+    })
+  }
+}
+```
+现在想象，我们正在 debug 一个 app 并且观察 devtool 中的 mutation 日志。每一条 mutation 被记录，devtools 都需要捕捉到前一状态和后一状态的快照。然而，在上面的例子中 mutation 中的异步函数中的回调让这不可能完成：因为当 mutation 触发的时候，回调函数还没有被调用，devtools 不知道什么时候回调函数实际上被调用——实质上任何在回调函数中进行的状态的改变都是不可追踪的。
+
+#### 在组件中提交 Mutation
+你可以在组件中使用 this.$store.commit('xxx') 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）。
+``` js
+import { mapMutations } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapMutations([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+
+      // `mapMutations` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+    ]),
+    ...mapMutations({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+    })
+  }
+}
+```
+
+### Actions
+Action 类似于 mutation，不同在于：
+- Action 提交的是 mutation，而不是直接变更状态。
+- Action 可以包含任意异步操作。
+
 Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 context.commit 提交一个 mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters。
 ``` js
 const store = new Vuex.Store({
@@ -523,12 +776,160 @@ const store = new Vuex.Store({
 })
 ```
 
+#### 分发Action
 Action 通过 `store.dispatch` 方法触发：
 ``` js
 store.dispatch('increment')
 ```
+乍一眼看上去感觉多此一举，我们直接分发 mutation 岂不更方便？实际上并非如此，还记得 mutation 必须同步执行这个限制么？Action 就不受约束！我们可以在 action 内部执行异步操作：
+``` js
+actions: {
+  incrementAsync ({ commit }) {
+    setTimeout(() => {
+      commit('increment')
+    }, 1000)
+  }
+}
+```
 
-## 项目结构示例
+Actions 支持同样的载荷方式和对象方式进行分发：
+```js
+// 以载荷形式分发
+store.dispatch('incrementAsync', {
+  amount: 10
+})
+
+// 以对象形式分发
+store.dispatch({
+  type: 'incrementAsync',
+  amount: 10
+})
+```
+
+购物车示例，涉及到调用异步 API 和分发多重 mutation：
+
+#### 在组件中分发 Action
+你在组件中使用 this.$store.dispatch('xxx') 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：
+``` js
+import { mapActions } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapActions([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+
+      // `mapActions` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+    ]),
+    ...mapActions({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
+    })
+  }
+}
+```
+
+#### 组合Action
+Action 通常是异步的，那么如何知道 action 什么时候结束呢？更重要的是，我们如何才能组合多个 action，以处理更加复杂的异步流程？
+
+首先，你需要明白 store.dispatch 可以处理被触发的 action 的处理函数返回的 Promise，并且 store.dispatch 仍旧返回 Promise：
+``` js
+actions: {
+  actionA ({ commit }) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        commit('someMutation')
+        resolve()
+      }, 1000)
+    })
+  }
+}
+```
+
+现在可以
+``` js
+store.dispatch('actionA').then(() => {
+  // ...
+})
+```
+
+另外一个 action 中也可以
+``` js
+actions: {
+  // ...
+  actionB ({ dispatch, commit }) {
+    return dispatch('actionA').then(() => {
+      commit('someOtherMutation')
+    })
+  }
+}
+```
+
+利用 async / await (opens new window)，组合 action：
+``` js
+// 假设 getData() 和 getOtherData() 返回的是 Promise
+
+actions: {
+  async actionA ({ commit }) {
+    commit('gotData', await getData())
+  },
+  async actionB ({ dispatch, commit }) {
+    await dispatch('actionA') // 等待 actionA 完成
+    commit('gotOtherData', await getOtherData())
+  }
+}
+```
+
+### Modules
+由于使用单一状态树，应用的所有状态会集中到一个比较大的对象。当应用变得非常复杂时，store 对象就有可能变得相当臃肿。
+
+为了解决以上问题，Vuex 允许我们将 store 分割成模块（module）。每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割：
+``` js
+const moduleA = {
+  state: () => ({ ... }),
+  mutations: { ... },
+  actions: { ... },
+  getters: { ... }
+}
+
+const moduleB = {
+  state: () => ({ ... }),
+  mutations: { ... },
+  actions: { ... }
+}
+
+const store = new Vuex.Store({
+  modules: {
+    a: moduleA,
+    b: moduleB
+  }
+})
+
+store.state.a // -> moduleA 的状态
+store.state.b // -> moduleB 的状态
+```
+
+组件中使用
+``` js
+...mapState({
+  a: state => state.a
+}),
+```
+
+#### 模块动态注册
+``` js
+import Vuex from 'vuex'
+
+const store = new Vuex.Store({ /* 选项 */ })
+
+// 注册模块 `myModule`
+store.registerModule('myModule', {
+  // ...
+})
+```
+
+
+### 项目结构示例
 ``` sh
 ├── index.html
 ├── main.js
