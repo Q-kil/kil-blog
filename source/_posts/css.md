@@ -8,6 +8,12 @@ tags:
 ---
 
 # base
+浏览器会把CSS解析成CSSOM
+
+## 引用CSS样式方式
+内联式 > 嵌入式 > 外部式
+
+## color
 cascading style sheets
 css提供了一种方法来告诉浏览器页面中的元素如何显示
 
@@ -72,6 +78,9 @@ bolder
 比从父元素继承来的值更粗 (处在字体可行的粗细值范围内)。
 <number>
 一个介于 1 和 1000 (包含) 之间的 <number> 类型值。更大的数值代表字体重量粗于更小的数值 (或一样粗)。一些常用的数值对应于通用的字体重量名称，如章节常见粗细值名称和数值对应所描述。
+
+## calc()
+calc() 此 CSS 函数允许在声明 CSS 属性值时执行一些计算。它可以用在如下场合：<length>、<frequency>, <angle>、<time>、<percentage>、<number>、或 <integer>。
 
 # 浏览器兼容
 ## 前缀
@@ -471,6 +480,10 @@ alternate-reverse
 建议使用：css属性，white-space 去控制空格被显示出来
 white-space: pre;
 white-space CSS 属性是用来设置如何处理元素中的 空白。
+
+# 性能
+## table
+由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。
 
 # 新项目初始化
 ## html

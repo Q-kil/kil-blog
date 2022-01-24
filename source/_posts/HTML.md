@@ -10,6 +10,19 @@ tags:
 # 基础
 heperText Markup Language 超文本标记语言
 WEB的结构
+
+## DOM
+浏览器会把HTML解析成DOM。
+DOM是一个树形结构。
+操作一个DOM节点实际上就是这么几个操作：
+
+更新：更新该DOM节点的内容，相当于更新了该DOM节点表示的HTML的内容；
+遍历：遍历该DOM节点下的子节点，以便进行进一步操作；
+添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点；
+删除：将该节点从HTML中删除，相当于删掉了该DOM节点的内容以及它包含的所有子节点。
+
+在操作一个DOM节点前，我们需要通过各种方式先拿到这个DOM节点。最常用的方法是document.getElementById()
+
 ## lang
 // TODO: Y
 zh-cmn-Hans

@@ -79,6 +79,10 @@ space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
 space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
 stretch（默认值）：轴线占满整个交叉轴。
 
+### align-items
+items值flex子项们，相对于flex容器在垂直方向上的对齐方式
+align-items: stretch | flex-start | flex-end | center | baseline;
+
 ## 项目的属性
 ### order
 order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
