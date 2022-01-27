@@ -580,6 +580,12 @@ https://github.com/j3k0/cordova-plugin-purchase
 该插件是基于事件的API。需要注册监听器的变化。
 监听机制的核心是 `when()`
 
+### 流程
+#### init
+register -> listen events [registered , valid, requested, approved, finished, owned]
+
+#### 下单
+order -> 平台从用户账户扣钱 -> 商品进入 approved（批准）状态 -> 检查交易收据合法性 -> 后端发货。
 
 # 热更新
 cordova-hot-code-push-plugin

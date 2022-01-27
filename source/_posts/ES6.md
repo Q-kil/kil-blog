@@ -102,13 +102,47 @@ window.onload = function() {
 ```
 
 ### 暂时性死区
-ES6规定，let/const 命令会使区块形成封闭的作用域。若在声明之前使用变量，就会报错。
+let/const 声明变量时会针对这个变量形成一个封闭的块级作用域。
+在相应花括号形成的作用域中存在一个“死区”，起始于函数开头，终止于相关变量声明语句的所在行。
+
+专业名称：TDZ（Temporal Dead Zone）
+
+若在声明之前使用变量，就会报错。
 总之，在代码块内，使用 let 命令声明变量之前，该变量都是不可用的。
 这在语法上，称为 “暂时性死区”（ temporal dead zone，简称 TDZ）。
 ``` js
 console.log(a) // ReferenceError: a is not defined
 let a
 ```
+
+#### 函数参数默认值也会受到暂时性死区的影响
+``` js
+function foo(arg1 = arg2, arg2) {
+  console.log(`${arg1} ${arg2}`);
+}
+foo(undefined, 'arg2'); // Error: Cannot access 'arg2' before initialization
+foo(null, 'arg2'); // null arg2
+```
+
+### 调用栈
+在执行一个函数时，如果这个函数又调用了另外一个函数，而另外一个函数又调用了另外一个函数，这样就形成了一系列的调用栈。
+``` js
+function foo1() {
+  foo2()
+}
+function foo2() {
+  foo3()
+}
+function foo3() {
+  console.log('foo3')
+}
+foo1()
+```
+foo1 先入栈，foo2 再入栈，foo3执行玩，foo3出栈，foo2出栈，foo1出栈。
+这个过程满足先进后出的规则，因此形成调用栈。
+
+借助JavaScript引擎清晰地看到错误堆栈信息。
+`{% asset_img call_stack.png %}`
 
 ### 日常错误
 const c = '1';

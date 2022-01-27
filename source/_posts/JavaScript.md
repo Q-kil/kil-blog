@@ -19,6 +19,10 @@ Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 ## 冻结对象
 Object.freeze(obj);
 
+## 获取元素上的属性值
+返回元素上一个指定的属性值。如果指定的属性不存在，则返回  null 或 "" （空字符串）
+let attribute = element.getAttribute(attributeName);
+
 ## 函数自执行
 IIFE（立即调用函数表达式）
 ```js
@@ -106,6 +110,9 @@ window/global Scope	全局作用域
 function Scope	函数作用域
 Block Scope	块作用域（ES6）
 eval Scope	eval作用域 【eval() 函数会将传入的字符串当做 JavaScript 代码进行执行】
+
+### 作用域链
+变量作用域的查找是一个扩散过程，就像各个环节相扣的链条（"变量提升"一直向上找），逐次递进，这就是“作用域链”的由来。
 
 ## 点击事件
 ``` js
@@ -1008,8 +1015,29 @@ JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就�
 处理程序及其依赖项都不会被收集，因为间隔处理需要先备停止（请记住，它仍然是活动的）
 
 ### 闭包
-一旦为同一个父作用域内的闭包创建作用域，作用域将被共享。
-两个闭包之间的整个共享范围，这阻止了它们的垃圾收集。
+#### 定义
+函数嵌套函数，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，进而形成闭包。
+`{% asset_img closure.png %}`
+
+``` js
+function numGenerator() {
+  let num = 1;
+  num++;
+  return () => {
+    console.log(num);
+    
+  }
+}
+var getNum = numGenerator();
+getNum();
+```
+#### 基本原理
+在正常情况下外界是无法访问函数内部变量的，函数执行之后，上下文即被销毁。但是在函数（外层）中，如果我们返回了另一个函数，且这个返回的函数使用了函数（外层）内的变量，那么外界便能够通过
+这个返回的函数获取原函数（外层）内部的变量值。
+
+### 内存管理
+基本数据类型按照值大小保存在栈空间中，占有固定大小的内存空间。
+引用类型保存在堆空间中，内存空间大小并不固定，需按引用情况来进行访问。
 
 ### DOM引用
 数据结构中存储 DOM 节点
@@ -1019,10 +1047,35 @@ JavaScript 具有自动垃圾回收机制（GC:Garbage Collecation），也就�
 
 # 严格模式
 "use strict";
-严格模式对正常的 JavaScript语义做了一些更改。
-- 严格模式通过抛出错误来消除了一些原有静默错误。
-- 严格模式修复了一些导致 JavaScript引擎难以执行优化的缺陷：有时候，相同的代码，严格模式可以比非严格模式下运行得更快。
-- 严格模式禁用了在ECMAScript的未来版本中可能会定义的一些语法。
+这种模式使得Javascript在更严格的条件下运行。
+"严格模式"体现了Javascript更合理、更安全、更严谨的发展方向
+
+## 为什么
+- 消除js语法的一些不合理、不严谨之处，减少怪异行为
+- 消除代码运行不安全之处，保证代码运行安全
+- 提高编译效率，增加运行速度
+- 为js下一版本铺垫
+
+## 严格模式中的变化
+严格模式同时改变了语法及运行时行为。
+
+### 将过失错误转成异常
+- 无法再意外创建全局变量
+- 静默失败的赋值操作抛出异常 
+  给不可写属性赋值，给只读属性赋值，给不可扩展对象的新属性赋值
+- 试图删除不可删除的属性时会抛出异常
+- 对象的所有属性名唯一
+- 函数的参数名唯一
+- 禁止八进制数字语法
+- 禁止设置 原始数据 的属性
+
+### 简化变量的使用
+- 禁用with
+- eval不再为上层范围引入新变量
+- 禁止删除声明变量
+
+
+
 
 # 原型链
 如果试图引用constructor1构造的实例instance1的某个属性p1:
@@ -1105,13 +1158,14 @@ function log(){
 ```
 
 ## bind
+bind 返回一个新的函数，绑定了新的this，不会执行。
 说完了 apply 和 call ，再来说说bind。bind() 方法与 apply 和 call 很相似，也是可以改变函数体内 this 的指向。
 
 MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。
 
 直接来看看具体如何使用，在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 像这样：
 ``` js
-var foo = {
+var foo = {W
     bar : 1,
     eventBind: function(){
         var _this = this;
@@ -1135,6 +1189,9 @@ var foo = {
     }
 }
 ```
+
+### 语法
+function.bind(thisArg[, arg1[, arg2[, ...]]])
 
 ## call&apply&bind比较
 ``` js
@@ -1420,3 +1477,15 @@ Unhandled Promise Rejection: SyntaxError: JSON Parse error: Unexpected identifie
 答：
 Most probably your response is already a JavaScript object and it not required to be parsed.
 Remove the line var json = JSON.parse(response); and your code should work.
+
+# 性能优化
+## 内存泄露
+删除element节点的时候，把element变量设置为null
+``` js
+var element = document.getElementById("element");
+
+function remove() {
+  element.parentNode.removeChild(element)
+  element = null // 该节点占用的内存会被释放
+}
+```

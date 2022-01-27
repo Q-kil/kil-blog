@@ -10,6 +10,10 @@ tags:
 # base
 浏览器会把CSS解析成CSSOM
 
+## initial & inherit
+initial 初始值或默认值
+inherit 继承父元素
+
 ## 引用CSS样式方式
 内联式 > 嵌入式 > 外部式
 
@@ -500,12 +504,16 @@ body,h1,h2,h3,h4,h5,h6,p {
 ul {
   padding: 0;
   margin: 0;
-  li {
-    list-style: none;
-  }
+}
+ul li {
+  list-style: none;
 }
 a {
-
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 .cursor-pointer {
   cursor: pointer;
