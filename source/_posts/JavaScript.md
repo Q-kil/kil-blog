@@ -609,8 +609,38 @@ start 可选
 end 可选
 终止索引，默认值为 this.length。
 
+### from
+对一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。
+``` js
+// 从String生成数组
+Array.from('foo');
+// ['f', 'o', 'o']
+
+// 从Set生成数组
+Array.from(new Set(['foo', 'bar']))
+// ['foo', 'bar']
+
+// 从Map生成数组
+const map = new Map([[1, 2], [2,4]])
+Array.from(map);
+// [[1,2], [2,4]]
+```
+
 ### map
 Array map()
+
+### 删除
+头部
+shift()
+
+尾部
+pop()
+
+中间
+splice(索引，长度)
+第三个参数 可以添加元素
+改变原数组
+
 
 ## 
 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
@@ -735,12 +765,23 @@ item:  5
 
 ## reduce
 reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
-``` js
-return this.products.reduce((sum, product) => {
-  console.log('product', product);
+场景：累计器, 计算数组里的总值。
 
-  return sum + 1;
-}, 0)
+参数：
+- callback(返回的值，当前值)
+- initialValue 第一次调用callback函数时的第一个参数值
+
+``` js
+const array = [{label: 1, value: 1}, {label: 2, value: 2}, {label: 3, value: 3}, {label: 4, value: 4}];
+const acc = array.reduce((pre, cur, index) => {
+  console.log('pre', pre, cur, index);
+  if (index === 1) {
+    return pre.value + cur.value;
+  } else {
+    return pre + cur.value;
+  }
+});
+console.log('acc', acc); // 10
 ```
 
 ## 模块规范
@@ -831,6 +872,8 @@ document.domain
 
 # 数组
 ## 排序 sort()
+默认排序顺序是在将元素转换为字符串，然后比较它们的UTF-16代码单元值序列。
+修改元素组。
 ``` js
 let arr = [12, 5, 8, 99, 33, 14];
 arr.sort();
@@ -842,6 +885,20 @@ arr.sort(function(n1, n2) {
 });
 console.log('sort:', arr); // sort: [ 5, 8, 12, 14, 33, 99 ]
 ```
+
+### arr.sort([compareFunction])
+compareFunction 可选
+用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。
+firstEl
+第一个用于比较的元素。
+secondEl
+第二个用于比较的元素。
+
+如果指明了 compareFunction ，那么数组会按照调用该函数的返回值排序。即 a 和 b 是两个将要被比较的元素：
+如果 compareFunction(a, b) 小于 0 ，那么 a 会被排列到 b 之前；
+如果 compareFunction(a, b) 等于 0 ， a 和 b 的相对位置不变。备注： ECMAScript 标准并不保证这一行为，而且也不是所有浏览器都会遵守（例如 Mozilla 在 2003 年之前的版本）；
+如果 compareFunction(a, b) 大于 0 ， b 会被排列到 a 之前。
+compareFunction(a, b) 必须总是对相同的输入返回相同的比较结果，否则排序的结果将是不确定的。
 
 ## 删除没元素
 ``` js
@@ -1433,6 +1490,13 @@ alert('请求已发送，请等待响应...');
 ## querySelector()
 指定选择器或选择器组匹配的第一个 HTMLElement对象。找不到匹配项，返回null
 
+## querySelectorAll()
+返回与指定的选择器组匹配的文档中的元素列表, 返回的对象是 NodeList。
+
+注意：
+因为返回的是一个 NodeList 需要转换为 Array
+[...document.querySelectorAll('*')]
+
 # Element
 ## appendChild(aChild)
 aChild: 必须是节点
@@ -1479,7 +1543,11 @@ Most probably your response is already a JavaScript object and it not required t
 Remove the line var json = JSON.parse(response); and your code should work.
 
 # 性能优化
+## 调试
+chrome -> performance
+JS Heap 和 Nodes 线随着时间线一直在上升，并没有被垃圾回收机制回收。
 ## 内存泄露
+### element节点移除，但element变量还在
 删除element节点的时候，把element变量设置为null
 ``` js
 var element = document.getElementById("element");
@@ -1489,3 +1557,48 @@ function remove() {
   element = null // 该节点占用的内存会被释放
 }
 ```
+
+### 删除的节点，监听的事件还在
+还需要 removeEventListener
+
+### setInterval 要清理
+调用 clearInterval
+
+### 闭包
+
+# 数组去重
+## ES6 Set (ES6中常用)
+## 双层for，外层循环，内层比较，然后splice去重（ES5中常用）
+``` js
+function unique(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[i] == array[j]) {
+        array.splice(j, 1);
+        j--;
+      }
+    }
+  }
+  return array
+}
+let ar = [1, 2, 2, 4];
+console.log('ar', unique(ar));
+```
+
+## indexOf去重
+``` js
+function unique(arr) {
+  let newArr = [];
+  for(let i = 0; i < arr.length; i++) {
+    if (arr.indexOf(arr[i]) === -1) {
+      newArr.push(arr[i])
+    }
+  }
+  return newArr
+}
+```
+
+## sort()排序后，相邻比较
+
+## includes，数组是否含有某个值
+
