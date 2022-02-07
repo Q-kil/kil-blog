@@ -115,6 +115,13 @@ eval Scope	eval作用域 【eval() 函数会将传入的字符串当做 JavaScri
 变量作用域的查找是一个扩散过程，就像各个环节相扣的链条（"变量提升"一直向上找），逐次递进，这就是“作用域链”的由来。
 
 ## 点击事件
+```js
+<h1 onclick="test()">click</h1>
+function test() {
+  console.log('test');
+}
+```
+
 ``` js
 window.addEventListener('click', () => console.log('Clicked!'));
 document.getElementById('ele').addEventListener('click', () => console.log('Clicked!'));
