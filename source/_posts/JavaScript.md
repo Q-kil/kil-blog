@@ -605,6 +605,12 @@ async function go() {
 }
 ```
 
+### do while
+do...while 语句创建一个执行指定语句的循环，直到condition值为 false。在执行statement 后检测condition，所以指定的statement至少执行一次。
+do
+   statement
+while (condition);
+
 ## Array
 Array.prototype.fill()
 fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。

@@ -59,12 +59,88 @@ TypeScript 编译的时候即使报错了，还是会生成编译结果，我们
 
 ts 编译器 tsc
 ## 类型
-### 原始数据类型
-JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。
-原始数据类型包括：布尔值、数值、字符串、`null`、`undefined` 以及 [ES6 中的新类型 Symbol](https://es6.ruanyifeng.com/#docs/symbol)。
-对象类型包括：Object
+ts 类型系统
+### 基本类型
+``` ts
+let courseName: string = 'a';
+let age: number = 18;
+let isOnline: boolean = true;
+let nobody: null = null;
+let course: number|string = 'kil';
+```
 
-#### 布尔值
+### 引用类型
+``` ts
+// array
+let me: [string, number] = ['kil', 18]
+
+// object 定义类型
+interface Person {
+  name: string,
+  age: number,
+  jobs: string[],
+  // readonly 不可修改
+  readonly cardId: string,
+  hourse?: string,
+  sex: '男' | '女'
+}
+// 使用object类型
+const kil:Person = {
+  name: 'kil',
+  age: 18,
+  jobs: ['1', '2'],
+  cardId: '341281',
+  sex: '男'
+}
+
+
+// 函数 定义类型
+// 参数和返回值定义类型
+function add(num1: number, num2: number): number {
+  return num1+num2
+}
+// 类型定义
+type addType = (a: number, b: number)=>number
+// 接口定义
+interface addType1 {
+  (a: number, b: number):number
+}
+// 使用
+let add:addType = function add(num1: number, num2: number): number {
+  return num1+num2
+} 
+```
+
+### 实战演练: 网络请求进阶
+规范接口传参
+
+``` ts
+import axios from 'axios'
+
+// function request(url: string, obj: any) {
+//   return axios.post(url, obj)
+// }
+
+// <预先定义一些类型变量，给后面函数用>
+function request<T extends keyof API>(url: T, data: API[T]) {
+  return axios.post(url, obj)
+}
+
+interface API {
+  '/course/buy': {
+    id: number
+  },
+  '/course/comment': {
+    id: number,
+    message: string
+  }
+}
+request('https://httpbin.org/post', {msg: '1'})
+
+```
+
+
+### 布尔值
 注意，使用构造函数 Boolean 创造的对象不是布尔值：
 ``` ts
 let createdByNewBoolean: boolean = new Boolean(1);
@@ -83,18 +159,8 @@ let createdByBoolean: boolean = Boolean(1);
 ```
 在 TypeScript 中，`boolean` 是 JavaScript 中的基本类型，而 `Boolean` 是 JavaScript 中的构造函数。其他基本类型（除了 `null` 和 `undefined`）一样，不再赘述。
 
-#### 字符串
-``` ts
-let myName: string = 'Tom';
-let myAge: number = 25;
 
-// 模板字符串
-let sentence: string = `Hello, my name is ${myName}.
-I'll be ${myAge + 1} years old next month.`;
-```
-其中 &#96; 用来定义 ES6 中的模板字符串，`${expr}` 用来在模板字符串中嵌入表达式。
-
-#### 空值
+### 空值
 JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 `void` 表示没有任何返回值的函数：
 ``` ts
 function alertName(): void {

@@ -58,6 +58,7 @@ prod是单词【production：生产】的简写
 
 pve：虚拟机
 
+UAT环境：UAT，(User Acceptance Test),用户接受度测试 即验收测试，所以UAT环境主要是用来作为客户体验的环境。
 
 ## 软件版本
 ### 软件的开发期
