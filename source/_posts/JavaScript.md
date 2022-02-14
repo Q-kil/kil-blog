@@ -19,6 +19,10 @@ Object 类型、Array 类型、Date 类型、RegExp 类型、Function 类型 等
 ## 冻结对象
 Object.freeze(obj);
 
+## 运算符
+&& 逻辑与
+& 按位与
+
 ## 获取元素上的属性值
 返回元素上一个指定的属性值。如果指定的属性不存在，则返回  null 或 "" （空字符串）
 let attribute = element.getAttribute(attributeName);

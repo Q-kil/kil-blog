@@ -30,6 +30,12 @@ tsc -build src/server --verbose
 tsc -b test --clean
 ```
 
+## 页面使用ts，时刻记住四个点
+1. 你自己定义的变量的类型
+2. 宿主环境（浏览器、node）环境下的变量类型，比如 window
+3. 第三方框架的类型，可能是1和2的组合
+4. 范型等类型的推导，熟练使用工具函数 Omit、Pick、Parial
+
 # 运行
 ``` zsh
 npm install -g typescript
