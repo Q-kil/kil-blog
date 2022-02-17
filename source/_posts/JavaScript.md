@@ -734,7 +734,12 @@ item:  5
 ```
 
 ## reduce
-reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+reduce() 方法对数组中的每个元素执行reducer函数(升序执行)，将其结果汇总为单个返回值。
+场景：计算数组里的总值。
+参数：
+- callback(返回的值，当前值)
+- initialValue 第一次调用callback函数时的第一个参数值
+ 
 ``` js
 return this.products.reduce((sum, product) => {
   console.log('product', product);
@@ -1433,6 +1438,13 @@ alert('请求已发送，请等待响应...');
 ## querySelector()
 指定选择器或选择器组匹配的第一个 HTMLElement对象。找不到匹配项，返回null
 
+## querySelectorAll()
+返回与指定的选择器组匹配的文档中的元素列表, 返回的对象是 NodeList。
+
+注意：
+因为返回的是一个 NodeList 需要转换为 Array
+[...document.querySelectorAll('*')]
+
 # Element
 ## appendChild(aChild)
 aChild: 必须是节点
@@ -1479,7 +1491,11 @@ Most probably your response is already a JavaScript object and it not required t
 Remove the line var json = JSON.parse(response); and your code should work.
 
 # 性能优化
+## 调试
+chrome -> performance
+JS Heap 和 Nodes 线随着时间线一直在上升，并没有被垃圾回收机制回收。
 ## 内存泄露
+### element节点移除，但element变量还在
 删除element节点的时候，把element变量设置为null
 ``` js
 var element = document.getElementById("element");
@@ -1489,3 +1505,11 @@ function remove() {
   element = null // 该节点占用的内存会被释放
 }
 ```
+
+### 删除的节点，监听的事件还在
+还需要 removeEventListener
+
+### setInterval 要清理
+调用 clearInterval
+
+### 闭包
