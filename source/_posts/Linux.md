@@ -486,6 +486,20 @@ id_rsa  id_rsa.pub  known_hosts
 $ ssh-keygen -t rsa -C "your_email@example.com"
 ```
 
+#### 解决Enter passphrase for key ‘/Users/xxx/.ssh/id_rsa‘
+现象：每次git pull git fetch  git push 等等命令的时候都会提示输入密码，
+苦思冥想为什么总让输密码呢？
+终于想到可能是之前生成key的时候输入了密码。这个密码应该是git服务器需要进行校验，为了数据安全，所以才提示我们输入密码。
+如果不想每次都输入密码的话，在第一次生成key的时候不要输入密码，直接回车就好了。
+像我这种之前手残设置了密码的，只要把密码去掉就好了，解法：
+通过这个命令重新设置密码，直接回车设置为空，以后就不用再输入了。
+```
+$ ssh-keygen -p
+```
+`{% asset_img ssh-key.png %}`
+在重设密码的时候，需要输入一次之前的密码old passphrase用来验证，正常输就行了，
+然后接下来就是需要输入两次new passphrase，此时什么都不输，直接回车即可
+
 ### 快捷登录设置
 客户端配置文件 ～/.ssh/config
 ``` BASH

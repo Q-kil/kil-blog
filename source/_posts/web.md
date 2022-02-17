@@ -39,5 +39,23 @@ https://dash.cloudflare.com/
 ## IPFS
 Inter Planetary File System 星际文件系统
 
+# HTTP
+## 测试接口
+### get
+https://httpbin.org/get
+
+### post
+https://httpbin.org/post
 
 
+# 框架
+每一个框架都是解决历史问题。
+
+vue和react的瓶颈：项目庞大之后的卡顿问题
+vue响应式数据过多。解决：组件控制响应式
+两个树数据过大。解决：react16: Fiber tree
+
+框架的迭代最后都是算法
+
+
+npm -> yarn -> pnpm

@@ -32,7 +32,35 @@ tags:
 
 ## 使用设备文件浏览器查看设备上的文件
 https://developer.android.com/studio/debug/device-file-explorer
-View > Tool Windows > Device File Explorer 
+View > Tool Windows > Device File Explorer
+
+## keystore
+查看密钥详细输出信息
+``` zsh
+$ keytool -list -v -keystore game-test.keystore
+输入密钥库口令:
+密钥库类型: jks
+密钥库提供方: SUN
+
+您的密钥库包含 1 个条目
+
+别名: game-test
+创建日期: 2022-2-7
+条目类型: PrivateKeyEntry
+证书链长度: 1
+证书[1]:
+所有者: CN=q, OU=q, O=q, L=q, ST=q, C=q
+发布者: CN=q, OU=q, O=q, L=q, ST=q, C=q
+序列号: 7bdaa0a0
+有效期为 Mon Feb 07 18:21:46 CST 2022 至 Wed Jan 14 18:21:46 CST 2122
+证书指纹:
+	 MD5:  5D:67:C1:49:36:DB:B7:64:20:0B:27:48:D4:67:F7:35
+	 SHA1: 9E:D9:E1:FF:89:A3:C2:D4:FE:78:44:07:AC:AD:4F:35:38:47:7D:30
+	 SHA256: E4:C2:55:29:63:73:15:44:BF:18:00:55:87:BB:01:22:E7:C3:2A:DC:CF:28:EF:35:F0:A9:B8:4E:08:38:DF:4A
+签名算法名称: SHA256withRSA
+主体公共密钥算法: 2048 位 RSA 密钥
+版本: 3
+```
 
 # studio
 ## 搜索
