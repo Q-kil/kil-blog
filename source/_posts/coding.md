@@ -24,6 +24,7 @@ tags:
 单个.js 文件可以用驼峰
 首字母一定要小写*
 [阮一峰](https://www.ruanyifeng.com/blog/2017/02/filename-should-be-lowercase.html)
+文件名全部使用小写字母和连词线（all-lowercase-with-dashes），是一种值得推广的正确做法。
 
 ### 可移植性
 - Linux系统大小写敏感
