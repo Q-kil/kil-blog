@@ -790,12 +790,16 @@ item:  5
 ```
 
 ## reduce
-reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
-场景：累计器, 计算数组里的总值。
-
+reduce() 方法对数组中的每个元素执行reducer函数(升序执行)，将其结果汇总为单个返回值。
+场景：计算数组里的总值。
 参数：
 - callback(返回的值，当前值)
 - initialValue 第一次调用callback函数时的第一个参数值
+ 
+``` js
+return this.products.reduce((sum, product) => {
+  console.log('product', product);
+```
 
 ``` js
 const array = [{label: 1, value: 1}, {label: 2, value: 2}, {label: 3, value: 3}, {label: 4, value: 4}];
@@ -1590,6 +1594,7 @@ function remove() {
 ### setInterval 要清理
 调用 clearInterval
 
+### 闭包
 ### 闭包
 
 # 数组去重
