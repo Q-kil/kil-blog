@@ -272,3 +272,48 @@ echo "zsh loaded"
 
 # 制作可引导盘
 sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/Samsung_T5
+
+# nginx
+``` zsh
+brew -v
+brew update
+brew install nginx
+
+ /usr/local/etc/nginx/nginx.conf
+```
+
+查看nginx的配置信息
+brew info nginx
+
+安装目录：/usr/local/Cellar/nginx/1.21.6 (26 files, 2.2MB) *
+根目录：Docroot is: /usr/local/var/www
+配置文件及默认端口：The default port has been set in /usr/local/etc/nginx/nginx.conf to 8080 so that
+
+nginx将在servers目录下加载所有文件，可以在此目录下启动nginx服务：
+nginx will load all files in /usr/local/etc/nginx/servers/.
+
+To restart nginx after an upgrade:
+  brew services restart nginx
+Or, if you don't want/need a background service you can just run:
+  /usr/local/opt/nginx/bin/nginx -g daemon off;
+
+查看nginx安装目录
+open /usr/local/etc/nginx/
+
+nginx安装到了哪里？
+open /usr/local/Cellar/nginx
+
+## 启动
+brew services start nginx // 重启的命令是: brew services restart nginx
+
+http://localhost:8080/
+Welcome to nginx!
+
+## issues
+### MacBook M1 brew安装其他软件遇到问题（Error: Cannot install in Homebrew on ARM processor in Intel default prefix (/usr/local)!）的处理方法
+
+打开Finder-> 打开应用程序->打开实用工具
+
+找到终端.app(找到自己用的终端)，显示简介，把使用 Rosetta打开勾选上，然后重启终端，再运行brew install ，
+
+最后装好了别忘了去掉勾

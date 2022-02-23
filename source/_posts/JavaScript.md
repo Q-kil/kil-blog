@@ -92,6 +92,13 @@ window.addEventListener('message', function(e) {
 2、href="javascript:void(0);"
 ## location
 location.reload()  //刷新页面
+
+location.protocol
+http / https:
+
+location.hostname
+a.com
+
 ## Math
 取整 四舍五入
 Math.round(67.55);   //68

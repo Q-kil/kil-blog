@@ -70,4 +70,7 @@ XDomainRequest
 CORS 规范（即 XMLHttpRequest Level 2）是 HTML5 时才制定出，IE 早期版本（IE 10.4 以前）并不支持。
 不过 IE 自己有一个私有对象 XDomainRequest，可以用它，不过好像最低只支持到 IE 8。更古早的 IE 6/7 你只能用 jsonp 或是后端配代理转发来处理跨域请求了。
 
+# Chrome
+## 清除缓存，强制刷新网站
+`{ asset_img web_clear_cache.png }`
 
