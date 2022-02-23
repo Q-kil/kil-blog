@@ -6,6 +6,18 @@ categories:
 tags:
 - code
 ---
+
+# 调试
+获取授权url
+Method: post
+URL: http://d-gamenc.ethicall.cn/game/nc/auth/oauth
+Params: {
+	redirectUrl: "d-gamenc.ethicall.cn/wx.html#/auth?fr=http%3A%2F%2Flocalhost%3A7457%2F"
+}
+Response: {
+		code: "500"
+}
+
 # 编码
 
 调试
