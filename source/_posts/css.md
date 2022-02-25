@@ -119,6 +119,9 @@ li+li {
   margin-left: 152px;
 }
 
+## 长单词换行
+word-wrap: break-word;
+
 ## placeholder 颜色
 ``` css
 input {

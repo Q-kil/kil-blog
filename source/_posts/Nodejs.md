@@ -492,3 +492,5 @@ http.createServer(function(req, res) {
 }).listen(8082);
 ```
 
+# serve
+npm i -g serve
