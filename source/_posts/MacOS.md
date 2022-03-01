@@ -308,6 +308,9 @@ open /usr/local/etc/nginx/
 nginx安装到了哪里？
 open /usr/local/Cellar/nginx
 
+work address
+/opt/homebrew/etc/nginx/servers/
+
 ## 启动
 brew services start nginx // 重启的命令是: brew services restart nginx
 
