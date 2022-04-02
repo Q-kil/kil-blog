@@ -947,6 +947,13 @@ this.materials.splice(this.materials.findIndex(item => {
 }), 1);
 ```
 
+## splice 插队
+```js
+let arr1 = [2,3,1]
+arr1.splice(1,1,6,7,8)
+// [2,6,7,8,1]
+```
+
 # 关键字
 ## this
 `this` 是 JavaScript 语言的一个关键字。
