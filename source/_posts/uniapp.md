@@ -7,7 +7,7 @@ tags:
 - uniapp
 ---
 
-# base
+# Base
 ## 判断平台
 html
 ``` html
@@ -26,3 +26,15 @@ if (process.env.UNI_PLATFORM === "mp-weixin") {}
 if (process.env.UNI_PLATFORM === "mp-baidu") {}
 ```
 
+## http request
+```js
+ureq =>
+uni.request({
+  url: '',
+  method: 'GET',
+  data: {},
+  success: res => {},
+  fail: () => {},
+  complete: () => {}
+});
+```

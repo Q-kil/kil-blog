@@ -158,6 +158,8 @@ xml格式化插件：XML Tools
 | Ctrl + Home | 快速回到顶部 |
 | Ctrl + w | 工作区切换 |
 | Cmd + Ctrl + F | 工作区全屏 |
+| Cmd + Z | 回退 |
+| Cmd + Shift + Z | 回退的内容返回来 |
 
 | Win快捷键 | 作用 |X
 | :--- | :--- |
@@ -271,6 +273,9 @@ setting.json
 ``` json
 "editor.formatOnSave": true
 ```
+
+### 关闭右侧预览
+code-首选项-设置,搜索"editor.minimap.enabled",默认值为打钩,我们只需要把钩去掉即可
 
 ## VS Code 设置-高级进阶
 ### 文件对比
