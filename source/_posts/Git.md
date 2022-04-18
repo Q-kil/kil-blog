@@ -30,6 +30,9 @@ sudo apt-get install git
 cms垒哥没有merge 到 dev
 seven：merge 本地；本地dev 分支需要拉一下
 
+## 查看文件修改内容
+git diff test.text
+
 # 配置
 ### ssh 密钥
 ```
