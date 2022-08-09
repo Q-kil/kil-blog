@@ -38,3 +38,10 @@ uni.request({
   complete: () => {}
 });
 ```
+
+## 路由
+```js
+uni.navigateTo({
+  url: '../info/info?id=' + id
+});
+```
