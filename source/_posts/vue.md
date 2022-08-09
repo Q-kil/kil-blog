@@ -111,6 +111,14 @@ Vue.component('todo-item', {
 </todo-item>
 ```
 
+### 子组件中调用父组件方法
+```js
+this.$parent.parentFun();
+this.$emit('getParentFun');
+// 第三种：props传入
+this.fun();
+```
+
 ## Vue实例
 没有完全遵循 MVVM 模型
 `vm` (ViewModel 的缩写) 这个变量名表示 Vue 实例
